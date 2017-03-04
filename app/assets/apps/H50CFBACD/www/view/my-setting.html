@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的设置</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<link rel="stylesheet" href="../libs/mui/mui.css" />
+		<link rel="stylesheet" href="../libs/iconfont/fonts/iconfont.css" />
+		<style>
+			.kong{margin-top: 4px;}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的设置</h1>
+		</header>
+		<div class="mui-content">
+			<div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" onclick="openNewPage('my-infor.html')">
+							我的账号
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view kong">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" onclick="openNewPage('setting-gyz.html')">
+							公英制
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" onclick="openNewPage('setting-language.html')">
+							语言
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view kong">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" onclick="openNewPage('about.html')">
+							关于
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="margin-top: 10px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right out">
+							<span style="color: #F65F5F;">退出账号</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-2.1.4.min.js" ></script>
+	<script type="text/javascript" src="../js/mui.js" ></script>
+	<script type="text/javascript" src="../js/open.js" ></script>
+	<script type="text/javascript">
+		$('.out').on('click',function(){
+			
+			var nwaiting = plus.nativeUI.showWaiting();//显示原生等待框
+			var webviewContent= plus.webview.create('login.html','login.html',{},{fid:1});//后台创建webview并打开show.html
+			webviewContent.addEventListener("loaded", function() { //注册新webview的载入完成事件
+		        nwaiting.close(); //新webview的载入完毕后关闭等待框
+		        plus.storage.clear();//清除所有本地存储
+		        webviewContent.show("slide-in-right",20); //把新webview窗体显示出来，显示动画效果为速度200毫秒的右侧移入动画
+			}, false);
+		})
+	</script>
+</html>

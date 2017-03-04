@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/kongqing/AndroidStudioProjects/Shequ/easeui/assets"><file name="fonts/pangzhonghua.ttf" path="/home/kongqing/AndroidStudioProjects/Shequ/easeui/assets/fonts/pangzhonghua.ttf"/></source><source path="/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/home/kongqing/AndroidStudioProjects/Shequ/easeui/build-types/release/assets"/></dataSet></merger>
