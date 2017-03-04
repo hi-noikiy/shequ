@@ -20,12 +20,12 @@
         "source": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/res/layout/ease_row_contact.xml"
     },
     {
-        "merged": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/intermediates/res/merged/release/layout/ease_widget_emojicon_tab_bar.xml",
-        "source": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/res/layout/ease_widget_emojicon_tab_bar.xml"
-    },
-    {
         "merged": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/intermediates/res/merged/release/layout/ease_row_received_voice_call.xml",
         "source": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/res/layout/ease_row_received_voice_call.xml"
+    },
+    {
+        "merged": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/intermediates/res/merged/release/layout/ease_widget_emojicon_tab_bar.xml",
+        "source": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/res/layout/ease_widget_emojicon_tab_bar.xml"
     },
     {
         "merged": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/intermediates/res/merged/release/layout/ease_row_received_video.xml",
@@ -172,12 +172,12 @@
         "source": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/res/layout/ease_widget_title_bar.xml"
     },
     {
-        "merged": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/intermediates/res/merged/release/layout/ease_row_sent_picture.xml",
-        "source": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/res/layout/ease_row_sent_picture.xml"
-    },
-    {
         "merged": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/intermediates/res/merged/release/layout/ease_widget_chat_primary_menu.xml",
         "source": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/res/layout/ease_widget_chat_primary_menu.xml"
+    },
+    {
+        "merged": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/intermediates/res/merged/release/layout/ease_row_sent_picture.xml",
+        "source": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/res/layout/ease_row_sent_picture.xml"
     },
     {
         "merged": "/home/kongqing/AndroidStudioProjects/Shequ/easeui/build/intermediates/res/merged/release/layout/ease_row_received_picture.xml",

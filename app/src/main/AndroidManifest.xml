@@ -220,9 +220,9 @@
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService"/>
-        <service
+        <!--<service
             android:name="com.xiaomi.mipush.sdk.MessageHandleService"
-            android:enabled="true"/>
+            android:enabled="true"/>-->
 
         <receiver
             android:name="com.hyphenate.chat.EMMipushReceiver"
@@ -368,24 +368,24 @@
         <!-- meta-data节点android:name="UMENG_APPKEY"项中android:value值为友盟网站申请的APPKEY
         --><!-- meta-data节点android:name="UMENG_CHANNEL"项中android:value值为发行渠道标识，可任意取值，用于各种发行渠道效果统计
 -->
-        <meta-data
+      <!--  <meta-data
             android:name="UMENG_APPKEY"
-            android:value="%UMENG_APPKEY%"/>
-        <meta-data
+            android:value="%UMENG_APPKEY%"/>-->
+        <!--<meta-data
             android:name="UMENG_CHANNEL"
-            android:value="googleplay"/><!-- 友盟统计  配置  end -->
+            android:value="googleplay"/>--><!-- 友盟统计  配置  end -->
         <!-- Maps(地图) begin -->
         <!-- meta-data节点android:name="com.baidu.lbsapi.API_KEY"项中android:value值为百度地图应用的Appkey
         -->
-        <meta-data
+      <!--  <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="Z3erUvGIwBCBQdBl6CArCAGT">
-        </meta-data>
-        <service
+        </meta-data>-->
+    <!--    <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote">
-        </service><!-- Maps(地图) end -->
+        </service>--><!-- Maps(地图) end -->
         <!-- Oauth 授权登陆 start -->
         <!-- Oauth QQ start -->
         <!-- QQ 分享 配置和授权登陆相同 -->
@@ -590,10 +590,10 @@
             android:name=".integrate.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
-        <meta-data
+        <!--<meta-data
             android:name="WX_APPID"
-            android:value="wx0411fa6a39d61297"/><!-- 微信支付配置end -->
-        <!--小米分享-->
+            android:value="wx0411fa6a39d61297"/>&lt;!&ndash; 微信支付配置end &ndash;&gt;
+        &lt;!&ndash;小米分享&ndash;&gt;
         <meta-data
             android:name="MIUI_APPID"
             android:value="_%小米分享的APPID%"/>
@@ -602,7 +602,7 @@
             android:value="%小米分享的appSecret%"/>
         <meta-data
             android:name="MIUI_REDIRECT_URI"
-            android:value="%小米分享的回调地址%"/>
+            android:value="%小米分享的回调地址%"/>-->
 
         <activity android:name="com.xiaomi.account.openauth.AuthorizeActivity"/><!--小米分享 end-->
         <!--小米推送-->
@@ -623,30 +623,30 @@
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":pushservice"/>-->
-        <service
+        <!--<service
             android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
             android:enabled="true"
-            android:exported="true"/>
-        <service
+            android:exported="true"/>-->
+      <!--  <service
             android:name="com.xiaomi.mipush.sdk.MessageHandleService"
-            android:enabled="true"/>
+            android:enabled="true"/>-->
 
-        <receiver
+        <!--<receiver
             android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
-        </receiver>
-        <receiver
+        </receiver>-->
+        <!--<receiver
             android:name="com.xiaomi.push.service.receivers.PingReceiver"
             android:exported="false"
             android:process=":pushservice">
             <intent-filter>
                 <action android:name="com.xiaomi.push.PING_TIMER"/>
             </intent-filter>
-        </receiver>
+        </receiver>-->
         <!--<receiver
             android:name="io.dcloud.feature.apsXm.XMMessageReceiver"
             android:exported="true">

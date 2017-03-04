@@ -1,10 +1,22 @@
 package com.hyphenate.easeui.model;
 
+import java.util.Map;
+
 /**
  * Created by kongqing on 17-3-4.
  */
 
 public class UserInfo {
+    public Map<String, User> getInfo() {
+        return info;
+    }
+
+    public void setInfo(Map<String, User> info) {
+        this.info = info;
+    }
+
+    private Map<String, User> info;
+
     private UserInfo() {
 
     }
@@ -17,22 +29,24 @@ public class UserInfo {
         private static final UserInfo userInfo = new UserInfo();
     }
 
-    public String getNick() {
-        return nick;
-    }
+    public static class User {
+        public String getNick() {
+            return nick;
+        }
 
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
+        public void setNick(String nick) {
+            this.nick = nick;
+        }
 
-    public String getIcon() {
-        return icon;
-    }
+        public String getIcon() {
+            return icon;
+        }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+        public void setIcon(String icon) {
+            this.icon = icon;
+        }
 
-    private String icon;
-    private String nick;
+        private String icon;
+        private String nick;
+    }
 }

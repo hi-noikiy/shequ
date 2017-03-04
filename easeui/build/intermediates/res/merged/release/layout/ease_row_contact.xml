@@ -30,7 +30,6 @@
             android:layout_height="43dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="11dp"
-
             fresco:placeholderImage="@drawable/ease_default_avatar"
             fresco:roundAsCircle="true"/>
 

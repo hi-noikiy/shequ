@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login() {
-        EMClient.getInstance().login("jiangruicheng", "123456", new EMCallBack() {
+        EMClient.getInstance().login("zangziye", "123456", new EMCallBack() {
             @Override
             public void onSuccess() {
                 runOnUiThread(new Runnable() {
