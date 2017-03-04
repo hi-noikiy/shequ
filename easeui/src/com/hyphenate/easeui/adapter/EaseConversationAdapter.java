@@ -131,8 +131,8 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
                 for (EMMessage m : conversation.getAllMessages()) {
                     if (m.getFrom().equals(conversation.conversationId())) {
                         name = m.getJSONObjectAttribute("attribute").getString("nick");
-                        //url = m.getJSONObjectAttribute("attribute").getString("icon");
-                        uri = Uri.parse("http://www.wallcoo.com/animal/Dogs_Summer_and_Winter/wallpapers/1920x1200/DogsB10_Lucy.html");
+                        uri = Uri.parse(m.getJSONObjectAttribute("attribute").getString("icon"));
+                        //uri = Uri.parse("http://www.wallcoo.com/animal/Dogs_Summer_and_Winter/wallpapers/1920x1200/DogsB10_Lucy.html");
                     }
                 }
             } catch (JSONException e) {
