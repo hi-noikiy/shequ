@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>昵称</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <script src="../js/apppublic.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <button class="mui-btn-link mui-pull-left close_btn"><span class="colorP">取消</span></button>
+	    <h1 class="mui-title colorP">昵称</h1>
+	    <button class="mui-btn-link mui-pull-right" id="sub"><span class="colorP">确定</span></button>
+	</header>
+	<div class="mui-content">
+		<div class="mui-input-row">
+		    <input type="text" id="nick" class="mui-input-clear font14" style="padding: 25px 15px;" placeholder="请输入昵称">
+		</div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+document.addEventListener('plusready', function(){	
+	var ws = plus.webview.currentWebview();
+	var nick=plus.storage.getItem('nick');
+	var uid=plus.storage.getItem('uid');console.log(plus.webview.getWebviewById('personal_data.html'));
+	console.log(nick+"==========="+uid);
+	$('.close_btn').click(function(){
+		ws.close();		
+	})
+	$("#sub").on("tap",function(){
+		plus.nativeUI.showWaiting('提交中...');  
+		nick=$('#nick').val();
+		console.log(nick);
+		$.ajax({
+   			type:"post",
+			url:apiRoot,   
+			data : {
+				action : 'User.update', 
+				nick : nick,
+				uid : uid,
+				name:"nick",
+			},
+			dataType:'json',
+			success:function(data){ 
+				console.log(JSON.stringify(data));  
+				plus.nativeUI.closeWaiting();
+				if(data.error == 0){  
+					plus.storage.setItem('nick',data.data);
+					nick=data.data;
+					var parentid = plus.webview.getWebviewById('personal_data.html');console.log(parentid);
+					mui.fire(parentid,'changeVal',{nick:nick});
+					
+					parentpid = plus.webview.getWebviewById('view/personal_center.html');
+						mui.fire(parentpid,'changeVal',{nick:nick});
+					setTimeout(function () {
+						ws.close();
+					},1000);
+					return; 
+				}  
+			}, 
+			error : function(e){
+				console.log(JSON.stringify(e));
+				
+//				errortoast();
+			}
+		});
+	})
+	$("#nick").val(nick);
+})
+</script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>古</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
+	    	.group_list{width: 100%;overflow: hidden;}
+	    	.group_list li{width: calc(90%/4);margin: calc(10%/8);float: left;}
+	    	.mui-table-view:before,.mui-table-view:after{background-color: transparent;}
+	    	
+	    </style>
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">古</h1>
+	    </header>
+		<div class="mui-content">
+			<div></div>
+			<ul class="mui-table-view margin-bottom10px">
+			        <li class="mui-table-view-cell">
+			            <ul class="group_list">
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu1.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">中外古玩</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu2.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">陶瓷紫砂</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu3.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">木石琱琢</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu4.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">传统书画</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu5.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">漆具料器</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu6.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">印石纂刻</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu7.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">文玩杂项</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu8.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">沉香蜜蜡</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu9.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">仿古器物</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu10.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">复古技艺</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/gu11.jpg" alt="" />
+			            		<p class="colorP mui-ellipsis">复古汉服</p>
+			            	</li>
+			            </ul>
+			        </li>
+			    </ul>
+			   
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('.danger_zone').click(function(){
+			$('.alert_window').css('display','block');
+		})
+		$('.I_know').click(function(){
+			$('.alert_window').css('display','none');
+		})
+	</script>
+</html>

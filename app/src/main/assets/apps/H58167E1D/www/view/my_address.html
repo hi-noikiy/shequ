@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的地址</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/global.css" />
+		<style type="text/css">
+			.mui-checkbox.mui-left input[type=checkbox],
+			.mui-radio.mui-left input[type=radio] {
+				left: 0;
+			}
+			
+			.mui-checkbox.mui-left label,
+			.mui-radio.mui-left label {
+				padding-left: 36px;
+			}
+			
+			.mui-radio input[type=radio]:checked:before {
+				content: '\e442'
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav bg_white">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title colorP">我的地址</h1>
+			<button onclick="openNewPage('create_address.html')" class="mui-btn-link mui-pull-right"><span class="colorP">新建</span></button>
+		</header>
+		<div class="mui-content" id='content'>
+			<div></div>
+			<ul class="mui-table-view margin-bottom10px bg_white">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<span class="mui-pull-left iconfont color999 font26 padding_t10px">&#xe61c;</span>
+						<div class="mui-media-body padding_l">
+							<p class="color0 mui-clearfix line-height30px">
+								<span class="mui-pull-left font18">杨德威</span>
+								<span class="mui-pull-right font14">12345678910</span>
+							</p>
+							<p class="color0 font14">广东省深圳市宝安区沙井中心路1号</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media padding_tb_0px">
+					<div class="mui-input-row mui-radio mui-left mui-pull-left">
+						<label>默认地址</label>
+						<input name="radio" type="radio" checked>
+					</div>
+					<div class="mui-pull-right padding_tb11px">
+						<span onclick="openNewPage('amemd_address.html')" class="mui-icon iconfont color999">&#xe62a;  编辑</span>
+						<span class="mui-icon iconfont color999 padding_l del_btn">&#xe619;  删除</span>
+					</div>
+				</li>
+			</ul>
+			<ul class="mui-table-view margin-bottom10px bg_white">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<span class="mui-pull-left iconfont color999 font26 padding_t10px">&#xe61c;</span>
+						<div class="mui-media-body padding_l">
+							<p class="color0 mui-clearfix line-height30px">
+								<span class="mui-pull-left font18">杨德威</span>
+								<span class="mui-pull-right font14">12345678910</span>
+							</p>
+							<p class="color0 font14">广东省深圳市宝安区沙井中心路1号</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media padding_tb_0px">
+					<div class="mui-input-row mui-radio mui-left mui-pull-left">
+						<label>默认地址</label>
+						<input name="radio" type="radio">
+					</div>
+					<div class="mui-pull-right padding_tb11px">
+						<span onclick="openNewPage('amemd_address.html')" class="mui-icon iconfont color999">&#xe62a;  编辑</span>
+						<span class="mui-icon iconfont color999 padding_l del_btn">&#xe619;  删除</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/html" id='pid'>
+		<% for(var i in data){%>
+		<ul class="mui-table-view margin-bottom10px bg_white">
+			<li class="mui-table-view-cell mui-media">
+				<a href="javascript:;">
+					<span class="mui-pull-left iconfont color999 font26 padding_t10px">&#xe61c;</span>
+					<div class="mui-media-body padding_l">
+						<p class="color0 mui-clearfix line-height30px">
+							<span class="mui-pull-left font18"><%= data[i].name %></span>
+							<span class="mui-pull-right font14"><%= data[i].mobile %></span>
+						</p>
+						<p class="color0 font14">
+							<%= data[i].address %>
+						</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media padding_tb_0px">
+				<div class="mui-input-row mui-radio mui-left mui-pull-left" >
+					<label>默认地址</label>
+					<% if(data[i].state==1){%>
+					<input name="radio"   type="radio" checked>
+					<%  }else{ %>
+					<input name="radio" type="radio">
+					<% }%>
+				</div>
+				<div class="mui-pull-right padding_tb11px">
+					<span onclick="openPage('create_address.html',{aid:<%=data[i].id %>})" class="mui-icon iconfont color999">&#xe62a;  编辑</span>
+					<span class="mui-icon iconfont color999 padding_l del_btn">&#xe619;  删除</span>
+				</div>
+			</li>
+		</ul>
+
+		<% } %>
+	</script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/apppublic.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/template.js"></script>
+	<script type="text/javascript">
+		$('.del_btn').click(function() {
+			$(this).parent().parent().parent().remove();
+		})
+		document.addEventListener('plusready', function() {
+			var userid = plus.storage.getItem('uid');
+			console.log(apiRoot)
+			$.ajax({
+				type: 'post',
+				url: apiRoot,
+				data: { action: "Address.allAddress", uid: 1 },
+				dataTpye: 'json',
+				success: function(data) {
+					console.log(JSON.stringify(data))
+					var html = template.render('pid', data);
+					$("#content").html(html);
+				},
+				error: function(e) {
+
+				}
+			})
+		}, false)
+	</script>
+
+</html>

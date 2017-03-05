@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>推荐商品</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
+	    	.user{width: 55%;}
+	    	.user span{width: 68%;display: inline-block;}
+	    </style>
+	</head>
+	<body ng-app="recommendApp" ng-controller="recommendController">
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">推荐</h1>
+	    </header>
+		<div class="mui-content">
+			<div class="width100 bg_white">
+				<ul class="filtrate mui-clearfix padding_tb11px">
+					<li>
+						<span>销量</span>
+						<div class="top_down">
+							<i class="mui-icon iconfont colorP">&#xe716;</i>
+							<i class="mui-icon iconfont">&#xe6a5;</i>							
+						</div>
+					</li>
+					<li>
+						<span>时间</span>
+						<div class="top_down">
+							<i class="mui-icon iconfont">&#xe716;</i>
+							<i class="mui-icon iconfont">&#xe6a5;</i>							
+						</div>
+					</li>
+					<li>
+						<span>价格</span>
+						<div class="top_down">
+							<i class="mui-icon iconfont colorP">&#xe716;</i>
+							<i class="mui-icon iconfont">&#xe6a5;</i>							
+						</div>
+					</li>
+					<li>
+						<span>工期</span>
+						<div class="top_down">
+							<i class="mui-icon iconfont">&#xe716;</i>
+							<i class="mui-icon iconfont">&#xe6a5;</i>							
+						</div>
+					</li>
+				</ul>
+			</div>
+			<ul class="mui-table-view margin-bottom5px bg_white">
+	            <li class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,c) in recommend" ng-click="Traderecommend(c.id)">
+	                <a href="javascript:;">
+	                   <div class="mui-media-object mui-pull-left goods_pic "> 
+	                    	<img  src="{{c.good_image}}">
+	                    	<span class="original_tag" ng-if="c.origin">原创</span>
+	                    </div>
+	                    <div class="mui-media-body">
+	                     	<div class="mui-ellipsis">{{c.good_name}}</div>
+	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12 line-height20px">工期：<i>{{c.maf_time}}</i>天</span></div>
+	                     	<div class="mui-clearfix">
+	                     		<div class="mui-pull-left user">
+	                     			<div class="user_pic"><img src="{{c.icon}}" /></div>
+									<span class="padding_l line-height30px color999 mui-ellipsis font12">{{c.nick}} </span>
+	                     		</div>
+	                     		<span class="mui-pull-right colorRed line-height30px font12">￥{{c.price}}</span>
+	                     	</div>
+	                    </div>
+	                </a>
+	            </li>
+	        </ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script type="text/javascript" src="../js/angular.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/apppublic.js"></script>
+	<script src="../js/app/recommend_goods.js"></script>
+	<script type="text/javascript">
+		$('.top_down i').click(function(){
+			$(this).addClass('colorP').siblings().removeClass('colorP');
+		})
+	</script>
+</html>

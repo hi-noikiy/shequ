@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>物流信息</title>  
+    <link rel="stylesheet" href="../css/mui.css" />
+	<link rel="stylesheet" href="../fonts/iconfont.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	<style>
+		/*物流信息*/
+		.check{padding: 11px 15px;background: white;}
+		.check h4{font-weight: 400;font-size: 16px;}
+		.check_a{margin-top: 11px;padding: 11px 0;border-top: 1px solid #eee;display: inline-block;}    	    	  
+		.check_a i{width: 20px;height: 20px;border-radius: 100px;background: #aaa;display: block;margin: auto;}
+		#dian{width: 22px;height: 22px;border-style: groove;border-radius: 100px;background: #25AE5F;display: block;margin: auto;}
+		.check_a map{height: 75px;border: 1px solid #aaa;display: inline-block;margin-bottom: -5px;}
+		.check_a div map:nth-of-type(1){height: 100px;}
+		.check_a div map:nth-of-type(2){height: 70px;}
+		.check_a div map:nth-of-type(3){height: 80px;}
+
+		.logisit{padding: 3px 0;color: #aaa;height: 100px;}
+		.logisit.mui-active{padding: 3px 0;color: #25AE5F;height: 100px;}
+		.mui-active p{color: #25AE5F;}
+		/*横线*/
+		.Horizontal{border-left: 4px solid #fd605e; position: absolute; height: 35px; left: 5px; top:40%; margin-top: -13px;}
+		.RGB{background: #e9423a;color: white;background:-webkit-gradient(linear, 0% 0%, 0% 100%,to(#e9423a), from(#e85c56));}
+		.Success{background: #ababab;color: white;background:-webkit-gradient(linear, 0% 0%, 0% 100%,to(#ababab), from(#c8c8c8));}
+		.conten{text-align: center;}
+	</style>
+</head>
+<body>	
+	<header class="mui-bar mui-bar-nav bg_white">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left colorP"></a>
+		<h1 class="mui-title colorP">物流信息</h1>		
+	</header>
+		<div class="mui-content">			
+		<div class="check">
+			<h4>物流跟踪</h4>
+			<div class="check_a">
+				<div class="mui-col-xs-2 mui-pull-left conten">
+					<i id="dian"></i>
+					<map></map>
+					<i></i>	
+					<map></map>
+					<i></i>	
+					<map></map>
+					<i></i>	
+					<map></map>
+					<i></i>
+					<map></map>
+					<i></i>
+					<map></map>
+					<i></i>
+					<map></map>
+					<i></i>
+				</div>
+				<div class="mui-col-xs-10 mui-pull-left">
+					<div class="logisit mui-active">
+						<span>【深圳市】广东省深圳市宝安区沙井公司 已签收 签收人：杨，感谢使用圆通速递，期待再次为您服务</span>
+						<p>2016-07-21 11:18:28</p>
+					</div>
+					<div class="logisit">
+						<span>【深圳市】广东省深圳市宝安区沙井派件员：余文发 <a style="text-decoration: underline;color: #1bc5f3;">18148558542</a>正为您派件</span>
+						<p>2016-07-21 08:23:13</p>
+					</div>
+					<div class="logisit">
+						<span>广东省深圳市宝安区沙井 已收入</span>
+						<p>2016-07-21 08:23:40</p>
+					</div>
+					<div class="logisit">
+						<span>【深圳市】快件已到达 广东省深圳市宝安区沙井</span>
+						<p>2016-07-21 02:25:16</p>
+					</div>
+					<div class="logisit">
+						<span>广东省深圳市宝安区光明新区公司 已收件</span>
+						<p>2016-07-21 19:15:47</p>
+					</div>
+					<div class="logisit">
+						<span>商家正通知快递公司</span>
+						<p>2016-07-21 10:47:58</p>
+					</div>
+					<div class="logisit">
+						<span>您的包裹已出库</span>
+						<p>2016-07-21 11:20:11</p>
+					</div>
+				</div>						
+			</div>			
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/mui.js"></script>
+<script type="text/javascript" src="../libs/jquery/jquery.js"></script>
+<script type="text/javascript" src="../js/function.js"></script>
+<script type="text/javascript" src="../js/open.js"></script>
+</html>

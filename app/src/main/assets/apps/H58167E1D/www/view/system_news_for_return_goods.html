@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>系统消息</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
+	    	.user_pic{float: right;}
+	    	.img_box{width: 100%;overflow: hidden;}
+	    	.img_box li{float: left;width: calc(90%/4);margin: calc(10%/8);}
+	    	.img_box li img{width: 60px;height: 60px;padding: 0;}
+	    </style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav bg_white">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left colorP"></a>
+		    <h1 class="mui-title colorP">系统消息</h1>
+		</header>
+		<div class="mui-content">
+			<div class="paddingl_r_15px_tb11px bg_white border-bottom margin-bottom5px">
+				<h4 class="paddingl_r_6px_tb8px">退货申请</h4>
+				<p class="font13 padding_l">2016-9-14 14:00</p>
+			</div>
+			<ul class="mui-table-view bg_white margin-bottom5px">
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+	                    <div class="mui-media-body">
+	                     	<div class="mui-ellipsis">鼎壶春原创大师江雪壶1000克原价3000</div>
+	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+	                     	<div class="mui-clearfix">
+	                     		<span class="mui-pull-left colorRed line-height30px">￥2200.00</span>
+	                     		<span class="mui-pull-right colorRed line-height30px">x1</span>	                     		
+	                     	</div>
+	                    </div>
+	                </a>
+	            </li>
+	        </ul>
+	        <ul class="mui-table-view bg_white margin-bottom5px">
+	           <li class="mui-table-view-cell mui-media">
+	               <span class="mui-pull-left line-height30px">退货用户</span>
+	               <div class="user_pic mui-pull-right"><img src="../img/user12.jpg" /></div>
+	            </li>
+	           <li class="mui-table-view-cell mui-media">
+	               <p class="color0 padding5px">退货理由</p>
+	               <p class="color0 padding5px">感觉和描述的不一样吖，而且有破烂的地方</p>
+	               <ul class="padding_tb11px img_box">
+	               		<li><img class="width20" src="../img/shangpin3.jpg" alt="" class="src" /></li>
+	               		<li><img class="width20 padding_l" src="../img/shangpin3.jpg" alt="" class="src" /></li> 
+	               </ul>
+	            </li>
+	        </ul>
+	        <div style="position: fixed;left: 0;bottom: 0;width: 100%;">
+            	<button type="button" class="mui-btn mui-btn-block width50 margin0 mui-pull-left border-radius0 colorP">不通过</button>
+            	<button type="button" class="mui-btn mui-btn-blue mui-btn-block width50 margin0 mui-pull-right border-radius0">通过</button>           		
+            </div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+</html>

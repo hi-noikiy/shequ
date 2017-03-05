@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>删除好友</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
+	    	.mui-bar .mui-input-row .mui-input-clear~.mui-icon-clear{top: 12px;right: 0;}
+	    	.mui-table-view .mui-media-object{border-radius: 50%;max-width: 60px;}
+	    	.mui-media-body{line-height: 60px;}
+	    	.mui-input-row label{width: 100%;}
+	    	.mui-popup-title{color: #4c968e;}
+	    </style>
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">
+		       	 群成员
+	        </h1>
+	        <a class="mui-pull-right line-height44px colorP del_btn">删除</a>
+	    </header>
+		<div class="mui-content">
+			<div></div>
+			<ul class="mui-table-view bg_white">
+			    <li class="mui-table-view-cell mui-media">
+			    	<div class="mui-input-row mui-checkbox mui-left">
+			    	    <label>
+			    	    	<a href="javascript:;">
+					            <img class="mui-media-object mui-pull-left" src="../img/user8.jpg">
+					            <div class="mui-media-body width50 mui-ellipsis color333">回眸一笑</div>
+					        </a>
+			    	    </label>
+			    	    <input name="checkbox1" type="checkbox">		    	    
+			    	</div>			        
+			    </li>	
+			    <li class="mui-table-view-cell mui-media">
+			    	<div class="mui-input-row mui-checkbox mui-left">
+			    	    <label>
+			    	    	<a href="javascript:;">
+					            <img class="mui-media-object mui-pull-left" src="../img/user12.jpg">
+					            <div class="mui-media-body width50 mui-ellipsis color333">不做大哥好多年</div>
+					        </a>
+			    	    </label>
+			    	    <input name="checkbox1" type="checkbox">		    	    
+			    	</div>			        
+			    </li>	
+			    <li class="mui-table-view-cell mui-media">
+			    	<div class="mui-input-row mui-checkbox mui-left">
+			    	    <label>
+			    	    	<a href="javascript:;">
+					            <img class="mui-media-object mui-pull-left" src="../img/user3.jpg">
+					            <div class="mui-media-body width50 mui-ellipsis color333">风度至上</div>
+					        </a>
+			    	    </label>
+			    	    <input name="checkbox1" type="checkbox">		    	    
+			    	</div>			        
+			    </li>	
+			</ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript">
+		mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			$('body').on('tap','.del_btn',function(){
+				if($('input:checkbox').is(':checked')){
+					var btnArray = ['否', '是'];
+					mui.confirm('是否删除该群成员？', '删除确认', btnArray, function(e) {
+						if (e.index == 1) {
+							$('input:checked').parent().parent().remove();
+						} else {
+							return;
+						}
+					})
+				} else {
+					mui.toast('请选择要删除的群成员');
+					return;
+				}
+			})
+	</script>
+</html>

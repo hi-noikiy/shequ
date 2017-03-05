@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>登录</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/global.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav bg_white">
+			<a class="mui-icon mui-pull-left"></a>
+			<h1 class="mui-title colorP">登录</h1>
+			<button onclick="openNewPage('register.html')" class="mui-btn-link mui-pull-right"><span class="colorP">注册</span></button>
+		</header>
+		<div class="mui-content">
+			<!--注册表-->
+			<ul class="mui-table-view bg_white margin-bottom10px">
+				<li class="mui-table-view-cell ">
+					<div class="mui-input-row">
+						<input type="text" id='phone' class="mui-input-clear borderNone" placeholder="请输入手机号">
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-input-row">
+						<input type="password" id='password' class="mui-input-clear" placeholder="请输入密码">
+					</div>
+				</li>
+			</ul>
+			<span onclick="openNewPage('forgot_pwd.html')" class="mui-pull-right colorP paddingl_r_15px_tb11px">忘记密码？</span>
+			<button type="button" id='sq_login' class="mui-btn mui-btn-blue mui-btn-block width80 middle border-radius30px">登录</button>
+			<!--第三方登录按钮-->
+			<div class="thirdparty_login mui-text-center">
+				<span class="wing">第三方登录</span>
+				<ul class="thirdparty_btn mui-clearfix">
+					<li class="mui-pull-left" id="weixin">
+						<i class="iconfont mui-icon font40 colorgreen">&#xe61d;</i>
+						<p class="color333">微信</p>
+					</li>
+					<li class="mui-pull-left" id="qq">
+						<i class="iconfont mui-icon font40 colorblue">&#xe61f;</i>
+						<p class="color333">QQ</p>
+					</li>
+					<li class="mui-pull-left" id="sinaweibo">
+						<i class="iconfont mui-icon font40 color_red">&#xe640;</i>
+						<p class="color333">微博</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/apppublic.js"></script>
+	<script src="../js/app/ThirdPartyLogin.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/app/login.js"></script>
+
+</html>

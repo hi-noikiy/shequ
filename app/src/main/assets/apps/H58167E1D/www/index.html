@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont/iconfont.css" />
+		<style>
+			.mui-bar-tab {
+				background: #fff;
+			}
+			
+			.mui-bar-tab .mui-tab-item.mui-active {
+				color: #4c968e;
+			}
+			
+			.colorP {
+				color: #4c968e;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="view/home.html">
+				<span class="mui-icon iconfont">&#xe707;</span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="view/dynamic_state.html">
+				<span class="mui-icon iconfont">&#xe709;</span>
+				<span class="mui-tab-label">动态</span>
+			</a>
+			<span class="mui-tab-item" href="view/release.html" id="send">
+				<span class="mui-icon iconfont colorP">&#xe70d;</span>
+			<span class="mui-tab-label colorP">发布</span>
+			</span>
+			<a class="mui-tab-item" href="view/honer_message.html">
+				<span class="mui-icon iconfont">&#xe708;</span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item" href="view/personal_center.html">
+				<span class="mui-icon iconfont">&#xe70c;</span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<script src="js/mui.min.js"></script>
+		<script src="js/open.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript" charset="UTF-8">
+			//mui初始化
+			mui.init();
+			/*meMenu=1;*/
+			var subpages = ['view/home.html', 'view/dynamic_state.html', 'view/honer_message.html', 'view/personal_center.html'];
+			var subpage_style = {
+				top: '0px',
+				bottom: '51px',
+				scrollIndicator: 'none',
+				//				bounce: 'vertical',
+			};
+			var aniShow = {};
+			//创建子页面，首个选项卡页面显示，其它均隐藏；
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				for(var i = 0; i < subpages.length; i++) {
+					plus.webview.create(subpages[i], subpages[i], subpage_style);
+				}
+				/*以下是避免底部选项卡被页面遮挡的操作*/
+				var webs = plus.webview.getWebviewById(subpages[0]); /*监听其中加载数据最慢的一个子页面*/
+				webs.addEventListener('loaded', function() {
+					var temp = {};
+					for(var i = 0; i < subpages.length; i++) {
+						var sub = plus.webview.getWebviewById(subpages[i]);
+						if(i > 0) {
+							sub.hide();
+						} else {
+							temp[subpages[i]] = "true";
+							mui.extend(aniShow, temp);
+						}
+						self.append(sub);
+					}
+				}, false);
+				/*等待页面加载完成后再进行显隐操作*/
+				$('#send').on('tap', function() {
+					var targetweb = plus.webview.getWebviewById(activeTab);
+					mui.fire(targetweb, 'changeVal', {
+						showWin: 1
+					}); /*触发弹窗*/
+				})
+			});
+			//当前激活选项
+			var activeTab = subpages[0];
+			var title = document.getElementById("title");
+			//选项卡点击事件
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				var targetTab = this.getAttribute('href');
+				if(targetTab == activeTab) {
+					return;
+				}
+				//显示 和 隐藏 原生VIEW
+				if(targetTab == 'view/honer_message.html') {
+					window.plus.bridge.exec("community", "showNativeView", []);
+				} else {
+					window.plus.bridge.exec("community", "hideNativeView", []);
+				} //更换标题
+				//显示目标选项卡
+				if(mui.os.ios || aniShow[targetTab]) {
+					plus.webview.show(targetTab);
+				} else {
+					var temp = {};
+					temp[targetTab] = "true";
+					mui.extend(aniShow, temp);
+					plus.webview.show(targetTab, "fade-in", 300);
+				}
+				//隐藏当前;
+				plus.webview.hide(activeTab);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+			//自定义事件，模拟点击“首页选项卡”
+			document.addEventListener('gohome', function() {
+				var defaultTab = document.getElementById("defaultTab");
+				//模拟首页点击
+				mui.trigger(defaultTab, 'tap');
+				//切换选项卡高亮
+				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+				if(defaultTab !== current) {
+					current.classList.remove('mui-active');
+					defaultTab.classList.add('mui-active');
+				}
+			});
+			var first = null;
+			mui.back = function() {
+				//首次按键，提示‘再按一次退出应用’
+				if(!first) {
+					first = new Date().getTime();
+					mui.toast('再按一次退出应用');
+					setTimeout(function() {
+						first = null;
+					}, 2000);
+				} else {
+					if(new Date().getTime() - first < 2000) {
+						plus.runtime.quit();
+					}
+				}
+			};
+		</script>
+	</body>
+
+</html>

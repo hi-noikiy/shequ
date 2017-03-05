@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>订单详情(申请退货)</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
+	  		#audit_box{display: none;}
+	    </style>
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">订单详情</h1>
+	    </header>
+		<div class="mui-content" style="padding-bottom:55px;">
+			<div></div>
+			<ul class="mui-table-view margin-bottom5px bg_white">
+	            <li class="mui-table-view-cell mui-media">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+	                    <div class="mui-media-body">
+	                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+	                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+	                     	<div class="mui-clearfix">
+	                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+	                     		<span class="mui-pull-right">x1</span>			                     		
+	                     	</div>
+	                    </div>
+	                </a>
+	            </li>
+	        </ul>
+	        
+			<ul class="mui-table-view margin-bottom10px bg_white">
+				<li class="paddingl_r_15px_tb11px bg_white border-bottom" style="overflow: hidden;">
+					<span class="mui-pull-left line-height30px">用户</span>
+	               <div class="user_pic" style="float: right;"><img src="../img/user8.jpg" /></div>				
+	           </li>
+			    <li class="mui-table-view-cell mui-media">
+		            <span class="mui-pull-left iconfont color999 font26 padding_t10px">&#xe61c;</span>
+		            <div class="mui-media-body padding_l">
+		              	<p class="color0 mui-clearfix line-height30px">
+		              		<span class="mui-pull-left font18">回眸瞬间</span>
+		              		<span class="mui-pull-right font14">12345678910</span>
+		              	</p>
+		                <p class="color0 font14">广东省深圳市宝安区沙井中心路1号</p>
+		            </div>
+			    </li>
+	            <li class="mui-table-view-cell">
+	                <span class="mui-pull-left">状态</span>
+	                <button type="button" class="mui-btn mui-btn-white borderNone width20 colorP padding0">申请退货…</button>
+	            </li>
+	            <li class="mui-table-view-cell">
+	                <p class="color0 padding5px">退货理由</p>
+	               <p class="color0 padding5px">感觉和描述的不一样吖，而且有破烂的地方</p>
+	               <div class="padding_tb11px">
+	               		<img class="width20" src="../img/shangpin3.jpg" alt="" class="src" />
+	               		<img class="width20 padding_l" src="../img/shangpin3.jpg" alt="" class="src" />	               		
+	               </div>
+	            </li>
+			</ul>
+			<div class="width100 mui-clearfix" style="position: fixed;left: 0;bottom: 0;">
+				<button type="button" class="mui-btn mui-btn-white mui-btn-block width50 colorP borderNone margin0 border-radius0 mui-pull-left">不通过</button>
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block width50 color_white borderNone margin0 border-radius0 mui-pull-left">通过</button>
+			</div>
+			
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+</html>

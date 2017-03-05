@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>卖家信息</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <!--<style type="text/css">
+	    	span{text-indent: 2em;}
+	    	.aptitude_pic{padding: 7.5px;width: 100%;overflow: hidden;}
+	    	.aptitude_pic img{width: calc(90%/4);margin: calc(10%/8);float: left;}	    	
+	    </style>-->
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">卖家信息</h1>
+	    </header>
+		<div class="mui-content">
+			<div></div>
+			<ul class="mui-table-view">
+		        <li onclick="openNewPage('honer_page.html')" class="mui-table-view-cell bg_white margin-bottom5px">
+		            <a class="mui-navigate-right">
+		                <img src="../img/user1.jpg" class="circle_pic"/>
+						<span class="padding_lr_10px">杨德威</span>
+		            </a>
+		        </li>
+		        <li onclick="openNewPage('saler_aptitude.html')" class="mui-table-view-cell bg_white margin-bottom5px">
+		            <a class="mui-navigate-right">
+		                	卖家资质
+		            </a>
+		        </li>
+		        <li class="mui-table-view-cell">
+		         	   卖家商品
+		        </li>
+		        <ul class="mui-table-view margin-bottom5px bg_white">
+		        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+		               <div class="user_pic"><img src="../img/user1.jpg" /></div>
+						<span class="padding_l  line-height30px font14">杨德威 </span>
+						<p class="mui-pull-right line-height30px font12">08:00</p>
+		            </li>
+		            <li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
+		                <a href="javascript:;">
+		                    <img class="mui-media-object mui-pull-left"  src="../img/1.jpg">
+		                    <div class="mui-media-body">
+		                     	<div class="margin-bottom10px mui-ellipsis font12">音柱端面绝对垂直磨平，根据提琴面板与背板的弧度不同，产生不同的效果</div>
+		                     	<span class="mui-pull-right colorRed font12">￥998.00</span>
+		                    </div>
+		                </a>
+		            </li>          
+		        </ul>
+		        <ul class="mui-table-view margin-bottom5px bg_white">
+		        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+		               <div class="user_pic"><img src="../img/user1.jpg" /></div>
+						<span class="padding_l  line-height30px font14">杨德威 </span>
+						<p class="mui-pull-right line-height30px font12">08:00</p>
+		            </li>
+		             <li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
+		                <a href="javascript:;">
+		                    <img class="mui-media-object mui-pull-left"  src="../img/3.jpg">
+		                    <div class="mui-media-body">
+		                     	<div class="mui-ellipsis margin-bottom10px font12">音柱端面斜度适当，接触紧密无间隙，音色较理想</div>
+		                     	<span class="mui-pull-right colorRed font12">￥22000.00</span>
+		                    </div>
+		                </a>
+		            </li>
+		        </ul>
+			</ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+</html>

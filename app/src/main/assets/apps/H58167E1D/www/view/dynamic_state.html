@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>动态</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	.mui-bar .mui-title{font-weight: bold;}
+    </style>
+</head>
+<body ng-app="dynamicApp" ng-controller="dynamicController">
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <h1 class="mui-title colorP sp_fonts">动态</h1>
+	    <!--<a onclick="openNewPage('search_result.html')" class=" mui-icon iconfont  mui-pull-right">&#xe64f;</a>-->
+	</header>
+	<div class="mui-content" >
+		<div></div>
+        <ul class="mui-table-view margin-bottom5px bg_white" ng-repeat="(index,d) in dynamic">
+        	<div class="paddingl_r_15px_tb11px bg_white border-bottom">
+               <div class="user_pic"><img src="{{d.icon}}" /></div>
+				<span class="padding_l line-height30px">{{d.nick}}{{d.comment}} </span>
+				<p class="mui-pull-right line-height30px">{{d.push_time}}</p>  
+            </div>
+            <li class="mui-table-view-cell mui-media" ng-if="d.status" ng-click="dynamicData(d.from_id,d.status)">
+                <a href="javascript:;">
+                    <img class="mui-media-object mui-pull-left goods_pic "  src="{{d.goods.good_image}}">
+                    <div class="mui-media-body">
+                     	<div class="mui-ellipsis">{{d.goods.good_name}}</div>
+                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>{{d.goods.maf_time}}</i>天</span></div>
+                     	<div class="mui-clearfix">
+                     		<div class="mui-pull-left">
+                     			<div class="user_pic"><img src="{{d.goods.icon}}" /></div>
+								<span class="padding_l line-height30px color999 font12">{{d.goods.nick}} </span>
+                     		</div>
+                     		<span class="mui-pull-right colorRed line-height30px">￥{{d.goods.price}}</span>
+                     	</div>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media" ng-if="!d.status" ng-click="dynamicData(d.from_id,d.status)">
+		        <a href="javascript:;" class=" white-space">
+		            <img class="mui-media-object mui-pull-right goods_pic padding_tb11px" src="{{d.notes[0].subject}}">
+		            <ul class="mui-media-body mui-pull-left user_view">
+		               	<li>
+		               		<div class="user_pic"><img src="{{d.notes[0].icon}}" /></div>
+		               		<span class="padding_l">
+		               			<i>{{d.notes[0].nick}}</i>
+		               			<i class="sign_tag" ng-if="d.notes[0].sign">签约</i>
+		               		</span>	
+		               	</li>
+		               	<li>
+		               		<i class="iconfont mui-icon icon-color">&#xe615;</i>       
+		               		<span class="padding_l line-height30px">{{d.notes[0].title}}</span>
+		               	</li>
+		               	<li>
+		               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+		               		<span class="padding_l line-height30px">{{d.notes[0].tags}}</span>
+		               	</li>
+		            </ul>
+		        </a>
+		    </li>
+        </ul>
+        
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/jquery.min.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/dynamic_state.js"></script>
+<script type="text/javascript" charset="UTF-8">
+	$().ready(function(){
+		var bj = '';
+		$('.replay_btn').click(function(){
+			bj = $(this).attr('data-bj');
+			$('.input_box').animate({
+				left:'0px'
+			},300)
+		})
+		
+		$('.input_box button').click(function(){
+			var textVal = $('.input_box input').val();
+			$('.dialogue_box'+bj).append("<li><span class='colorP'>就是要帅：</span><span>"+ textVal +"</span></li>");
+			$('.input_box').animate({
+				left:'-100%'
+			},300);
+			textVal = "";
+		})
+	})
+	
+	window.addEventListener('changeVal',function(event){
+		var showWin = event.detail.showWin;
+		if(showWin == 1){
+			//触发弹窗
+			plus.nativeUI.actionSheet({
+				cancel: "取消",
+				buttons: [{
+					title: "发布内容"
+				},{
+					title: "发布商品"
+				}]
+			}, function(e) {
+				var i = e.index;
+				if(i == 1) {
+					openNewPage('release_viewMedia.html')
+				}else if(i==2){
+					openNewPage('release_goods.html')
+				}
+			});
+		}
+	});
+</script>
+
+</html>

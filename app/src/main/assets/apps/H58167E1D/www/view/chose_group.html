@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>关联的群聊</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+   
+</head>
+<body ng-app="chose_groupApp" ng-controller="chose_groupController">
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title colorP">关联群聊</h1>
+	    <button  class="mui-btn-link mui-pull-right" ng-click="addGroup()"><span class="colorP">加入</span></button>
+	</header>
+	<div class="mui-content">
+		<div></div>
+      <ul class="mui-table-view bg_white" ng-repeat="(index,c) in choseGroup">
+              <li class="mui-table-view-cell padding0"> 
+				<div class="mui-input-row mui-checkbox mui-left choseId">
+					<label>
+						<img src="{{c.icon}}" class="circle_pic"/>
+						<span class="padding_lr_10px">{{c.group_name}}</span>
+					</label>
+					<input name="checkbox" value="{{c.group_id}}" type="checkbox" checked="">
+				</div>
+             </li>
+         </ul>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/jquery.min.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/chose_group.js"></script>	
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+</script>
+</html>

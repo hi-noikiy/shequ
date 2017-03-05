@@ -3,6 +3,7 @@ package com.cndll.shequ.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +17,14 @@ import android.widget.Toast;
 import com.cndll.shequ.R;
 import com.cndll.shequ.bean.GroupImageBean;
 import com.cndll.shequ.bean.RequestGroupImage;
+import com.hyphenate.easeui.model.UserLodingInFo;
 import com.cndll.shequ.net.ComUnityRequest;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.widget.EaseTitleBar;
+import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,19 +38,53 @@ import rx.schedulers.Schedulers;
 public class GroupListActivity extends AppCompatActivity {
 
     @BindView(R.id.group_list)
-    ListView groupList;
+    ListView     groupList;
+    @BindView(R.id.title_bar)
+    EaseTitleBar titleBar;
     private GroupAdapter adapter;
 
+    private Handler handler = new Handler();
+    private List<EMGroup> emGroupList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_list);
         ButterKnife.bind(this);
-        getImage();
+        init();
+    }
+
+    private void init() {
+        titleBar.setTitle("我的群聊");
+        titleBar.setLeftImageResource(R.drawable.ease_mm_title_back);
+        titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         adapter = new GroupAdapter();
         /*try {*/
-        adapter.setGroups(EMClient.getInstance().groupManager().getAllGroups());
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    emGroupList = EMClient.getInstance().groupManager().getJoinedGroupsFromServer();
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.setGroups(emGroupList);
+                            getImage();
+                        }
+                    });
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
         groupList.setAdapter(adapter);
         //Toast.makeText(this, "" + adapter.getGroups(), Toast.LENGTH_SHORT).show();
         /*} catch (HyphenateException e) {
@@ -64,7 +102,7 @@ public class GroupListActivity extends AppCompatActivity {
 
     private void getImage() {
         RequestGroupImage requestGroupImage = new RequestGroupImage();
-        requestGroupImage.setUid(EMClient.getInstance().getCurrentUser());
+        requestGroupImage.setUid(UserLodingInFo.getInstance().getId());
         ComUnityRequest.getAPI().downloadImage(requestGroupImage).subscribeOn(Schedulers.io()).subscribe(new Observer<GroupImageBean>() {
             @Override
             public void onCompleted() {
@@ -91,7 +129,7 @@ public class GroupListActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         adapter.setImagedata(groupImageBean.getData());
-                        Toast.makeText(GroupListActivity.this, groupImageBean.getError() + "" + groupImageBean.getData().get(0).getIcon(), Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(GroupListActivity.this, groupImageBean.getError() + "" + groupImageBean.getData().get(0).getIcon(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -117,6 +155,7 @@ public class GroupListActivity extends AppCompatActivity {
 
         public void setGroups(List<EMGroup> groups) {
             this.groups = groups;
+            notifyDataSetChanged();
         }
 
         List<EMGroup> groups;

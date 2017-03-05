@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>建群</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	.mui-input-row label~input{float: right;padding: 11px 0;font-size: 14px;}
+    	.mui-input-row label{padding: 11px 0;}
+    	textarea{font-size: 12px;}
+    	.upfile_box{display: block;overflow: hidden;border-radius: 50%;background: #ccc;margin:0  calc(50% - 30px) 10px;}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title colorP">建群</h1>
+	    <button class="mui-btn-link mui-pull-right"><span class="colorP">建立</span></button>
+	</header>
+	<div class="mui-content">
+		<div></div>
+		<ul class="mui-table-view bg_white margin-bottom10px">
+		        <li class="mui-table-view-cell ">
+	                <div class="upfile_box">
+				        <input type="file" id="uploadimg8" class="upload_file"/>
+				        <img id="show_pic8" src=""/>
+				    </div>
+	                <label for="uploadimg8" style="width: 100%;text-align: center;display: table;position: relative;bottom: 0;left: 0;">点击添加头像</label>
+		        </li>
+		        <li class="mui-table-view-cell padding_tb_5px">
+		            <div class="mui-input-row">
+		                <label>群名称：</label>
+		                <input type="text" placeholder="请输入群名称">
+		            </div>
+		        </li>
+		        <li class="mui-table-view-cell">
+		        	群公告：
+					<textarea class="padding0 margin-top10px" name="" rows="8" cols="" placeholder=""></textarea>
+		        </li>
+		    </ul>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/upload_pic.js"></script>
+</html>

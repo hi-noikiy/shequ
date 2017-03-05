@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的发布(已售)</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	.btn_list{width: 100%;overflow: hidden;background: #fff;}
+    	.btn_list a{width: calc(100%/3);float: left;text-align: center;padding: 8px;color: #000;}
+    	.btn_list .active{border-bottom: 2px solid #4c968e;background: transparent;color: #4c968e;}
+    	.mui-bar .mui-title{height: 100%;box-shadow: none;}   
+    	.mui-title .top_tab{height: 30px;overflow: hidden;border: 1px solid #4c968e;display:block;position:relative;left: calc(50% - 23%);top: 7px; border-radius: 16px;box-sizing: border-box;}
+		.mui-title .top_tab a{display:block;width: 50%;height: 100%; float: left;line-height: 30px;text-align: center;padding: 0 10px;color: #4c968e;}
+		.mui-title .top_tab .active{background: #4c968e;color: #fff;margin: 0;}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>		
+	    <h1 class="mui-title colorP">
+	    	<div class="top_tab width46">
+		    	<a onclick="openNewPage('my_release.html')">内容</a>
+		    	<a onclick="openNewPage('my_release_for_goods.html')" class="active">商品</a>
+		    </div>
+	    </h1>
+	</header>
+	<div class="mui-content">
+	    <div class="btn_list">
+	        <!--<a onclick="openNewPage('my_release.html')">内容</a>-->
+	        <a onclick="openNewPage('my_release_for_goods.html')">商品</a>
+	        <a onclick="openNewPage('my_release_work_of.html')" class="active">已售</a>
+	        <a onclick="openNewPage('my_release_sold_out.html')">下架</a>
+	    </div>
+           <ul class="mui-table-view margin-bottom5px bg_white">
+        	<li class="mui-table-view-cell mui-media">
+        		<div class="mui-slider-right mui-disabled">
+					<a href="#sheet" class="mui-btn mui-btn-red">删除</a>
+				</div>
+                <a onclick="openNewPage('goods_detail.html')" href="javascript:;" class="mui-clearfix  mui-slider-handle">
+                    <div class="mui-media-object mui-pull-left goods_pic ">
+                    	<img  src="../img/1.jpg">
+                    	<span class="original_tag">原创</span>
+                    </div>
+                    <div class="mui-media-body">
+                     	<div class="mui-ellipsis">天行者《晨曦》</div>
+                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>3</i>天</span></div>
+                     	<div class="mui-clearfix">
+                     		<div class="mui-pull-left">
+                     			<div class="user_pic"><img src="../img/user1.jpg" /></div>
+								<span class="padding_l line-height30px color999 font12">杨德威 </span>
+                     		</div>
+                     		<span class="mui-pull-right colorRed line-height30px font12">￥22000.00</span>
+                     	</div>
+                    </div>
+                </a>
+            </li>
+            
+        	<li class="mui-table-view-cell mui-media">
+        		<div class="mui-slider-right mui-disabled">
+					<a href="#sheet" class="mui-btn mui-btn-red">删除</a>					
+				</div>
+                <a onclick="openNewPage('goods_detail.html')" href="javascript:;" class="mui-clearfix  mui-slider-handle">
+                    <div class="mui-media-object mui-pull-left goods_pic ">
+                    	<img  src="../img/1.jpg">
+                    	<span class="original_tag">原创</span>
+                    </div>
+                    <div class="mui-media-body">
+                     	<div class="mui-ellipsis">赖巍《金发女孩》30版</div>
+                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>3</i>天</span></div>
+                     	<div class="mui-clearfix">
+                     		<div class="mui-pull-left">
+                     			<div class="user_pic"><img src="../img/user1.jpg" /></div>
+								<span class="padding_l line-height30px color999 font12">杨德威 </span>
+                     		</div>
+                     		<span class="mui-pull-right colorRed line-height30px font12">￥22000.00</span>
+                     	</div>
+                    </div>
+                </a>
+            </li>
+
+            <li class="mui-table-view-cell mui-media">
+            	<div class="mui-slider-right mui-disabled">
+					<a href="#sheet" class="mui-btn mui-btn-red">删除</a>
+				</div>
+                <a onclick="openNewPage('goods_detail.html')" href="javascript:;" class="mui-clearfix  mui-slider-handle">
+                    <div class="mui-media-object mui-pull-left goods_pic ">
+                    	<img  src="../img/1.jpg">
+                    	<span class="original_tag">原创</span>
+                    </div>
+                    <div class="mui-media-body">
+                     	<div class="mui-ellipsis">盒砚 石眼 苴却砚台 中国彩砚尺 寸12x9x3厘米…</div>
+                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>3</i>天</span></div>
+                     	<div class="mui-clearfix">
+                     		<div class="mui-pull-left">
+                     			<div class="user_pic"><img src="../img/user1.jpg" /></div>
+								<span class="padding_l line-height30px color999 font12">杨德威</span>
+                     		</div>
+                     		<span class="mui-pull-right colorRed line-height30px font12">￥22000.00</span>
+                     	</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+			<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action" style="display: none;">
+				<!-- 可选择菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#sheet1" style="font-size: 13px;">确定删除吗？</a>
+					</li>
+					<li class="mui-table-view-cell sure">
+						<a href="#sheet1" style="font-size: 13px;">确定</a>
+					</li>
+				</ul>
+				<!-- 取消菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#sheet1" style="font-size: 13px; color: #999;"><b>取消</b></a>
+					</li>
+				</ul>
+			</div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script>
+	mui.init({
+		swipeBack:true //启用右滑关闭功能
+	});
+	var _this, pcont;
+	$('.mui-disabled').on('tap', function(){
+		mui('#sheet1').popover('toggle');
+		_this = $(this);
+		pcont = _this.parent();
+	})
+	//点击确定
+	$('.sure').on('tap', function(){
+		pcont.remove();
+	})
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>设置</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">设置</h1>
+	    </header>
+		<div class="mui-content">
+			<div></div>
+			<ul class="mui-table-view bg_white margin-bottom10px">
+		        <li onclick="openNewPage('about_us.html')" class="mui-table-view-cell">
+		            <span class="padding_tb_5px">关于我们</span>
+		        </li>
+		        <li onclick="openNewPage('contact_us.html')" class="mui-table-view-cell">
+		            <span class="padding_tb_5px">联系我们</span>
+		        </li>
+		        <li onclick="openNewPage('share_App.html')" class="mui-table-view-cell">
+		            <span>分享APP</span>
+		        </li>
+		        <li onclick="openNewPage('feedback.html')" class="mui-table-view-cell">
+		            <span>反馈意见</span>
+		        </li>
+		        <li class="mui-table-view-cell">
+		            <span>清除缓存</span>
+		            <p class="mui-pull-right">1M</p>
+		        </li>
+		        <li onclick="openNewPage('current_version.html')" class="mui-table-view-cell">
+		            <span>当前版本</span>
+		        </li>
+		    </ul>
+			<ul class="mui-table-view bg_white ">
+		        <li class="mui-table-view-cell exit_btn">
+		            <span class="padding_tb_5px colorRed">退出登录</span>
+		        </li>
+		   </ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript">
+		(function($, doc) {
+			$.init();
+		})(mui, document);
+		document.addEventListener('plusready',function () {
+			$('.exit_btn').on('tap',function () {
+                window.plus.bridge.execSync("community","exit","退出登录");
+                              plus.storage.setItem('uid','');
+				plus.storage.clear();
+				plus.runtime.restart();
+				openNewPage('login.html');
+			})
+		},false);
+	</script>
+</html>

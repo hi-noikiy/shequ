@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>群名称</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <button class="mui-btn-link mui-pull-left cancel_btn"><span class="colorP">取消</span></button>
+	    <h1 class="mui-title colorP">群名称</h1>
+	    <button class="mui-btn-link mui-pull-right"><span class="colorP">确定</span></button>
+	</header>
+	<div class="mui-content bg_white">
+		<div class="mui-input-row">
+		    <input type="text" class="mui-input-clear" placeholder="请输入群名称" value="旅行部落">
+		</div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+document.addEventListener('plusready', function() {	
+	var ws = plus.webview.currentWebview();
+	$('.cancel_btn').click(function(){
+		ws.close();		
+	})
+})
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>分享APP</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	</head>
+	<body class=" bg_white">
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">分享APP</h1>
+	    </header>
+		<div class="mui-content bg_white">
+			<div class="logo color_white mui-text-center">LOGO</div>
+			<button type="button" class="mui-btn mui-btn-blue mui-btn-block width80 middle border-radius30px" id="shareApp_btn">分享</button>
+		</div>
+		<div class="alert_window">
+			<ul class="share_list">
+				<li id='weixin'>
+					<span class="iconfont mui-icon">&#xe61d;</span>
+					<p class="color0">微信好友</p>
+				</li>
+				<li id='wxsline'>
+					<span class="iconfont mui-icon">&#xe629;</span>
+					<p class="color0">朋友圈</p>
+				</li>
+				<li id='qq'>
+					<span class="iconfont mui-icon">&#xe61f;</span>
+					<p class="color0">QQ好友</p>
+				</li>
+				<li id='kone'>
+					<span class="iconfont mui-icon">&#xe614;</span>
+					<p class="color0">QQ空间</p>
+				</li>
+				<li id='weibo'>
+					<span class="iconfont mui-icon">&#xe640;</span>
+					<p class="color0">微博</p>
+				</li>
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block padding_tb_8px margin0 cancel_btn">取消</button>
+			</ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/apppublic.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/shareApp.js"></script>
+	<script type="text/javascript">
+		//分享App弹窗
+		share($('.alert_window'),$('.share_list'),$('#shareApp_btn'),$('.cancel_btn'))
+	</script>
+</html>

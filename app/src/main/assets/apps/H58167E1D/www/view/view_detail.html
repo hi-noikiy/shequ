@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>社区详情</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	.mui-segmented-control{height: 40px;width: 100%;overflow: hidden;}
+    	.mui-segmented-control a{width: calc(100%/4);line-height: 40px;font-size: 15px;text-align: center;float: left;display: block;color: #333;border-right: 1px solid #eaeaea;box-sizing: border-box;}
+    	.mui-segmented-control .mui-control-item.mui-active{background: transparent;} 
+    	.circle_pic{margin-right: 10px;max-width: 60px !important;height: 60px !important;border: 50%;}
+    </style>
+</head>
+<body ng-app="detailsApp" ng-controller="detailsController">
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title colorP">详情</h1>
+	    <a class=" mui-icon iconfont  mui-pull-right" id="shareApp_btn">&#xe6c2;</a>
+	</header>
+	<div class="mui-content">
+       <div class="bg_white margin-bottom5px" >
+       		<img src="{{notes[0].subject}}"/>
+       		<ul class="paddingl_r_15px_tb11px bg_white">
+	   			<li><span id="title">{{notes[0].title}}</span></li>
+	   			<li class="mui-clearfix"><p class="color0 mui-pull-left font12" id="tags"></p> {{notes[0].tags}}<span class="mui-pull-right mui-icon iconfont color999 font font12">&#xe71b;  <i>{{notes[0].follow}}</i></span></li>
+	   		</ul>
+       		<ul class="mui-table-view margin-bottom5px bg_white">
+        	<div class="paddingl_r_15px_tb11px border-bottom">
+               <span class="sp_title">&nbsp;&nbsp;版主</span>  
+            </div>
+            <li class="mui-table-view-cell mui-media">
+                <a href="javascript:;">
+                    <img onclick="openNewPage('honer_page.html')" class="mui-media-object mui-pull-left circle_pic"  src="{{notes[0].icon}}"> 
+                    <div class="mui-media-body">
+                     	<div class="mui-clearfix margin-bottom5px">  
+                     		<span class="mui-pull-left">{{notes[0].nick}}</span>
+                     		<span id="follow"></span>  
+                     		
+                     		<span class="mui-pull-right iconfont mui-icon line-height20px color999 attention_btn font12" style="border: 1px solid #999;" ng-if="user.follow">&#xe669;已关注</span>
+                     		<span class="mui-pull-right iconfont mui-icon line-height20px colorP attention_btn font12" id="follow" ng-if="!user.follow" ng-click="view_follow()">&#xe669;关注</span>
+                     
+                     	</div>
+                     	<p class="font12" >{{notes[0].personalized}}</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+       		<img src="../img/2.jpg"/>
+       		<div class="paddingl_r_15px_tb11px font12" id="content">
+       			{{notes[0].content}}
+       		</div>
+       		<!--<img src="../img/3.jpg"/>
+       		<div class="paddingl_r_15px_tb11px font12">
+       			一、音柱材料与提琴音色：<br />
+				　　1、云杉音色轻柔、浑厚，用于音色偏硬和过于刚亮的琴很合适，但因木质太松软，损失音量，且音色很不稳定;
+				　　2、东北松从音色上讲较合适，但不及香樟木稳定，安装后需经一段时间适应后才趋向稳定，且受气候影响;
+				　　3、香樟木音色不错，较洪亮，很稳定，不受气候影响，且气味清香，能防提琴虫蛀，但有轻微毒性;
+				　　4、檫树木音色不错，较洪亮，很稳定，不受气候影响，能防提琴虫蛀，但有轻微放射性;
+				　　5、美国红松音色不错，较稳定，受气候影响很小，但偏刚，用于音色偏柔和过于低沉的琴较合适;
+				　　6、铁木音色可以，较稳定，不受气候影响，但偏刚，用于音色偏柔和过于低沉的琴较合适;
+				　　7、水曲柳音色刚亮，但明显偏生硬;
+				　　8、栲栊音色不错，清脆刚亮，但略微有点过于生硬。
+
+       		</div>
+       		<img src="../img/4.jpg"/>
+       		<div class="paddingl_r_15px_tb11px font12">
+       			二、音柱直径与提琴音色：<br />
+				　　1、音柱直径为3毫米时，琴板振动很自然，音色清晰、明亮，但有点缺乏均匀、宽阔的感觉。
+				　　2、音柱直径为6毫米时，琴板振动也很自然，高音清晰、明亮、均匀，低音柔美、宽阔、洪亮、浑厚。最为理想。
+				　　3、音柱直径为9毫米时，琴板振动开始受阻尼，不自然，音色中明显有笨重、麻木、狭窄的感觉。不可取。
+       		</div>
+       		<img src="../img/1.jpg"/>
+       		<div class="paddingl_r_15px_tb11px font12">
+       			三、音柱长度与提琴音色：<br />
+				　　1、初触点(安装音柱时，在不用力的情况下，音柱下端斜着刚好触及背板的那一点)与终触点(将音柱下端用力顶使与背板垂直时，音柱下端触及背板的那一点)的距离几乎等于零，琴板振动很自由，音色最自然、柔美，唯第二弦略带嘶嘶的糙声。但重拉时，音柱自由跑动;碰触琴体时，音柱很容易倒掉。不现实。
+				　　2、初触点与终触点的距离为3毫米时，琴板振动也很自由，音色也很自然、柔美，第二弦嘶嘶的糙声略好些。但用手拍打琴体或放松琴弦时，音柱还是比较容易倒掉。也不现实。
+				　　3、初触点与终触点的距离为5毫米时，琴板振动比较自由，音色依然自然、柔美。但用手拍打琴体或放松琴弦时，音柱已不容易倒掉，只有一把琴在天气潮湿时音柱发生轻微松动走位。最为理想。
+				　　4、初触点与终触点的距离为10毫米时，琴板振动开始受限制，音色开始变得刚亮，略缺少柔美。即便用雕刻刀稍用力顶，音柱也不倒掉。还是比较理想。
+				　　5、初触点与终触点的距离为15毫米以上时，琴板振动严重受限制，音色变得很生硬。也不现实。
+
+       		</div>
+       		<img src="../img/2.jpg"/>
+       		<div class="paddingl_r_15px_tb11px font12">
+       			四、音柱端面处理与提琴音色：<br />
+				　　1、音柱端面绝对垂直磨平，根据提琴面板与背板的弧度不同，产生不同的效果。弧度小的，还可以，只是重拉时，第二弦有时会出现轻微的嘶嘶糙音;弧度大的，则会产生吱吱的声响。
+				　　2、音柱端面稍平，略微斜一点，并把端面中央挖凹一点，圆周留下毛边，不打光，对于面板与背板的弧度小的提琴，十分好，音色优美，第二弦无任何嘶嘶糙音;弧度略大的，也没有吱吱的声响。最理想。
+				　　3、音柱端面斜度适当，接触紧密无间隙，音色较理想。
+				　　4、音柱端面斜度偏小，接触有间隙，低侧顶住琴板，会出现轻微的嘶嘶糙音。
+				　　5、音柱端面斜度偏大，接触有间隙，高侧顶住琴板，会出现吱吱的声响，重拉时在某些音位会有啸叫声。
+       		</div>-->
+       </div>
+        
+        <ul class="mui-table-view margin-bottom5px bg_white"  >
+        	<div class="paddingl_r_15px_tb11px bg_white border-bottom">
+               <span class="sp_title">&nbsp;&nbsp;相关商品</span>
+            </div>
+            <li class="mui-table-view-cell mui-media" ng-repeat="(index,g) in goods" ng-click="goodsInfo(g.id)">
+               <a href="javascript:;">
+                    <img class="mui-media-object mui-pull-left"  src="{{g.good_image}}">
+                    <div class="mui-media-body">
+                     	<div class="margin-bottom10px mui-ellipsis">{{g.good_name}}</div>
+                     	<span class="mui-pull-right colorRed">￥{{g.price}}</span>
+                    </div>
+                </a>
+            </li>
+        
+        </ul>
+        <ul class="mui-table-view bg_white">
+        	<div class="paddingl_r_15px_tb11px bg_white border-bottom">
+               <span class="sp_title">&nbsp;&nbsp;评论互动</span>
+            </div>
+            <li class="mui-table-view-cell mui-media" ng-repeat="(index,c) in comments">
+                <a href="javascript:;">
+                    <img class="mui-media-object mui-pull-left circle_pic" src="{{c.icon}}">
+                    <div class="mui-media-body">
+                    	<div ng-click="huiContent(c.id)">
+                    		<span class="colorP">{{c.nick}}</span>
+                    		<i class="iconfont mui-icon mui-pull-right color999 font13 replay_btn" data-bj="a1">&#xe698;  回复</i>
+                    	</div>
+                        <p class="mui-ellipsis">{{c.createtime}}</p>
+                        <div class="crrunt_user">{{c.content}}</div>
+                        <ul class="dialogue_box dialogue_boxa1" >
+                        	<li ng-repeat="(index,case) in c.case[0]">
+                        		<span class="user_name colorP">{{case.nick}}：</span>
+                        		<span class="comment">{{case.content}}</span>
+                        	</li>
+                        </ul>
+                    </div>
+                </a>   
+            </li>
+            
+        </ul>
+        <div class="bg_white paddingl_r_15px_tb11px margin-bottom5px" style="text-align: center;">
+        	<p class="margin0">没有评论了呢~</p>
+        </div>
+        <div class="mui-segmented-control borderNone bg_white">
+            <a ng-click="viewCollection()" ng-if="!user.collection" id="viewcollection"><i class="iconfont mui-icon color333">&#xe70a;</i>  <i class="font12" >收藏</i></a>
+            <a ng-if="user.collection"><i class="iconfont mui-icon color">&#xe622;</i>  <i class="font12">已收藏</i></a>
+            <a onclick="openNewPage('chose_group.html')" ><i class="iconfont mui-icon color333" ng-click="choseView()">&#xe61a;</i>  <i class="font12">加入群聊</i></a>
+            <a onclick="openNewPage('chat.html')" ><i class="iconfont mui-icon color333">&#xe60d;</i>  <i class="font12">私聊群主</i></a>
+            <a  id="evaluate_btn"><i class="iconfont mui-icon color333">&#xe660;</i>  <i class="font12">评论</i></a>
+        </div>
+        <div class="input_box bg_white margin-bottom10px mui-clearfix">   
+        	<input type="text" class="mui-pull-left" placeholder="请输入评语">
+        	<button type="button" class="mui-btn-blue mui-pull-right width30 mui-pull-right">发表</button>
+        </div>
+        
+        <!--分享弹窗-->
+    	<div class="alert_window">
+    		<ul class="share_list">
+				<li>
+					<span class="iconfont mui-icon">&#xe61d;</span>
+					<p class="color0">微信好友</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe629;</span>
+					<p class="color0">朋友圈</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe61f;</span>
+					<p class="color0">QQ好友</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe614;</span>
+					<p class="color0">QQ空间</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe640;</span>
+					<p class="color0">微博</p>
+				</li>
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block padding_tb_8px margin0 cancel_btn border-radius0">取消</button>
+			</ul>
+    	</div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/jquery.min.js"></script>
+<script src="../js/shareApp.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/view_detail.js"></script>
+<script type="text/javascript" charset="UTF-8">
+	$().ready(function(){
+		var bj = '';
+		$('.replay_btn').click(function(){
+			bj = $(this).attr('data-bj');
+			$('.input_box').animate({
+				left:'0px'
+			},300)
+		})
+		
+		$('.input_box button').click(function(){
+			var textVal = $('.input_box input').val();
+			plus.storage.setItem('conmentval',textVal);
+			$('.dialogue_box'+bj).append("<li><span class='colorP'>就是要帅：</span><span>"+ textVal +"</span></li>");
+			$('.input_box').animate({
+				left:'-100%'
+			},300);
+			$('.input_box input').val("");
+		})
+		
+		//评论
+		$('#evaluate_btn').click(function(){
+			bj = $(this).attr('data-bj');
+			$('.input_box').animate({
+				left:'0'
+			},300) 
+		})
+		
+		//关注的状态
+//		var is_attention = true;
+//		$('.attention_btn').click(function(){
+//			if(is_attention){
+//				$(this).html('&#xe6aa;已关注').css({'color':'#999','border':'1px solid #999'});
+//				is_attention = false;
+//			} 
+////			else {
+////				$(this).html('&#xe669;关注').css({'color':'#4c968e','border':'1px solid #4c968e'});
+////				is_attention = true;
+////			}
+//		})	
+//		
+		share($('.alert_window'),$('.share_list'),$('#shareApp_btn'),$('.cancel_btn'));
+	})
+	
+</script>
+<script>
+	var webPage = 'view';
+</script>
+<script src="../js/app/shareApp.js"></script><!--分享-->
+</html>

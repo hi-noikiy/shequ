@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>搜索结果</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
+	    	.user{width: 55%;}
+	    	.user span{width: 68%;display: inline-block;}
+	    	.mui-bar .mui-title{left: 4%;right: 0;width: 85%;}
+	    	.mui-search.mui-active input[type=search]{width: 100%;border: 1px solid #4c968e;background: #fff;border-radius: 20px;}
+	    	.mui-bar .mui-search:before{top: 9px;}
+	    	.mui-bar .mui-input-row .mui-input-clear~.mui-icon-clear{top: 12px;right: 0;}
+	    </style>
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title">
+		        <div class="mui-input-row mui-search mui-title">
+		            <input type="search" class="mui-input-clear" placeholder="请输入搜索关键字" value="用户">
+		        </div>
+	        </h1>
+	        <a class="mui-pull-right line-height44px">搜索</a>
+	    </header>
+		<div class="mui-content">
+			<div></div>
+			<ul class="mui-table-view margin-bottom5px bg_white">
+				<div class="mui-table-view-cell">					
+					<span class="mui-pull-left color0"><i class="mui-icon iconfont font13 colorP">&#xe639;</i>&nbsp;内容</span>
+					<span onclick="openNewPage('result_for_content.html')" class="mui-btn mui-btn-link mui-btn-nav padding0 color0 more_btn">更多</span>
+				</div>
+				<li class="mui-table-view-cell padding0 bg_white">
+					<ul class="mui-table-view group">
+					    <li onclick="openNewPage('video_detail.html')" class="mui-table-view-cell mui-media sp_item">
+					        <a href="javascript:;" class="mui-clearfix">
+					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr1.jpg">
+					            <ul class="mui-media-body mui-pull-left user_view">
+					               	<li>
+					               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
+					               		<span class="padding_l">杨德威</span>
+					               	</li>
+					               	<li>
+					               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+					               		<span class="padding_l">我做的琴能发出你要的声音&djkasdnakjdaab djasbdjkbdjkbdkjsabdjakdbakjsdbajdb</span>
+					               	</li>
+					               	<li>
+					               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+					               		<span class="padding_l">吉他、手作、大神、定制、用户</span>
+					               	</li>
+					            </ul>
+					        </a>
+					    </li>
+					    <li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media sp_item">
+					        <a href="javascript:;" class=" white-space">
+					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr2.jpg">
+					            <ul class="mui-media-body mui-pull-left user_view">
+					               	<li>
+					               		<div class="user_pic"><img src="../img/user2.jpg" /></div>
+					               		<span class="padding_l">
+					               			<i>陈嘉喜</i>
+					               			<i class="sign_tag">签约</i>
+					               		</span>	
+					               	</li>
+					               	<li>
+					               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
+					               		<span class="padding_l">【雅昌专访】刘少白：莫以  小聪明来比大智慧  </span>
+					               	</li>
+					               	<li>
+					               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+					               		<span class="padding_l">书画、专访、用户</span>
+					               	</li>
+					            </ul>
+					        </a>
+					    </li>
+					     <li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media sp_item">
+					        <a href="javascript:;" class=" white-space">
+					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr3.jpg">
+					            <ul class="mui-media-body mui-pull-left user_view">
+					               	<li>
+					               		<div class="user_pic"><img src="../img/user3.jpg" /></div>
+					               		<span class="padding_l">瓷器者</span>
+					               	</li>
+					               	<li>
+					               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
+					               		<span class="padding_l">陶瓷制作工艺流程  </span>
+					               	</li>
+					               	<li>
+					               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+					               		<span class="padding_l">陶瓷、工艺、手工、用户</span>
+					               	</li>
+					            </ul>
+					        </a>
+					    </li>
+					     <li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media sp_item">
+					        <a href="javascript:;" class=" white-space">
+					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr4.jpg">
+					            <ul class="mui-media-body mui-pull-left user_view">
+					               	<li>
+					               		<div class="user_pic"><img src="../img/user4.jpg" /></div>
+					               		<span class="padding_l">闲野之家</span>
+					               	</li>
+					               	<li>
+					               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
+					               		<span class="padding_l">什么是动态风筝 </span>
+					               	</li>
+					               	<li>
+					               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+					               		<span class="padding_l">手工、工艺、用户</span>
+					               	</li>
+					            </ul>
+					        </a>
+					    </li>
+					</ul>
+				</li>
+			</ul>
+			
+			<!------------商品---------->
+			<ul class="mui-table-view margin-bottom5px bg_white group">
+				<div class="mui-table-view-cell">					
+					<span class="mui-pull-left color0"><i class="mui-icon iconfont font13 colorP">&#xe635;</i>&nbsp;商品</span>
+					<span onclick="openNewPage('result_for_goods.html')" class="mui-btn mui-btn-link mui-btn-nav padding0 color0 more_btn">更多</span>
+				</div>
+				<li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media sp_item">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin2.jpg">
+	                    <div class="mui-media-body">
+	                     	<div class="mui-ellipsis">盒砚 石眼 苴却砚台 中国彩砚尺 寸12x9x3厘米…</div>
+	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>3</i>天</span></div>
+	                     	<div class="mui-clearfix">
+	                     		<div class="mui-pull-left user">
+	                     			<div class="user_pic"><img src="../img/user3.jpg" /></div>
+									<span class="padding_l line-height30px color999 mui-ellipsis font12">用户风度至上 </span>
+	                     		</div>
+	                     		<span class="mui-pull-right colorRed line-height30px font12">￥2200.00</span>
+	                     	</div>
+	                    </div>
+	                </a>
+	            </li>
+	            <li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media sp_item">
+	                <a href="javascript:;">
+	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+	                    <div class="mui-media-body">
+	                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原 价30000</div>
+	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>3</i>天</span></div>
+	                     	<div class="mui-clearfix">
+	                     		<div class="mui-pull-left user">
+	                     			<div class="user_pic"><img src="../img/user4.jpg" /></div>
+									<span class="padding_l line-height30px color999 mui-ellipsis font12">用户微笑风 </span>
+	                     		</div>
+	                     		<span class="mui-pull-right colorRed line-height30px font12">￥2200.00</span>
+	                     	</div>
+	                    </div>
+	                </a>
+	            </li>
+			</ul>	   
+			
+			<!-----------------用户---------------->
+			<ul class="mui-table-view margin-bottom5px bg_white group">
+				<div class="mui-table-view-cell">					
+					<span class="mui-pull-left color0"><i class="mui-icon iconfont font13 colorP">&#xe62c;</i>&nbsp;用户</span>
+					<span onclick="openNewPage('result_for_user.html')" class="mui-btn mui-btn-link mui-btn-nav padding0 color0 more_btn">更多</span>
+				</div>
+				<li onclick="openNewPage('honer_page.html')" class="mui-table-view-cell mui-media sp_item">
+			        <a href="javascript:;">
+			            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user1.jpg">
+			            <div class="mui-media-body">
+			              	<div class="mui-clearfix">
+			              		<!--用户名-->
+			              		<span class="mui-pull-left">用户杨德威</span>
+			              	</div>
+			                <div class="margin-top10px">
+			                	<!--聊天内容-->
+				            	<p class="mui-ellipsis font12">不就一百万吗？小钱</p>
+				            </div>
+			            </div>
+			        </a>
+			    </li>
+			    <li onclick="openNewPage('honer_page.html')" class="mui-table-view-cell mui-media sp_item">
+			        <a href="javascript:;">
+			            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user4.jpg">
+			            <div class="mui-media-body">
+			              	<div class="mui-clearfix">
+			              		<!--用户名-->
+			              		<span class="mui-pull-left">用户微笑风</span>
+			              	</div>
+			                <div class="margin-top10px">
+			                	<!--聊天内容-->
+				            	<p class="mui-ellipsis font12">双十一啦，帮我清空购物车！</p>
+				            </div>
+			            </div>
+			        </a>
+			    </li>
+			    <li onclick="openNewPage('honer_page.html')" class="mui-table-view-cell mui-media sp_item">
+			        <a href="javascript:;">
+			            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user7.jpg">
+			            <div class="mui-media-body">
+			              	<div class="mui-clearfix">
+			              		<!--用户名-->
+			              		<span class="mui-pull-left">用户捕捉美好</span>
+			              	</div>
+			                <div class="margin-top10px">
+			                	<!--聊天内容-->
+				            	<p class="mui-ellipsis font12">我又物色了一个高档镜头</p>
+				            </div>
+			            </div>
+			        </a>
+			    </li>
+			    <li onclick="openNewPage('honer_page.html')" class="mui-table-view-cell mui-media sp_item">
+			        <a href="javascript:;">
+			            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user9.jpg">
+			            <div class="mui-media-body">
+			              	<div class="mui-clearfix">
+			              		<!--用户名-->
+			              		<span class="mui-pull-left">用户今天不购物</span>
+			              	</div>
+			                <div class="margin-top10px">
+			                	<!--聊天内容-->
+				            	<p class="mui-ellipsis font12">嘻嘻，明天继续购物</p>
+				            </div>
+			            </div>
+			        </a>
+			    </li>
+			</ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript">
+	//判断每个组的条目有没有超过四条，如果超过四条，则显示'更多',没有则隐藏'更多';
+	$(function(){
+			$('.group').each(function(){
+				if($(this).children('.sp_item').length >= 4){
+					$(this).find('.more_btn').show();
+				} else {
+					$(this).find('.more_btn').hide();
+				}
+			})		
+		})
+	</script>
+</html>

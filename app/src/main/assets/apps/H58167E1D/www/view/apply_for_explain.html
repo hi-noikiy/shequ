@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>申请说明</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <button class="mui-btn-link mui-pull-left close_btn"><span class="colorP">取消</span></button>
+	    <h1 class="mui-title colorP">申请说明</h1>
+	    <button class="mui-btn-link mui-pull-right"><span class="colorP">提交</span></button>
+	</header>
+	<div class="mui-content">
+		<textarea name="" rows="2" cols="" class="font14" placeholder="不多于15字的申请说明" maxlength="15"></textarea>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+document.addEventListener('plusready', function() {	
+	var ws = plus.webview.currentWebview();
+	$('.close_btn').click(function(){
+		ws.close();		
+	})
+})
+</script>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>群成员</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
+	    	.group_list{width: 100%;overflow: hidden;}
+	    	.group_list li{width: calc(90%/4);margin: calc(10%/8);float: left;}
+	    	.borderNone:after{background-color: transparent;}
+	    </style>
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">群成员</h1>
+	    </header>
+		<div class="mui-content">
+			<div></div>
+            <ul class="group_list paddingl_r_15px_tb11px  margin-bottom10px bg_white">
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user8.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">回眸瞬间</p>
+            	</li>
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user4.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">微笑风</p>
+            	</li>
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user12.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">不做大哥很多年</p>
+            	</li>
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user11.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">24K纯帅</p>
+            	</li>
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user3.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">风度至上</p>
+            	</li>
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user10.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">就是要帅</p>
+            	</li>
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user7.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">捕捉我们</p>
+            	</li>
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user9.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">今天不购物</p>
+            	</li>
+            	<li class="text-aligin mui-table-view-cell padding0 borderNone">
+            		<img class="circle_pic" src="../img/user5.jpg" alt="" />
+            		<p class="color333 mui-ellipsis">回眸瞬间</p>
+            	</li>
+            	<li class="text-aligin padding_tb11px mui-table-view-cell borderNone" onclick="openNewPage('add_friends.html')">
+            		<span class="mui-icon iconfont color999 font60">&#xe6d9;</span>
+            	</li>
+            	<li class="text-aligin padding_tb11px mui-table-view-cell borderNone" onclick="openNewPage('delete_friends.html')">
+            		<span class="mui-icon iconfont color999 font60">&#xe60b;</span>
+            	</li>
+            </ul>
+		    <ul class="mui-table-view bg_white danger_zone">
+	            <li onclick="openNewPage('edit_group_name.html')" class="mui-table-view-cell">
+	                	 群名称
+	                 <p class="mui-pull-right">
+	                 	<span>旅行部落</span>
+	                 	<i class="iconfont mui-icon">&#xe604;</i>
+	                 </p>   
+		        </li>
+		        <li class="mui-table-view-cell danger_zone">
+		           	 群公告
+		           	 <p class="mui-pull-right">
+	                 	<i class="iconfont mui-icon">&#xe604;</i>
+	                 </p>
+	                 <p class="padding_t10px">剁手节来啦，准备好了吗？</p>
+		        </li>
+		    </ul>
+		    <button type="button" class="mui-btn mui-btn-blue mui-btn-block width80 border-radius30px margin-top20px padding_tb_5px middle">删除并退出群</button>
+		</div>
+		<div class="alert_window">
+			<div class="danger_box">
+				<div class="text-aligin">
+					<i class="iconfont mui-icon margin-top20px margin-bottom10px">&#xe6dc;</i>
+					<p class="color333 text-aligin">抱歉，群主才能编辑</p>
+				</div>
+				<button type="button" class="mui-btn mui-btn-blue width100 I_know">知道了</button>
+			</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<!--<script type="text/javascript">
+		//非群主操作群名称时弹框显示
+		$('.danger_zone').click(function(){
+			$('.alert_window').css('display','block');
+		})
+		$('.I_know').click(function(){
+			$('.alert_window').css('display','none');
+		})
+	</script>-->
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>发布视频</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	.upload_btn{width: 80px;text-align: center;position: relative;}
+    	.upload_btn input{width: 80px;height: 20px;position: absolute;top: 0;left: 0;opacity: 0;}
+    	.img_show img{width: calc(90%/4);margin:calc(10%/8);}
+    	.mui-table-view-cell .sp{display: inline-block;padding: 20px 0;}
+    	.progress_bar_box{width: 100%;}   
+    	.progress_bar{background: #999;width: 80%;height: 3px; display:block;margin: 0 10%;visibility: hidden;} 	
+    	.progress_bar p{height:100%;width: 0;background: #4c968e;}
+    	.progress_bar_box div:nth-child(2){width: 100%;margin-bottom: 10px;font-size: 12px;}
+    	.progress_bar_box button{display: block;width: 30%;margin: 0 calc(50% - 15%);border-radius: 30px;background: #4c968e;border: none;color: #fff;}
+   		.share_list{width: 80%;position: absolute;bottom: 25%;left: calc(50% - 40%);border-radius: 8px;padding-top: 0;}
+    	.share_list p{text-indent: 2em;}
+		.upload_btn {width: 80px;text-align: center;position: relative;}		
+		.upload_btn input {width: 80px;height: 20px;position: absolute;top: 0;left: 0;opacity: 0;}		
+		.img_show img {width: calc(90%/4);margin: calc(10%/8);}		
+		.mui-table-view-cell .sp {display: inline-block;padding: 20px 0;}		
+		.upfile_box {width: calc(90%/3);margin: 0 calc(10%/6);overflow: hidden;text-align: center;}	
+		.upfile_box input {width: 100%;left: 0;top: 0}		
+		.upfile_box .show_pic {width: 100%;}		
+		.upfile_box .show_pic i {font-size: 36px;position: absolute;left: calc(50% - 18px);top: calc(50% - 18px);}
+		.upfile_box .show_pic .del_btn {position: absolute;top: 3px;left: 80%;font-size: 15px;display: none;}
+    	.mui-bar .mui-title{padding: 8px 0;text-align: center;}
+		.top_tab{border: 1px solid #4c968e;border-radius: 14px;display: inline-block;overflow: hidden;}
+		.top_tab a{width: 50%;float: left;display: block;height: 28px;line-height: 28px;font-size: 16px;color: #4c968e;}		
+		.mui-bar .mui-title .top_tab .active{background: #4c968e;color: #fff;}
+   		.mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{left: 0;top: calc(50% - 13px);}
+    	.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{font-size: 22px;}
+    	.mui-checkbox.mui-left label, .mui-radio.mui-left label{padding-left: 30px;padding-right: 0;}
+    	
+    	.share_list{width: 80%;position: absolute;bottom: 25%;left: calc(50% - 40%);border-radius: 8px;padding-top: 0;}
+    	.share_list p{text-indent: 2em;}
+    	.padding_r28px{padding-right: 28px;}
+    	.line-height37px{line-height: 37px;}
+    	.font16{font-size: 16px;}
+    	.mui-table-view-cell>a:not(.mui-btn){color: #4c968e;}
+    	.mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{right: 0;}
+    	.mui-checkbox label, .mui-radio label{padding-left: 0;}
+    </style>
+</head>
+<body class="bg_white" ng-app="releaseVideoApp" ng-controller="releaseVideoController">
+	<header class="mui-bar mui-bar-nav bg_white" style="text-align: center;">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">
+		    <div class="top_tab width60">
+		    	<a onclick="openNewPage('release_viewMedia.html')">图文内容</a>
+		    	<a onclick="openNewPage('release_video.html')" class="active">视频内容</a>
+		    </div>
+	    </h1>
+	</header>
+	<div class="mui-content">
+		<div></div>
+		<ul class="mui-table-view bg_white">
+	        <li class="mui-table-view-cell">
+	            <div id="show_pic7"  class="note_subject">
+					<i class="iconfont">&#xe62b;</i>
+					<img src="" id="a1">
+					<!--<input type="file" id="uploadimg7" value="" />-->
+				</div>
+				<label for="uploadimg7" class="sp_label" >点击添加主体图片</label>
+	        	<!--<div class="progress_bar_box">
+	        		<div class="progress_bar">
+	        			<p></p>	
+	        			<div class="mui-pull-left">
+	        				<span class="mui-pull-left current_range"><i>0</i>%</span>
+	        				<span class="mui-pull-right">100%</span>
+	        			</div>
+	        		</div>
+	        		
+					<button type="button">上传</button>
+				</div>
+	        </li>-->
+	        <li class="mui-table-view-cell padding0">
+	            <div class="mui-input-row">
+	                <label>标题</label>
+	                <input type="text" class="mui-input-clear font14" placeholder="请输入标题" id="releaseTitle">
+	            </div>
+	        </li>
+	        
+	        <li class="mui-input-row border-bottom category">
+                <a class="mui-navigate-right">
+	                <label class="color333">所属分类</label>
+	                <p class="mui-pull-right padding_r28px color333 line-height37px current_type"></p>
+                </a>		                   
+            </li>
+	        <li class="mui-table-view-cell">
+				<span class="mui-pull-left">图文内容</span>
+				<div class="upload_btn mui-pull-right"  >
+					<span class="mui-pull-right colorP" id="note_subject">载入图片</span>
+					<!--<input type="file" id="upload_pic"/>-->
+				</div>
+	        </li>
+	        <li class="mui-table-view-cell padding0">
+				<textarea name="" rows="8" cols="" class="borderNone font14" placeholder="再次输入想添加的内容，还可在右上角载入图片" id="releaseContent"></textarea>
+	        	<div class="img_show padding_lr_10px"></div>
+	        </li>
+	        <!--<li onclick="openNewPage('add_tag.html')" class="mui-table-view-cell">
+				<span class="color333">添加标签…</span>
+				<i class="iconfont mui-icon mui-pull-right">&#xe604;</i>
+	        </li>
+	         <li onclick="openNewPage('add_correlation_group.html')" class="mui-table-view-cell">
+				<span class="color333 sp">选择关联的群…</span>
+				<img src="../img/ql1.jpg" class="circle_pic mui-pull-right"/>
+	        </li>
+	        <li class="paddingl_r_15px_tb11px bg_white clearfix border-bottom" style="height: 120px">
+					<span class="margin-bottom10px" style="display: block;">选择要关联到的商品</span>
+					<div onclick="openNewPage('add_correlation_goods.html')" class="upfile_box">
+						<div id="show_pic1" class="show_pic">
+							<i class="iconfont mui-icon">&#xe62b;</i>
+							<img src="../img/shangpin1.jpg" />
+							<i class="iconfont mui-icon del_btn">&#xe603;</i>
+						</div>
+					</div>
+					<div onclick="openNewPage('add_correlation_goods.html')" class="upfile_box">
+						<div id="show_pic2" class="show_pic">
+							<i class="iconfont mui-icon">&#xe62b;</i>
+							<img src="" />
+							<i class="iconfont mui-icon del_btn">&#xe603;</i>
+						</div>
+					</div>
+					<div onclick="openNewPage('add_correlation_goods.html')" class="upfile_box">
+						<div class="show_pic">
+							<i class="iconfont mui-icon">&#xe62b;</i>
+							<img src="" />
+							<i class="iconfont mui-icon del_btn">&#xe603;</i>
+						</div>
+					</div>
+				</li>-->
+				
+				
+			<li  onclick="openNewPage('add_tag.html')" class="mui-table-view-cell bg_white">
+	            <a class="mui-navigate-right">
+	                <span class="color333">添加标签…</span>
+	            </a>
+	        </li>
+	        <li onclick="openNewPage('add_correlation_group.html')" class="mui-table-view-cell bg_white">
+	            <a class="mui-navigate-right">
+	                <span class="color333">选择关联的群…</span>
+	            </a>
+	        </li>
+	        <li onclick="openNewPage('add_correlation_goods.html')" class="mui-table-view-cell bg_white">
+	            <a class="mui-navigate-right">
+	                <span class="color333">选择关联的商品…</span>
+	            </a>
+	        </li>
+			<div class="paddingl_r_15px_tb11px">
+	            <span class="font14">请阅读</span>&nbsp;<a class="law">《知识产权承诺》</a>	            
+	        </div>
+	        <li class="mui-table-view-cell">
+	            <button type="button" id="submit_btn" class="mui-btn-blue  btn_half" disabled ng-click="releasesviedo()">发&nbsp;布</button>
+	        </li>
+	    </ul>
+
+	    <!--阅读知识产权承诺书弹框-->        
+		<div class="alert_window" id="law">
+    		<div class="share_list" id="law_text" style="bottom: 10%;">
+    			<p class="mui-text-center border-bottom line-height44px font16 color333">知识产权承诺</p>
+    			<div style="overflow-y: scroll;height: 400px;padding: 0 15px;">
+    				<p class="color333 font12 margin-top10px">
+						承诺并保证，您在去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端以各种形式发布的作品及信息，均符合《中华人民共和国著作权法》、《中华人民共和国商标法》、《中华人民共和国反不正当竞争法》、《中华人民共和国侵权责任法》、《中华人民共和国广告法》、《中华人民共和国计算机信息系统安全保护条例》、《计算机软件保护条例》及《信息网络传播权保护条例》等有关法律、法规、规章的规定。
+					</p>
+					<p class="color333 font12">
+						您承诺并保证，您在去卖艺网（www. myee.net.cn）及“去卖艺APP”移动客户端以各种形式发布的信息，均符合社会公序良俗。
+					</p>
+					<p class="color333 font12">
+						您承诺并保证，您在去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的作品、文字、图片、视频、音频、多媒体资料或其他内容均拥有相应合法的权利。这些文字、图片、视频、音频、多媒体资料或其他内容，不侵犯任何第三方的肖像权、名誉权、著作权、商标权等任何权利，不违反您与任何第三方所签订的任何法律文件的规定。
+					</p>
+					<p class="color333 font12">
+						去卖艺公司有权对您上传的作品、文字、图片、视频、音频、多媒体资料或其他内容随时进行检查或编辑。如果发现您上传的内容不符合前述承诺，去卖艺公司有权删除您所上传的内容。对于您通过去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的内容，去卖艺公司不保证其合法性、正当性、准确性或完整性。您应自行承担因此产生的法律责任，如果因您违反上述承诺及保证导致去卖艺公司因此受到损失，您应赔偿由此造成的全部损失。
+					</p>
+					<p class="color333 font12">
+						您在点击确认本承诺之前，请仔细阅读本承诺，并确认您已完全理解本承诺。如您对本承诺有任何疑问，请立即停止通过去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的作品、文字、图片、视频、音频、多媒体资料或其他内容，并可向去卖艺网客服咨询。
+					</p>
+					<div class="mui-input-row mui-checkbox mui-left">
+			            <label>我已阅读并同意</label>
+			            <input name="checkbox1" type="checkbox" class="is_allow_release">
+		            </div>
+    			</div>
+			</div>
+		</div>
+		
+		
+		
+		<!--所属分类弹框-->        
+		<div class="alert_window" id="category">
+    		<div class="share_list" id="sub_item">
+    			<p class="mui-text-center border-bottom line-height44px font16 color333">所属分类</p>
+    			<div class="category_list" style="overflow-y: scroll;height: 180px;">
+					<div class="mui-table-view-cell mui-collapse" >
+						<div class="mui-input-row mui-radio border-bottom ">
+							    <label>无二</label>
+							    <input name="radio" type="radio" value="1">
+						</div>
+						<div class="mui-input-row mui-radio border-bottom ">
+							    <label>古技</label>
+							    <input name="radio" type="radio" value="2">
+						</div>
+						<div class="mui-input-row mui-radio border-bottom ">
+							    <label>洋艺</label>
+							    <input name="radio" type="radio" value="3">
+						</div>
+						<div class="mui-input-row mui-radio border-bottom ">
+							    <label>觉今</label>
+							    <input name="radio" type="radio" value="4">
+						</div>
+					</div>	
+    			</div>				
+				<div class="btn_group">
+					<button type="button" class="mui-btn mui-btn-grey mui-btn-block padding_tb_8px margin0 color333 cancel_btn">取消</button>
+					<button type="button" class="mui-btn mui-btn-blue mui-btn-block padding_tb_8px margin0 confirm_btn" id="releaseClass" >确定</button>
+				</div>
+			</div>
+    	</div>
+	</div>
+</body>
+
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/jquery.min.js"></script>
+<script src="../js/shareApp.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/releaseVideo.js"></script>	
+<script type="text/javascript">
+	mui.init({
+		gestureConfig:{
+			longtap: true, //默认为false
+		}
+	});
+		
+	//longtap点击事件
+	$('.show_pic img').on('longtap', function(){
+		$(this).siblings('.del_btn').css('display','block');				
+		$('.show_pic .del_btn').click(function(){
+			$(this).prev().attr('src',"");
+			$(this).css('display', 'none');
+			return false;
+		})
+	})
+	$(function(){
+		 $('.confirm_btn').click(function(){
+		 	$('.alert_window').css('display','none');
+		 	var val = $('.category_list input:checked').prev().html();
+			$('.current_type').html(val);
+		 	return false;
+		 });
+		 
+		 $(".is_allow_release").click(function(){
+		 	if($(this).is(':checked')){
+		 		$('#submit_btn').attr('disabled',false);
+		 	}else{
+		 		$('#submit_btn').attr('disabled',true);
+		 	}
+		 })
+		 //发布商品所属分类弹窗
+		share($('#category'),$('#sub_item'),$('.category'),$('.cancel_btn'))
+		
+		//阅读知识产权承诺
+		share($('#law'),$('#law_text'),$('.law'),$('.cancel_btn'))
+	})
+</script>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>今</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
+	    	.group_list{width: 100%;overflow: hidden;}
+	    	.group_list li{width: calc(90%/4);margin: calc(10%/8);float: left;}
+	    	body{width: 100%;height: 100%;background: url(../img/jin_bg.jpg);background-size: cover;}
+	    	.mui-table-view:before,.mui-table-view:after{background-color: transparent;}
+	    	.mui-ios .mui-table-view-cell{background-color: transparent;}
+	    </style>
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">今</h1>
+	    </header>
+		<div class="mui-content">
+			<div></div>
+			<ul class="mui-table-view margin-bottom10px">
+			        <li class="mui-table-view-cell">
+			            <ul class="group_list">
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin1.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">编织纺绣</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin2.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">动画制作</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin3.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">珠宝设计</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin4.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">当代艺术</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin5.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">家居小物</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin6.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">摄影艺术</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin7.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">现代雕塑</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin8.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">虚拟现实</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin9.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">微电影</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin10.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">广告文案</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin11.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">创意手工</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin12.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">玻璃艺术</p>
+			            	</li>
+			            	<li onclick="openNewPage('DIY.html')" class="text-aligin">
+			            		<img class="circle_pic" src="../img/jin13.jpg" alt="" />
+			            		<p class=" mui-ellipsis colorP">艺术剪纸</p>
+			            	</li>
+			            </ul>
+			        </li>
+			    </ul>
+			   
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('.danger_zone').click(function(){
+			$('.alert_window').css('display','block');
+		})
+		$('.I_know').click(function(){
+			$('.alert_window').css('display','none');
+		})
+	</script>
+</html>

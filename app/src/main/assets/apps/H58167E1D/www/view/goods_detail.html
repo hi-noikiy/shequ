@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>商品详情</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	video{width: 100%;}
+    	.input_box input{border: 1px solid #999;}
+    	.mui-segmented-control{height: 51px;width: 100%;}
+    	.mui-segmented-control .mui-control-item{width: calc(90%/4);margin: 0 calc(10%/8);line-height: 51px;font-size: 15px;}
+    	.user{width: 55%;}
+    	.user span{width: 68%;display: inline-block;}
+    	.goods_info{position: relative;}
+    	.sold_tag{position: absolute;right: 20px;top: 30px;font-size: 80px;color: #a7536c;}
+    	.disabled_btn{background: #999;border: 1px solid #999;}
+    	.circle_pic{margin-right: 10px;max-width: 60px !important;height: 60px !important;border: 50%;}
+    </style>
+</head>
+<body ng-app="goodsApp" ng-controller="goodsController">
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title colorP">商品详情</h1>
+	    <a class="mui-pull-right">
+<!--	    	<span class="mui-icon iconfont">&#xe717;</span>-->
+	    	<span class="mui-icon iconfont" style="margin-left: 0;" id="shareApp_btn">&#xe6c2;</span>	    	
+	    </a>
+	</header>
+	<div class="mui-content" style="padding-bottom: 46px;">
+       <div class="bg_white margin-bottom5px">
+       		<img src="{{goodsData.good_image}}"/>
+       		<div class="paddingl_r_15px_tb11px goods_info">
+       			<div class="mui-ellipsis line-height30px margin-bottom5px">{{goodsData.good_name}}</div>
+       			<p class="color0 line-height20px font12">价格：<span class="colorRed">￥{{goodsData.price}}</span></p>
+       			<p class="font13 line-height20px font12">工期：{{goodsData.maf_time}}</p>
+       			<!--已售标签-->
+       			<span class="mui-icon iconfont sold_tag" ng-if="goodsData.state">&#xe626;</span>
+       		</div>       		
+       </div>
+        <ul class="mui-table-view margin-bottom5px">
+	        <li onclick="openNewPage('evaluate_list.html')" class="mui-table-view-cell margin-bottom5px bg_white">
+	            <a class="mui-navigate-right">
+	                <span>评价(<i>{{goodsData.comment_count}}</i>)</span>
+	            </a>
+	        </li>        	        
+        	<li onclick="openNewPage('saler_info.html')" class="paddingl_r_15px_tb11px border-bottom bg_white">
+               <span class="sp_title">&nbsp;&nbsp;卖家信息</span>
+            </li>
+            <li class="mui-table-view-cell mui-media bg_white">
+                <a href="javascript:;">
+                    <img onclick="openNewPage('honer_page.html')" class="mui-media-object mui-pull-left circle_pic"  src="{{goodsData.icon}}">
+                    <div class="mui-media-body">
+                     	<div class="mui-clearfix margin-bottom10px">
+                     		<span class="mui-pull-left">{{goodsData.nick}}</span>
+                     		<span class="mui-pull-right iconfont mui-icon colorP line-height20px attention_btn font12">&#xe669;关注</span>
+                     	</div>
+                     	<p class="font12">{{goodsData.personalized}}</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="bg_white paddingl_r_15px_tb11px margin-bottom5px">
+    		<div class="text-aligin">简介</div>
+    		<p class="font12">{{goodsData.good_intro}}</p>
+        </div>
+        <div class="bg_white paddingl_r_15px_tb11px margin-bottom5px">
+    		<div class="text-aligin">商品参数</div>
+    		<p class="font12">{{goodsData.description}}</p>
+        </div>
+        <div class="bg_white margin-bottom5px">
+    		<div class="text-aligin paddingl_r_15px_tb11px">图文详情</div>
+ 			<div ng-repeat="(index,i) in goodsData.good_imgs">
+ 			<img src="{{i.imgs}}" alt="" />
+ 			</div>
+        </div>
+        <ul class="mui-table-view margin-bottom5px bg_white">
+        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+               <span class="sp_title">&nbsp;&nbsp;猜你喜欢</span>
+            </li>
+            <li class="mui-table-view-cell mui-media" ng-repeat="(index,g) in goodsData.goods" ng-click="info(g.id)">
+                <a href="javascript:;">
+                    <img class="mui-media-object mui-pull-left goods_pic "  src="{{g.good_image}}">
+                    <div class="mui-media-body">
+                     	<div class="mui-ellipsis">{{g.good_namename}}</div>
+                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>{{g.maf_time}}</i>天</span></div>
+                     	<div class="mui-clearfix">
+                     		<div class="mui-pull-left user">
+                     			<div class="user_pic"><img src="{{g.icon}}" /></div>
+								<span class="padding_l line-height30px color999 mui-ellipsis font12">{{g.nick}} </span>
+                     		</div>
+                     		<span class="mui-pull-right colorRed line-height30px font12">￥{{g.price}}</span>
+                     	</div>
+                    </div>
+                </a>
+            </li>
+            
+        </ul>
+        <button  ng-click="shopping(goodsData.id)"type="button" class="mui-btn mui-btn-blue mui-btn-block border-radius0 padding_tb_8px" style="position: fixed;bottom: 0;left: 0;margin-bottom: 0;">立即购买</button>
+		<!--分享弹窗-->
+    	<div class="alert_window">
+    		<ul class="share_list">
+				<li>
+					<span class="iconfont mui-icon">&#xe61d;</span>
+					<p class="color0">微信好友</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe629;</span>
+					<p class="color0">朋友圈</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe61f;</span>
+					<p class="color0">QQ好友</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe614;</span>
+					<p class="color0">QQ空间</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe640;</span>
+					<p class="color0">微博</p>
+				</li>
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block padding_tb_8px margin0 cancel_btn">取消</button>
+			</ul>
+    	</div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/jquery.min.js"></script>
+<script src="../js/shareApp.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/goods.js"></script>
+<script type="text/javascript" charset="UTF-8">
+	$().ready(function(){
+		var bj = '';
+		$('.replay_btn').click(function(){
+			bj = $(this).attr('data-bj');
+			$('.input_box').animate({
+				left:'0px'
+			},300)
+		})
+		
+		$('.input_box button').click(function(){
+			var textVal = $('.input_box input').val();
+			$('.dialogue_box'+bj).append("<li><span class='colorP'>就是要帅：</span><span>"+ textVal +"</span></li>");
+			$('.input_box').animate({
+				left:'-100%'
+			},300);
+			textVal = "";
+		})
+		
+		
+		//关注的状态
+		var is_attention = true;
+		$('.attention_btn').click(function(){
+			if(is_attention){
+				$(this).html('&#xe6aa;已关注').css({'color':'#999','border':'1px solid #999'});
+				is_attention = false;
+			} else {
+				$(this).html('&#xe669;关注').css({'color':'#4c968e','border':'1px solid #4c968e'});
+				is_attention = true;
+			}
+		})
+
+		share($('.alert_window'),$('.share_list'),$('#shareApp_btn'),$('.cancel_btn'))
+	})
+	
+</script>
+<script>
+	var webPage = 'goods';
+</script>
+<script src="../js/app/shareApp.js"></script><!--分享-->
+</html>

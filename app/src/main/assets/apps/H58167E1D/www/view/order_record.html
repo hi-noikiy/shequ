@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>购买记录</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{color: #4c968e;background: transparent;}
+    	.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar{width: 20%;background-color: #4c968e;}
+    	.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border: none;}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left colorP"></a>
+	    <h1 class="mui-title colorP">购买记录</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-slider">
+		    <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted bg_white">
+		        <a class="mui-control-item mui-active" href="#item1">全部</a>
+		        <a class="mui-control-item" href="#item2">待付款</a>
+		        <a class="mui-control-item" href="#item3">待发货</a>
+		        <a class="mui-control-item" href="#item4">待收货</a>
+		        <a class="mui-control-item" href="#item5">待评价</a>
+		    </div>
+		    <div id="sliderProgressBar" class="mui-slider-progress-bar margin-bottom5px"></div>
+		    <div class="mui-slider-group">
+		    	<!--全部-->
+		        <div id="item1" class="mui-slider-item mui-control-content mui-active">
+		            <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user8.jpg" /></div>
+							<span class="padding_l line-height30px">回眸瞬间 </span>
+			            </li>
+			            <li onclick="openNewPage('order_detail_for_evaluate.html')" class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button onclick="openNewPage('evaluate_for_goods.html')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14">评价</button>
+			            </li>
+			        </ul>
+			        <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user7.jpg" /></div>
+							<span class="padding_l line-height30px">捕捉美好</span>
+			            </li>
+			            <li onclick="openNewPage('order_detail_for_finish.html')" class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14 have_fishined color999">已完成</button>
+			            </li>
+			        </ul>
+		        </div>
+		        <!--待付款-->
+		        <div id="item2" class="mui-slider-item mui-control-content">
+		            <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user8.jpg" /></div>
+							<span class="padding_l line-height30px">回眸瞬间 </span>
+			            </li>
+			            <li onclick="openNewPage('order_detail_for_pay.html')" class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button type="button" class="mui-btn  mui-btn-block width20 padding5px font14 margin-right24 cancel_order_btn">取消订单</button>
+			            	<button onclick="openNewPage('confirm_order.html')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14">付款</button>
+			            </li>
+			        </ul>
+			        <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user7.jpg" /></div>
+							<span class="padding_l line-height30px">捕捉美好</span>
+			            </li>
+			            <li onclick="openNewPage('order_detail_for_pay.html')" class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button type="button" class="mui-btn mui-btn-block width20 padding5px font14 margin-right24 cancel_order_btn">取消订单</button>
+			            	<button onclick="openNewPage('confirm_order.html')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14">付款</button>
+			            </li>
+			        </ul>
+		        </div>
+		        
+		        <!--待发货-->
+		        <div id="item3" class="mui-slider-item mui-control-content">
+		            <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user8.jpg" /></div>
+							<span class="padding_l line-height30px">回眸瞬间 </span>
+			            </li>
+			            <li class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button onclick="openNewPage('apply_for_money_return.html')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14">申请退款</button>
+			            </li>
+			        </ul>
+			        <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user7.jpg" /></div>
+							<span class="padding_l line-height30px">捕捉美好</span>
+			            </li>
+			            <li class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button type="button" class="mui-btn mui-btn-white mui-btn-block width20 padding5px font14 borderNone colorP">退款中…</button>
+			            </li>
+			        </ul>
+		        </div>
+		        <!--待收货-->
+		        <div id="item4" class="mui-slider-item mui-control-content">
+		            <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user8.jpg" /></div>
+							<span class="padding_l line-height30px">回眸瞬间 </span>
+			            </li>
+			            <li onclick="openNewPage('order_detail_for_confirm.html')" class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button onclick="openNewPage('logistics.html')" type="button" class="mui-btn mui-btn-block width20 padding5px font14 margin-right24">查看物流</button>
+			            	<button type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14">确认收货</button>
+			            </li>
+			        </ul>
+			        <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user7.jpg" /></div>
+							<span class="padding_l line-height30px">捕捉美好</span>
+			            </li>
+			            <li onclick="openNewPage('order_detail_for_confirm.html')" class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button onclick="openNewPage('apply_for_sales_return.html')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14">申请退货</button>
+			            </li>
+			        </ul>
+		        </div>
+		        <!--待评价-->
+		        <div id="item5" class="mui-slider-item mui-control-content">
+		            <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user8.jpg" /></div>
+							<span class="padding_l line-height30px">回眸瞬间 </span>
+			            </li>
+			            <li onclick="openNewPage('order_detail_for_evaluate.html')" class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button onclick="openNewPage('evaluate_for_goods.html')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14">评价</button>
+			            </li>
+			        </ul>
+			        <ul class="mui-table-view margin-bottom5px bg_white">
+			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
+			               <div class="user_pic"><img src="../img/user7.jpg" /></div>
+							<span class="padding_l line-height30px">捕捉美好</span>
+			            </li>
+			            <li onclick="openNewPage('order_detail_for_evaluate.html')" class="mui-table-view-cell mui-media">
+			                <a href="javascript:;">
+			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin3.jpg">
+			                    <div class="mui-media-body">
+			                     	<div class="mui-ellipsis">鼎湖春原创大师江雪壶1000g原价30000</div>
+			                     	<div class="mui-clearfix line-height30px"><span class="mui-pull-right colorP font14">工期：<i>3</i>天</span></div>
+			                     	<div class="mui-clearfix">
+			                     		<span class="mui-pull-left colorRed">￥2200.00</span>
+			                     		<span class="mui-pull-right">x1</span>			                     		
+			                     	</div>
+			                    </div>
+			                </a>
+			            </li>
+			            <li class="mui-table-view-cell mui-media mui-clearfix">
+			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
+			            	<button onclick="openNewPage('evaluate_for_goods.html')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14">评价</button>
+			            </li>
+			        </ul>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+	$('.cancel_order_btn').click(function(){
+		$(this).parent().prevAll().remove();
+		$(this).parent().remove();
+	})
+</script>
+</html>

@@ -168,10 +168,10 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/splash">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -268,7 +268,7 @@
 
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="1137170227178779#qumaiyi"/> <!-- 声明sdk所需的service -->
+            android:value="huagutech#shequshangcheng"/> <!-- 声明sdk所需的service -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true"
@@ -368,30 +368,30 @@
         <!-- meta-data节点android:name="UMENG_APPKEY"项中android:value值为友盟网站申请的APPKEY
         --><!-- meta-data节点android:name="UMENG_CHANNEL"项中android:value值为发行渠道标识，可任意取值，用于各种发行渠道效果统计
 -->
-      <!--  <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="%UMENG_APPKEY%"/>-->
+        <!--  <meta-data
+              android:name="UMENG_APPKEY"
+              android:value="%UMENG_APPKEY%"/>-->
         <!--<meta-data
             android:name="UMENG_CHANNEL"
             android:value="googleplay"/>--><!-- 友盟统计  配置  end -->
         <!-- Maps(地图) begin -->
         <!-- meta-data节点android:name="com.baidu.lbsapi.API_KEY"项中android:value值为百度地图应用的Appkey
         -->
-      <!--  <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="Z3erUvGIwBCBQdBl6CArCAGT">
-        </meta-data>-->
-    <!--    <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote">
-        </service>--><!-- Maps(地图) end -->
+        <!--  <meta-data
+              android:name="com.baidu.lbsapi.API_KEY"
+              android:value="Z3erUvGIwBCBQdBl6CArCAGT">
+          </meta-data>-->
+        <!--    <service
+                android:name="com.baidu.location.f"
+                android:enabled="true"
+                android:process=":remote">
+            </service>--><!-- Maps(地图) end -->
         <!-- Oauth 授权登陆 start -->
         <!-- Oauth QQ start -->
         <!-- QQ 分享 配置和授权登陆相同 -->
         <meta-data
             android:name="QQ_APPID"
-            android:value="%appid%"/>
+            android:value="123"/>
 
         <activity
             android:name="com.tencent.tauth.AuthActivity"
@@ -513,13 +513,13 @@
         <!-- 官方网站：http://open.weibo.com/ -->
         <meta-data
             android:name="SINA_REDIRECT_URI"
-            android:value="%新浪微博开放平台申请应用配置的回调地址%"/>
+            android:value="http://baidu.com"/>
         <meta-data
             android:name="SINA_SECRET"
-            android:value="%新浪微博开放平台申请应用的Secret%"/>
+            android:value="123"/>
         <meta-data
             android:name="SINA_APPKEY"
-            android:value="_%新浪微博开放平台申请应用的Appkey，注意前面要添加下划线%"/>
+            android:value="_3"/>
 
         <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
@@ -555,10 +555,10 @@
         </activity><!-- 微信分享 配置begin -->
         <meta-data
             android:name="WX_SECRET"
-            android:value="fdc6251421d3d688a563b4f00dd540e7"/>
-        <meta-data
+            android:value="4cc80e1c1326f56c9ac3290b530336d5"/>
+        <!--<meta-data
             android:name="WX_APPID"
-            android:value="wx0411fa6a39d61297"/>
+            android:value="wx0411fa6a39d61297"/>-->
 
         <activity
             android:name=".integrate.wxapi.WXEntryActivity"
@@ -590,9 +590,10 @@
             android:name=".integrate.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
-        <!--<meta-data
+        <meta-data
             android:name="WX_APPID"
-            android:value="wx0411fa6a39d61297"/>&lt;!&ndash; 微信支付配置end &ndash;&gt;
+            android:value="wxd96b8dd3e5733967"/>
+        <!--&lt;!&ndash; 微信支付配置end &ndash;&gt;
         &lt;!&ndash;小米分享&ndash;&gt;
         <meta-data
             android:name="MIUI_APPID"
@@ -627,9 +628,9 @@
             android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
             android:enabled="true"
             android:exported="true"/>-->
-      <!--  <service
-            android:name="com.xiaomi.mipush.sdk.MessageHandleService"
-            android:enabled="true"/>-->
+        <!--  <service
+              android:name="com.xiaomi.mipush.sdk.MessageHandleService"
+              android:enabled="true"/>-->
 
         <!--<receiver
             android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"

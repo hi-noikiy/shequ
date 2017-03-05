@@ -1,5 +1,6 @@
 package com.cndll.shequ.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.cndll.shequ.R;
+import com.hyphenate.easeui.model.UserLodingInFo;
 import com.cndll.shequ.net.ComUnityRequest;
 import com.cndll.shequ.bean.LoadUpResponse;
 import com.hyphenate.chat.EMClient;
@@ -54,8 +56,19 @@ public class CreateGroupActivity extends AppCompatActivity {
         init();
     }
 
+    ProgressDialog dialog;
+
+    private void showProg(String s) {
+        dialog.setMessage(s);
+        dialog.show();
+    }
+
+    private void dimissProg() {
+        dialog.dismiss();
+    }
 
     private void init() {
+        dialog = new ProgressDialog(CreateGroupActivity.this);
         titleBar.setTitle("建群");
         titleBar.setRightText("建立");
         titleBar.setLeftImageResource(R.drawable.ease_mm_title_back);
@@ -77,6 +90,7 @@ public class CreateGroupActivity extends AppCompatActivity {
                     });*/
                     return;
                 }
+                showProg("正在上传");
                 name = groupName.getText().toString();
                 notify = groupNotify.getText().toString();
                 EMGroupManager.EMGroupOptions option = new EMGroupManager.EMGroupOptions();
@@ -84,12 +98,12 @@ public class CreateGroupActivity extends AppCompatActivity {
                 option.style = EMGroupManager.EMGroupStyle.EMGroupStylePublicJoinNeedApproval;
                 try {
                     EMGroup group = EMClient.getInstance().groupManager().createGroup(name, "", new String[]{}, "", option);
-                   // Toast.makeText(CreateGroupActivity.this, "" + group.getGroupId(), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(CreateGroupActivity.this, "" + group.getGroupId(), Toast.LENGTH_SHORT).show();
                     File file = new File(getRealPathFromURI(imageUri));
-                   // Toast.makeText(CreateGroupActivity.this, "" + file.getName(), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(CreateGroupActivity.this, "" + file.getName(), Toast.LENGTH_SHORT).show();
                     Map<String, RequestBody> parmes = new HashMap<String, RequestBody>();
                     parmes.put("action", toreRequestBody("Group.groupInsert"));
-                    parmes.put("uid", toreRequestBody(EMClient.getInstance().getCurrentUser()));
+                    parmes.put("uid", toreRequestBody(UserLodingInFo.getInstance().getId()));
                     parmes.put("group_id", toreRequestBody(group.getGroupId()));
                     parmes.put("group_name", toreRequestBody(group.getGroupName()));
                     parmes.put("group_public", toreRequestBody(notify));
@@ -112,6 +126,7 @@ public class CreateGroupActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        CreateGroupActivity.this.dimissProg();
                                         CreateGroupActivity.this.finish();
                                     }
                                 });

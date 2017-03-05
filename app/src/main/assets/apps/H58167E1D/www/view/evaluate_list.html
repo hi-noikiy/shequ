@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>评价</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	.padding-r5px{padding-right: 5px;}
+    	.circle_pic{width: 50px;height: 50px;border-radius:50%;overflow: hidden;}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left colorP"></a>
+	    <h1 class="mui-title colorP">评价(50)</h1>	    
+	</header>
+	<div class="mui-content">
+		<div></div>
+		<ul class="mui-table-view">
+	        <li class="paddingl_r_15px_tb11px bg_white mui-clearfix margin-bottom5px">
+                <img src="../img/user4.jpg" class="circle_pic mui-pull-left"/>
+                <div class="mui-pull-left padding_tb_8px">
+                	<span class="padding_lr_10px margin-bottom10px">微笑风</span>
+					<p class="padding_lr_10px">2016/10/28   15:00</p>
+                </div>
+				<div class="mui-pull-right padding_tb_8px">
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>					
+				</div>
+				<div class="mui-pull-left">
+					<p class="color333 padding_tb_5px">色泽光亮，外观很好看</p>
+	                <img src="../img/shangpin11.jpg" class="width30 padding-r5px"/>
+	                <img src="../img/shangpin12.jpg" class="width30 padding-r5px"/> 
+				</div>
+	        </li>
+	        <li class="paddingl_r_15px_tb11px bg_white mui-clearfix margin-bottom5px">
+                <img src="../img/user10.jpg" class="circle_pic mui-pull-left"/>
+                <div class="mui-pull-left padding_tb_8px">
+                	<span class="padding_lr_10px margin-bottom10px">就是要帅</span>
+					<p class="padding_lr_10px">2016/10/28   15:00</p>
+                </div>
+				<div class="mui-pull-right padding_tb_8px">
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>					
+				</div>
+				<div class="mui-pull-left">
+					<p class="color333 padding_tb_5px">色泽光亮，外观很好看</p>
+	                <img src="../img/shangpin11.jpg" class="width30 padding-r5px"/>
+	                <img src="../img/shangpin12.jpg" class="width30 padding-r5px"/> 
+				</div>
+	        </li>
+	        <li class="paddingl_r_15px_tb11px bg_white mui-clearfix margin-bottom5px">
+                <img src="../img/user7.jpg" class="circle_pic mui-pull-left"/>
+                <div class="mui-pull-left padding_tb_8px">
+                	<span class="padding_lr_10px margin-bottom10px">捕捉美好</span>
+					<p class="padding_lr_10px">2016/10/28   15:00</p>
+                </div>
+				<div class="mui-pull-right padding_tb_8px">
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>
+					<i class="iconfont mui-icon colorP font18">&#xe6e7;</i>					
+				</div>
+				<div class="mui-pull-left">
+					<p class="color333 padding_tb_5px">色泽光亮，外观很好看</p>
+	                <img src="../img/shangpin11.jpg" class="width30 padding-r5px"/>
+	                <img src="../img/shangpin12.jpg" class="width30 padding-r5px"/> 
+				</div>
+	        </li>
+		</ul>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/upload_pic.js"></script>
+<script type="text/javascript">
+	$('.stars i').on('tap',function(){  
+		var _this = $(this);
+		var pingstar = _this.index()+1;
+		console.log(pingstar)
+		_this.siblings('input').val(pingstar);
+		_this.addClass('light_star'); 
+		_this.prevAll().addClass('light_star');
+		_this.nextAll().removeClass('light_star');
+	})
+</script>
+</html>

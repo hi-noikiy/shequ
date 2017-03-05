@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>社区最热门内容</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	</head>
+	<body ng-app="hotApp" ng-controller="contentController">
+	    <header class="mui-bar mui-bar-nav">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">最热门内容</h1>
+	    </header>
+		<div class="mui-content">
+			<div class="mui-table-view-cell padding0 bg_white">
+				<ul class="mui-table-view">
+				    <li class="mui-table-view-cell mui-media" ng-repeat="(index,h) in notes" ng-click="shequ(h.id)">
+				        <a href="javascript:;" class="mui-clearfix">
+				            <img class="mui-media-object mui-pull-right" src="{{h.subject}}">
+				            <ul class="mui-media-body mui-pull-left user_view">
+				               	<li>
+				               		<div class="user_pic"><img src="{{h.icon}}" /></div>
+				               		<span class="padding_l">{{h.nick}}</span>
+				               	</li>
+				               	<li>
+				               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
+				               		<span class="padding_l">{{h.title}}</span>
+				               	</li>
+				               	<li>
+				               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+				               		<span class="padding_l">{{h.tags}}</span>
+				               	</li>
+				            </ul>
+				        </a>
+				    </li>
+				</ul>
+			</div>								
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script type="text/javascript" src="../js/angular.min.js"></script> 
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/apppublic.js"></script>
+	<script src="../js/app/hot_content.js"></script>
+</html>

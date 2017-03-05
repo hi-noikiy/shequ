@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>个人资料</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
+	    <link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	     <script src="../js/apppublic.js"></script>
+	    <style type="text/css">
+	    	.upfile_box{float: right;margin: 0;overflow: hidden;border-radius: 50%;} 
+	    	.mui-input-row label~input{width: 60%;padding-right: 0;float: right;}
+	    	.mui-input-row label{padding-left: 0;}
+	    </style>
+	</head>
+	<body>
+	    <header class="mui-bar mui-bar-nav bg_white">
+	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	        <h1 class="mui-title colorP">个人资料</h1>
+	    </header>
+		<div class="mui-content">
+			<!--注册表-->
+			<div></div>
+			<ul class="mui-table-view bg_white margin-bottom10px">
+		        <li class="mui-table-view-cell ">
+		            <div class="mui-input-row">
+		                <label for="uploadimg8" style="line-height: 40px;">头像</label>
+		                <div class="upfile_box">
+					   <!--     <input type="file" id="uploadimg8" class="upload_file"/>-->
+					        <img id="show_pic8" />
+					    </div>
+		            </div>
+		        </li>
+		        <li onclick="openNewPage('amemd_nickname.html')" class="mui-table-view-cell">
+		            <div class="mui-input-row" >
+		                <label>昵称</label>
+		                <span class="mui-pull-right padding_tb11px color999" id="nick">&empty;</span>
+		            </div>
+		            
+		        </li>
+		        <li class="mui-table-view-cell">
+		            <div class="mui-input-row" id="showUserPicker">
+		                <label>性别</label>
+		                <span class="mui-pull-right color999 padding_tb11px" id="userResult">男</span>
+		            </div>
+		        </li>
+		        <li class="mui-table-view-cell">
+		            <div class="mui-input-row" id="showCityPicker">
+		                <label>地区</label>
+		                <span class="mui-pull-right padding_tb11px color999" id="cityResult">广东深圳</span>
+		            </div>
+		        </li>
+		        <li onclick="openNewPage('amemd_signature.html')" class="mui-table-view-cell">
+		            <div class="mui-input-row">
+		                <label>签名</label>
+		                <p class="padding_tb11px width100 mui-pull-left" id="personalized">用双手奏出最美妙的声音</p>
+		            </div>
+		        </li>
+		    </ul>	
+	   		<ul class="mui-table-view">
+	   	        <li onclick="openNewPage('amemd_pwd.html')" class="mui-table-view-cell colorRed">
+	   	            	修改密码
+	   	        </li>
+	   	    </ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/mui.picker.js"></script>
+	<script src="../js/mui.poppicker.js"></script>
+	<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/upload_pic.js"></script>
+	<script type="text/javascript">
+		(function($, doc) {
+				$.init();
+				$.ready(function() {
+					//普通示例
+					var userPicker = new $.PopPicker();
+					userPicker.setData([{
+						value: '0',
+						text: '男'
+					}, {
+						value: '1',
+						text: '女'
+					}]);
+					var showUserPickerButton = doc.getElementById('showUserPicker');
+					var userResult = doc.getElementById('userResult');
+					showUserPickerButton.addEventListener('tap', function(event) {
+						userPicker.show(function(items) {
+							userResult.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+							var uid=plus.storage.getItem('uid');
+							console.log(items[0].value);
+							$.ajax({
+					    		type:"post",
+					    		url:apiRoot,
+					    		data:{
+					    			action:'User.update',
+					    			uid:uid,
+					    			gender:items[0].value,
+					    			name:'gender', 
+					    		},
+								dataType:'json',
+					    		success:function(data){ 
+										console.log(JSON.stringify(data));  
+										plus.nativeUI.closeWaiting();
+										if(data.error == 0){  							    
+										plus.storage.setItem('gender',data.data.gender);
+										console.log(plus.storage.getItem('gender'));
+										}else{
+											plus.nativeUI.toast(data.desc);
+											return; 
+										}  
+								}, 
+								error : function(e){
+									console.log(JSON.stringify(e));
+					//				errortoast();
+								}
+		    			});
+		    	
+						});
+						
+					}, false);
+					//-----------------------------------------
+					//级联示例
+					var cityPicker = new $.PopPicker({
+						layer: 2
+					});
+					cityPicker.setData(cityData);
+					var showCityPickerButton = doc.getElementById('showCityPicker');
+					var cityResult = doc.getElementById('cityResult');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker.show(function(items) {
+							cityResult.innerText = items[0].text + " " + items[1].text;
+							var uid=plus.storage.getItem('uid');
+							console.log(items[0].value);
+							$.ajax({
+					    		type:"post",
+					    		url:apiRoot,
+					    		data:{
+					    			action:'User.update',
+					    			uid:uid,
+					    			location:items[0].text + " " + items[1].text,
+					    			name:'location', 
+					    		},
+								dataType:'json',
+					    		success:function(data){ 
+										console.log(JSON.stringify(data));  
+										plus.nativeUI.closeWaiting();
+										if(data.error == 0){  							    
+										plus.storage.setItem('address',data.data.location);
+										console.log(plus.storage.getItem('address'));
+										}else{
+											plus.nativeUI.toast(data.desc);
+											return; 
+										}  
+								}, 
+								error : function(e){
+									console.log(JSON.stringify(e));
+					//				errortoast();
+								}
+		    			});
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+				});
+			})(mui, document);
+	</script>
+	<script src="../js/app/user.js"></script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>系统消息</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav bg_white">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left colorP"></a>
+		    <h1 class="mui-title colorP">系统消息</h1>
+		</header>
+		<div class="mui-content paddingl_r_15px_tb11px">
+			<!--新用户通知-->
+			<div onclick="openNewPage('system_news_for_user.html')" class="border-radius5px padding_lr_10px bg_white margin-top20px margin-bottom10px">
+				<h4 class="border-bottom paddingl_r_6px_tb8px">新用户通知</h4>
+				<p class="paddingl_r_6px_tb8px">欢迎加入社交商城，在这里你既可以交到来自全国各地的朋友，还可以购买商品哦，手工品字画，定制服务，应有尽有，只有你想不到，没有我们做不到的……</p>
+				<p class="font13 padding_l margin-bottom10px">2016-9-14 14:00</p>
+			</div>
+			<!--申请退款-->
+			<div onclick="openNewPage('system_news_for_return_money.html')" class="border-radius5px padding_lr_10px bg_white margin-top20px margin-bottom10px">
+				<h4 class="border-bottom paddingl_r_6px_tb8px">退款申请</h4>
+				<p class="paddingl_r_6px_tb8px">用户“不做大哥好多年”申请退款！</p>
+				<p class="font13 padding_l margin-bottom10px">2016-9-14 14:00</p>
+			</div>
+			<!--退货申请-->
+			<div onclick="openNewPage('system_news_for_return_goods.html')" class="border-radius5px padding_lr_10px bg_white margin-top20px margin-bottom10px">
+				<h4 class="border-bottom paddingl_r_6px_tb8px">退货申请</h4>
+				<p class="paddingl_r_6px_tb8px">用户“不做大哥好多年”申请退货！</p>
+				<p class="paddingl_r_6px_tb8px">退货理由：感觉和描述的不一样吖，而且有…</p>
+				<p class="font13 padding_l margin-bottom10px">2016-9-14 14:00</p>
+			</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+</html>

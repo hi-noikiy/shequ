@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>视频详情</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
+    	.input_box input{border: 1px solid #999;}
+    	.mui-segmented-control{height: 40px;width: 100%;overflow: hidden;}
+    	.mui-segmented-control a{width: calc(100%/4);line-height: 40px;font-size: 15px;text-align: center;float: left;display: block;color: #333;border-right: 1px solid #eaeaea;box-sizing: border-box;}
+    	.mui-segmented-control .mui-control-item.mui-active{background: transparent;} 
+    	.video_box{position: relative;width: 100%;}  
+    	.player_btn{position: absolute;left: calc(50% - 25px);top: calc(50% - 25px);font-size: 50px;color: #fff;} 
+    	.font_bload{font-weight: bold;} 
+    	.mui-table-view .mui-media-object{height: auto; max-height: 66px;border-radius: 6px;}
+    	video{ width: 100%; height: 100%; background:url('../img/video.jpg');background-repeat: no-repeat;background-size:cover;}	
+    	.circle_pic{margin-right: 10px;max-width: 60px !important;height: 60px !important;border: 50%;}
+    </style>
+</head>
+<body ng-app="detailsApp" ng-controller="detailsController">
+	<header class="mui-bar mui-bar-nav bg_white">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title colorP">详情</h1>
+	    <a class=" mui-icon iconfont  mui-pull-right" id="shareApp_btn">&#xe6c2;</a>
+	</header>
+	<div class="mui-content">
+       <div class="bg_white margin-bottom5px video_box">
+       		<video id="video"  poster="{{notes[0].subject}}">
+       			<source src="../video/video.mp4" type="video/mp4"></source>       			
+       		</video> 
+       		<span class="mui-icon iconfont player_btn">&#xe6bb;</span>
+       </div>
+       <ul class="paddingl_r_15px_tb11px bg_white">
+   			<li><span>{{notes[0].title}}</span></li>
+   			<li class="mui-clearfix"><p class="color0 mui-pull-left font12">{{notes[0].tags}}</p> <span class="mui-pull-right mui-icon iconfont color999 font font12">&#xe71b;  <i>{{notes[0].follow}}</i></span></li>
+   		</ul>
+        <ul class="mui-table-view margin-bottom5px bg_white">
+        	<div class="paddingl_r_15px_tb11px border-bottom">
+               <span class="sp_title">&nbsp;&nbsp;版主</span>
+            </div>
+            <li class="mui-table-view-cell mui-media">
+                <a href="javascript:;">
+                    <img onclick="openNewPage('honer_page.html')"  class="mui-pull-left circle_pic"  src="{{notes[0].icon}}">
+                    <div class="mui-media-body">
+                     	<div class="mui-clearfix margin-bottom5px">
+                     		<span class="mui-pull-left">{{notes[0].nick}}</span>
+                     		<span class="mui-pull-right iconfont mui-icon line-height20px color999 attention_btn font12" style="border: 1px solid #999;" ng-if="user.follow">&#xe669;已关注</span>
+                     		<span class="mui-pull-right iconfont mui-icon line-height20px colorP attention_btn font12" id="follow" ng-if="!user.follow" ng-click="view_follow()">&#xe669;关注</span>
+                     	</div>
+                     	<p class=" font12">{{notes[0].personalized}}</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul class="mui-table-view margin-bottom5px bg_white">
+        	<div class="paddingl_r_15px_tb11px bg_white border-bottom">
+               <span class="sp_title">&nbsp;&nbsp;相关商品</span>
+            </div>
+            <li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media" ng-repeat="(index,g) in goods">
+                <a href="javascript:;">
+                    <img class="mui-media-object mui-pull-left"  src="{{g.good_image}}">
+                    <div class="mui-media-body">
+                     	<div class="margin-bottom10px mui-ellipsis">{{g.good_name}}</div>
+                     	<span class="mui-pull-right colorRed">￥{{g.price}}</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul class="mui-table-view bg_white">
+        	<div class="paddingl_r_15px_tb11px bg_white border-bottom">
+               <span class="sp_title">&nbsp;&nbsp;评论互动</span>
+            </div>
+            <li class="mui-table-view-cell mui-media" ng-repeat="(index,c) in comments">
+                <a href="javascript:;">
+                    <img class="mui-pull-left circle_pic" src="{{c.icon}}">
+                    <div class="mui-media-body">
+                    	<div ng-click="huiContent(c.id)">
+                    		<span class="colorP">{{c.nick}}</span>
+                    		<i class="iconfont mui-icon mui-pull-right color999 font13 replay_btn" ng-click="test(c.id)" data-bj="a1">&#xe698;  回复</i>
+                    	</div>
+                        <p class="mui-ellipsis">{{c.createtime}}</p>
+                        <div class="crrunt_user">{{c.content}}</div>
+                        <ul class="dialogue_box dialogue_boxa1">     
+                        	<li ng-repeat="(index,case) in c.case[0]">
+                        		<span class="user_name colorP">{{case.nick}}：</span>
+                        		<span class="comment">{{case.content}}</span>
+                        	</li>
+                        </ul>
+                    </div>
+                </a>    
+            </li>
+        </ul>
+        <div class="bg_white paddingl_r_15px_tb11px margin-bottom5px" style="text-align: center;">
+        	<p class="margin0">没有评论了呢~</p>
+        </div>
+        <div class="mui-segmented-control borderNone bg_white">
+            <a ng-click="viewCollection()" ng-if="!user.collection" id="viewcollection"><i class="iconfont mui-icon color333">&#xe70a;</i>  <i class="font12" >收藏</i></a>
+            <a ng-if="user.collection"><i class="iconfont mui-icon colorP">&#xe622;</i>  <i class="font12">已收藏</i></a>
+            <a onclick="openNewPage('chose_group.html')" ><i class="iconfont mui-icon color333">&#xe61a;</i>  <i class="font12">加入群聊</i></a>
+            <a onclick="openNewPage('chat.html')" ><i class="iconfont mui-icon color333">&#xe60d;</i>  <i class="font12">私聊群主</i></a>
+            <a  id="evaluate_btn" ng-click="viewContent()"><i class="iconfont mui-icon color333">&#xe660;</i>  <i class="font12">评论</i></a>
+        </div>
+        <div class="input_box bg_white mui-clearfix">
+        	<input class="mui-pull-left" type="text" placeholder="请输入评语" id="view_content">
+        	<button type="button" class="mui-btn-blue mui-pull-right width30" >发表</button>
+        </div>
+        
+    	<!--分享弹窗-->
+    	<div class="alert_window">
+    		<ul class="share_list">
+				<li>
+					<span class="iconfont mui-icon">&#xe61d;</span>
+					<p class="color0">微信好友</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe629;</span>
+					<p class="color0">朋友圈</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe61f;</span>
+					<p class="color0">QQ好友</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe614;</span>
+					<p class="color0">QQ空间</p>
+				</li>
+				<li>
+					<span class="iconfont mui-icon">&#xe640;</span>
+					<p class="color0">微博</p>
+				</li>
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-block padding_tb_8px margin0 cancel_btn border-radius0">取消</button>
+			</ul>
+    	</div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/open.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/jquery.min.js"></script>
+<script src="../js/shareApp.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/view_detail.js"></script>
+<script type="text/javascript" charset="UTF-8">
+	$().ready(function(){
+		
+		//回复 
+		var bj = '';
+//		$('.replay_btn').click(function(){
+//			bj = $(this).attr('data-bj');
+//			$('.input_box').animate({
+//				left:'0px'
+//			},300)
+//		}) 
+		$('.input_box button').click(function(){
+			var textVal = $('.input_box input').val();
+			plus.storage.setItem('conmentval',textVal);
+			$('.dialogue_box'+bj).append("<li><span class='colorP'>就是要帅：</span><span>"+ textVal +"</span></li>");
+			$('.input_box').animate({
+				left:'-100%'
+			},300);
+			$('.input_box input').val("");
+		})
+		
+		//评论
+		$('#evaluate_btn').click(function(){
+			bj = $(this).attr('data-bj');
+			$('.input_box').animate({
+				left:'0'
+			},300)
+		})
+		
+//		//关注的状态
+//		var is_attention = true;
+//		$('.attention_btn').click(function(){
+//			if(is_attention){
+//				$(this).html('&#xe6aa;已关注').css({'color':'#999','border':'1px solid #999'});
+//				is_attention = false;
+//			} else {
+//				$(this).html('&#xe669;关注').css({'color':'#4c968e','border':'1px solid #4c968e'});
+//				is_attention = true;
+//			}
+//		})
+//		
+		//视频播放
+		var is_play = true;			
+		$('.video_box').click(function(){
+			var video = document.getElementById('video');
+			if(is_play){
+				$('.player_btn').css('display','none');
+				video.play();
+				is_play = false;				
+			} else{
+				$('.player_btn').css('display','block');
+				video.pause();
+				is_play = true;
+			}
+			//视频结束 播放按钮显示
+			if(video.ended){
+				$('.player_btn').css('display','block');
+				is_play = true;
+			}
+		
+		})
+	share($('.alert_window'),$('.share_list'),$('#shareApp_btn'),$('.cancel_btn'))
+	})
+	
+</script>
+
+</html>
