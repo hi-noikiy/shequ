@@ -154,10 +154,11 @@
 				var i = e.index;
 				if(i == 1) {
 					openNewPage('release_viewMedia.html')
+			        window.plus.bridge.exec("community", "hideNativeView", []);
 				}else if(i==2){
 					openNewPage('release_goods.html')
+		            window.plus.bridge.exec("community", "hideNativeView", []);
 				}
-			    window.plus.bridge.exec("community", "hideNativeView", []);
 			});
 		}
 	});
