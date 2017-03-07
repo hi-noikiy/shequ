@@ -222,7 +222,7 @@
 		});
          mui.back=function(){
              mui.currentWebview.close();
-		      window.plus.bridge.exec("community", "showNativeView", []);
+		      window.plus.bridge.exec("community", "backNews", []);
          };
 		//longtap点击事件
 		$('.show_pic img').on('longtap', function(){

@@ -6,6 +6,7 @@ import com.cndll.shequ.RXbus.RxBus;
 import com.cndll.shequ.activity.ChatActivity;
 import com.cndll.shequ.eventtype.JSEvent;
 import com.cndll.shequ.eventtype.LoginIM;
+import com.cndll.shequ.eventtype.PushWebView;
 import com.cndll.shequ.util.ObjectSaveUtils;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
@@ -44,7 +45,12 @@ public class WebViewMode_FeatureImpl implements IFeature {
                 break;
             case "showNativeView":
                 RxBus.getDefault().post(new JSEvent().setEventType("showNativeView"));
-
+                break;
+            case "pushWebView":
+                RxBus.getDefault().post(new PushWebView().setTYPE(PushWebView.PUSH));
+                break;
+            case "backNews":
+                RxBus.getDefault().post(new PushWebView().setTYPE(PushWebView.BACK));
                 break;
         }
 

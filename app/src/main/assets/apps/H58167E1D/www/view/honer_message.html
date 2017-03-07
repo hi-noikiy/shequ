@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
 
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
@@ -14,6 +15,9 @@
     	.circle_pic{width: 50px;}
 		.mui-badge{background: #ad4554;color: #fff;}
 		.mui-search:before{top: 70%;}
+
+
+
     </style>
 </head>
 <!--<body class="bg_white">
@@ -138,7 +142,7 @@
 <script src="../js/mui.min.js"></script>
 <script src="../js/open.js"></script>
 <script src="../js/jquery.min.js"></script>
-	<script>
+<script>
 		window.addEventListener('changeVal',function(event){
 		var showWin = event.detail.showWin;
 		if(showWin == 1){
@@ -154,13 +158,16 @@
 				var i = e.index;
 				if(i == 1) {
 					openNewPage('release_viewMedia.html')
-			        window.plus.bridge.exec("community", "hideNativeView", []);
+			        window.plus.bridge.exec("community", "pushWebView", []);
 				}else if(i==2){
 					openNewPage('release_goods.html')
-		            window.plus.bridge.exec("community", "hideNativeView", []);
+		            window.plus.bridge.exec("community", "pushWebView", []);
 				}
 			});
 		}
 	});
-	</script>
+
+
+
+</script>
 </html>

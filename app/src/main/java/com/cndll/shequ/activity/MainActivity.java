@@ -12,6 +12,9 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import com.cndll.shequ.R;
 import com.cndll.shequ.RXbus.RxBus;
 import com.cndll.shequ.eventtype.JSEvent;
 import com.cndll.shequ.eventtype.LoginIM;
+import com.cndll.shequ.eventtype.PushWebView;
 import com.cndll.shequ.util.ObjectSaveUtils;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
@@ -136,8 +140,70 @@ public class MainActivity extends AppCompatActivity {
 
     private Subscription jsevent;
     private Subscription loginIM;
+    private Subscription pushWebView;
 
     private void initJsEvent() {
+        if (pushWebView == null) {
+            pushWebView = RxBus.getDefault().toObservable(PushWebView.class).subscribe(new Observer<PushWebView>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(PushWebView pushWebView) {
+                    switch (pushWebView.getTYPE()) {
+                        case PushWebView.PUSH:
+                            translateFrame(0, -1, 0, 0, new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
+
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                    params.setMargins(-frame.getWidth(), 0, 0, 0);
+                                    frame.setLayoutParams(params);
+                                    frame.clearAnimation();
+                                }
+
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+
+                                }
+                            });
+                            break;
+                        case PushWebView.BACK:
+                            translateFrame(-1, 0, 0, 0, new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
+
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                                    params.setMargins(0, -frame.getWidth(), 0, 0);
+                                    frame.setLayoutParams(params);
+                                    frame.clearAnimation();
+                                }
+
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+
+                                }
+                            });
+                            break;
+                    }
+                }
+            });
+        }
         if (loginIM == null) {
             loginIM = RxBus.getDefault().toObservable(LoginIM.class).subscribe(new Observer<LoginIM>() {
                 @Override
@@ -187,6 +253,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void translateFrame(float xfrom, float xto, float yfrom, float yto, final Animation.AnimationListener animationListener) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, xfrom, Animation.RELATIVE_TO_SELF, xto, Animation.RELATIVE_TO_SELF, yfrom, Animation.RELATIVE_TO_SELF, yto);
+        final AnimationSet animationSet       = new AnimationSet(true);
+        translateAnimation.setFillAfter(true);
+        animationSet.setFillAfter(true);
+
+        animationSet.addAnimation(translateAnimation);
+        animationSet.setDuration(500);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              //  animationSet.setAnimationListener(animationListener);
+                frame.startAnimation(animationSet);
+
+            }
+        });
     }
 
     EntryProxy mEntryProxy = null;
@@ -300,6 +384,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginIM(final String username) {
+
         if (EMClient.getInstance().isLoggedInBefore()) {
             /*EMClient.getInstance().logout(true, new EMCallBack() {
                 @Override
