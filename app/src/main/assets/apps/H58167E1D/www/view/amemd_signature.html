@@ -12,23 +12,63 @@
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <button class="mui-btn-link mui-pull-left close_btn"><span class="colorP">取消</span></button>
 	    <h1 class="mui-title colorP">签名</h1>
-	    <button class="mui-btn-link mui-pull-right"><span class="colorP">确定</span></button>
+	    <button class="mui-btn-link mui-pull-right"><span class="colorP_confirm">确定</span></button>
 	</header>
 	<div class="mui-content">
-		<textarea name="" rows="6" cols="" placeholder="请输入个性签名" id="personalized">&empty;</textarea>
+		<textarea name="" rows="6" cols=""  placeholder="请输入个性签名" id="personalized">&empty;</textarea>
 	</div>
 </body>
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery.min.js"></script>
+<script src="../js/apppublic.js"></script>
 <script type="text/javascript">
 document.addEventListener('plusready', function() {	
 	var personalized =plus.storage.getItem('personalized');
-	
+	var uid = plus.storage.getItem('uid');
+	$('#personalized').val(personalized);
 	var ws = plus.webview.currentWebview();
 	$('.close_btn').click(function(){
 		ws.close();		
 	})
-	$('#personalized').text(personalized); 
+	$(".colorP_confirm").on("tap",function(){
+		plus.nativeUI.showWaiting('提交中...');  
+		personalized=$('#personalized').val();
+		console.log(personalized);
+		$.ajax({
+   			type:"post",
+			url:apiRoot,   
+			data : {
+				action : 'User.update', 
+				personalized : personalized,
+				uid : uid,
+				name:"personalized",
+			},
+			dataType:'json',
+			success:function(data){ 
+				console.log(JSON.stringify(data));
+				plus.nativeUI.closeWaiting();
+				if(data.error == 0){  
+					plus.storage.setItem('personalized',data.data.personalized + '');
+					personalized=data.data.personalized;
+					var parentid = plus.webview.getWebviewById('personal_data.html');console.log(parentid);
+					mui.fire(parentid,'personalizedVal',{personalized:personalized});
+					
+					parentpid = plus.webview.getWebviewById('view/personal_center.html');
+						mui.fire(parentpid,'personalizedVal',{personalized:personalized});
+					setTimeout(function () {
+						ws.close();
+					},1000);
+					return; 
+				}  
+			}, 
+			error : function(e){
+				console.log(JSON.stringify(e));
+				
+//				errortoast();
+			}
+		});
+	})
+	 
 })
 </script>
 </html>

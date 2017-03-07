@@ -86,9 +86,9 @@ function ready_ThirdPartyLogin(){
 					openid = data.target.authResult.uid;
 					break;  
 			}
-			console.log(JSON.stringify(userinfo));
+//			console.log(JSON.stringify(userinfo));
 //			console.log(apiRoot + '?m=Home&c=Member&a=oAuthLogin&openid='+openid +"&avatar="+avatar+"&name="+name+"&oauthtype="+oauthtype); 
-			console.log(apiRoot);//return;
+//			console.log(apiRoot);//return;
 			$.ajax({     
 				url : apiRoot, 
 				type : 'post',    
@@ -100,24 +100,26 @@ function ready_ThirdPartyLogin(){
 					oauthtype : oauthtype
 				},  
 				dataType:'json',
-				success : function(data , status , xhr){
-//					console.log(JSON.stringify(data));
-					var vo = data.data;
-					uid = vo.id; 
-					plus.storage.setItem('uid',uid);
-					plus.storage.setItem('mobile',vo.mobile);
-					plus.storage.setItem('nick',vo.nick);/*昵称*/
-					plus.storage.setItem('icon',vo.icon);
-					plus.storage.setItem('gender',data.data.gender);//性别
-					plus.storage.setItem('sign',data.data.sign);//签约字段
-					plus.storage.setItem('merchant',data.data.merchant);//商户识别 
-					plus.storage.setItem('personalized',data.data.personalized);//个性签名
-					plus.storage.setItem('address',data.data.location);//地址 
-					setTimeout(function(){
-						ws.close;
-					}, 1000);    
-					plus.webview.create('../index.html','index.html').show('pop-in');
-					plus.nativeUI.closeWaiting();
+				success : function(data){
+					console.log(JSON.stringify(data));
+					if(data.error == 0){
+						plus.storage.setItem('uid',data.data.id + '');
+						plus.storage.setItem('mobile',data.data.mobile + '');
+						plus.storage.setItem('nick',data.data.nick + '');/*昵称*/
+						plus.storage.setItem('icon',data.data.icon + '');
+						plus.storage.setItem('gender',data.data.gender);//性别
+						plus.storage.setItem('sign',data.data.sign);//签约字段
+						plus.storage.setItem('merchant',data.data.merchant);//商户识别 
+						plus.storage.setItem('personalized',data.data.personalized);//个性签名
+						plus.storage.setItem('address',data.data.location);//地址 
+						setTimeout(function(){
+							ws.close;
+						}, 1000);    
+						plus.webview.create('../index.html','index.html').show('pop-in');
+						plus.nativeUI.closeWaiting();
+					}else{
+						toast('登陆失败！');
+					}
 				},
 				error:function(e){
 					console.log(JSON.stringify(e));   

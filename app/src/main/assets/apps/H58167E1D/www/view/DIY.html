@@ -1,104 +1,123 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	    <title>独手创作</title>
-	    <link href="../css/mui.min.css" rel="stylesheet"/>
-	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
-	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
-	    <style type="text/css">
-	    	.goods_list_a .item{width: calc(94%/2);margin:calc(6%/4);padding: calc(6%/4); float: left;}
-	    	.goods_list_a .item img{max-height: 130px;}
-	    	.goods_list_a .item span{font-size: 15px;}	    	
-	    </style>
+		<title>独手创作</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/global.css" />
+		<style type="text/css">
+			.goods_list_a .item {
+				width: calc(94%/2);
+				margin: calc(6%/4);
+				padding: calc(6%/4);
+				float: left;
+			}
+			
+			.goods_list_a .item img {
+				max-height: 130px;
+			}
+			
+			.goods_list_a .item span {
+				font-size: 15px;
+			}
+		</style>
 	</head>
-	<body>
-	    <header class="mui-bar mui-bar-nav bg_white">
-	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-	        <h1 class="mui-title colorP">独手创作</h1>
-	    </header>
+
+	<body ng-app="app" ng-controller="goodsListController">
+		<header class="mui-bar mui-bar-nav bg_white">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title colorP">{{name}}</h1>
+		</header>
 		<div class="mui-content">
-			<div class="width100  bg_white">
+			<div class="width100  bg_white" style="display: none;">
 				<ul class="filtrate mui-clearfix paddingl_r_15px_tb11px">
 					<li>
 						<span>销量</span>
 						<div class="top_down">
 							<i class="mui-icon iconfont">&#xe716;</i>
-							<i class="mui-icon iconfont">&#xe6a5;</i>							
+							<i class="mui-icon iconfont">&#xe6a5;</i>
 						</div>
 					</li>
 					<li>
 						<span>时间</span>
 						<div class="top_down">
 							<i class="mui-icon iconfont">&#xe716;</i>
-							<i class="mui-icon iconfont">&#xe6a5;</i>							
+							<i class="mui-icon iconfont">&#xe6a5;</i>
 						</div>
 					</li>
 					<li>
 						<span>价格</span>
 						<div class="top_down">
 							<i class="mui-icon iconfont">&#xe716;</i>
-							<i class="mui-icon iconfont">&#xe6a5;</i>							
+							<i class="mui-icon iconfont">&#xe6a5;</i>
 						</div>
 					</li>
 					<li>
 						<span>工期</span>
 						<div class="top_down">
 							<i class="mui-icon iconfont">&#xe716;</i>
-							<i class="mui-icon iconfont">&#xe6a5;</i>							
+							<i class="mui-icon iconfont">&#xe6a5;</i>
 						</div>
 					</li>
 				</ul>
 			</div>
 			<ul class="goods_list_a width100 mui-clearfix">
-				<li class="item  bg_white">
-					<img src="../img/shangpin1.jpg"/>
-					<span class="mui-ellipsis">赖巍《金发女孩》30版</span>
-					<p>著名美女画家赖巍的众多代表作 之一</p>
+				
+				<li class="item  bg_white" ng-click="open(x.id)" ng-repeat="x in goods">
+					<img ng-src="{{x.good_image}}" />
+					<span class="mui-ellipsis">{{x.good_name}}</span>
+					<p class="good_intro" style="height: 60px; overflow: hidden;">{{x.good_intro}}</p>
 					<div class="color333 mui-clearfix">
-						<span class="mui-pull-left">工期：<i>1-2</i>月</span>
-						<span class="mui-pull-right colorRed">￥<i>998.00</i></span>
+						<span class="mui-pull-left">工期：<i>{{x.maf_time}}</i>天</span>
+						<span class="mui-pull-right colorRed">￥<i>{{x.price}}</i></span>
 					</div>
 				</li>
-				<li class="item  bg_white">
-					<img src="../img/shangpin2.jpg"/>
-					<span class="mui-ellipsis">盒砚 石眼 苴却砚台…</span>
-					<p>著名美女画家赖巍的众多代表作 之一</p>
-					<div class="color333 mui-clearfix">
-						<span class="mui-pull-left">工期：<i>1-2</i>月</span>
-						<span class="mui-pull-right colorRed">￥<i>998.00</i></span>
-					</div>
-				</li>
-				<li class="item  bg_white">
-					<img src="../img/shangpin3.jpg"/>
-					<span class="mui-ellipsis">鼎湖春原创大师江雪…</span>
-					<p class="mui-ellipsis">设计理念：面对社会的浮夸，作 者更坚定自己的内心，做一个…</p>
-					<div class="color333 mui-clearfix">
-						<span class="mui-pull-left">工期：<i>1-2</i>月</span>
-						<span class="mui-pull-right colorRed">￥<i>998.00</i></span>
-					</div>
-				</li>
-				<li class="item  bg_white">
-					<img src="../img/shangpin5.jpg"/>
-					<span class="mui-ellipsis">天行者《晨曦》</span>
-					<p class="mui-ellipsis">著名美女画家天行者的众多代表 作之一</p>
-					<div class="color333 mui-clearfix">
-						<span class="mui-pull-left">工期：<i>1-2</i>月</span>
-						<span class="mui-pull-right colorRed">￥<i>998.00</i></span>
-					</div>
-				</li>
+				
 			</ul>
 		</div>
 	</body>
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/open.js"></script>
 	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/apppublic.js"></script>
+	<script type="text/javascript" src="../js/angular.js"></script>
 	<script type="text/javascript">
-		$('.top_down i').click(function(){
+		$('.top_down i').click(function() {
 			$(this).addClass('colorP').siblings().removeClass('colorP');
 		})
+		document.addEventListener("plusready", function() {
+			var page = plus.webview.currentWebview();
+			appElement = document.querySelector('[ng-controller=goodsListController]');
+			$scope = angular.element(appElement).scope();
+			$scope.name = page.name;
+			$scope.initView(1,page.type);
+			$scope.$apply();
+		})
+		var app = angular.module("app", []);
+		app.controller("goodsListController", function($scope, $http) {
+			$scope.initView = function(page, cid) {
+				$http({
+					method: 'post',
+					url: apiRoot,
+					data: {
+						action: 'Trade.getCateGoods',
+						cid:cid,
+						page:page,
+					}
+				}).then(function success(response){
+					$scope.goods = response.data.data;
+					
+				});
+			}
+			$scope.open = function(gid){
+				openPage("goods_detail.html",{gid:gid});
+			}
+		})
 	</script>
+
 </html>

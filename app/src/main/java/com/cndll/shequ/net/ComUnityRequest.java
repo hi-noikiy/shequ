@@ -11,7 +11,7 @@ public class ComUnityRequest {
     private ComUnityRequest() {
     }
 
-    private static String ACCOUNTURL = "http://192.168.0.19/";
+    private static String ACCOUNTURL = "http://qmy.51edn.com/";
 
     /*private static ComUnityRequest zkTecoRequest;
 

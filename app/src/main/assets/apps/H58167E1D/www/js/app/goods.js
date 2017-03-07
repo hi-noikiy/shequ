@@ -39,8 +39,15 @@ app.controller("goodsController",function($scope,$http){
 document.addEventListener("plusready",function(){
 	appElement=document.querySelector('[ng-controller=goodsController]');
 	$scope= angular.element(appElement).scope();
-	id = plus.storage.getItem('goodsId');
+	id = plus.webview.currentWebview().gid;
+	if (!id){
+		id = plus.storage.getItem('goodsId');
+	}
 	uid = plus.storage.getItem('uid');
+	my = plus.webview.currentWebview().my;
+	if(my == 'my'){
+		$('#shopping').css('display','none');
+	} 
 	$scope.initView(id,uid);
 	$scope.$apply();
 })

@@ -49,9 +49,9 @@ app.controller("payController",function($scope,$http){
 		plus.nativeUI.showWaiting('加载中...');
 		console.log(JSON.stringify(response));         
 		plus.nativeUI.closeWaiting();
-		orderid=response.data.data.ddid;console.log(orderid);
-		money=response.data.data.money;
-		payment();
+//		orderid=response.data.data.ddid;console.log(orderid);
+//		money=response.data.data.money;
+//		payment(); 
 	},function errorfunction(e){
 		console.log(e);
 	})

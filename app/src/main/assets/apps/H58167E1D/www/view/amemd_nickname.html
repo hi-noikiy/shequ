@@ -27,7 +27,8 @@
 document.addEventListener('plusready', function(){	
 	var ws = plus.webview.currentWebview();
 	var nick=plus.storage.getItem('nick');
-	var uid=plus.storage.getItem('uid');console.log(plus.webview.getWebviewById('personal_data.html'));
+	var uid=plus.storage.getItem('uid');
+	console.log(plus.webview.getWebviewById('personal_data.html'));
 	console.log(nick+"==========="+uid);
 	$('.close_btn').click(function(){
 		ws.close();		
@@ -50,8 +51,8 @@ document.addEventListener('plusready', function(){
 				console.log(JSON.stringify(data));  
 				plus.nativeUI.closeWaiting();
 				if(data.error == 0){  
-					plus.storage.setItem('nick',data.data);
-					nick=data.data;
+					plus.storage.setItem('nick',data.data.nick + '');
+					nick=data.data.nick;
 					var parentid = plus.webview.getWebviewById('personal_data.html');console.log(parentid);
 					mui.fire(parentid,'changeVal',{nick:nick});
 					

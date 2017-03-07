@@ -7,8 +7,12 @@ import java.io.Serializable;
  */
 
 public class UserLodingInFo implements Serializable {
-    public static UserLodingInFo getInstance() {
-        userLodingInFo = INIT.Instance;
+    public static boolean isLoading = false;
+
+    public static synchronized UserLodingInFo getInstance() {
+        if (userLodingInFo == null) {
+            return INIT.stance;
+        }
         return userLodingInFo;
     }
 
@@ -19,7 +23,7 @@ public class UserLodingInFo implements Serializable {
     }
 
     private static class INIT {
-        private static final UserLodingInFo Instance = new UserLodingInFo();
+        private static final UserLodingInFo stance = new UserLodingInFo();
     }
 
     private String icon;

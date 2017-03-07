@@ -1,13 +1,15 @@
 package com.cndll.shequ.integrate.webview;
 
-import android.util.Log;
+import android.content.Intent;
 
 import com.cndll.shequ.RXbus.RxBus;
-import com.hyphenate.easeui.model.UserLodingInFo;
+import com.cndll.shequ.activity.ChatActivity;
 import com.cndll.shequ.eventtype.JSEvent;
 import com.cndll.shequ.eventtype.LoginIM;
 import com.cndll.shequ.util.ObjectSaveUtils;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.model.UserLodingInFo;
 
 import io.dcloud.common.DHInterface.AbsMgr;
 import io.dcloud.common.DHInterface.IFeature;
@@ -23,6 +25,11 @@ public class WebViewMode_FeatureImpl implements IFeature {
                           String[] pJsArgs)
     {
         switch (pActionName) {
+            case "sendMessage":
+                Intent intent = new Intent(pWebViewImpl.getActivity(), ChatActivity.class);
+                intent.putExtra(EaseConstant.EXTRA_USER_ID, pJsArgs[0]).putExtra(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
+                pWebViewImpl.getActivity().startActivity(intent);
+                break;
             case "exit":
                 if (EMClient.getInstance().isLoggedInBefore())
                     EMClient.getInstance().logout(true);
@@ -34,12 +41,10 @@ public class WebViewMode_FeatureImpl implements IFeature {
                 break;
             case "hideNativeView":
                 RxBus.getDefault().post(new JSEvent().setEventType("hideNativeView"));
-                Log.d("MYWAY", "hideNativeView: ");
                 break;
             case "showNativeView":
                 RxBus.getDefault().post(new JSEvent().setEventType("showNativeView"));
 
-                Log.d("MYWAY", "showativeiew: ");
                 break;
         }
 

@@ -1,63 +1,210 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>评价</title>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
-    <style type="text/css">
-    	.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{color: #4c968e;background: transparent;}
-    	.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar{width: 20%;background-color: #4c968e;}
-    	.show_pic{position: relative;width: 100%;padding: 15px;}
-   		.sp_show_pic{width: 80%;margin-left: 70px;}
-   		.sp_show_pic img{width: calc(90%/4);margin: 0 calc(10%/8);}
-   		.upfile_box{margin: 0;}
-   		i{color: #999;}
-   		.light_star{color: #4c968e;}
-    </style>
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav bg_white">
-	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left colorP"></a>
-	    <h1 class="mui-title colorP">评价</h1>
-	    <button class="mui-btn-link mui-pull-right"><span class="colorP">提交</span></button>	    
-	</header>
-	<div class="mui-content">
-		<div class="paddingl_r_15px_tb11px bg_white margin-bottom5px line-height30px">
-			<span>等级</span>
-			<span class="padding_l font26 stars">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>评价</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/global.css" />
+		<style type="text/css">
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				color: #4c968e;
+				background: transparent;
+			}
+			
+			.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+				width: 20%;
+				background-color: #4c968e;
+			}
+			
+			.show_pic {
+				position: relative;
+				width: 100%;
+				padding: 15px;
+			}
+			
+			.sp_show_pic {
+				width: 80%;
+				margin-left: 70px;
+			}
+			
+			.sp_show_pic img {
+				width: calc(90%/4);
+				margin: 0 calc(10%/8);
+			}
+			
+			.upfile_box {
+				margin: 0;
+			}
+			
+			i {
+				color: #999;
+			}
+			
+			.light_star {
+				color: #4c968e;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav bg_white">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left colorP"></a>
+			<h1 class="mui-title colorP">评价</h1>
+			<button class="mui-btn-link mui-pull-right"><span class="colorP">提交</span></button>
+		</header>
+		<div class="mui-content">
+			<div class="paddingl_r_15px_tb11px bg_white margin-bottom5px line-height30px">
+				<span>等级</span>
+				<span class="padding_l font26 stars">
 				<i class="iconfont mui-icon font26 padding_l">&#xe6e7;</i>
 				<i class="iconfont mui-icon font26 padding_l">&#xe6e7;</i>
 				<i class="iconfont mui-icon font26 padding_l">&#xe6e7;</i>
 				<i class="iconfont mui-icon font26 padding_l">&#xe6e7;</i>
 				<i class="iconfont mui-icon font26 padding_l">&#xe6e7;</i>
 			</span>
+			</div>
+			<textarea name="" rows="7" class="comment" cols="" placeholder="写下你对商品的评价吧"></textarea>
+			<div class="bg_white show_pic mui-clearfix ">
+				<div class="upfile_box">
+					<!--<input type="file" id="uploadimg9" class="upload_file" />-->
+					<i class="iconfont mui-icon color999" style="font-size: 60px;">&#xe6de;</i>
+				</div>
+				<div id="show_pic9" class="sp_show_pic"></div>
+			</div>
 		</div>
-		<textarea name="" rows="7" cols="" placeholder="写下你对商品的评价吧"></textarea>
-		<div class="bg_white show_pic mui-clearfix">
-			<div class="upfile_box">
-		        <input type="file" id="uploadimg9" class="upload_file"/>
-		        <i class="iconfont mui-icon color999" style="font-size: 60px;">&#xe6de;</i>
-		    </div>
-		    <div id="show_pic9" class="sp_show_pic"></div>
-		</div>
-	</div>
-</body>
-<script src="../js/mui.min.js"></script>
-<script src="../js/open.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/upload_pic.js"></script>
-<script type="text/javascript">
-	$('.stars i').on('tap',function(){  
-		var _this = $(this);
-		var pingstar = _this.index()+1;
-		console.log(pingstar)
-		_this.siblings('input').val(pingstar);
-		_this.addClass('light_star'); 
-		_this.prevAll().addClass('light_star');
-		_this.nextAll().removeClass('light_star');
-	})
-</script>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/apppublic.js"></script>
+	<!--<script src="../js/upload_pic.js"></script>-->
+	<script type="text/javascript">
+		var pingstar = 0;
+		$('.stars i').on('tap', function() {
+			var _this = $(this);
+			pingstar = _this.index() + 1;
+			console.log(pingstar)
+			_this.siblings('input').val(pingstar);
+			_this.addClass('light_star');
+			_this.prevAll().addClass('light_star');
+			_this.nextAll().removeClass('light_star');
+		})
+		var w;
+		document.addEventListener("plusready", function() {
+			var ws = plus.webview.currentWebview();
+			w = ws.ddid
+			$('.upfile_box').on('click', function() {
+				plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: [{ title: "相册添加" }]
+					},
+					function(e) {
+						if(e.index == 1) {
+							plus.gallery.pick(function(path) {
+								console.log(JSON.stringify(path))
+								appendpic(path)
+								$('#show_pic9').html('<img src="' + path + '">');
+							});
+						}
+					})
+			})
+		}, false)
+		$('.colorP').click(function() {
+			var img = plus.storage.getItem('imgs');
+			if(pingstar < 1) {
+				plus.nativeUI.toast('请评下星级');
+			}
+			var comment = $('.comment').val();
+			if(!comment) {
+				plus.nativeUI.toast('写下你对商品的评价');
+			}
+			console.log(w)
+			$.ajax({
+				type: 'post',
+				url: apiRoot,
+				dataType: 'json',
+				data: {
+					action: "Orderid.orderpl",
+					ddid: w,
+					star: pingstar,
+					cont: comment,
+					img: img
+				},
+				success: function(data) {
+					if(data.error==0){
+			  	    plus.storage.setItem('imgs',null);
+			  	    plus.nativeUI.toast('评论成功');
+			  	    plus.webview.close('evaluate_for_goods.html');
+			  	    plus.webview.currentWebview('order_record').reload()
+			       }else{
+			  	    plus.nativeUI.toast('提交失败');
+			       }
+				},
+				error: function(e) {
+				}
+			})
+
+		})
+
+		function appendpic(p) {
+			plus.nativeUI.showWaiting('图片处理中...');
+			//		console.log(p); 
+			//创建新的路径
+			//				var newpath = p.replace(/\./g , new Date().gettime() + '.');
+			newpath = p.replace(/\./g, new Date().getTime() + '.');
+			plus.zip.compressImage({
+					src: p,
+					dst: newpath,
+					quality: 20
+				},
+				function() { //毁掉成功
+					plus.nativeUI.closeWaiting();
+					console.log(newpath);
+					upload();
+				},
+				function(error) {
+					alert('压缩图片失败');
+					plus.nativeUI.closeWaiting();
+				})
+		}
+
+		function upload() {
+			var server = apiRoot;
+			console.log(newpath);
+			var task = plus.uploader.createUpload(server, { method: "post" },
+				function(t, status) { 
+					if(status == 200) {
+
+						var infopics = $.parseJSON(t.responseText);
+						//					var user_icon= $.parseJSON(t.responseText.data); 
+						console.log(JSON.stringify(infopics));
+						if(t.responseText != '') {
+							plus.nativeUI.toast('上传成功');
+							console.log(JSON.stringify(infopics.data));
+							plus.storage.setItem('imgs', webRoot + infopics.data);
+
+						}
+					} else {
+						toast('上传失败：' + status);
+						plus.nativeUI.closeWaiting();
+					}
+
+				},
+				function() {
+					plus.nativeUI.closeWaiting();
+				}
+
+			);
+
+			task.addFile(newpath, { key: 'icon' });
+			task.addData('action', 'User.update');
+			task.addData('name', 'icon');
+			task.start();
+
+		}
+	</script>
+
 </html>

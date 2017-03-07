@@ -36,7 +36,7 @@
 		</header>
 		<div class="mui-content" id='content'>
 			<div></div>
-			<ul class="mui-table-view margin-bottom10px bg_white">
+			<!--<ul class="mui-table-view margin-bottom10px bg_white">
 				<li class="mui-table-view-cell mui-media">
 					<a href="javascript:;">
 						<span class="mui-pull-left iconfont color999 font26 padding_t10px">&#xe61c;</span>
@@ -83,12 +83,12 @@
 						<span class="mui-icon iconfont color999 padding_l del_btn">&#xe619;  删除</span>
 					</div>
 				</li>
-			</ul>
+			</ul>-->
 		</div>
 	</body>
 	<script type="text/html" id='pid'>
 		<% for(var i in data){%>
-		<ul class="mui-table-view margin-bottom10px bg_white">
+		<ul class="mui-table-view margin-bottom10px bg_white<%= data[i].id %>">
 			<li class="mui-table-view-cell mui-media">
 				<a href="javascript:;">
 					<span class="mui-pull-left iconfont color999 font26 padding_t10px">&#xe61c;</span>
@@ -107,14 +107,14 @@
 				<div class="mui-input-row mui-radio mui-left mui-pull-left" >
 					<label>默认地址</label>
 					<% if(data[i].state==1){%>
-					<input name="radio"   type="radio" checked>
+					<input name="radio" onclick="defaults('<%=data[i].sign %>','ture')" type="radio" checked >
 					<%  }else{ %>
-					<input name="radio" type="radio">
+					<input name="radio" onclick="defaults('<%=data[i].sign %>','false')" type="radio">
 					<% }%>
 				</div>
 				<div class="mui-pull-right padding_tb11px">
 					<span onclick="openPage('create_address.html',{aid:<%=data[i].id %>})" class="mui-icon iconfont color999">&#xe62a;  编辑</span>
-					<span class="mui-icon iconfont color999 padding_l del_btn">&#xe619;  删除</span>
+					<span class="mui-icon iconfont color999 padding_l del_btn aaa" onclick="updetaclass('bg_white<%=data[i].id %>','<%=data[i].id %>','<%=data[i].sign %>')">&#xe619;  删除</span>
 				</div>
 			</li>
 		</ul>
@@ -127,19 +127,17 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/template.js"></script>
 	<script type="text/javascript">
-		$('.del_btn').click(function() {
-			$(this).parent().parent().parent().remove();
-		})
+		var userid;
 		document.addEventListener('plusready', function() {
-			var userid = plus.storage.getItem('uid');
-			console.log(apiRoot)
+			userid = plus.storage.getItem('uid');
+//			console.log(userid)
 			$.ajax({
 				type: 'post',
 				url: apiRoot,
-				data: { action: "Address.allAddress", uid: 1 },
+				data: { action: "Address.allAddress", uid: userid },
 				dataTpye: 'json',
 				success: function(data) {
-					console.log(JSON.stringify(data))
+//					console.log(JSON.stringify(data))
 					var html = template.render('pid', data);
 					$("#content").html(html);
 				},
@@ -147,7 +145,60 @@
 
 				}
 			})
+//			$('.aaa').on('click',function() {
+//				console.log(123);
+//				$(this).parent().parent().parent().parent().remove();
+//			})
 		}, false)
+		function updetaclass(classid,id,sign){
+			console.log(sign);
+			var loca="Address.update";
+			$.ajax({
+				type: 'post',
+				url: apiRoot,
+				data: { action:loca, uid: userid,flag:1,sign:sign},
+				dataTpye: 'json',
+				success: function(data) {
+//					console.log(JSON.stringify(data));
+					  if(data.error==0){
+					  	toast('删除成功')
+					  	$('.'+classid).remove();
+					  }else{
+					  	toast('保存失败')
+					  }
+				},
+				error: function(e) {
+                    console.log(JSON.stringify(e))
+				}
+			})
+			
+		}
+		
+		function defaults(sign,addtype){
+			if(addtype == 'ture'){
+				return;
+			}
+			var loca="Address.update";
+			$.ajax({ 
+				type: 'post',
+				url: apiRoot,
+				data: { action:loca, uid: userid,state:1,sign:sign},
+				dataTpye: 'json',
+				success: function(data) {
+//					console.log(JSON.stringify(data));
+					  if(data.error==0){
+					  	toast('设置成功！')
+					  }else{
+					  	toast('设置');
+					  	ws.reload();
+					  }
+				},
+				error: function(e) {
+                    console.log(JSON.stringify(e))
+				}
+			})
+			
+		}
 	</script>
 
 </html>

@@ -1,158 +1,170 @@
-var newpath,files=[];
-var app = angular.module("releaseGoodsApp",[]);
-var cid;
-app.controller("releaseGoodsController",function($scope,$http){
-	$scope.releasesub=function()
-	{
-		var uid = plus.storage.getItem('uid');
-//		var groupid = plus.storage.getItem('repleaseGroup');
-//		var goodsid = plus.storage.getItem('repleaseGoods');
-        var server = apiRoot;  
-		var task = plus.uploader.createUpload(server,
-			    {method:"post"},
-				function(t,status){ //上传完成
-					if(status == 200){ 
+var newpath, files = [];
+var app = angular.module("releaseGoodsApp", []);
+app.controller("releaseGoodsController", function($scope, $http) {
+	$http({
+		method: 'post',
+		url: apiRoot,
+		data: {
+			action: 'Trade.getAllCate',
+		}
+	}).then(function success(response) {
+		$scope.cates = response.data.data;
+	})
+	$scope.confirm_btn = function($event) {
+		$scope.cate_id = $('.category_list input:checked').attr("cate_id");
+		var val = $('.category_list input:checked').prev().html();
+		$('.current_type').html(val);
+		$('.alert_window').hide();
+		$event.stopPropagation(); //阻止冒泡
+	}
 
+	$scope.releasesub = function() {
+		plus.nativeUI.showWaiting("处理中...");
+		var uid = plus.storage.getItem('uid');
+		var server = apiRoot;
+		var task = plus.uploader.createUpload(server, { method: "post" },
+			function(t, status) { //上传完成
+				plus.nativeUI.closeWaiting();
+				if(status == 200) {
+					rs = JSON.parse(t.responseText);
+					if(rs.error == 0) {
 						var infopics = $.parseJSON(t.responseText);
 						console.log(JSON.stringify(infopics));
-						if(t.responseText.data!='')
-						{
+						if(t.responseText.data != '') {
 							plus.nativeUI.toast('发布成功');
-							plus.webview.create('home.html','home.html').show('pop-in');
+							plus.webview.currentWebview().close();
 						}
 					}else{
-						toast('上传失败：' + status);
-						plus.nativeUI.closeWaiting();
+						mui.toast(t.desc);
 					}
-					
-				},function () {
+				} else {
+					toast('上传失败：' + status);
 					plus.nativeUI.closeWaiting();
 				}
-				
-			);
-			for (var i=0 ;i<files.length;i++)
-			 {  var f=files[i];
-				task.addFile(f.patn,{key:f.name+i});
+			},
+			function() {
+				plus.nativeUI.closeWaiting();
 			}
-			task.addData('action','Trade.tradeRelease');
-			task.addData('cid','7'); 
-			task.addData('uid',uid);
-			task.addData('good_name',$("#good_name").val());
-			task.addData('good_intro',$("#good_intro").val());
-			task.addData('price',$("#good_price").val());
-			task.addData('ship',$("#good_ship").val()); 
-			task.addData('maf_time',$("#maf_time").val());
-			task.addData('description',$("#description").val());
-			task.start();
-		        
+		);
+		//???
+		for(var i = 0; i < files.length; i++) {
+			var f = files[i];
+			switch(f.type) {
+				case 1: //封面
+					task.addFile(f.patn, { key: "cover" });
+					break;
+				case 2: //展示
+					task.addFile(f.patn, { key: "show"+i});
+					break;
+				case 3: //详情
+					task.addFile(f.patn, { key: "info"+i});
+					break;
 			}
-	
-
+		}
+		task.addData('action', 'Trade.tradeRelease');
+		task.addData('cid', $scope.cate_id);
+		task.addData('uid', uid);
+		task.addData('good_name', $("#good_name").val());
+		task.addData('good_intro', $("#good_intro").val());
+		task.addData('price', $("#good_price").val());
+		task.addData('ship', $("#good_ship").val());
+		task.addData('maf_time', $("#maf_time").val());
+		task.addData('description', $("#description").val());
+		task.start();
+	}
 })
 
-//$("#releaseClass").on('tap',function(){
-//	 cid=$('input[type="radio"]:checked').val();
-//})
+//展示图片
+$('#note_subject>div').on('tap', function() {
+	var id = $(this).attr('id');
+	plus.nativeUI.actionSheet({ cancel: "取消", buttons: [{ title: "拍照添加" }, { title: "相册添加" }] }, function(e) {
+		if(e.index == 1) {
+			var car = plus.camera.getCamera();
+			car.captureImage(function(path) {
+				//展示图片
+				console.log(JSON.stringify(path))
+				path = "file://" + plus.io.convertLocalFileSystemURL(path);
+				appendpic(path, 2)
+				$('#a' + id).attr('src', path);
+			}, function(err) {});
 
-/*
- *图片上传
- */
-$('#note_subject>div').on('tap',function(){
-	var id=$(this).attr('id');
-		plus.nativeUI.actionSheet({cancel:"取消",buttons:[{title:"拍照添加"},{title:"相册添加"}]},function(e){
-			if(e.index == 1){
-				var car =plus.camera.getCamera();
-				car.captureImage(function(path){
-					//展示图片
-//					alert(plus.io.convertLocalFileSystemURL(path));
-                   console.log(JSON.stringify(path))
-                   path="file://"+plus.io.convertLocalFileSystemURL(path);
-					appendpic(path)
-					
-				 $('#a'+id).attr('src',path);				
-				},function(err){});
-				
-			}else if(e.index == 2){
-				plus.gallery.pick(function(path){
-					 console.log(JSON.stringify(path))
-					appendpic(path)
-					$('#a'+id).attr('src',path);
-				});
-			}
-		})
+		} else if(e.index == 2) {
+			plus.gallery.pick(function(path) {
+				console.log(JSON.stringify(path))
+				appendpic(path, 2)
+				$('#a' + id).attr('src', path);
+			});
+		}
 	})
+})
 
+//封面图片   如果封面图被更换  要把files里的封面图删掉  避免重复上传
+$('.good_subject').on('tap', function() {
+	plus.nativeUI.actionSheet({ cancel: "取消", buttons: [{ title: "拍照添加" }, { title: "相册添加" }] }, function(e) {
+		if(e.index == 1) {
+			var car = plus.camera.getCamera();
+			car.captureImage(function(path) {
+				//展示图片
+				console.log(JSON.stringify(path))
+				path = "file://" + plus.io.convertLocalFileSystemURL(path);
+				appendpic(path, 1)
 
-$('.good_subject').on('tap',function(){
-		plus.nativeUI.actionSheet({cancel:"取消",buttons:[{title:"拍照添加"},{title:"相册添加"}]},function(e){
-			if(e.index == 1){
-				var car =plus.camera.getCamera();
-				car.captureImage(function(path){
-					//展示图片
-//					alert(plus.io.convertLocalFileSystemURL(path));
-                   console.log(JSON.stringify(path))
-                   path="file://"+plus.io.convertLocalFileSystemURL(path);
-					appendpic(path)
-					
-				$('#a1').attr('src',path);			
-				},function(err){});
-				
-			}else if(e.index == 2){
-				plus.gallery.pick(function(path){
-					 console.log(JSON.stringify(path))
-					appendpic(path)
-					$('#a1').attr('src',path);
-                 },function(err){});
-			}
-		})
+				$('#a1').attr('src', path);
+			}, function(err) {});
+
+		} else if(e.index == 2) {
+			plus.gallery.pick(function(path) {
+				console.log(JSON.stringify(path))
+				appendpic(path, 1)
+				$('#a1').attr('src', path);
+			}, function(err) {});
+		}
 	})
-$('#good_subject').on('tap',function(){
-		plus.nativeUI.actionSheet({cancel:"取消",buttons:[{title:"拍照添加"},{title:"相册添加"}]},function(e){
-			if(e.index == 1){
-				var car =plus.camera.getCamera();
-				car.captureImage(function(path){
-					//展示图片
-//					alert(plus.io.convertLocalFileSystemURL(path));
-                   console.log(JSON.stringify(path))
-                   path="file://"+plus.io.convertLocalFileSystemURL(path);
-					appendpic(path)
-					
-				$('#a7').attr('src',path);			
-				},function(err){});
-				
-			}else if(e.index == 2){
-				plus.gallery.pick(function(path){
-					 console.log(JSON.stringify(path))
-					appendpic(path)
-					$('#a7').attr('src',path);
-                 },function(err){});
-			}
-		})
+})
+
+//图片详情
+$('#good_subject').on('tap', function() {
+	plus.nativeUI.actionSheet({ cancel: "取消", buttons: [{ title: "拍照添加" }, { title: "相册添加" }] }, function(e) {
+		if(e.index == 1) {
+			var car = plus.camera.getCamera();
+			car.captureImage(function(path) {
+				//展示图片
+				console.log(JSON.stringify(path))
+				path = "file://" + plus.io.convertLocalFileSystemURL(path);
+				appendpic(path, 3)
+				$('#a7').attr('src', path);
+			}, function(err) {});
+
+		} else if(e.index == 2) {
+			plus.gallery.pick(function(path) {
+				console.log(JSON.stringify(path))
+				appendpic(path, 3)
+				$('#a7').attr('src', path);
+			}, function(err) {});
+		}
 	})
-function appendpic(p){
+})
+
+function appendpic(p, type) {
 	plus.nativeUI.showWaiting('图片处理中...');
-//		console.log(p); 
-	//创建新的路径
-//				var newpath = p.replace(/\./g , new Date().gettime() + '.');
-	var newpath = p.replace(/\./g , new Date().getTime()+'.');
-	
+	var newpath = p.replace(/\./g, new Date().getTime() + '.');
 	plus.zip.compressImage({
-			src : p,
-			dst : newpath,
-			quality : 20
+			src: p,
+			dst: newpath,
+			quality: 20
 		},
-		function(){//毁掉成功
+		function() { //毁掉成功
 			plus.nativeUI.closeWaiting();
-			files.push({'patn':newpath,'name':'name'}); 
-			console.log(newpath)
+			files.push({ 'patn': newpath, 'name': 'name', 'type': type });
+			console.log(JSON.stringify(files));
 		},
-		function(error){
-		alert('压缩图片失败');
-		plus.nativeUI.closeWaiting();
-	})
+		function(error) {
+			alert('压缩图片失败');
+			plus.nativeUI.closeWaiting();
+		})
 }
-document.addEventListener("plusready",function(){
-	appElement=document.querySelector('[ng-controller=releaseGoodsController]');
-	$scope= angular.element(appElement).scope();
+document.addEventListener("plusready", function() {
+	appElement = document.querySelector('[ng-controller=releaseGoodsController]');
+	$scope = angular.element(appElement).scope();
 	$scope.$apply();
 })

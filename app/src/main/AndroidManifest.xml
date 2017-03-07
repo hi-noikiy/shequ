@@ -168,7 +168,7 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/splash">
@@ -555,7 +555,10 @@
         </activity><!-- 微信分享 配置begin -->
         <meta-data
             android:name="WX_SECRET"
-            android:value="4cc80e1c1326f56c9ac3290b530336d5"/>
+            android:value="de1d138b686684274a39964f931b7eea"/>
+        <meta-data
+            android:name="WX_APPID"
+            android:value="wxd96b8dd3e5733967"/>
         <!--<meta-data
             android:name="WX_APPID"
             android:value="wx0411fa6a39d61297"/>-->
@@ -568,7 +571,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="wx0411fa6a39d61297"/>
+                <data android:scheme="wxd96b8dd3e5733967"/>
             </intent-filter>
         </activity><!-- 微信分享 配置 end -->
         <!-- 支付宝支付 配置begin -->
@@ -590,9 +593,7 @@
             android:name=".integrate.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
-        <meta-data
-            android:name="WX_APPID"
-            android:value="wxd96b8dd3e5733967"/>
+
         <!--&lt;!&ndash; 微信支付配置end &ndash;&gt;
         &lt;!&ndash;小米分享&ndash;&gt;
         <meta-data

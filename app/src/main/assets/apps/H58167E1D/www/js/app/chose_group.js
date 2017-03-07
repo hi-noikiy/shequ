@@ -1,13 +1,12 @@
 var app = angular.module("chose_groupApp",[]);
 app.controller("chose_groupController",function($scope,$http){
 	$scope.initView = function($id){
-		console.log($id);
 	$http({
 		method:'post',
 		url:apiRoot,
 		data:{
 			action:'Group.groupData',
-			uid:$id;
+			uid:$id,
 		}
 		}).then(function successCallback(response){
 			console.log(JSON.stringify(response));         
@@ -19,11 +18,9 @@ app.controller("chose_groupController",function($scope,$http){
 	$scope.addGroup=function(){
 		var groupId=[];
 		$("input[type=checkbox]:checked").each(function () {
-   	 	groupId.push($(this).val());
+   	 		groupId.push($(this).val());
    	 	})
-		console.log(groupId);
-		plus.storage.setItem('group_id',groupId);
-		plus.webview.create('apply_for_explain.html', 'apply_for_explain.html').show('pop-in');
+		openPage("apply_for_explain.html",{group_id:groupId});
 	}	
 
 })
@@ -32,7 +29,7 @@ app.controller("chose_groupController",function($scope,$http){
 document.addEventListener("plusready",function(){
 	appElement=document.querySelector('[ng-controller=chose_groupController]');
 	$scope= angular.element(appElement).scope();
-	id = plus.storage.getItem('MerchantId');
+	id = plus.webview.currentWebview().master_id;
 	$scope.initView(id);
 	$scope.$apply();
 })

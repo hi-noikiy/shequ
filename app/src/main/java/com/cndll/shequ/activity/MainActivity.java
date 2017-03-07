@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.cndll.shequ.R;
 import com.cndll.shequ.RXbus.RxBus;
-import com.hyphenate.easeui.model.UserLodingInFo;
 import com.cndll.shequ.eventtype.JSEvent;
 import com.cndll.shequ.eventtype.LoginIM;
 import com.cndll.shequ.util.ObjectSaveUtils;
@@ -28,6 +27,7 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.exceptions.HyphenateException;
 
@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onNext(JSEvent jsEvent) {
+
                     try {
                         switch (jsEvent.getEventType()) {
                             case "hideNativeView":
@@ -206,8 +207,11 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         try {
             UserLodingInFo.setInstance((UserLodingInFo) ObjectSaveUtils.getObject(MainActivity.this, "USERINFO"));
+            UserLodingInFo.isLoading = true;
+            //toast(UserLodingInFo.getInstance().getId() + UserLodingInFo.getInstance().getIcon());
         } catch (Exception e) {
             e.printStackTrace();
+            toast(e.getMessage() + e.toString());
         }
         frame.setVisibility(View.GONE);
         EMClient.getInstance().chatManager().addMessageListener(new EMMessageListener() {

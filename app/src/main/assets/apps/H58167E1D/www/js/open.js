@@ -4,50 +4,51 @@
  * 全局js
  */
 
-
 //页面跳转
-function openNewPage(id){
+function openNewPage(id) {
 	mui.openWindow({
 		id: id,
 		url: id,
-		show:{
-//			aniShow: 'fade-in-left',
-			duration: '300'			
+		show: {
+			//			aniShow: 'fade-in-left',
+			duration: '300'
 		},
-		waiting:{
-			autoShow:false
+		waiting: {
+			autoShow: false
 		}
 	});
 }
 
-function openPage(html,id){
-	
- var new_view = plus.webview.create('./'+html,html,{},id);
-    	new_view.addEventListener('loaded', function(){
-		new_view.show('pop-in',300);
+function openPage(html, id) {
+	plus.nativeUI.showWaiting();
+	var new_view = plus.webview.create('./' + html, html, {}, id);
+	new_view.addEventListener('loaded', function() {
+		setTimeout(function() {
+			plus.nativeUI.closeWaiting();
+		}, 300);
+		new_view.show('pop-in', 300);
 	})
 
 }
 //使用方法直接在所需要跳转的地方加上 onclick="openNewPage('ticket.html')"
 
-
 /**input清除模块**/
 //点击清楚input 内容方法
-function clearInput(id,event){
+function clearInput(id, event) {
 	var clearNum = id.parentNode.children[1];
-	var inputNum = id.parentNode.children[0];//返回的是数组
+	var inputNum = id.parentNode.children[0]; //返回的是数组
 	var btn = document.getElementsByClassName("zbx-moneycharge-btn")[0];
 	//console.log(btn)
-	if(event == 0){
+	if(event == 0) {
 		//key
-		if(id.value != ""){
+		if(id.value != "") {
 			clearNum.style.display = "block";
 			btn.style.background = "#FF5252";
-		}else{
+		} else {
 			clearNum.style.display = "none";
 			btn.style.background = "#FDA6A6";
-		}		
-	}else{
+		}
+	} else {
 		//mouse
 		inputNum.value = "";
 		clearNum.style.display = "none";
@@ -55,26 +56,21 @@ function clearInput(id,event){
 	}
 }
 //点击跳转按钮
-function btnMoney(id){
+function btnMoney(id) {
 	var btn = document.getElementsByClassName("zbx-moneycharge-input")[0];
-	if(btn.value != ""){
+	if(btn.value != "") {
 		mui.openWindow({
 			id: id,
 			url: id,
-			show:{
+			show: {
 				aniShow: 'fade-in-left',
-				duration: '300'			
+				duration: '300'
 			},
-			waiting:{
-				autoShow:false
+			waiting: {
+				autoShow: false
 			}
-		});		
-	}else{
+		});
+	} else {
 		return false;
 	}
 }
-
-
-
-
-

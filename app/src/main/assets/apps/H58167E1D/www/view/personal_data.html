@@ -99,7 +99,7 @@
 							//返回 false 可以阻止选择框的关闭
 							//return false;
 							var uid=plus.storage.getItem('uid');
-							console.log(items[0].value);
+							console.log(items[0].value+'--'+uid);
 							$.ajax({
 					    		type:"post",
 					    		url:apiRoot,
@@ -117,7 +117,7 @@
 										plus.storage.setItem('gender',data.data.gender);
 										console.log(plus.storage.getItem('gender'));
 										}else{
-											plus.nativeUI.toast(data.desc);
+											plus.nativeUI.toast('修改成功！');
 											return; 
 										}  
 								}, 

@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>申请说明</title>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav bg_white">
-	    <button class="mui-btn-link mui-pull-left close_btn"><span class="colorP">取消</span></button>
-	    <h1 class="mui-title colorP">申请说明</h1>
-	    <button class="mui-btn-link mui-pull-right"><span class="colorP">提交</span></button>
-	</header>
-	<div class="mui-content">
-		<textarea name="" rows="2" cols="" class="font14" placeholder="不多于15字的申请说明" maxlength="15"></textarea>
-	</div>
-</body>
-<script src="../js/mui.min.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script type="text/javascript">
-document.addEventListener('plusready', function() {	
-	var ws = plus.webview.currentWebview();
-	$('.close_btn').click(function(){
-		ws.close();		
-	})
-})
-</script>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>申请说明</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/global.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav bg_white">
+			<button class="mui-btn-link mui-action-back mui-pull-left"><span class="colorP1">取消</span></button>
+			<h1 class="mui-title colorPs">申请说明</h1>
+			<button class="mui-btn-link mui-pull-right submit"><span class="colorP">提交</span></button>
+		</header>
+		<div class="mui-content">
+			<textarea name="" rows="2" cols="" class="font14" placeholder="不多于15字的申请说明" maxlength="15"></textarea>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/apppublic.js"></script>
+	<script type="text/javascript">
+		document.addEventListener('plusready', function() {
+			var ws = plus.webview.currentWebview();
+			console.log(ws.group_id);
+			var uid = plus.storage.getItem("uid");
+			$('.submit').click(function() {
+				plus.nativeUI.showWaiting("正在加入...");
+				$.ajax({
+					type: "post",
+					url: apiRoot,
+					data: {
+						action: "Group.joinGroup",
+						group_id: ws.group_id.toString(),
+						uid: uid,
+					},
+					success: function(data) {
+						plus.nativeUI.closeWaiting();
+						if(data.error == 0) {
+							mui.toast("加入成功");
+							ws.close();
+						} else {
+							mui.toast("加入失败")
+						}
+					},
+					error: function() {
+						plus.nativeUI.closeWaiting();
+					}
+				});
+
+			});
+		})
+	</script>
+
 </html>

@@ -1,6 +1,7 @@
 var uid,icon,nick,gender,personalized,address;
 document.addEventListener('plusready',function(){
 		 uid = plus.storage.getItem('uid');
+		 console.log(uid);
 		 icon = plus.storage.getItem('icon');
 		 nick = plus.storage.getItem('nick');
          gender = plus.storage.getItem('gender');
@@ -115,7 +116,8 @@ $('#show_pic8').attr('src',getAvatar(icon));	console.log(getAvatar(icon));
 $('#nick').text(nick);
 })
 window.addEventListener('changeVal',function(event){
-  var nick2 = event.detail.nick;console.log(nick2);
+  var nick2 = event.detail.nick;
+  console.log(nick2);
   if(nick2){
     nick = nick2;
     $('#nick').text(nick);
@@ -125,4 +127,13 @@ window.addEventListener('changeVal',function(event){
     icon = icon2;
     $('#user_icon').attr('src',getAvatar(icon));
   }  
+});
+window.addEventListener('personalizedVal',function(event){
+  var personalized = event.detail.personalized;
+  console.log(personalized);
+  if(personalized){
+    personalized = personalized;
+    $('#personalized').text(personalized);
+  }  
+    
 });

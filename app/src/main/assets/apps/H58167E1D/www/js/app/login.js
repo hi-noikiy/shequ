@@ -1,16 +1,20 @@
 document.addEventListener('plusready',function(){
 	ws = plus.webview.currentWebview();
 	var id = plus.storage.getItem('uid');//用户id
+	var first = plus.storage.getItem('first');
+//	plus.storage.clear();
+	if (!first){
+		setTimeout(function(){
+			ws.close;
+		}, 1000); 
+		plus.webview.create('../splash.html','splash.html').show('pop-in');
+		return;
+	}
 	if(id){
 		setTimeout(function(){
 			ws.close;
 		}, 1000);   
 		plus.webview.create('../index.html','index.html').show('pop-in');
-		plus.storage.getItem('uid');//用户id
-        plus.storage.getItem('mobile');//登录手机号
-        plus.storage.getItem('nick');//昵称
-        plus.storage.getItem('icon');//icon
-
 	}
 	$('#sq_login').on('tap',function(){
 		var phon = $('#phone').val();
@@ -53,12 +57,13 @@ document.addEventListener('plusready',function(){
 						ws.close;
 					}, 1000);   
 					plus.webview.create('../index.html','index.html').show('pop-in');
-					ws.close();
-					 var arr = [data.data.id,
-                              data.data.mobile,
-                              data.data.nick,
-                              data.data.icon];
-                   window.plus.bridge.execSync("community","login",arr);
+					 ws.close();
+
+                                       var arr = [data.data.id,
+                                                  data.data.mobile,
+                                                  data.data.nick,
+                                                  data.data.icon];
+                                       window.plus.bridge.execSync("community","login",arr);
 				}else{
 					plus.nativeUI.toast(data.desc);
 					return; 

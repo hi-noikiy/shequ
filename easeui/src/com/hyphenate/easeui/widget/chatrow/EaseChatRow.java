@@ -18,14 +18,10 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessage.Direct;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.adapter.EaseMessageAdapter;
-import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseChatMessageList;
 import com.hyphenate.easeui.widget.EaseChatMessageList.MessageListItemClickListener;
 import com.hyphenate.easeui.widget.photoview.CircleImageView;
-import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.DateUtils;
-
-import org.json.JSONException;
 
 import java.util.Date;
 
@@ -119,10 +115,10 @@ public abstract class EaseChatRow extends LinearLayout {
         }
         //set nickname and avatar
         if (message.direct() == Direct.SEND) {
-            EaseUserUtils.setUserAvatar(context, EMClient.getInstance().getCurrentUser(), userAvatarView);
+            //EaseUserUtils.setUserAvatar(context, EMClient.getInstance().getCurrentUser(), userAvatarView);
         } else {
             usernickView = (TextView) findViewById(R.id.tv_userid);
-            try {
+            /*try {
                 //userAvatarView.setImageURI(message.getJSONObjectAttribute("attribute").getString("icon"));
                 usernickView.setText(message.getJSONObjectAttribute("attribute").getString("nick"));
                 usernickView.setVisibility(View.VISIBLE);
@@ -130,8 +126,8 @@ public abstract class EaseChatRow extends LinearLayout {
                 e.printStackTrace();
             } catch (HyphenateException e) {
                 e.printStackTrace();
-            }
-            EaseUserUtils.setUserAvatar(context, message.getFrom(), userAvatarView);
+            }*/
+            //EaseUserUtils.setUserAvatar(context, message.getFrom(), userAvatarView);
             //EaseUserUtils.setUserNick(message.getFrom(), usernickView);
         }
 

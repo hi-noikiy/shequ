@@ -1,7 +1,6 @@
 package com.hyphenate.easeui.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -27,10 +26,7 @@ import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseConversationList.EaseConversationListHelper;
-import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.DateUtils;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -124,7 +120,7 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
             holder.name.setText(room != null && !TextUtils.isEmpty(room.getName()) ? room.getName() : username);
             holder.motioned.setVisibility(View.GONE);
         } else {
-            String name = "";
+            /*String name = "";
             Uri    uri  = null;
             try {
                 //userAvatarView.setImageURI(message.getJSONObjectAttribute("attribute").getString("icon"));
@@ -143,7 +139,7 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
             holder.avatar.setImageURI(uri);
             //EaseUserUtils.setUserAvatar(getContext(), username, holder.avatar);
             EaseUserUtils.setUserNick(name, holder.name);
-            holder.motioned.setVisibility(View.GONE);
+            holder.motioned.setVisibility(View.GONE);*/
         }
 
         if (conversation.getUnreadMsgCount() > 0) {

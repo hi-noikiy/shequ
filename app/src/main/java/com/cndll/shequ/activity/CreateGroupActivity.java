@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -163,6 +164,7 @@ public class CreateGroupActivity extends AppCompatActivity {
 
     }
 
+    @NonNull
     private RequestBody toreRequestBody(String value) {
         return RequestBody.create(MediaType.parse("text/plain"), value);
     }

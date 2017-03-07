@@ -18,10 +18,10 @@ import rx.Observable;
  * Created by jiang_ruicheng on 16/10/27.
  */
 public interface SheQuApi {
-    @POST("/shequ/public/index.php/app")
+    @POST("index.php/app/")
     Observable<GroupImageBean> downloadImage(@Body RequestGroupImage image);
 
     @Multipart
-    @POST("/shequ/public/index.php/app")
+    @POST("index.php/app/")
     Observable<LoadUpResponse> uploadImage(@PartMap Map<String, RequestBody> pa);
 }

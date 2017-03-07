@@ -13,7 +13,7 @@
     	.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border: none;}
     </style>
 </head>
-<body>
+<body ng-app="myorders" ng-controller="myorderscontroller">
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left colorP"></a>
 	    <h1 class="mui-title colorP">我的订单</h1>
@@ -31,10 +31,10 @@
 		    <div class="mui-slider-group">
 		    	<!--全部-->
 		        <div id="item1" class="mui-slider-item mui-control-content mui-active">
-		            <ul class="mui-table-view margin-bottom5px bg_white">
+		            <ul class="mui-table-view margin-bottom5px bg_white" ng-repeat="(index,v) in orders">
 			        	<li class="paddingl_r_15px_tb11px bg_white border-bottom">
 			               <div class="user_pic"><img src="../img/user8.jpg" /></div>
-							<span class="padding_l line-height30px">回眸瞬间 </span>
+							<span class="padding_l line-height30px">{{v.nick}} </span>
 			            </li>
 			            <li onclick="openNewPage('order_detail_for_evaluate.html')" class="mui-table-view-cell mui-media">
 			                <a href="javascript:;">
@@ -97,7 +97,7 @@
 			                     	</div>
 			                    </div>
 			                </a>
-			            </li>
+			            </li> 
 			            <li class="mui-table-view-cell mui-media mui-clearfix">
 			            	<span class="mui-pull-left">合计：<i>2200.00</i></span>
 			            	<button type="button" class="mui-btn  mui-btn-block width20 padding5px font14 margin-right24 cancel_order_btn">取消订单</button>
@@ -285,6 +285,9 @@
 <script src="../js/mui.min.js"></script>
 <script src="../js/open.js"></script>
 <script src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/my_orders.js"></script>
 <script type="text/javascript">
 	$('.cancel_order_btn').click(function(){
 		$(this).parent().prevAll().remove();

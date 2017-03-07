@@ -215,11 +215,15 @@
     <script src="../js/app/release_viewMedia.js"></script>	
 	<script type="text/javascript">
 		mui.init({
+
 			gestureConfig:{
 				longtap: true, //默认为false
 			}
 		});
-		
+         mui.back=function(){
+             mui.currentWebview.close();
+		      window.plus.bridge.exec("community", "showNativeView", []);
+         };
 		//longtap点击事件
 		$('.show_pic img').on('longtap', function(){
 			$(this).siblings('.del_btn').css('display','block');				

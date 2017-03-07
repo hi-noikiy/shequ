@@ -98,8 +98,16 @@ app.controller("vieodetailsController",function($scope,$http){
 document.addEventListener("plusready",function(){
 	appElement=document.querySelector('[ng-controller=vieodetailsController]');
 	$scope= angular.element(appElement).scope();
-	id = plus.storage.getItem('noteId');
+//	id = plus.storage.getItem('noteId');
 	uid = plus.storage.getItem('uid');
+	id = plus.webview.currentWebview().gid;
+	if (!id){
+		id = plus.storage.getItem('noteId');
+	}
+	my = plus.webview.currentWebview().my;
+	if(my == 'my'){
+		$('.borderNone').css('display','none');
+	} 
 	$scope.initView(id,uid);
 	$scope.$apply();
 })

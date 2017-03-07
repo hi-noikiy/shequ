@@ -632,11 +632,11 @@
 								</li>
 								<!--分栏-->
 								<li class="mui-table-view-cell mui-grid-view circle_text sp_fonts">
-									<div onclick="openNewPage('du.html')"><span >独</span></div>
-									<div onclick="openNewPage('gu.html')"><span>古</span></div>
-									<div onclick="openNewPage('jin.html')"><span>今</span></div>
-									<div onclick="openNewPage('zhong.html')"><span>中</span></div>
-									<div onclick="openNewPage('wai.html')"><span>外</span></div>								
+									<div onclick="openPage('cate.html',{type:1,name:'独'})"><span >独</span></div>
+									<div onclick="openPage('cate.html',{type:2,name:'古'})"><span>古</span></div>
+									<div onclick="openPage('cate.html',{type:3,name:'今'})"><span>今</span></div>
+									<div onclick="openPage('cate.html',{type:4,name:'中'})"><span>中</span></div>
+									<div onclick="openPage('cate.html',{type:5,name:'外'})"><span>外</span></div>								
 								</li>
 								<!--推荐-->
 								<li class="mui-table-view-cell bg_white">
@@ -720,6 +720,7 @@
 	<script type="text/javascript" src="../js/angular.min.js"></script>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/apppublic.js"></script>
+	
 	<script src="../js/app/home.js"></script>
 	<script type="text/javascript">
 		mui.init({swipeBack: false});

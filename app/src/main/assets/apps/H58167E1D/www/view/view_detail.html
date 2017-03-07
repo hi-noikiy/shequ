@@ -137,15 +137,15 @@
         	<p class="margin0">没有评论了呢~</p>
         </div>
         <div class="mui-segmented-control borderNone bg_white">
-            <a ng-click="viewCollection()" ng-if="!user.collection" id="viewcollection"><i class="iconfont mui-icon color333">&#xe70a;</i>  <i class="font12" >收藏</i></a>
+            <a ng-if="!user.collection" ng-click="viewCollection()" id="viewcollection"><i class="iconfont mui-icon color333">&#xe70a;</i>  <i class="font12" >收藏</i></a>
             <a ng-if="user.collection"><i class="iconfont mui-icon color">&#xe622;</i>  <i class="font12">已收藏</i></a>
-            <a onclick="openNewPage('chose_group.html')" ><i class="iconfont mui-icon color333" ng-click="choseView()">&#xe61a;</i>  <i class="font12">加入群聊</i></a>
-            <a onclick="openNewPage('chat.html')" ><i class="iconfont mui-icon color333">&#xe60d;</i>  <i class="font12">私聊群主</i></a>
-            <a  id="evaluate_btn"><i class="iconfont mui-icon color333">&#xe660;</i>  <i class="font12">评论</i></a>
+            <a ng-click="groupList()" ><i class="iconfont mui-icon color333" >&#xe61a;</i>  <i class="font12">加入群聊</i></a>
+            <a ng-click="openChat()" ><i class="iconfont mui-icon color333">&#xe60d;</i>  <i class="font12">私聊群主</i></a>
+            <a  id="evaluate_btn" ng-click="huiContent(0)"><i class="iconfont mui-icon color333">&#xe660;</i>  <i class="font12">评论</i></a>
         </div>
-        <div class="input_box bg_white margin-bottom10px mui-clearfix">   
-        	<input type="text" class="mui-pull-left" placeholder="请输入评语">
-        	<button type="button" class="mui-btn-blue mui-pull-right width30 mui-pull-right">发表</button>
+        <div class="input_box bg_white margin-bottom10px mui-clearfix">
+        	<input type="text" class="mui-pull-left conmentval" placeholder="请输入评语">
+        	<button type="button" ng-click="viewContent()" class="mui-btn-blue mui-pull-right width30 mui-pull-right">发表</button>
         </div>
         
         <!--分享弹窗-->
@@ -203,27 +203,6 @@
 			$('.input_box input').val("");
 		})
 		
-		//评论
-		$('#evaluate_btn').click(function(){
-			bj = $(this).attr('data-bj');
-			$('.input_box').animate({
-				left:'0'
-			},300) 
-		})
-		
-		//关注的状态
-//		var is_attention = true;
-//		$('.attention_btn').click(function(){
-//			if(is_attention){
-//				$(this).html('&#xe6aa;已关注').css({'color':'#999','border':'1px solid #999'});
-//				is_attention = false;
-//			} 
-////			else {
-////				$(this).html('&#xe669;关注').css({'color':'#4c968e','border':'1px solid #4c968e'});
-////				is_attention = true;
-////			}
-//		})	
-//		
 		share($('.alert_window'),$('.share_list'),$('#shareApp_btn'),$('.cancel_btn'));
 	})
 	

@@ -81,6 +81,7 @@ function shareChange(i){
    * @param {plus.share.ShareService} s
    */
 function shareMessage(s,ex){
+	official = '商品详情';
 	//var aid = $('.shareCommunity').attr('data-aid');
 	var msg={title : official , extra : {scene:ex}  , content:'去卖艺掌上APP',href:apiRoot+'?action=Index.Share&webPage='+webPage+'&id='+id,thumbs:['/app/Public/image/logo.png']};
 	s.send( msg, function(){

@@ -68,7 +68,9 @@ $().ready(function() {
 				//申请退款
 				$('#uploadimg9').change(function() {
 					 var imgURL = getObjectURL(this.files[0]);
+					 plus.storage.setItem('imgs',this.files[0])
 					 var eImg = $('#show_pic9');
+					 console.log(JSON.stringify(this.files[0]))
 					 eImg.append(('<img src="'+imgURL+'"/>'));
 				});
 				

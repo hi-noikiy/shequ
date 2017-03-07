@@ -13,7 +13,7 @@
     	.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border: none;}
     </style>
 </head>
-<body>
+<body ng-app="detailsApp" ng-controller="detailsController">
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>		
 	    <h1 class="mui-title colorP">我的收藏</h1>
@@ -27,79 +27,22 @@
 		    <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
 		    <div class="mui-slider-group">
 		        <div id="item1" class="mui-slider-item mui-control-content mui-active">
-		            <ul class="mui-table-view bg_white">
-					    <li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media">
+		            <ul class="mui-table-view bg_white" ng-repeat="(index,x) in notes" ng-click="goodsInfo(g.id)">
+					    <li class="mui-table-view-cell mui-media">
 					        <a href="javascript:;" class="mui-clearfix">
-					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr1.jpg">
-					            <ul class="mui-media-body mui-pull-left user_view">
+					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{x.subject}}">
+					            <ul class="mui-media-body mui-pull-left user_view"> 
 					               	<li>
-					               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
-					               		<span class="padding_l">杨德威</span>
+					               		<div class="user_pic"><img src="{{x.icon}}" /></div>
+					               		<span class="padding_l">{{x.nick}}</span>
 					               	</li>
 					               	<li>
 					               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-					               		<span class="padding_l">我做的琴能发出你要的声音&djkasdnakjdaab djasbdjkbdjkbdkjsabdjakdbakjsdbajdb</span>
+					               		<span class="padding_l">{{x.content}}</span>
 					               	</li>
 					               	<li>
 					               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-					               		<span class="padding_l">吉他、手作、大神、定制</span>
-					               	</li>
-					            </ul>
-					        </a>
-					    </li>
-					    <li onclick="openNewPage('video_detail.html')" class="mui-table-view-cell mui-media">
-					        <a href="javascript:;" class=" white-space">
-					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr2.jpg">
-					            <ul class="mui-media-body mui-pull-left user_view">
-					               	<li>
-					               		<div class="user_pic"><img src="../img/user2.jpg" /></div>
-					               		<span class="padding_l">陈嘉喜</span>
-					               	</li>
-					               	<li>
-					               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-					               		<span class="padding_l">【雅昌专访】刘少白：莫以  小聪明来比大智慧  </span>
-					               	</li>
-					               	<li>
-					               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-					               		<span class="padding_l">书画、专访</span>
-					               	</li>
-					            </ul>
-					        </a>
-					    </li>
-					     <li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media">
-					        <a href="javascript:;" class=" white-space">
-					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr3.jpg">
-					            <ul class="mui-media-body mui-pull-left user_view">
-					               	<li>
-					               		<div class="user_pic"><img src="../img/user3.jpg" /></div>
-					               		<span class="padding_l">瓷器者</span>
-					               	</li>
-					               	<li>
-					               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-					               		<span class="padding_l">陶瓷制作工艺流程  </span>
-					               	</li>
-					               	<li>
-					               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-					               		<span class="padding_l">陶瓷、工艺、手工、艺术</span>
-					               	</li>
-					            </ul>
-					        </a>
-					    </li>
-					     <li onclick="openNewPage('video_detail.html')" class="mui-table-view-cell mui-media">
-					        <a href="javascript:;" class=" white-space">
-					            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr4.jpg">
-					            <ul class="mui-media-body mui-pull-left user_view">
-					               	<li>
-					               		<div class="user_pic"><img src="../img/user4.jpg" /></div>
-					               		<span class="padding_l">闲野之家</span>
-					               	</li>
-					               	<li>
-					               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-					               		<span class="padding_l">什么是动态风筝 </span>
-					               	</li>
-					               	<li>
-					               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-					               		<span class="padding_l">手工、工艺</span>
+					               		<span class="padding_l">{{x.tags}}</span>
 					               	</li>
 					            </ul>
 					        </a>
@@ -124,7 +67,7 @@
 			                    </div>
 			                </a>
 			            </li>
-			            <li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
+			            <!--<li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
 			                <a href="javascript:;">
 			                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/shangpin2.jpg">
 			                    <div class="mui-media-body">
@@ -187,7 +130,7 @@
 			                     	</div>
 			                    </div>
 			                </a>
-			            </li>
+			            </li>-->
 			        </ul>
 		        </div>
 		    </div>
@@ -197,4 +140,8 @@
 </body>
 <script src="../js/mui.min.js"></script>
 <script src="../js/open.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/jquery.min.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/my_collect.js"></script>
 </html>
