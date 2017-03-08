@@ -559,9 +559,7 @@
         <meta-data
             android:name="WX_APPID"
             android:value="wxd96b8dd3e5733967"/>
-        <!--<meta-data
-            android:name="WX_APPID"
-            android:value="wx0411fa6a39d61297"/>-->
+
 
         <activity
             android:name=".integrate.wxapi.WXEntryActivity"
@@ -593,7 +591,9 @@
             android:name=".integrate.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
-
+        <meta-data
+            android:name="WX_APPID"
+            android:value="wxd96b8dd3e5733967"/>
         <!--&lt;!&ndash; 微信支付配置end &ndash;&gt;
         &lt;!&ndash;小米分享&ndash;&gt;
         <meta-data

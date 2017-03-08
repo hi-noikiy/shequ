@@ -159,46 +159,10 @@ public class MainActivity extends AppCompatActivity {
                 public void onNext(PushWebView pushWebView) {
                     switch (pushWebView.getTYPE()) {
                         case PushWebView.PUSH:
-                            translateFrame(0, -1, 0, 0, new Animation.AnimationListener() {
-                                @Override
-                                public void onAnimationStart(Animation animation) {
-
-                                }
-
-                                @Override
-                                public void onAnimationEnd(Animation animation) {
-                                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                                    params.setMargins(-frame.getWidth(), 0, 0, 0);
-                                    frame.setLayoutParams(params);
-                                    frame.clearAnimation();
-                                }
-
-                                @Override
-                                public void onAnimationRepeat(Animation animation) {
-
-                                }
-                            });
+                            translateFrame(0, -1, 0, 0);
                             break;
                         case PushWebView.BACK:
-                            translateFrame(-1, 0, 0, 0, new Animation.AnimationListener() {
-                                @Override
-                                public void onAnimationStart(Animation animation) {
-
-                                }
-
-                                @Override
-                                public void onAnimationEnd(Animation animation) {
-                                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                                    params.setMargins(0, -frame.getWidth(), 0, 0);
-                                    frame.setLayoutParams(params);
-                                    frame.clearAnimation();
-                                }
-
-                                @Override
-                                public void onAnimationRepeat(Animation animation) {
-
-                                }
-                            });
+                            translateFrame(-1, 0, 0, 0);
                             break;
                     }
                 }
@@ -241,9 +205,11 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         switch (jsEvent.getEventType()) {
                             case "hideNativeView":
+                                frame.clearAnimation();
                                 frame.setVisibility(View.GONE);
                                 break;
                             case "showNativeView":
+                                frame.clearAnimation();
                                 frame.setVisibility(View.VISIBLE);
                                 break;
                         }
@@ -255,22 +221,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void translateFrame(float xfrom, float xto, float yfrom, float yto, final Animation.AnimationListener animationListener) {
-        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, xfrom, Animation.RELATIVE_TO_SELF, xto, Animation.RELATIVE_TO_SELF, yfrom, Animation.RELATIVE_TO_SELF, yto);
-        final AnimationSet animationSet       = new AnimationSet(true);
+
+    private void translateFrame(float xfrom, float xto, float yfrom, float yto) {
+        TranslateAnimation translateAnimation;
+        final AnimationSet animationSet;
+        translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, xfrom, Animation.RELATIVE_TO_SELF, xto, Animation.RELATIVE_TO_SELF, yfrom, Animation.RELATIVE_TO_SELF, yto);
+        animationSet = new AnimationSet(true);
         translateAnimation.setFillAfter(true);
         animationSet.setFillAfter(true);
-
         animationSet.addAnimation(translateAnimation);
         animationSet.setDuration(500);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-              //  animationSet.setAnimationListener(animationListener);
-                frame.startAnimation(animationSet);
-
+                if (frame.getVisibility() == View.VISIBLE) {
+                    frame.setAnimation(animationSet);
+                    animationSet.startNow();
+                }
             }
         });
+
     }
 
     EntryProxy mEntryProxy = null;
