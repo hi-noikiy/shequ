@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingTop="13dp" >
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              android:paddingTop="13dp">
 
     <TextView
         android:id="@+id/timestamp"
         style="@style/chat_text_date_style"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_chat_activity" >
+        android:layout_marginTop="@dimen/margin_chat_activity">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/iv_userhead"
@@ -25,16 +26,19 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="@dimen/margin_chat_activity"
-            android:background="@drawable/ease_default_avatar"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/ease_default_avatar"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundAsCircle="true"
             />
 
         <RelativeLayout
             android:id="@+id/bubble"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:layout_toRightOf="@id/iv_userhead"
-            android:layout_marginLeft="@dimen/margin_chat_activity"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tv_userid"
+            android:layout_marginLeft="@dimen/margin_chat_activity"
+            android:layout_toRightOf="@id/iv_userhead"
             android:background="@drawable/ease_chatfrom_bg"
             >
 
@@ -42,10 +46,10 @@
                 android:id="@+id/iv_voice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:paddingLeft="10dp"
-	            android:paddingRight="12dp"
-	            android:layout_centerInParent="true"
-                android:src="@drawable/ease_chatfrom_voice_playing" />
+                android:paddingRight="12dp"
+                android:src="@drawable/ease_chatfrom_voice_playing"/>
         </RelativeLayout>
 
         <TextView
@@ -53,21 +57,21 @@
             style="@style/chat_text_name_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@id/bubble"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/bubble"
-            android:layout_alignTop="@id/bubble"
             android:gravity="center"
             android:text="3&apos;&apos;"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"/>
 
         <ImageView
             android:id="@+id/iv_unread_voice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_alignTop="@id/bubble"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/tv_length"
-            android:src="@drawable/ease_voice_unread" />
+            android:src="@drawable/ease_voice_unread"/>
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -76,17 +80,17 @@
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/iv_unread_voice"
-            android:visibility="invisible" />
+            android:visibility="invisible"/>
 
-         <TextView
+        <TextView
             android:id="@+id/tv_userid"
             style="@style/chat_text_name_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/chat_nick_margin_left"
-            android:textSize="@dimen/chat_nick_text_size"
             android:layout_toRightOf="@id/iv_userhead"
-            android:visibility="gone" />
+            android:textSize="@dimen/chat_nick_text_size"
+            android:visibility="gone"/>
     </RelativeLayout>
 
 </LinearLayout>

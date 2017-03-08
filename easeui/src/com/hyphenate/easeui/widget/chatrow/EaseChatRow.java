@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
@@ -20,7 +21,6 @@ import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.adapter.EaseMessageAdapter;
 import com.hyphenate.easeui.widget.EaseChatMessageList;
 import com.hyphenate.easeui.widget.EaseChatMessageList.MessageListItemClickListener;
-import com.hyphenate.easeui.widget.photoview.CircleImageView;
 import com.hyphenate.util.DateUtils;
 
 import java.util.Date;
@@ -34,10 +34,10 @@ public abstract class EaseChatRow extends LinearLayout {
     protected EMMessage      message;
     protected int            position;
 
-    protected TextView        timeStampView;
-    protected CircleImageView userAvatarView;
-    protected View            bubbleLayout;
-    protected TextView        usernickView;
+    protected TextView         timeStampView;
+    protected SimpleDraweeView userAvatarView;
+    protected View             bubbleLayout;
+    protected TextView         usernickView;
 
     protected TextView    percentageView;
     protected ProgressBar progressBar;
@@ -67,7 +67,7 @@ public abstract class EaseChatRow extends LinearLayout {
     private void initView() {
         onInflateView();
         timeStampView = (TextView) findViewById(R.id.timestamp);
-        userAvatarView = (CircleImageView) findViewById(R.id.iv_userhead);
+        userAvatarView = (SimpleDraweeView) findViewById(R.id.iv_userhead);
         bubbleLayout = findViewById(R.id.bubble);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         statusView = (ImageView) findViewById(R.id.msg_status);
