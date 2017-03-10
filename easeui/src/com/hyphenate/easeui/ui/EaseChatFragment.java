@@ -25,7 +25,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.hyphenate.EMChatRoomChangeListener;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.EMValueCallBack;
@@ -43,7 +42,7 @@ import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.domain.EaseEmojicon;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
-import com.hyphenate.easeui.model.UserBean;
+import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseAlertDialog;
@@ -754,9 +753,11 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
             message.setChatType(ChatType.ChatRoom);
         }
         //send message
-        Gson gson = new Gson();
-        //gson.toJson(new UserBean().setIcon(UserInfo.getInstance().getIcon()).setNick(UserInfo.getInstance().getNick()));
-        message.setAttribute("attribute", gson.toJson(new UserBean().setIcon("http://www.wallcoo.com/animal/Dogs_Summer_and_Winter/wallpapers/1920x1200/DogsB10_Lucy.html").setNick("jadfasdfasd")));
+
+
+        message.setAttribute("userheader", UserLodingInFo.getInstance().getIcon());
+        message.setAttribute("username", UserLodingInFo.getInstance().getNick());
+        message.setAttribute("from", UserLodingInFo.getInstance().getMobile());
         EMClient.getInstance().chatManager().sendMessage(message);
         //refresh ui
         if (isMessageListInited) {

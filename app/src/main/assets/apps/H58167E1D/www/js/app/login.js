@@ -11,10 +11,15 @@ document.addEventListener('plusready',function(){
 		return;
 	}
 	if(id){
+    var mobile = plus.storage.getItem('mobile');//登录手机号
+    var nick =  plus.storage.getItem('nick');//昵称
+    var icon = plus.storage.getItem('icon');//icon
 		setTimeout(function(){
 			ws.close;
-		}, 1000);   
-		plus.webview.create('../index.html','index.html').show('pop-in');
+		}, 1000);
+	   var mesg = [id,mobile,nick,icon];
+       window.plus.bridge.execSync("community","login",mesg);
+	   plus.webview.create('../index.html','index.html').show('pop-in');
 	}
 	$('#sq_login').on('tap',function(){
 		var phon = $('#phone').val();

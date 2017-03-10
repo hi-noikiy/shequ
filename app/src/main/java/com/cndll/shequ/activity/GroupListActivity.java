@@ -15,14 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cndll.shequ.R;
-import com.cndll.shequ.bean.GroupImageBean;
 import com.cndll.shequ.bean.RequestGroupImage;
-import com.hyphenate.easeui.model.UserLodingInFo;
 import com.cndll.shequ.net.ComUnityRequest;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.model.GroupImageBean;
+import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.widget.EaseTitleBar;
 import com.hyphenate.exceptions.HyphenateException;
 

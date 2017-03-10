@@ -19,6 +19,8 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessage.Direct;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.adapter.EaseMessageAdapter;
+import com.hyphenate.easeui.model.UserInfo;
+import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.widget.EaseChatMessageList;
 import com.hyphenate.easeui.widget.EaseChatMessageList.MessageListItemClickListener;
 import com.hyphenate.util.DateUtils;
@@ -115,20 +117,23 @@ public abstract class EaseChatRow extends LinearLayout {
         }
         //set nickname and avatar
         if (message.direct() == Direct.SEND) {
+            userAvatarView.setImageURI(UserLodingInFo.getInstance().getIcon());
             //EaseUserUtils.setUserAvatar(context, EMClient.getInstance().getCurrentUser(), userAvatarView);
         } else {
             usernickView = (TextView) findViewById(R.id.tv_userid);
-            /*try {
-                //userAvatarView.setImageURI(message.getJSONObjectAttribute("attribute").getString("icon"));
-                usernickView.setText(message.getJSONObjectAttribute("attribute").getString("nick"));
-                usernickView.setVisibility(View.VISIBLE);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (HyphenateException e) {
-                e.printStackTrace();
-            }*/
-            //EaseUserUtils.setUserAvatar(context, message.getFrom(), userAvatarView);
-            //EaseUserUtils.setUserNick(message.getFrom(), usernickView);
+            String icon;
+            String nick;
+            if (UserInfo.getInstance().getInfo() != null && UserInfo.getInstance().getInfo().get(message.getFrom()) != null) {
+                nick = UserInfo.getInstance().getInfo().get(message.getFrom()).getNick();
+                icon = UserInfo.getInstance().getInfo().get(message.getFrom()).getIcon();
+            } else {
+                nick = UserInfo.getNick(message);
+                icon = UserInfo.getIcon(message);
+                UserInfo.getInstance().addInfo(new UserInfo.User().setIcon(icon).setNick(nick).setUid(message.getFrom()));
+            }
+            userAvatarView.setImageURI(icon);
+            usernickView.setText(nick);
+
         }
 
         if (deliveredView != null) {

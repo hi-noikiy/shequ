@@ -96,7 +96,7 @@ public class CreateGroupActivity extends AppCompatActivity {
                 notify = groupNotify.getText().toString();
                 EMGroupManager.EMGroupOptions option = new EMGroupManager.EMGroupOptions();
                 option.maxUsers = 200;
-                option.style = EMGroupManager.EMGroupStyle.EMGroupStylePublicJoinNeedApproval;
+                option.style = EMGroupManager.EMGroupStyle.EMGroupStylePublicOpenJoin;
                 try {
                     EMGroup group = EMClient.getInstance().groupManager().createGroup(name, "", new String[]{}, "", option);
                     // Toast.makeText(CreateGroupActivity.this, "" + group.getGroupId(), Toast.LENGTH_SHORT).show();

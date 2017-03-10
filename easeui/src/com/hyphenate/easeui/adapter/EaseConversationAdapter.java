@@ -22,6 +22,7 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
+import com.hyphenate.easeui.model.UserInfo;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
@@ -111,6 +112,7 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
                 holder.motioned.setVisibility(View.GONE);
             }
             // group message, show group avatar
+
             holder.avatar.setImageResource(R.drawable.ease_group_icon);
             EMGroup group = EMClient.getInstance().groupManager().getGroup(username);
             holder.name.setText(group != null ? group.getGroupName() : username);
@@ -135,11 +137,28 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
                 e.printStackTrace();
             } catch (HyphenateException e) {
                 e.printStackTrace();
+            }*/
+            String icon = null;
+            String nick = null;
+            if (UserInfo.getInstance().getInfo().get(conversation.conversationId()) != null) {
+                nick = UserInfo.getInstance().getInfo().get(conversation.conversationId()).getNick();
+                icon = UserInfo.getInstance().getInfo().get(conversation.conversationId()).getIcon();
+            } else {
+                for (EMMessage m : conversation.getAllMessages()) {
+                    if (m.getFrom().equals(conversation.conversationId())) {
+                        nick = UserInfo.getNick(m);
+                        icon = UserInfo.getIcon(m);
+                        UserInfo.getInstance().addInfo(new UserInfo.User().setIcon(icon).setNick(nick).setUid(conversation.conversationId()));
+                        break;
+                    }
+                }
+
             }
-            holder.avatar.setImageURI(uri);
+            holder.avatar.setImageURI(icon);
+            holder.name.setText(nick);
             //EaseUserUtils.setUserAvatar(getContext(), username, holder.avatar);
-            EaseUserUtils.setUserNick(name, holder.name);
-            holder.motioned.setVisibility(View.GONE);*/
+            //EaseUserUtils.setUserNick(name, holder.name);
+            holder.motioned.setVisibility(View.GONE);
         }
 
         if (conversation.getUnreadMsgCount() > 0) {

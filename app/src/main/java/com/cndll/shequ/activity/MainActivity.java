@@ -31,6 +31,7 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.model.UserInfo;
 import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.exceptions.HyphenateException;
@@ -272,7 +273,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMessageReceived(final List<EMMessage> list) {
                 final StringBuffer s = new StringBuffer();
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        for (EMMessage message : list) {
+                            if (message.getChatType() == EMMessage.ChatType.Chat) {
+                                if (UserInfo.getInstance().getInfo().get(message.getFrom()) == null) {
+                                    UserInfo.getInstance().addInfo(new UserInfo.User().setUid(message.getFrom()).setNick(UserInfo.getNick(message)).setIcon(UserInfo.getIcon(message)));
+                                } else {
+                                    UserInfo.getInstance().getInfo().get(message.getFrom()).setIcon(UserInfo.getIcon(message)).setNick(UserInfo.getNick(message)).setUid(message.getFrom());
+                                }
+                            }
 
+                        }
+                    }
+                }.start();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

@@ -1,9 +1,9 @@
 package com.cndll.shequ.net;
 
 
-import com.cndll.shequ.bean.GroupImageBean;
 import com.cndll.shequ.bean.LoadUpResponse;
 import com.cndll.shequ.bean.RequestGroupImage;
+import com.hyphenate.easeui.model.GroupImageBean;
 
 import java.util.Map;
 
