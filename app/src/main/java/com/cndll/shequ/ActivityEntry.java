@@ -1,4 +1,4 @@
-package com.cndll.shequ.integrate;
+package com.cndll.shequ;
 
 import android.app.ListActivity;
 import android.content.Intent;

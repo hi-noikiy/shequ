@@ -1,6 +1,6 @@
 
 
-package com.cndll.shequ.integrate.wxapi;
+package com.cndll.shequ.wxapi;
 
 import io.dcloud.feature.oauth.weixin.AbsWXCallbackActivity;
 

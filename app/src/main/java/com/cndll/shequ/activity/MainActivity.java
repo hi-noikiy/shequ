@@ -24,6 +24,7 @@ import com.cndll.shequ.eventtype.JSEvent;
 import com.cndll.shequ.eventtype.LoginIM;
 import com.cndll.shequ.eventtype.PushWebView;
 import com.cndll.shequ.util.ObjectSaveUtils;
+import com.cndll.shequ.util.UpdataGroupsInfo;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
@@ -104,6 +105,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mEntryProxy.onStop(this);
+        jsevent.unsubscribe();
+        jsevent.unsubscribe();
+        loginIM.unsubscribe();
+        pushWebView.unsubscribe();
+        updataGroupImage.unsubscribe();
+
+
     }
 
     @Override
@@ -427,6 +435,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         EMClient.getInstance().chatManager().loadAllConversations();
                         EMClient.getInstance().groupManager().loadAllGroups();
+                        UpdataGroupsInfo.getGroupInfo();
                         if (EMClient.getInstance().groupManager().getAllGroups() != null) {
                             for (EMGroup group : EMClient.getInstance().groupManager().getAllGroups()) {
                                 try {

@@ -1,4 +1,4 @@
-package com.cndll.shequ.integrate.webview;
+package com.cndll.shequ.webview;
 
 import android.content.Intent;
 

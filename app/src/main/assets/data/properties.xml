@@ -2,7 +2,7 @@
     <features>
         <feature
             name="community"
-            value="com.cndll.shequ.integrate.webview.WebViewMode_FeatureImpl"/>
+            value="com.cndll.shequ.webview.WebViewMode_FeatureImpl"/>
         <feature
             name="Accelerometer"
             value="io.dcloud.feature.sensor.AccelerometerFeatureImpl"/>

@@ -52,6 +52,12 @@ public class GroupListActivity extends AppCompatActivity {
         init();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        updataimage.unsubscribe();
+    }
+
     private Subscription updataimage;
 
     private void init() {
