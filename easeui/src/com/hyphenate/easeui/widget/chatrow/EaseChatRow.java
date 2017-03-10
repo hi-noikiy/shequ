@@ -2,6 +2,7 @@ package com.hyphenate.easeui.widget.chatrow;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -123,6 +124,7 @@ public abstract class EaseChatRow extends LinearLayout {
             usernickView = (TextView) findViewById(R.id.tv_userid);
             String icon;
             String nick;
+            Log.d("from", message.getFrom());
             if (UserInfo.getInstance().getInfo() != null && UserInfo.getInstance().getInfo().get(message.getFrom()) != null) {
                 nick = UserInfo.getInstance().getInfo().get(message.getFrom()).getNick();
                 icon = UserInfo.getInstance().getInfo().get(message.getFrom()).getIcon();

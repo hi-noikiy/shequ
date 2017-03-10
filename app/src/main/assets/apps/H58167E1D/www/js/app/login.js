@@ -11,15 +11,11 @@ document.addEventListener('plusready',function(){
 		return;
 	}
 	if(id){
-    var mobile = plus.storage.getItem('mobile');//登录手机号
-    var nick =  plus.storage.getItem('nick');//昵称
-    var icon = plus.storage.getItem('icon');//icon
 		setTimeout(function(){
 			ws.close;
 		}, 1000);
-	   var mesg = [id,mobile,nick,icon];
-       window.plus.bridge.execSync("community","login",mesg);
-	   plus.webview.create('../index.html','index.html').show('pop-in');
+		plus.nativeUI.showWaiting('加载中...');
+		plus.webview.create('../index.html','index.html').show('pop-in');
 	}
 	$('#sq_login').on('tap',function(){
 		var phon = $('#phone').val();
@@ -28,10 +24,6 @@ document.addEventListener('plusready',function(){
 			toast('账号或密码不能为空');
 			return; 
 		}
-		if(!phon.match(p1) || !pass.match(passReg)){
-			toast('请检查信息格式是否正确');
-			return;
-		} 
 		plus.nativeUI.showWaiting('登录中...');  
 
 		$.ajax({
@@ -61,14 +53,13 @@ document.addEventListener('plusready',function(){
 					setTimeout(function(){
 						ws.close;
 					}, 1000);   
+					plus.nativeUI.showWaiting('加载中...');
+					   var arr = [data.data.id,
+                          data.data.mobile,
+                          data.data.nick,
+                          data.data.icon];
+               window.plus.bridge.execSync("community","login",arr);
 					plus.webview.create('../index.html','index.html').show('pop-in');
-					 ws.close();
-
-                                       var arr = [data.data.id,
-                                                  data.data.mobile,
-                                                  data.data.nick,
-                                                  data.data.icon];
-                                       window.plus.bridge.execSync("community","login",arr);
 				}else{
 					plus.nativeUI.toast(data.desc);
 					return; 
@@ -80,4 +71,8 @@ document.addEventListener('plusready',function(){
 			}
 		});
 	})
+   $('#register').on('tap',function(){
+   	 	 plus.nativeUI.showWaiting('加载中...');
+		 plus.webview.create('register.html','register.html').show('pop-in');
+   })
 })

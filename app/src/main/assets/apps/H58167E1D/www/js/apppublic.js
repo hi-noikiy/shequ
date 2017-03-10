@@ -1,11 +1,11 @@
 var payRoot = 'http://qmy.51edn.com/app';
 var webRoot = 'http://qmy.51edn.com';
+var apiRoot = webRoot + '/app';
 //var payRoot = 'http://192.168.0.19/shequ/pay';
-//var webRoot = 'http://192.168.0.19/shequ/public';
-var apiRoot = webRoot + '/index.php/app';
-//var apiRoot = webRoot + '/app';
+//var webRoot = 'http://192.168.0.19/shequ_server/public';
+//var apiRoot = webRoot + '/index.php/app';
 var p1 = /^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/; //手机号码格式验证
-var passReg = /^[A-Za-z0-9]{6,16}$/; //验证密码规范
+var passReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/;//验证密码规范 
 var card = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/; //验证身份证号
 var regx2 = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; //邮箱验证
 var p3 = /^[0-9]*$/; //判断是否为数字

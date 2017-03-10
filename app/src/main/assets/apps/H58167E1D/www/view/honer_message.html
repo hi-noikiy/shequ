@@ -2,9 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>消息</title>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="../css/global.css"/>
@@ -15,159 +14,40 @@
     	.circle_pic{width: 50px;}
 		.mui-badge{background: #ad4554;color: #fff;}
 		.mui-search:before{top: 70%;}
-
-
-
     </style>
 </head>
-<!--<body class="bg_white">
-	<header class="mui-bar mui-bar-nav bg_white">
-	    <button onclick="openNewPage('create_group.html')" class="mui-btn-link mui-pull-left sp_fonts"><span class="colorP">建群</span></button>
-	    <h1 class="mui-title colorP sp_fonts">消息</h1>
-	    <button onclick="openNewPage('my_talk.html')" class="mui-btn-link mui-pull-right sp_fonts"><span class="colorP">群聊</span></button>
-	</header>
-	<div class="mui-content bg_white">
-		<div class="paddingl_r_15px_tb11px padding5px bg_white">
-			<div class="mui-input-row mui-search">
-			    <input type="search" class="mui-input-clear" placeholder="搜索">
-			</div>
-		</div>
-		<ul class="mui-table-view">
-			<li onclick="openNewPage('system_news.html')" class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object circle_pic mui-pull-left" src="../img/ld.jpg">
-		            <div class="mui-media-body">
-		              	<div class="mui-clearfix">
-		              		&lt;!&ndash;系统消息&ndash;&gt;
-		              		<span class="mui-pull-left">系统消息</span>
-		              		&lt;!&ndash;发送时间&ndash;&gt;
-		              		<p class="mui-pull-right">13:50</p>
-		              	</div>
-		                <div class="margin-top10px" style="position: relative;">
-		                	&lt;!&ndash;系统消息内容&ndash;&gt;
-			            	<p class="mui-ellipsis font12">欢迎加入社区商城</p>
-			            	<span class="mui-badge mui-btn-danger mui-pull-right" style="position: absolute;right: 0;top: 0;">1</span>
-			            </div>
-		            </div>
-		        </a>
-		    </li>
-		    <li onclick="openNewPage('chat.html')" class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user12.jpg">
-		            <div class="mui-media-body">
-		              	<div class="mui-clearfix">
-		              		&lt;!&ndash;用户名&ndash;&gt;
-		              		<span class="mui-pull-left">不做大哥好多年</span>
-		              		&lt;!&ndash;发送时间&ndash;&gt;
-		              		<p class="mui-pull-right">13:50</p>
-		              	</div>
-		                <div class="margin-top10px">
-		                	&lt;!&ndash;聊天内容&ndash;&gt;
-			            	<p class="mui-ellipsis font12">不就一百万吗？小钱</p>
-			            </div>
-		            </div>
-		        </a>
-		    </li>
-		    <li onclick="openNewPage('apply_for_group_chat.html')" class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user1.jpg">
-		            <div class="mui-media-body">
-		              	<div class="mui-clearfix">
-		              		&lt;!&ndash;用户名&ndash;&gt;
-		              		<span class="mui-pull-left">杨德威</span>
-		              		&lt;!&ndash;发送时间&ndash;&gt;
-		              		<p class="mui-pull-right">13:50</p>
-		              	</div>
-		                <div class="margin-top10px">
-		                	&lt;!&ndash;聊天内容&ndash;&gt;
-			            	<p class="mui-ellipsis font12">申请加入群聊"<span class="colorP">旅行部落</span>"</p>
-			            </div>
-		            </div>
-		        </a>
-		    </li>
-		    <li onclick="openNewPage('chat.html')" class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user4.jpg">
-		            <div class="mui-media-body">
-		              	<div class="mui-clearfix">
-		              		&lt;!&ndash;用户名&ndash;&gt;
-		              		<span class="mui-pull-left">微笑风</span>
-		              		&lt;!&ndash;发送时间&ndash;&gt;
-		              		<p class="mui-pull-right">13:50</p>
-		              	</div>
-		                <div class="margin-top10px">
-		                	&lt;!&ndash;聊天内容&ndash;&gt;
-			            	<p class="mui-ellipsis font12">双十一啦，帮我清空购物车！</p>
-			            </div>
-		            </div>
-		        </a>
-		    </li>
-		    <li onclick="openNewPage('chat.html')" class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user7.jpg">
-		            <div class="mui-media-body">
-		              	<div class="mui-clearfix">
-		              		&lt;!&ndash;用户名&ndash;&gt;
-		              		<span class="mui-pull-left">捕捉美好</span>
-		              		&lt;!&ndash;发送时间&ndash;&gt;
-		              		<p class="mui-pull-right">13:50</p>
-		              	</div>
-		                <div class="margin-top10px">
-		                	&lt;!&ndash;聊天内容&ndash;&gt;
-			            	<p class="mui-ellipsis font12">我又物色了一个高档镜头</p>
-			            </div>
-		            </div>
-		        </a>
-		    </li>
-		    <li onclick="openNewPage('chat.html')" class="mui-table-view-cell mui-media">
-		        <a href="javascript:;">
-		            <img class="mui-media-object circle_pic mui-pull-left" src="../img/user9.jpg">
-		            <div class="mui-media-body">
-		              	<div class="mui-clearfix">
-		              		&lt;!&ndash;用户名&ndash;&gt;
-		              		<span class="mui-pull-left">今天不购物</span>
-		              		&lt;!&ndash;发送时间&ndash;&gt;
-		              		<p class="mui-pull-right">13:50</p>
-		              	</div>
-		                <div class="margin-top10px">
-		                	&lt;!&ndash;聊天内容&ndash;&gt;
-			            	<p class="mui-ellipsis font12">嘻嘻，明天继续购物</p>
-			            </div>
-		            </div>
-		        </a>
-		    </li>
-		</ul>
-	</div>
-</body>-->
+<body class="bg_white">
+</body>
 <script src="../js/mui.min.js"></script>
 <script src="../js/open.js"></script>
 <script src="../js/jquery.min.js"></script>
-<script>
-		window.addEventListener('changeVal',function(event){
-		var showWin = event.detail.showWin;
-		if(showWin == 1){
-			//触发弹窗
-			plus.nativeUI.actionSheet({
-				cancel: "取消",
-				buttons: [{
-					title: "发布内容"
-				},{
-					title: "发布商品"
-				}]
-			}, function(e) {
-				var i = e.index;
-				if(i == 1) {
-					openNewPage('release_viewMedia.html')
-			        window.plus.bridge.exec("community", "pushWebView", []);
-				}else if(i==2){
-					openNewPage('release_goods.html')
-		            window.plus.bridge.exec("community", "pushWebView", []);
-				}
-			});
-		}
-	});
-
-
-
-</script>
+	<script>
+    window.addEventListener('changeVal',function(event){
+        var showWin = event.detail.showWin;
+        if(showWin == 1){
+        //触发弹窗
+        plus.nativeUI.actionSheet({
+                                  cancel: "取消",
+                                  buttons: [{
+                                            title: "发布内容"
+                                            },{
+                                            title: "发布商品"
+                                            }]
+                                  }, function(e) {
+                                  var i = e.index;
+                                  if(i == 1) {
+                                  window.plus.bridge.execSync("community","pushWebView","");
+                                  openNewPage('release_viewMedia.html')
+                                  }else if(i==2){
+                                  
+                                  window.plus.bridge.execSync("community","pushWebView","");
+                                  openNewPage('release_goods.html')
+                                  }else{
+                                  
+//                                plus.nativeUI.toast('取消..');
+                                  }
+                                  });
+        }
+        });
+    </script>
 </html>

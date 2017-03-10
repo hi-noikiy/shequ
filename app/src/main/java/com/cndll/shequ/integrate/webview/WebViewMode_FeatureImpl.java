@@ -10,6 +10,7 @@ import com.cndll.shequ.eventtype.PushWebView;
 import com.cndll.shequ.util.ObjectSaveUtils;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.model.UserInfo;
 import com.hyphenate.easeui.model.UserLodingInFo;
 
 import io.dcloud.common.DHInterface.AbsMgr;
@@ -29,6 +30,11 @@ public class WebViewMode_FeatureImpl implements IFeature {
             case "sendMessage":
                 Intent intent = new Intent(pWebViewImpl.getActivity(), ChatActivity.class);
                 intent.putExtra(EaseConstant.EXTRA_USER_ID, pJsArgs[0]).putExtra(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
+                if (UserInfo.getInstance().getInfo().get(pJsArgs[0]) == null) {
+                    UserInfo.getInstance().addInfo(new UserInfo.User().setUid(pJsArgs[0]).setNick(pJsArgs[2]).setIcon(pJsArgs[1]));
+                } else{
+                    UserInfo.getInstance().getInfo().get(pJsArgs[0]).setUid(pJsArgs[0]).setNick(pJsArgs[2]).setIcon(pJsArgs[1]);
+                }
                 pWebViewImpl.getActivity().startActivity(intent);
                 break;
             case "exit":

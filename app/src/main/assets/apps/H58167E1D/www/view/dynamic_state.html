@@ -18,13 +18,13 @@
 	</header>
 	<div class="mui-content" >
 		<div></div>
-        <ul class="mui-table-view margin-bottom5px bg_white" ng-repeat="(index,d) in dynamic">
+        <ul class="mui-table-view  bg_white" ng-repeat="(index,d) in dynamic">
         	<div class="paddingl_r_15px_tb11px bg_white border-bottom">
                <div class="user_pic"><img src="{{d.icon}}" /></div>
-				<span class="padding_l line-height30px">{{d.nick}}{{d.comment}} </span>
+				<span class="padding_l line-height30px">{{d.nick}}{{d.comment}} </span>  
 				<p class="mui-pull-right line-height30px">{{d.push_time}}</p>  
             </div>
-            <li class="mui-table-view-cell mui-media" ng-if="d.status" ng-click="dynamicData(d.from_id,d.status)">
+            <li class="mui-table-view-cell mui-media" ng-if="d.status==1" ng-click="dynamicData(d.from_id,d.status)">
                 <a href="javascript:;">
                     <img class="mui-media-object mui-pull-left goods_pic "  src="{{d.goods.good_image}}">
                     <div class="mui-media-body">
@@ -40,7 +40,7 @@
                     </div>
                 </a>
             </li>
-            <li class="mui-table-view-cell mui-media" ng-if="!d.status" ng-click="dynamicData(d.from_id,d.status)">
+            <li class="mui-table-view-cell mui-media" ng-if="d.status==0" ng-click="dynamicData(d.from_id,d.status)">
 		        <a href="javascript:;" class=" white-space">
 		            <img class="mui-media-object mui-pull-right goods_pic padding_tb11px" src="{{d.notes[0].subject}}">
 		            <ul class="mui-media-body mui-pull-left user_view">
@@ -63,7 +63,7 @@
 		        </a>
 		    </li>
         </ul>
-        
+       <div class="mui-text-center line-height44px color999 font12">没有更多数据了</div>  
 	</div>
 </body>
 <script src="../js/mui.min.js"></script>
@@ -107,10 +107,8 @@
 				var i = e.index;
 				if(i == 1) {
 					openNewPage('release_viewMedia.html')
-		            window.plus.bridge.exec("community", "pushWebView", []);
 				}else if(i==2){
 					openNewPage('release_goods.html')
-			     	window.plus.bridge.exec("community", "pushWebView", []);
 				}
 			});
 		}

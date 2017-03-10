@@ -68,6 +68,7 @@ function appendpic(p){
 }
 
 function upload(){
+	plus.nativeUI.showWaiting('上传中');
 	var server = apiRoot;  
 	console.log(newpath); 
 	var task = plus.uploader.createUpload(server,
@@ -91,6 +92,7 @@ function upload(){
 						$('#show_pic8').attr('src',getAvatar(icon));
 						parentid = plus.webview.getWebviewById('view/personal_center.html');
 						mui.fire(parentid,'changeVal',{icon:icon});/*更新用户头像*/
+						plus.nativeUI.closeWaiting();
 						
 					}
 				}else{

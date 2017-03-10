@@ -27,11 +27,27 @@
 				<p class="color333">客服热线：400-12345678</p>
 				<p class="color333">邮箱: shequshangcheng@163.com</p>
 				<p class="color333">公司网站：www.shequshangcheng.com</p>
-				<span class="mui-icon iconfont phone_btn colorP">&#xe611;</span>
+				<a onclick="dialTest()" class="mui-icon iconfont phone_btn colorP">&#xe611;</a>
 			</div>
 			
 		</div>
 	</body>
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/open.js"></script>
+	<script>
+		
+		function dialTest() {
+    	plus.nativeUI.confirm("您确定要拨打电话吗？",
+        function(event){
+            if(event.index ==1){
+                plus.device.dial( "400-12345678", false );
+            }else{
+                return false;
+            }
+        }
+        ,'客服消息',['取消','确定']
+    )
+     
+}
+	</script>
 </html>

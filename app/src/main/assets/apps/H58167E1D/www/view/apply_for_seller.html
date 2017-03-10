@@ -19,14 +19,20 @@
     	.pay_type{width: 70%;float: right;}
     	.pay_type div{width: 50%; display: inline-block;} 
     	.upfile_box{margin: 10px;}
-    	.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{font-size: 22px;} 	
+    	.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{font-size: 22px;} 
+    	.share_list{width: 80%;position: absolute;bottom: 25%;left: calc(50% - 40%);border-radius: 8px;padding-top: 0;}
+    	.share_list p{text-indent: 2em;}
+    	.padding_r28px{padding-right: 28px;}
+    	.line-height37px{line-height: 37px;}
+    	.font16{font-size: 16px;}	
+    	.mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{top: -10px;}
     </style>
 </head>
-<body>
+<body ng-app="applyApp" ng-controller="applyController">
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 	    <h1 class="mui-title colorP">申请卖主</h1>
-	    <button id="merchant_sub"class="mui-btn-link mui-pull-right"><span class="colorP">提交</span></button>
+	    <button ng-click="apply_sub()"class="mui-btn-link mui-pull-right"><span class="colorP">提交</span></button>
 	</header>
 	<div class="mui-content">
 		<div></div>
@@ -94,7 +100,7 @@
 					    </div>
 		            </div>
 		        </li>
-		        <li class="mui-table-view-cell">资质上传</li>
+		        <li class="mui-table-view-cell">资质说明</li>
 		        <li class="mui-table-view-cell padding0">
 		        	<textarea name="" rows="6" cols="" id="merchant_summary" placeholder="自我描述，增加客户对你的信任"></textarea>		        	
 		        </li>
@@ -111,17 +117,64 @@
 		       </li>  
 		        
 		</ul>
-		<div class="mui-table-view-cell" style="background: transparent;">
+		<!--<div class="mui-table-view-cell" style="background: transparent;">
 	        <div class="mui-input-row mui-checkbox mui-left">
-	          <label>已阅读并同意<a>使用条例及隐私协议</a></label>
-	          <input style="padding: 6px 0;" name="checkbox1" type="checkbox" checked >
+	          <label>已阅读并同意</label><a></a>
+	          <input style="padding: 0 0;" name="checkbox1" type="checkbox" checked >
 	        </div>
-	    </div> 
+	    </div> -->
+	    <div class="paddingl_r_15px_tb11px">
+			<span class="font14">请阅读</span>&nbsp;
+			<a class="law">《使用条例及隐私协议》</a>
+		</div>
+	    
+	    <!--阅读知识产权承诺书弹框-->        
+		<div class="alert_window" id="law">
+    		<div class="share_list" id="law_text" style="bottom: 10%;">
+    			<p class="mui-text-center border-bottom line-height44px font16 color333">使用条例及隐私协议</p>
+    			<div style="overflow-y: scroll;height: 400px;padding: 0 15px;">
+    				<p class="color333 font12 margin-top10px">
+						承诺并保证，您在去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端以各种形式发布的作品及信息，均符合《中华人民共和国著作权法》、《中华人民共和国商标法》、《中华人民共和国反不正当竞争法》、《中华人民共和国侵权责任法》、《中华人民共和国广告法》、《中华人民共和国计算机信息系统安全保护条例》、《计算机软件保护条例》及《信息网络传播权保护条例》等有关法律、法规、规章的规定。
+					</p>
+					<p class="color333 font12">
+						您承诺并保证，您在去卖艺网（www. myee.net.cn）及“去卖艺APP”移动客户端以各种形式发布的信息，均符合社会公序良俗。
+					</p>
+					<p class="color333 font12">
+						您承诺并保证，您在去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的作品、文字、图片、视频、音频、多媒体资料或其他内容均拥有相应合法的权利。这些文字、图片、视频、音频、多媒体资料或其他内容，不侵犯任何第三方的肖像权、名誉权、著作权、商标权等任何权利，不违反您与任何第三方所签订的任何法律文件的规定。
+					</p>
+					<p class="color333 font12">
+						去卖艺公司有权对您上传的作品、文字、图片、视频、音频、多媒体资料或其他内容随时进行检查或编辑。如果发现您上传的内容不符合前述承诺，去卖艺公司有权删除您所上传的内容。对于您通过去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的内容，去卖艺公司不保证其合法性、正当性、准确性或完整性。您应自行承担因此产生的法律责任，如果因您违反上述承诺及保证导致去卖艺公司因此受到损失，您应赔偿由此造成的全部损失。
+					</p>
+					<p class="color333 font12">
+						您在点击确认本承诺之前，请仔细阅读本承诺，并确认您已完全理解本承诺。如您对本承诺有任何疑问，请立即停止通过去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的作品、文字、图片、视频、音频、多媒体资料或其他内容，并可向去卖艺网客服咨询。
+					</p>
+					<div class="mui-input-row mui-checkbox mui-left">
+			            <label>我已阅读并同意</label>
+			            <input name="checkbox1" type="checkbox" class="is_allow_release">  
+		            </div>
+    			</div>
+			</div>
+		</div>
 	</div>
-	</form>
 </body>
 <script src="../js/mui.min.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/upload_pic.js"></script>
+<script src="../js/apppublic.js"></script>
 <script src="../js/app/apply.js"></script>
+<script type="text/javascript">
+	$(".is_allow_release").click(function(){
+		 	if($(this).is(':checked')){
+		 		$('#submit_btn').attr('disabled',false);
+		 		$('#law').fadeOut(300);
+		 		event.stopPropagation();
+		 	}else{
+		 		$('#submit_btn').attr('disabled',true);
+		 	}
+		 }) 
+		 
+		 //阅读知识产权承诺
+		share($('#law'),$('#law_text'),$('.law'),$('.cancel_btn'))
+</script>
 </html>

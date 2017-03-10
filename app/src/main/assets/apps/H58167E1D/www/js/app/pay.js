@@ -2,7 +2,7 @@ var app = angular.module("payApp",[]);
 var uid,id,money,shid,trade_name;
 var paytype = 1, ptype = '', pays={}, url = '',w = null, orderid;
 app.controller("payController",function($scope,$http){
-	
+	$scope.goods_num = 1;
 	$scope.initView = function($id,$uid){
 		console.log($id);
 		console.log($uid);
@@ -23,6 +23,7 @@ app.controller("payController",function($scope,$http){
 		$scope.addr = response.data.data.addr//地址数据
 		shid=response.data.data.goods.uid;
 		money=response.data.data.goods.price;
+		$scope.price = money;
 		trade_name=response.data.data.goods.good_name;
 		plus.nativeUI.closeWaiting();
 	},function errorfunction(e){
@@ -49,9 +50,9 @@ app.controller("payController",function($scope,$http){
 		plus.nativeUI.showWaiting('加载中...');
 		console.log(JSON.stringify(response));         
 		plus.nativeUI.closeWaiting();
-//		orderid=response.data.data.ddid;console.log(orderid);
-//		money=response.data.data.money;
-//		payment(); 
+		orderid=response.data.data.ddid;console.log(orderid);
+		money=response.data.data.money;
+		payment(); 
 	},function errorfunction(e){
 		console.log(e);
 	})
@@ -145,6 +146,7 @@ document.addEventListener("plusready",function(){
 	id = plus.storage.getItem('goodsId');
 	uid = plus.storage.getItem('uid');
 	$scope.initView(id,uid);
+			plus.nativeUI.closeWaiting();
 	$scope.$apply();
 	
 // 获取支付通道

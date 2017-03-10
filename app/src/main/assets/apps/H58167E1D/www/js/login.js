@@ -49,11 +49,6 @@ document.addEventListener('plusready',function(){
 						ws.close;
 					}, 1000)
 					goUrl('../index.html');
-					var arr = [data.data.id,
-                              data.data.mobile,
-                              data.data.nick,
-                              data.data.icon];
-                              window.plus.bridge.execSync("community","login",arr);
 				}else{
 					toast(data.error);
 					return; 

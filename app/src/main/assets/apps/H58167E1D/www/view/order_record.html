@@ -11,6 +11,7 @@
     	.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{color: #4c968e;background: transparent;}
     	.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar{width: 20%;background-color: #4c968e;}
     	.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border: none;}
+    	.mui-slider-indicator.mui-segmented-control{position: fixed;top: 44px;z-index: 999;}
     </style>
 </head>
 <body  ng-app="myorders" ng-controller="myorderscontroller">
@@ -28,7 +29,7 @@
 		        <a class="mui-control-item" href="#item5">待评价</a>
 		    </div>
 		    <div id="sliderProgressBar" class="mui-slider-progress-bar margin-bottom5px"></div>
-		    <div class="mui-slider-group">
+		    <div class="mui-slider-group"style="padding-top: 32px;">
 		    	<!--全部-->
 		        <div id="item1" class="mui-slider-item mui-control-content mui-active">
 		            <ul class="mui-table-view margin-bottom5px bg_white" ng-repeat="(index,v) in orders">

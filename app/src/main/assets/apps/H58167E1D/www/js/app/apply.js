@@ -6,7 +6,24 @@ var card;
 var channel;
 var number;
 var summary;
-document.addEventListener('plusready',function(){
+var app = angular.module("applyApp",[]);
+app.controller("applyController",function($scope,$http){
+	
+	$scope.apply_sub = function()
+	{
+		uid = plus.storage.getItem('uid');
+		name=$('#merchant_name').val();
+		mobile=$('#merchant_mobile').val();
+		card=$('#merchant_card').val();
+		channel=$("input[type='radio']:checked").val();
+		number=$('#merchant_number').val();
+	    summary=$('#merchant_summary').val();
+		console.log(name+'1='+uid+'=='+mobile+'2=='+card+'3==='+channel+'4==='+number+'5==='+summary); 
+		console.log(files);
+		
+		upload();
+	}
+})  
 	$('.upfile_box').on('click',function(){ 
 		var id=$(this).attr('id');
 		console.log(id)
@@ -31,23 +48,7 @@ document.addEventListener('plusready',function(){
 				});
 			}
 		})
-	})	 
-
-	$('#merchant_sub').on('tap',function(){
-		uid = plus.storage.getItem('uid');
-		name=$('#merchant_name').val();
-		mobile=$('#merchant_mobile').val();
-		card=$('#merchant_card').val();
-		channel=$("input[type='radio']:checked").val();
-		number=$('#merchant_number').val();
-	    summary=$('#merchant_summary').val();
-		console.log(name+'1='+uid+'=='+mobile+'2=='+card+'3==='+channel+'4==='+number+'5==='+summary); 
-		console.log(files) 
-		upload();
-	})
-
-});
-	
+	})	 	
 //添加图片
 var index = 1;
 var files = [];
@@ -78,6 +79,65 @@ function upload(){
 //		if(files.length <= 0){
 //			toast("请上传头像！");
 //		}
+//var img1=$('#a1').attr('src');
+//		var img2=$('#a2').attr('src');
+//		var img3=$('#a3').attr('src');
+//		var img4=$('#a4').attr('src');
+		if(!name)
+		{
+			toast('请输入名字');
+			return;
+		}
+		if(!mobile)
+		{
+			toast('请输入手机号码');
+			return;
+		}
+		if(!mobile.match(p1))
+		{
+			toast('手机号码格式联对');
+			return;
+		}
+		if(!card)
+		{
+			toast('请输入身份证号码');
+			return;
+		}
+		if(!channel)
+		{
+			toast('请选择收款方式');
+			return;
+		}
+		if(!number)
+		{
+			toast('请选择收款账号');
+			return;
+		}
+//		if(img1.length==0)
+//		{
+//			toast('请添加本人照片');
+//			return;
+//		}
+//		if(img2.length==0)
+//		{
+//			toast('请添加本人身份证正面照片');
+//			return;
+//		}
+//		if(img3.length==0)
+//		{
+//			toast('请添加本人身份证反面照片');
+//			return;
+//		}
+//		if(img4.length==0)
+//		{
+//			toast('请添加上传照片');
+//			return;
+//		}
+//		if(!summary)
+//		{
+//			toast('请输入资质说明');
+//			return;
+//		}
 	var img=plus.storage.getItem('icon');
 
 	var server = apiRoot;  
@@ -93,7 +153,7 @@ function upload(){
 					console.log(JSON.stringify(infopics));
 					if(t.responseText.data!='')
 					{
-						plus.nativeUI.toast('处理完成' + t.responseText);
+						plus.nativeUI.toast('提交成功');
 						plus.webview.create('personal_center.html','personal_center.html').show('pop-in');
 					}
 				}else{
@@ -121,6 +181,10 @@ function upload(){
 	task.start();
 	 
 }		
-
+document.addEventListener("plusready",function(){
+	appElement=document.querySelector('[ng-controller=applyController]');
+	$scope= angular.element(appElement).scope();
+	$scope.$apply();
+})
 	
 

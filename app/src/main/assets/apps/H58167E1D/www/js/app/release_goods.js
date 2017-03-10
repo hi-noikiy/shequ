@@ -19,12 +19,89 @@ app.controller("releaseGoodsController", function($scope, $http) {
 	}
 
 	$scope.releasesub = function() {
-		plus.nativeUI.showWaiting("处理中...");
+		
 		var uid = plus.storage.getItem('uid');
+//		console.log($('#info').text());
+		console.log($scope.cate_id);
+		if(!$scope.cate_id)
+		{
+			toast('请添加分类');
+			return;
+		}
+		if(!$("#good_name").val())
+		{
+			toast('请添加商品名称');
+			return;
+		}
+		if(!$("#good_intro").val())
+		{
+			toast('请添加简介');
+			return;
+		}
+		if(!$("#good_price").val())
+		{
+			toast('请添加商品金额');
+			return;
+		}
+		if(!$("#good_ship").val())
+		{
+			toast('请添加运费');
+			return;
+		}
+		if(!$("#maf_time").val())
+		{
+			toast('请添加工期时间');
+			return;
+		}
+		if(!$("#description").val())
+		{
+			toast('请添加商品参数描述');
+			return;
+		}
+		if($('#a1').attr('src').length==0)
+		{
+			toast('请添加封面图');
+			return;
+		}
+		if($('#a2').attr('src').length==0)
+		{
+			toast('展示图第一个位置请添加图片');
+			return;
+		}
+		if($('#a3').attr('src').length==0)
+		{
+			toast('展示图第一个位置请添加图片');
+			return;
+		}
+		if($('#a4').attr('src').length==0)
+		{
+			toast('展示图第二个位置请添加图片');
+			return;
+		}
+		if($('#a4').attr('src').length==0)
+		{
+			toast('展示图第三个位置请添加图片');
+			return;
+		}
+		if($('#a5').attr('src').length==0)
+		{
+			toast('展示图第四个位置请添加图片');
+			return;
+		}
+		if($('#a6').attr('src').length==0)
+		{
+			toast('展示图第五个位置请添加图片');
+			return;
+		}
+		if($('#a7').attr('src').length==0)
+		{
+			toast('请添加图文详情');
+			return;
+		}
 		var server = apiRoot;
 		var task = plus.uploader.createUpload(server, { method: "post" },
 			function(t, status) { //上传完成
-				plus.nativeUI.closeWaiting();
+				plus.nativeUI.showWaiting("处理中...");
 				if(status == 200) {
 					rs = JSON.parse(t.responseText);
 					if(rs.error == 0) {
@@ -32,6 +109,7 @@ app.controller("releaseGoodsController", function($scope, $http) {
 						console.log(JSON.stringify(infopics));
 						if(t.responseText.data != '') {
 							plus.nativeUI.toast('发布成功');
+							plus.nativeUI.closeWaiting();
 							plus.webview.currentWebview().close();
 						}
 					}else{
@@ -47,7 +125,7 @@ app.controller("releaseGoodsController", function($scope, $http) {
 			}
 		);
 		//???
-		for(var i = 0; i < files.length; i++) {
+		for(var i = 0; i < files.length; i++) {   
 			var f = files[i];
 			switch(f.type) {
 				case 1: //封面

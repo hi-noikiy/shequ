@@ -22,7 +22,15 @@
 	</header>
 	<div class="mui-content">
        <div class="bg_white margin-bottom5px" >
-       		<img src="{{notes[0].subject}}"/>
+	       	<div class="bg_white margin-bottom5px video_box" ng-if="!notes[0].file_type">
+	       		<!--<video id="video"  poster="{{notes[0].subject}}">
+	       			<source ng-src="{{notes[0].subject}}" type="video/mp4"></source>       			
+	       		</video> 
+	       		<span class="mui-icon iconfont player_btn">&#xe6bb;</span>-->
+	       		<img ng-src="{{notes[0].content_imgs[0].img}}" />
+	       </div>
+	        
+       		<img ng-src="{{notes[0].subject}}" ng-if="notes[0].file_type"/>
        		<ul class="paddingl_r_15px_tb11px bg_white">
 	   			<li><span id="title">{{notes[0].title}}</span></li>
 	   			<li class="mui-clearfix"><p class="color0 mui-pull-left font12" id="tags"></p> {{notes[0].tags}}<span class="mui-pull-right mui-icon iconfont color999 font font12">&#xe71b;  <i>{{notes[0].follow}}</i></span></li>
@@ -33,14 +41,14 @@
             </div>
             <li class="mui-table-view-cell mui-media">
                 <a href="javascript:;">
-                    <img onclick="openNewPage('honer_page.html')" class="mui-media-object mui-pull-left circle_pic"  src="{{notes[0].icon}}"> 
+                    <img ng-click="icon_sub(notes[0].uid,notes[0].icon,notes[0].nick)" class="mui-media-object mui-pull-left circle_pic"  src="{{notes[0].icon}}"> 
                     <div class="mui-media-body">
                      	<div class="mui-clearfix margin-bottom5px">  
                      		<span class="mui-pull-left">{{notes[0].nick}}</span>
-                     		<span id="follow"></span>  
+                     		<!--<span id="follow"></span>-->  
                      		
-                     		<span class="mui-pull-right iconfont mui-icon line-height20px color999 attention_btn font12" style="border: 1px solid #999;" ng-if="user.follow">&#xe669;已关注</span>
-                     		<span class="mui-pull-right iconfont mui-icon line-height20px colorP attention_btn font12" id="follow" ng-if="!user.follow" ng-click="view_follow()">&#xe669;关注</span>
+                     		<span class="mui-pull-right iconfont mui-icon line-height20px color999 attention_btn font12" style="border: 1px solid #999;" ng-if="user.follow==1">&#xe669;已关注</span>
+                     		<span class="mui-pull-right iconfont mui-icon line-height20px colorP attention_btn font12" id="follow" ng-if="user.follow==0" ng-click="view_follow()">&#xe669;关注</span>
                      
                      	</div>
                      	<p class="font12" >{{notes[0].personalized}}</p>
@@ -48,10 +56,13 @@
                 </a>
             </li>
         </ul>
-       		<img src="../img/2.jpg"/>
        		<div class="paddingl_r_15px_tb11px font12" id="content">
        			{{notes[0].content}}
        		</div>
+       		<div ng-repeat="(index,x) in notes[0].content_imgs">
+       			<img src="{{x.img}}"/>
+       		</div>	
+       		
        		<!--<img src="../img/3.jpg"/>
        		<div class="paddingl_r_15px_tb11px font12">
        			一、音柱材料与提琴音色：<br />
@@ -203,6 +214,26 @@
 			$('.input_box input').val("");
 		})
 		
+		//视频播放
+		var is_play = true;			
+		$('.video_box').click(function(){
+			var video = document.getElementById('video');
+			if(is_play){
+				$('.player_btn').css('display','none');
+				video.play();
+				is_play = false;				
+			} else{
+				$('.player_btn').css('display','block');
+				video.pause();
+				is_play = true;
+			}
+			//视频结束 播放按钮显示
+			if(video.ended){
+				$('.player_btn').css('display','block');
+				is_play = true;
+			}
+		
+		})
 		share($('.alert_window'),$('.share_list'),$('#shareApp_btn'),$('.cancel_btn'));
 	})
 	

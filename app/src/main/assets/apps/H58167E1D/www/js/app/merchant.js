@@ -71,8 +71,12 @@ window.addEventListener('changeVal',function(event){
     $('#user_nick').text(nick);
   }    
   var icon2 = event.detail.icon;
+  console.log(icon2);
   if(icon2){
     icon = icon2;
     $('#user_icon').attr('src',getAvatar(icon));
+    var filter_height = parseInt($('.user_box').height()+80);
+			$('.substrate').css({'height':filter_height,'margin-bottom':'10px','background-image':'url('+getAvatar(icon)+')'});
+			$('.filterImg_box').css({'background-image':'url('+getAvatar(icon)+')','background-size':'100% 100%','height':filter_height}).addClass('filterImg');
   }  
 });

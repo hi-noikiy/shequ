@@ -87,7 +87,12 @@
 				if (targetTab == activeTab) {
 					return;
 				}
-
+				  //显示 和 隐藏 原生VIEW
+               if (targetTab == 'view/honer_message.html'){
+               window.plus.bridge.exec("community", "showNativeView", []);
+               }else{
+               window.plus.bridge.exec("community", "hideNativeView", []);
+               }
 				//更换标题
 				//显示目标选项卡
 				if (mui.os.ios || aniShow[targetTab]) {
@@ -101,13 +106,7 @@
 				//隐藏当前;
 				plus.webview.hide(activeTab);
 				//更改当前活跃的选项卡
-				activeTab = targetTab;
-								//显示 和 隐藏 原生VIEW
-              if (targetTab == 'view/honer_message.html'){
-                 window.plus.bridge.exec("community", "showNativeView", []);
-               }else{
-                  window.plus.bridge.exec("community", "hideNativeView", []);
-               }
+				activeTab = targetTab;			
 			});
 			 //自定义事件，模拟点击“首页选项卡”
 			document.addEventListener('gohome', function() { 

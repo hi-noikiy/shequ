@@ -42,6 +42,7 @@ import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.domain.EaseEmojicon;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
+import com.hyphenate.easeui.model.UserInfo;
 import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseUserUtils;
@@ -124,8 +125,11 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         // check if single chat or group chat
         chatType = fragmentArgs.getInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         // userId you are chat with or group id
-        toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
-
+        if (chatType == EaseConstant.CHATTYPE_SINGLE) {
+            toChatUsername = UserInfo.getInstance().getInfo().get(fragmentArgs.getString(EaseConstant.EXTRA_USER_ID)).getNick();
+        } else if (chatType == EaseConstant.CHATTYPE_GROUP) {
+            toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
+        }
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -749,15 +753,20 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         }
         if (chatType == EaseConstant.CHATTYPE_GROUP) {
             message.setChatType(ChatType.GroupChat);
+            message.setAttribute("userheader", UserLodingInFo.getInstance().getIcon());
+            message.setAttribute("username", UserLodingInFo.getInstance().getNick());
+            message.setAttribute("from", UserLodingInFo.getInstance().getMobile());
         } else if (chatType == EaseConstant.CHATTYPE_CHATROOM) {
             message.setChatType(ChatType.ChatRoom);
+        } else if (chatType == EaseConstant.CHATTYPE_SINGLE) {
+            message.setChatType(ChatType.Chat);
+            message.setAttribute("userheader", UserLodingInFo.getInstance().getIcon());
+            message.setAttribute("username", UserLodingInFo.getInstance().getNick());
+            message.setAttribute("from", UserLodingInFo.getInstance().getMobile());
         }
         //send message
 
 
-        message.setAttribute("userheader", UserLodingInFo.getInstance().getIcon());
-        message.setAttribute("username", UserLodingInFo.getInstance().getNick());
-        message.setAttribute("from", UserLodingInFo.getInstance().getMobile());
         EMClient.getInstance().chatManager().sendMessage(message);
         //refresh ui
         if (isMessageListInited) {

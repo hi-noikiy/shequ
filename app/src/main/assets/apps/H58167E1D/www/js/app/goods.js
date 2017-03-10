@@ -3,6 +3,7 @@ app.controller("goodsController",function($scope,$http){
 	$scope.initView = function($id,$uid){
 		console.log($id);
 		console.log($uid);
+		plus.nativeUI.closeWaiting();
 	$http({
 		method:'post',
 		url:apiRoot,
@@ -24,14 +25,13 @@ app.controller("goodsController",function($scope,$http){
 		plus.storage.setItem('goodId',goodid+'');
 		plus.nativeUI.showWaiting('加载中...');
 		plus.webview.create('confirm_order.html', 'confirm_order.html').show('pop-in');
-		plus.nativeUI.closeWaiting();
+
 	}
 	$scope.info = function(id)
 	{
 		plus.nativeUI.showWaiting('加载中......');
 		plus.storage.setItem('goodsId',id+'');
 		plus.webview.create('goods_detail.html','goods_detail.html').show('pop-in');
-		plus.nativeUI.closeWaiting();
 	}
 })
 

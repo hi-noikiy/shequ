@@ -22,6 +22,7 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
+import com.hyphenate.easeui.model.GroupsInfo;
 import com.hyphenate.easeui.model.UserInfo;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
@@ -112,8 +113,11 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
                 holder.motioned.setVisibility(View.GONE);
             }
             // group message, show group avatar
-
-            holder.avatar.setImageResource(R.drawable.ease_group_icon);
+            if (GroupsInfo.getGroupImageBean() != null && GroupsInfo.getImage(groupId) != null) {
+                holder.avatar.setImageURI(GroupsInfo.getImage(groupId).getIcon());
+            } else {
+                holder.avatar.setImageResource(R.drawable.ease_group_icon);
+            }
             EMGroup group = EMClient.getInstance().groupManager().getGroup(username);
             holder.name.setText(group != null ? group.getGroupName() : username);
         } else if (conversation.getType() == EMConversationType.ChatRoom) {

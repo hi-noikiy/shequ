@@ -7,8 +7,12 @@
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <!--<style type="text/css">
+    	.tag_val{position: relative;}
+    	.tag_val i{position: absolute;top: -6px;right: -6px;color: #999;}
+    </style>-->
 </head>
-<body>
+<body ng-app="addtagApp" ng-controller="addtagController">
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 	    <h1 class="mui-title colorP">添加标签</h1>
@@ -20,35 +24,31 @@
             <button type="button" class="mui-btn mui-btn-blue mui-btn-block margin0" style="width: 23%;"  id="add_tag_btn">添加</button>
         </div>
         <div class="bg_white paddingl_r_15px_tb15px newTag_list" >
-        	<span class="mui-badge mui-btn-blue color_white tag_val">旅行日记<i class="iconfont mui-icon ">&#xe603;</i></span>
-        	<span class="mui-badge mui-btn-blue color_white tag_val">快乐旅行<i class="iconfont mui-icon ">&#xe603;</i></span>
+        	<!--<span class="mui-badge mui-btn-blue color_white tag_val"><span>旅行日记</span><i class="iconfont mui-icon ">&#xe603;</i></span>
+        	<span class="mui-badge mui-btn-blue color_white tag_val"><span>快乐旅行</span><i class="iconfont mui-icon ">&#xe603;</i></span>-->
         </div>
-        <div class="paddingl_r_15px_tb11px">
+        <!--<div class="paddingl_r_15px_tb11px">
         	<h5 class="margin-bottom10px">热门标签</h5>
         	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        </div>
+        </div>-->
         
         
 	</div>
 </body>
 <script src="../js/mui.min.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
 <script src="../js/jquery.min.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/add_tag.js"></script>
 <script type="text/javascript" charset="UTF-8">
-
   	$('#add_tag_btn').click(function(){
   		var textVal = $('.tagName').val();
   		console.log(textVal);
-  		$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'>"+ textVal +"<i class='iconfont mui-icon'>&#xe603;</i></span>")
+  		
+  		$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span>"+textVal+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>")
   		   
   	})
-  	$('.newTag_list span i').click(function(){
+  	$('body').on('click','.newTag_list span i',function(){
   		$(this).parent().remove();
   		plus.webview.close();
   	})
@@ -56,17 +56,16 @@
   	document.addEventListener('plusready',function () {
       $('#tags').on('tap',function () {
       	var tags_arr = [];
-      	$('.tag_val').each(function(){
+      	$('.tag_val span').each(function(){
       		tags_arr.push($(this).text());
       	})
-// 	   var tags=$('.tag_val').text();
-// 	   var tags_arr=tags.split(' ');
-   	   var tags=tags_arr.join(',');
-   	   plus.storage.setItem('releaseTags',tags);
-   	   console.log(tags);
+      	tag=tags_arr.join(',');
+   	   plus.storage.setItem('releaseTags',tag);
+   	   console.log(tags_arr);
    	   console.log(plus.storage.getItem('releaseTags'));
         plus.webview.currentWebview().close()
       })
+      	
     },false);
   	
   	

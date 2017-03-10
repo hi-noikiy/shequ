@@ -116,6 +116,12 @@ function ready_ThirdPartyLogin(){
 							ws.close;
 						}, 1000);    
 						plus.webview.create('../index.html','index.html').show('pop-in');
+					   //记录第三方的登录信息，此处需要调用一下服务器接口判断此用户是否已经存在，账号为 id，密码也是123456；
+                       var arr = [data.data.id,
+                                  data.data.mobile,
+                                  data.data.nick,
+                                  data.data.icon];
+                       window.plus.bridge.execSync("community","login",arr);
 						plus.nativeUI.closeWaiting();
 					}else{
 						toast('登陆失败！');

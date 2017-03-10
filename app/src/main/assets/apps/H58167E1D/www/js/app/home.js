@@ -19,34 +19,9 @@ app.controller("homeController",function($scope,$http){
 			plus.nativeUI.showWaiting('加载中...');
 			console.log(id);
 			plus.storage.setItem('noteId',id+'');
-			$.ajax({
-			type: "post",
-			url: apiRoot,
-			data: {
-				action: 'Community.fileType',
-				id: id,
-			},
-			dataType: 'json',
-			success: function(data) {
-				console.log(JSON.stringify(data));
-				if(data.error == 0) {
-					//	console.log(noteId);
-					plus.nativeUI.closeWaiting();
-					if(data.data == 'F') {
-						console.log(plus.storage.getItem('noteId'));
-						plus.webview.create('view_detail.html', 'view_detail.html').show('pop-in');
-					} else if(data.data == 'M') {
-						plus.webview.create('video_detail.html', 'video_detail.html').show('pop-in');
-					}
-				} else {
-					plus.nativeUI.toast(data.desc);
-					return;
-				}
-
-			}
-		})
+			plus.webview.create('view_detail.html', 'view_detail.html').show('pop-in');  
 //			plus.webview.create('goods_detail.html', 'goods_detail.html').show('pop-in');  
-			plus.nativeUI.closeWaiting();
+
 		}
 		$scope.shequNote =function(cid)
 		{
@@ -85,7 +60,6 @@ app.controller("homeController",function($scope,$http){
 })
 
 function read_home() {
-plus.nativeUI.showWaiting('加载中...');
 	$('#head>div>a').on('tap',function () {
 
 		if($(this).index() == 0){
@@ -118,8 +92,8 @@ function initTrade($scope,$http){
 		url:apiRoot,
 		data:{action:'Trade.getGoods'}
 	}).then(function successCallback(response){
-//		console.log(JSON.stringify(response.data.data));   
-		$scope.carousels = response.data.data.carousel;
+		console.log(JSON.stringify(response.data.data));    
+		$scope.carousels = response.data.data.carousel;  
 		$scope.hots = response.data.data.hot;
 		$scope.news = response.data.data.new;
 		$scope.recommends = response.data.data.recommend;
@@ -136,19 +110,21 @@ function initNote($scope,$http){
 		url:apiRoot,
 		data:{action:'Community.index'} 
 	}).then(function successCallback(response){
-		console.log(JSON.stringify(response.data.data.cates));
+		console.log(JSON.stringify(response.data.data));       
 		$scope.notes = response.data.data.notes;//标题下的数据
 		$scope.photos = response.data.data.photo;//轮播图
 		$scope.cates = response.data.data.cates;
 //		$scope.cates = response.data.data.cates;
 //		$scope.recommends = response.data.data.recommend;
 	},function errorfunction(e){
-		console.log(e);
-	})
+		console.log(console.log(e));
+	})  
 }
 
-if(window.plus) {
-	read_home();
-} else {
-	document.addEventListener('plusready', read_home, false);
-}
+document.addEventListener("plusready", function() {
+	appElement = document.querySelector('[ng-controller=homeController]');
+	$scope = angular.element(appElement).scope();  
+	plus.nativeUI.closeWaiting();
+	$scope.$apply();
+})
+       

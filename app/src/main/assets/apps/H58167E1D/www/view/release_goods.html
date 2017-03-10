@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>发布商品</title>
-		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
-		<link rel="stylesheet" type="text/css" href="../css/global.css" />
-		<style type="text/css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>发布商品</title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+    <style type="text/css">
 			.upfile_box div {
 				text-align: center;
 				line-height: 70px;
@@ -99,214 +100,231 @@
 			.mui-radio label {
 				padding-left: 0;
 			}
-		</style>
-	</head>
 
-	<body class="bg_white" ng-app="releaseGoodsApp" ng-controller="releaseGoodsController">
-		<header class="mui-bar mui-bar-nav bg_white">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title colorP">发布商品</h1>
-		</header>
-		<div class="mui-content bg_white">
-			<div></div>
-			<ul class="mui-table-view bg_white">
-				<li class="mui-table-view-cell">
-					<div id="show_pic7" class="good_subject">
-						<i class="iconfont">&#xe62b;</i>
-						<img src="" id="a1" />
-						<!--<input type="file" id="uploadimg7" value=""/>-->
-					</div>
-					<label for="uploadimg7" class="sp_label">点击添加封面图片</label>
-				</li>
-				<li class="mui-table-view-cell padding0">
-					<div class="mui-input-row">
-						<label>商品名称</label>
-						<input type="text" class="mui-input-clear" placeholder="" id="good_name">
-					</div>
-				</li>
-				<li class="mui-input-row border-bottom category">
-					<a class="mui-navigate-right">
-						<label class="color333">所属分类</label>
-						<p class="mui-pull-right padding_r28px color333 line-height37px current_type"></p>
-					</a>
-				</li>
-				<li class="mui-table-view-cell padding0">
-					<div class="mui-input-row">
-						<label style="padding-bottom: 0;">简介（50字内）</label>
-						<textarea name="" id="good_intro" rows="5" cols=""></textarea>
-					</div>
-				</li>
-				<li class="mui-table-view-cell padding0">
-					<div class="mui-input-row">
-						<label>价格（元）</label>
-						
-						<input type="text" type="number" class="mui-input-clear" placeholder="" id="good_price">
-					</div>
-				</li>
-				<li class="mui-table-view-cell padding0">
-					<div class="mui-input-row">
-						<label>运费（元）</label>
-						<input type="text" type="number" class="mui-input-clear" placeholder="" id="good_ship">
-					</div>
-				</li>
-				<li class="mui-table-view-cell padding0">
-					<div class="mui-input-row">
-						<label>工期（天）</label>
-						<input type="text" type="number" class="mui-input-clear" placeholder="" id="maf_time">
-					</div>
-				</li>
-				<li class="mui-table-view-cell padding0">
-					<div class="mui-input-row">
-						<label>商品参数描述</label>
-						<textarea name="" id="description" cols="" rows="5" style="padding: 0 15px 11px;"></textarea>
-					</div>
-				</li>
-				<li class="paddingl_r_15px_tb11px bg_white clearfix border-bottom" style="height: 190px" id="note_subject">
-					<span class="margin-bottom10px" style="display: block;">展示图片</span>
-					<div class="upfile_box" id="2">
-						<div id="show_pic1">
-							<i class="iconfont mui-icon">&#xe62b;</i>
-							<img src="" id='a2' />
-						</div>
-					</div>
-					<div class="upfile_box" id="3">
-						<!--<input type="file" id="uploadimg2" class="upload_file"/>-->
-						<div id="show_pic2">
-							<i class="iconfont mui-icon">&#xe62b;</i>
-							<img src="" id='a3' />
-						</div>
-					</div>
-					<div class="upfile_box" id="4">
-						<!--<input type="file" id="uploadimg3" class="upload_file"/>-->
-						<div id="show_pic3">
-							<i class="iconfont mui-icon">&#xe62b;</i>
-							<img src="" id='a4' />
-						</div>
-					</div>
-					<div class="upfile_box" id="5">
-						<!--<input type="file" id="uploadimg4" class="upload_file"/>-->
-						<div id="show_pic4">
-							<i class="iconfont mui-icon">&#xe62b;</i>
-							<img src="" id='a5' />
-						</div>
-					</div>
-					<div class="upfile_box" id="6">
-						<!--<input type="file" id="uploadimg5" class="upload_file"/>-->
-						<div id="show_pic5">
-							<i class="iconfont mui-icon">&#xe62b;</i>
-							<img src="" id='a6' />
-						</div>
-					</div>
-				</li>
-				<li class="paddingl_r_15px_tb11px bg_white clearfix border-bottom" style="height: 110px;">
-					<span class="margin-bottom10px" style="display: block;">图文详情</span>
-					<div class="upfile_box" id="good_subject">
-						<!--<input type="file" id="uploadimg6" class="upload_file"/>-->
-						<div id="show_pic6">
-							<i class="iconfont mui-icon">&#xe62b;</i>
-							<img src="" id="a7" />
-						</div>
-					</div>
-				</li>
-				<a href="#sheet" id="openSheet" class="mui-btn mui-btn-block paddingl_r_15px_tb11px margin0" style="text-align: start;border-radius: 0;border: none;border-bottom: 1px solid #dedede;">
-					<span class="font14">是您本人原创作品对吗？</span>
-					<i class="mui-icon iconfont mui-pull-right margin-top3px">&#xe604;</i>
-					<span class="mui-pull-right font14" id="info">是</span>
-				</a>
-				<div class="paddingl_r_15px_tb11px">
-					<span class="font14">请阅读</span>&nbsp;
-					<a class="law">《知识产权承诺》</a>
-				</div>
-				<li class="mui-table-view-cell">
-					<button type="button" class="mui-btn-blue  btn_half" disabled="" id="submit_btn" ng-click="releasesub()">发&nbsp;布</button>
-				</li>
-			</ul>
+    </style>
+</head>
 
-			<div id="sheet" class="mui-popover mui-popover-bottom mui-popover-action ">
-				<!-- 可选择菜单 -->
-				<ul class="mui-table-view chose_btn">
-					<li class="mui-table-view-cell">
-						<a>是</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a>否</a>
-					</li>
-				</ul>
-				<!-- 取消菜单 -->
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">
-						<a href="#sheet1"><b>取消</b></a>
-					</li>
-				</ul>
-			</div>
+<body class="bg_white" ng-app="releaseGoodsApp" ng-controller="releaseGoodsController">
+<header class="mui-bar mui-bar-nav bg_white">
+    <a class="mui-icon mui-icon-left-nav mui-pull-left" id="confirmBtn"></a>
+    <h1 class="mui-title colorP">发布商品</h1>
+</header>
+<div class="mui-content bg_white">
+    <div></div>
+    <ul class="mui-table-view bg_white">
+        <li class="mui-table-view-cell">
+            <div id="show_pic7" class="good_subject">
+                <i class="iconfont">&#xe62b;</i>
+                <img src="" id="a1"/>
+                <!--<input type="file" id="uploadimg7" value=""/>-->
+            </div>
+            <label for="uploadimg7" class="sp_label">点击添加封面图片</label>
+        </li>
+        <li class="mui-table-view-cell padding0">
+            <div class="mui-input-row">
+                <label>商品名称</label>
+                <input type="text" class="mui-input-clear" placeholder="" id="good_name">
+            </div>
+        </li>
+        <li class="mui-input-row border-bottom category">
+            <a class="mui-navigate-right">
+                <label class="color333">所属分类</label>
+                <p class="mui-pull-right padding_r28px color333 line-height37px current_type"></p>
+            </a>
+        </li>
+        <li class="mui-table-view-cell padding0">
+            <div class="mui-input-row">
+                <label style="padding-bottom: 0;">简介（50字内）</label>
+                <textarea name="" id="good_intro" rows="5" cols=""></textarea>
+            </div>
+        </li>
+        <li class="mui-table-view-cell padding0">
+            <div class="mui-input-row">
+                <label>价格（元）</label>
 
-			<!--阅读知识产权承诺书弹框-->
-			<div class="alert_window" id="law">
-				<div class="share_list" id="law_text" style="bottom: 10%;">
-					<p class="mui-text-center border-bottom line-height44px font16 color333">知识产权承诺</p>
-					<div style="overflow-y: scroll;height: 400px;padding: 0 15px;">
-						<p class="color333 font12 margin-top10px">
-							承诺并保证，您在去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端以各种形式发布的作品及信息，均符合《中华人民共和国著作权法》、《中华人民共和国商标法》、《中华人民共和国反不正当竞争法》、《中华人民共和国侵权责任法》、《中华人民共和国广告法》、《中华人民共和国计算机信息系统安全保护条例》、《计算机软件保护条例》及《信息网络传播权保护条例》等有关法律、法规、规章的规定。
-						</p>
-						<p class="color333 font12">
-							您承诺并保证，您在去卖艺网（www. myee.net.cn）及“去卖艺APP”移动客户端以各种形式发布的信息，均符合社会公序良俗。
-						</p>
-						<p class="color333 font12">
-							您承诺并保证，您在去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的作品、文字、图片、视频、音频、多媒体资料或其他内容均拥有相应合法的权利。这些文字、图片、视频、音频、多媒体资料或其他内容，不侵犯任何第三方的肖像权、名誉权、著作权、商标权等任何权利，不违反您与任何第三方所签订的任何法律文件的规定。
-						</p>
-						<p class="color333 font12">
-							去卖艺公司有权对您上传的作品、文字、图片、视频、音频、多媒体资料或其他内容随时进行检查或编辑。如果发现您上传的内容不符合前述承诺，去卖艺公司有权删除您所上传的内容。对于您通过去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的内容，去卖艺公司不保证其合法性、正当性、准确性或完整性。您应自行承担因此产生的法律责任，如果因您违反上述承诺及保证导致去卖艺公司因此受到损失，您应赔偿由此造成的全部损失。
-						</p>
-						<p class="color333 font12">
-							您在点击确认本承诺之前，请仔细阅读本承诺，并确认您已完全理解本承诺。如您对本承诺有任何疑问，请立即停止通过去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的作品、文字、图片、视频、音频、多媒体资料或其他内容，并可向去卖艺网客服咨询。
-						</p>
-						<div class="mui-input-row mui-checkbox mui-left">
-							<label>我已阅读并同意</label>
-							<input name="checkbox1" type="checkbox" class="is_allow_release">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--所属分类弹框-->
-			<div class="alert_window" id="category">
-				<div class="share_list" id="sub_item">
-					<p class="mui-text-center border-bottom line-height44px font16 color333">所属分类</p>
-					<div class="category_list" style="overflow-y: scroll;height: 220px;">
-						<div class="mui-table-view-cell mui-collapse" ng-repeat="(index ,c) in cates | filter:{'parent':0}">
-							<a class="mui-navigate-right  mui-text-center">{{c.name}}</a>
-							<div class="mui-collapse-content">
-								<div class="mui-input-row mui-radio border-bottom" ng-repeat="(i,cc) in cates | filter:{'parent':index+1}">
-									<label>{{cc.name}}</label>
-									<input name="radio" type="radio" cate_id="{{cc.id}}">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="btn_group">
-						<button type="button" class="mui-btn mui-btn-grey mui-btn-block padding_tb_8px margin0 color333 cancel_btn">取消</button>
-						<button type="button" class="mui-btn mui-btn-blue mui-btn-block padding_tb_8px margin0 confirm_btn" ng-click="confirm_btn($event)">确定</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+                <input type="text" type="number" class="mui-input-clear" placeholder=""
+                       id="good_price">
+            </div>
+        </li>
+        <li class="mui-table-view-cell padding0">
+            <div class="mui-input-row">
+                <label>运费（元）</label>
+                <input type="text" type="number" class="mui-input-clear" placeholder=""
+                       id="good_ship">
+            </div>
+        </li>
+        <li class="mui-table-view-cell padding0">
+            <div class="mui-input-row">
+                <label>工期（天）</label>
+                <input type="text" type="number" class="mui-input-clear" placeholder=""
+                       id="maf_time">
+            </div>
+        </li>
+        <li class="mui-table-view-cell padding0">
+            <div class="mui-input-row">
+                <label>商品参数描述</label>
+                <textarea name="" id="description" cols="" rows="5"
+                          style="padding: 0 15px 11px;"></textarea>
+            </div>
+        </li>
+        <li class="paddingl_r_15px_tb11px bg_white clearfix border-bottom" style="height: 190px"
+            id="note_subject">
+            <span class="margin-bottom10px" style="display: block;">展示图片</span>
+            <div class="upfile_box" id="2">
+                <div id="show_pic1">
+                    <i class="iconfont mui-icon">&#xe62b;</i>
+                    <img src="" id='a2'/>
+                </div>
+            </div>
+            <div class="upfile_box" id="3">
+                <!--<input type="file" id="uploadimg2" class="upload_file"/>-->
+                <div id="show_pic2">
+                    <i class="iconfont mui-icon">&#xe62b;</i>
+                    <img src="" id='a3'/>
+                </div>
+            </div>
+            <div class="upfile_box" id="4">
+                <!--<input type="file" id="uploadimg3" class="upload_file"/>-->
+                <div id="show_pic3">
+                    <i class="iconfont mui-icon">&#xe62b;</i>
+                    <img src="" id='a4'/>
+                </div>
+            </div>
+            <div class="upfile_box" id="5">
+                <!--<input type="file" id="uploadimg4" class="upload_file"/>-->
+                <div id="show_pic4">
+                    <i class="iconfont mui-icon">&#xe62b;</i>
+                    <img src="" id='a5'/>
+                </div>
+            </div>
+            <div class="upfile_box" id="6">
+                <!--<input type="file" id="uploadimg5" class="upload_file"/>-->
+                <div id="show_pic5">
+                    <i class="iconfont mui-icon">&#xe62b;</i>
+                    <img src="" id='a6'/>
+                </div>
+            </div>
+        </li>
+        <li class="paddingl_r_15px_tb11px bg_white clearfix border-bottom" style="height: 110px;">
+            <span class="margin-bottom10px" style="display: block;">图文详情</span>
+            <div class="upfile_box" id="good_subject">
+                <!--<input type="file" id="uploadimg6" class="upload_file"/>-->
+                <div id="show_pic6">
+                    <i class="iconfont mui-icon">&#xe62b;</i>
+                    <img src="" id="a7"/>
+                </div>
+            </div>
+        </li>
+        <a href="#sheet" id="openSheet" class="mui-btn mui-btn-block paddingl_r_15px_tb11px margin0"
+           style="text-align: start;border-radius: 0;border: none;border-bottom: 1px solid #dedede;">
+            <span class="font14">是您本人原创作品对吗？</span>
+            <i class="mui-icon iconfont mui-pull-right margin-top3px">&#xe604;</i>
+            <span class="mui-pull-right font14" id="info">是</span>
+        </a>
+        <div class="paddingl_r_15px_tb11px">
+            <span class="font14">请阅读</span>&nbsp;
+            <a class="law">《知识产权承诺》</a>
+        </div>
+        <li class="mui-table-view-cell">
+            <button type="button" class="mui-btn-blue  btn_half" disabled="" id="submit_btn"
+                    ng-click="releasesub()">发&nbsp;布
+            </button>
+        </li>
+    </ul>
 
-	<script src="../js/mui.min.js"></script>
-	<script type="text/javascript" src="../js/angular.min.js"></script>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/open.js"></script>
-	<script src="../js/upload_pic.js"></script>
-	<script src="../js/shareApp.js"></script>
-	<script src="../js/apppublic.js"></script>
-	<script src="../js/app/release_goods.js"></script>
-	<script>
+    <div id="sheet" class="mui-popover mui-popover-bottom mui-popover-action ">
+        <!-- 可选择菜单 -->
+        <ul class="mui-table-view chose_btn" id="origin">
+            <li class="mui-table-view-cell">
+                <a>是</a>
+            </li>
+            <li class="mui-table-view-cell">
+                <a>否</a>
+            </li>
+        </ul>
+        <!-- 取消菜单 -->
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell">
+                <a href="#sheet1"><b>取消</b></a>
+            </li>
+        </ul>
+    </div>
+
+    <!--阅读知识产权承诺书弹框-->
+    <div class="alert_window" id="law">
+        <div class="share_list" id="law_text" style="bottom: 10%;">
+            <p class="mui-text-center border-bottom line-height44px font16 color333">知识产权承诺</p>
+            <div style="overflow-y: scroll;height: 400px;padding: 0 15px;">
+                <p class="color333 font12 margin-top10px">
+                    承诺并保证，您在去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端以各种形式发布的作品及信息，均符合《中华人民共和国著作权法》、《中华人民共和国商标法》、《中华人民共和国反不正当竞争法》、《中华人民共和国侵权责任法》、《中华人民共和国广告法》、《中华人民共和国计算机信息系统安全保护条例》、《计算机软件保护条例》及《信息网络传播权保护条例》等有关法律、法规、规章的规定。
+                </p>
+                <p class="color333 font12">
+                    您承诺并保证，您在去卖艺网（www. myee.net.cn）及“去卖艺APP”移动客户端以各种形式发布的信息，均符合社会公序良俗。
+                </p>
+                <p class="color333 font12">
+                    您承诺并保证，您在去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的作品、文字、图片、视频、音频、多媒体资料或其他内容均拥有相应合法的权利。这些文字、图片、视频、音频、多媒体资料或其他内容，不侵犯任何第三方的肖像权、名誉权、著作权、商标权等任何权利，不违反您与任何第三方所签订的任何法律文件的规定。
+                </p>
+                <p class="color333 font12">
+                    去卖艺公司有权对您上传的作品、文字、图片、视频、音频、多媒体资料或其他内容随时进行检查或编辑。如果发现您上传的内容不符合前述承诺，去卖艺公司有权删除您所上传的内容。对于您通过去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的内容，去卖艺公司不保证其合法性、正当性、准确性或完整性。您应自行承担因此产生的法律责任，如果因您违反上述承诺及保证导致去卖艺公司因此受到损失，您应赔偿由此造成的全部损失。
+                </p>
+                <p class="color333 font12">
+                    您在点击确认本承诺之前，请仔细阅读本承诺，并确认您已完全理解本承诺。如您对本承诺有任何疑问，请立即停止通过去卖艺网（www.myee.net.cn）及“去卖艺APP”移动客户端上传的作品、文字、图片、视频、音频、多媒体资料或其他内容，并可向去卖艺网客服咨询。
+                </p>
+                <div class="mui-input-row mui-checkbox mui-left">
+                    <label>我已阅读并同意</label>
+                    <input name="checkbox1" type="checkbox" class="is_allow_release">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--所属分类弹框-->
+    <div class="alert_window" id="category">
+        <div class="share_list" id="sub_item">
+            <p class="mui-text-center border-bottom line-height44px font16 color333">所属分类</p>
+            <div class="category_list" style="overflow-y: scroll;height: 220px;">
+                <div class="mui-table-view-cell mui-collapse"
+                     ng-repeat="(index ,c) in cates | filter:{'parent':0}">
+                    <a class="mui-navigate-right  mui-text-center">{{c.name}}</a>
+                    <div class="mui-collapse-content">
+                        <div class="mui-input-row mui-radio border-bottom"
+                             ng-repeat="(i,cc) in cates | filter:{'parent':index+1}">
+                            <label>{{cc.name}}</label>
+                            <input name="radio" type="radio" cate_id="{{cc.id}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn_group">
+                <button type="button"
+                        class="mui-btn mui-btn-grey mui-btn-block padding_tb_8px margin0 color333 cancel_btn">
+                    取消
+                </button>
+                <button type="button"
+                        class="mui-btn mui-btn-blue mui-btn-block padding_tb_8px margin0 confirm_btn"
+                        ng-click="confirm_btn($event)">确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="../js/mui.min.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/open.js"></script>
+<script src="../js/upload_pic.js"></script>
+<script src="../js/shareApp.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/release_goods.js"></script>
+<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能
 		});
-		mui.back=function(){
-		       mui.currentWebview.close();
-		        window.plus.bridge.exec("community", "backNews", []);
-            };
+		mui.back= function(){
+			window.plus.bridge.execSync("community","backNews","");
+			mui.currentWebview.close();
+			}
 		var info = document.getElementById("info");
 		var text = document.querySelector('.text');
 		mui('body').on('tap', '.mui-popover-action li>a', function() {
@@ -322,20 +340,46 @@
 			mui('#' + parent.id).popover('toggle');
 		})
 
+		
+		//确认是否退出发布
+		document.getElementById("confirmBtn").addEventListener('tap', function() {
+			var btnArray = ['是', '否'];
+			mui.confirm('确定退出发布商品？', '发布商品', btnArray, function(e) {
+				if (e.index == 0) {
+					plus.webview.getWebviewById('release_goods.html').close();
+				} else {
+					return;
+				}
+			})
+		});
+
+
 		$(function() {
+			
+			//阅读知识产权承诺
 			$(".is_allow_release").click(function() {
 				if($(this).is(':checked')) {
 					$('#submit_btn').attr('disabled', false);
+					$('#law').fadeOut(300);
+					event.stopPropagation();
 				} else {
 					$('#submit_btn').attr('disabled', true);
 				}
 			})
+			
+			
 			//发布商品所属分类弹窗
 			share($('#category'), $('#sub_item'), $('.category'), $('.cancel_btn'))
 
 			//阅读知识产权承诺
-			share($('#law'), $('#law_text'), $('.law'), $('.cancel_btn'))
+			share($('#law'), $('#law_text'), $('.law'), $('.cancel_btn'));
+			
+			//是否是本人操作（是/否）
+			$('#origin a').on('tap',function(){
+				$('#info').html($(this).html());
+			})
 		})
-	</script>
+
+</script>
 
 </html>

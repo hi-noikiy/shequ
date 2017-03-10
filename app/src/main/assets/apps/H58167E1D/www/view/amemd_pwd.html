@@ -11,7 +11,7 @@
 	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
 	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
 	</head>
-	<body>
+	<body ng-app="amemdpwdApp" ng-controller="amemdpwdController">
 	    <header class="mui-bar mui-bar-nav bg_white">
 	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 	        <h1 class="mui-title colorP">修改密码</h1>
@@ -21,22 +21,26 @@
 			<ul class="mui-table-view bg_white margin-bottom20px">
 		        <li class="mui-table-view-cell ">
 		            <div class="mui-input-row">
-		                <input type="text" class="mui-input-clear borderNone" placeholder="请输入手机号">
+		                <input type="text" class="mui-input-clear borderNone" id="mobile" placeholder="请输入手机号">
 		            </div>
 		        </li>
 		        <li class="mui-table-view-cell">
 		            <div class="mui-input-row">
-		                <input type="password" class="mui-input-clear" placeholder="请输入旧密码">
+		                <input type="password" class="mui-input-clear" id="password" placeholder="请输入旧密码">
 		            </div>
 		        </li>
 		        <li class="mui-table-view-cell">
 		            <div class="mui-input-row">
-		                <input type="password" class="mui-input-clear" placeholder="请输入新密码">
+		                <input type="password" class="mui-input-clear" id="passwordtwo" placeholder="请输入新密码">
 		            </div>
 		        </li>
 		    </ul>	
-		   	<button type="button" class="mui-btn mui-btn-blue mui-btn-block width80 middle border-radius30px">确定</button>
+		   	<button type="button" class="mui-btn mui-btn-blue mui-btn-block width80 middle border-radius30px" ng-click="updatePassword()">确定</button>
 		</div>
 	</body>
 	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/angular.min.js"></script> 
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/apppublic.js"></script>
+    <script src="../js/app/amemd_pwd.js"></script>
 </html>

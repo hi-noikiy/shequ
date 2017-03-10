@@ -35,11 +35,12 @@
 	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font14">工期：<i>{{goods.maf_time}}</i>天</span></div>
 	                     	<div class="mui-clearfix">
 	                     		<div class="mui-pull-left">
-	                     			<span class="mui-pull-right colorRed line-height30px">￥{{goods.price}}</span>
+	                     			<span class="mui-pull-right colorRed line-height30px">￥<i id="unit_price" ng-bind="price">{{goods.price}}</i></span>
+	                     			<inpu type='hiden' id='money' vaue="{{goods.price}}">
 	                     		</div>
 	                     		<div class="mui-numbox mui-pull-right" data-numbox-min='1' data-numbox-max='99'>
 						          <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-						          <input id="num" class="mui-input-numbox" type="number" value="1" />
+						          <input id="num" class="mui-input-numbox" type="number" ng-model="goods_num"/>
 						          <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 						        </div>
 	                     	</div>
@@ -64,7 +65,10 @@
 			<ul class="mui-table-view bg_white">
 		        <li class="mui-table-view-cell">
 		            <span class="mui-pull-left">选择支付方式</span>
-		            <span class="mui-pull-right colorRed"><i>2200</i>元</span>			            
+		            
+		            
+		            
+		            <span class="mui-pull-right colorRed"><i id="total_price" ng-bind="price * goods_num"></i>元</span>			            
 		        </li>
 		        <li class="mui-table-view-cell">
 		            <div class="mui-input-row mui-radio">
@@ -92,4 +96,10 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/apppublic.js"></script>
 	<script src="../js/app/pay.js"></script>
+	<script type="text/javascript">
+		
+//		console.log($('#money').val());
+//		console.log($('#num').val());
+//		
+	</script>
 </html>

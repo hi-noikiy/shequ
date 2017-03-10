@@ -20,9 +20,9 @@
     	.mui-content{padding-bottom: 44px;}
     </style>
 </head>
-<body>
+<body ng-app="honerApp" ng-controller="honerController">
 	<header class="mui-bar mui-bar-nav bg_white">
-	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left tui"></a>
 	    <h1 class="mui-title colorP">个人主页</h1>
 	</header>
 	<div class="mui-content bg_white">
@@ -64,7 +64,7 @@
 			               	<li>
 			               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
 			               		<span class="padding_l">杨德威</span>
-			               	</li>
+			               	</li> 
 			               	<li>
 			               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
 			               		<span class="padding_l">我做的琴能发出你要的声音</span>
@@ -181,14 +181,23 @@
 		</div>
 		<div class="btn_group">
 			<button type="button" class="mui-btn colorP width50  attentionBtn"><i class="iconfont mui-icon">&#xe62b;  关注</i></button>
-	        <button type="button" onclick="openNewPage('chat.html')" class="mui-btn width50 colorP"><i class="iconfont mui-icon">&#xe608;  聊天</i></button>
+	        <button type="button" ng-click="honerChat()" class="mui-btn width50 colorP"><i class="iconfont mui-icon">&#xe608;  聊天</i></button>
 		</div>
 	</div>
 </body>
 <script src="../js/mui.min.js"></script>
 <script src="../js/open.js"></script>
 <script src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script>
+<script src="../js/app/honer_page.js"></script>
 <script type="text/javascript">
+	    $('.tui').on('tap',function(){
+                 viewBack();
+                 })
+                 ////重写返回事件
+                 function viewBack(){
+                     window.plus.bridge.execSync("community","backNews","");
+                 }
 	var is_attention = true;
 	$('.attentionBtn').click(function(){
 		if(is_attention){

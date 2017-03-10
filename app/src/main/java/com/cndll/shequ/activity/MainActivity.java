@@ -31,6 +31,7 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.model.GroupImageBean;
 import com.hyphenate.easeui.model.UserInfo;
 import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
@@ -142,8 +143,27 @@ public class MainActivity extends AppCompatActivity {
     private Subscription jsevent;
     private Subscription loginIM;
     private Subscription pushWebView;
+    private Subscription updataGroupImage;
 
     private void initJsEvent() {
+        if (updataGroupImage != null) {
+            updataGroupImage = RxBus.getDefault().toObservable(GroupImageBean.class).subscribe(new Observer<GroupImageBean>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(GroupImageBean groupImageBean) {
+                    fragment.refresh();
+                }
+            });
+        }
         if (pushWebView == null) {
             pushWebView = RxBus.getDefault().toObservable(PushWebView.class).subscribe(new Observer<PushWebView>() {
                 @Override

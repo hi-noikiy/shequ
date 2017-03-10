@@ -8,7 +8,6 @@ public class GroupsInfo {
     private static GroupImageBean groupImageBean;
 
     private GroupsInfo() {
-
     }
 
     public static GroupImageBean getGroupImageBean() {
@@ -16,6 +15,17 @@ public class GroupsInfo {
             groupImageBean = INIT.GROUP_IMAGE_BEAN;
         }
         return groupImageBean;
+    }
+
+    public static GroupImageBean.DataBean getImage(String id) {
+        if (groupImageBean.getData() != null) {
+            for (GroupImageBean.DataBean bean : groupImageBean.getData()) {
+                if (String.valueOf(bean.getGroup_id()).equals(id)) {
+                    return bean;
+                }
+            }
+        }
+        return null;
     }
 
     private static class INIT {

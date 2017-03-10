@@ -14,16 +14,17 @@ app.controller("detailsController", function($scope, $http) {
 				uid: $uid,
 			}
 		}).then(function successCallback(response) {
-			console.log(JSON.stringify(response));
-			console.log(JSON.stringify(response.data.data.comment));
+//			console.log(JSON.stringify(response));
+			console.log(JSON.stringify(response.data.data.note[0]));
 			//      console.log(123); 
 			$scope.master = response.data.data.note[0].uid;
-			$scope.notes = response.data.data.note; //标题下的数据
 			$scope.huanxinId = response.data.data.note[0].mobile;
+			$scope.huanxinIcon = response.data.data.note[0].icon;
+			$scope.huanxinNick= response.data.data.note[0].nick;
+			$scope.notes = response.data.data.note; //标题下的数据  
 			$scope.goods = response.data.data.goods;
 			$scope.comments = response.data.data.comment;
 			$scope.user = response.data.data.user;
-
 			//		console.log(JSON.stringify(response.data.data.note));
 		}, function errorfunction(e) {
 			console.log(JSON.stringify(e));
@@ -35,17 +36,16 @@ app.controller("detailsController", function($scope, $http) {
 	}
 	//私聊
 	$scope.openChat = function(){
-		window.plus.bridge.exec("community", "sendMessage", [$scope.huanxinId+'']);
+		window.plus.bridge.exec("community", "sendMessage", [$scope.huanxinId+'',$scope.huanxinIcon,$scope.huanxinNick]);
 	}
 	$scope.goodsInfo = function(id) {
 		plus.nativeUI.showWaiting('加载中......');
 		plus.storage.setItem('goodsId', id + '');
 		plus.webview.create('goods_detail.html', 'goods_detail.html').show('pop-in');
-		plus.nativeUI.closeWaiting();
 	}
 	$scope.view_follow = function() {
 		console.log(uid);
-		$('#follow').html('&#xe6aa;已关注').css({ 'color': '#999', 'border': '1px solid #999' });
+		//$('#follow').html('&#xe6aa;已关注').css({ 'color': '#999', 'border': '1px solid #999' });
 		$http({
 			method: 'post',
 			url: apiRoot,
@@ -57,7 +57,7 @@ app.controller("detailsController", function($scope, $http) {
 			}
 		}).then(function successCallback(response) {
 			console.log(JSON.stringify(response));
-
+			$scope.user.follow = 1;/*已关注*/
 			//		console.log(JSON.stringify(response.data.data.note));
 		}, function errorfunction(e) {
 			console.log(e);
@@ -115,6 +115,12 @@ app.controller("detailsController", function($scope, $http) {
 			left: '0px'
 		}, 300);
 	}
+	$scope.icon_sub =function(id,img,nick)
+	{
+//		plus.nativeUI.showWaiting('加载中......');
+console.log(id+'--'+img+'--'+nick);
+		plus.webview.create('honer_page.html', 'honer_page.html',{},{icon_id:id,icon_img:img,icon_name:nick}).show('pop-in');
+	}
 })
 
 document.addEventListener("plusready", function() {
@@ -130,7 +136,8 @@ document.addEventListener("plusready", function() {
 //	console.log(my);
 	if(my == 'my'){
 		$('.borderNone').css('display','none');
-	} 
+	}
+	plus.nativeUI.closeWaiting();
 	$scope.initView(id, uid);
 	$scope.$apply();
 })

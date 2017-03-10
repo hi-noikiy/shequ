@@ -1,4 +1,5 @@
 var app = angular.module("registerApp",[]);
+
 app.controller("registerController",function($scope,$http){
 	$scope.register = function(){
 	$http({
@@ -8,6 +9,7 @@ app.controller("registerController",function($scope,$http){
 			action:'User.recommendInfo',
 		}
 	}).then(function successCallback(response){
+		plus.nativeUI.closeWaiting();
 		console.log(JSON.stringify(response.data.data));         
 		$scope.register = response.data.data//最新内容数据 
 	},function errorfunction(e){
@@ -16,13 +18,26 @@ app.controller("registerController",function($scope,$http){
    }
    $scope.registerStart = function()
    {
-// 	 var a = $(".users:checked").val();
-// 	 var b = $("input:checked").val();
+     var passone=$('#password').val();
+     var passtwo=$('#passwordtwo').val();
+	if(!passone.match(passReg)){
+			toast('密码只能为数字和字母');
+			return;
+		}
+     if(passone!=passtwo)
+     {
+     	toast('两次密码不一致');
+			return;
+     }
+     if(!$("#mobile").val().match(p1))
+     {
+     	toast('请填写正确在手机号码');
+			return;
+     }
    	 var perple = [];
    	 $("#perple input:checked").each(function () {
    	 	perple.push($(this).val());
    	 })
-   	 
    	 perple = perple.join(',');
      console.log(perple);
    	 var thing = [];
@@ -47,6 +62,7 @@ app.controller("registerController",function($scope,$http){
 			console.log(JSON.stringify(response));
 			if(response.data.error==0)
 			{
+				toast('注册成功');
 				plus.webview.create('login.html', 'login.html').show('pop-in');
 			}else
 			 {
@@ -61,6 +77,25 @@ app.controller("registerController",function($scope,$http){
 	
 	$scope.mobileCode = function()
     {
+    	if($('#mobile').val()=='')
+    	{
+    		toast('请输入手机号码');
+    		return;
+    	}
+    	var curTime = new Date();
+	  	var EndTime = parseInt((curTime.getTime()/1000)+60);//截止时间
+	    var NowTime = parseInt(new Date().getTime()/1000);
+    	var timer = setInterval(function(){
+	    EndTime--;
+	    var t =EndTime - NowTime;
+	    console.log();
+	    $(".second_box").html((t < 10 ? '0'+ t : t)+'秒后重新获取').attr('disabled','disabled');
+	    if(t <= 0){
+	    	clearInterval(timer);
+	    	$(".second_box").html('获取验证码').attr('disabled',false);
+	    }
+		},1000)
+  	
 		$http({
 		method:'post',
 		url:apiRoot,
@@ -70,11 +105,14 @@ app.controller("registerController",function($scope,$http){
 		}
 		}).then(function successCallback(response){
 			console.log(JSON.stringify(response.data));
-			if(response.data.data.msg=='ok'){
-				mui.toast('发送成功')
+			if(response.data.error==0){
+				toast('发送成功');
+				//倒计时
+				return;  
 			}
 		},function errorfunction(e){
 			console.log(JSON.stringify(e));
+			toast(JSON.stringify(e.desc));
 		})	
    }
     

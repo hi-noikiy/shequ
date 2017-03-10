@@ -9,47 +9,33 @@
     <link rel="stylesheet" type="text/css" href="../css/global.css"/>
    
 </head>
-<body>
+<body ng-app="addgroupApp" ng-controller="addgroupController">
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 	    <h1 class="mui-title colorP">我的群聊</h1>
-	    <button class="mui-btn-link mui-pull-right"><span class="colorP">关联</span></button>
+	    <button class="mui-btn-link mui-pull-right" ng-click="group_array()"><span class="colorP">关联</span></button>
 	</header>
 	<div class="mui-content">
 		<div></div>
-      <ul class="mui-table-view bg_white">
-              <li class="mui-table-view-cell padding0">
+      <ul class="mui-table-view bg_white" id="groups">
+              <li class="mui-table-view-cell padding0" ng-repeat="x in group" >
 				<div class="mui-input-row mui-checkbox mui-left">
 					<label>
-						<img src="../img/ql1.jpg" class="circle_pic"/>
-						<span class="padding_lr_10px">旅行部落</span>
-					</label>
-					<input name="checkbox" value="Item 1" type="checkbox" checked="">
-				</div>
-              </li>
-              <li class="mui-table-view-cell padding0">
-				<div class="mui-input-row mui-checkbox mui-left">
-					<label>
-						<img src="../img/ql2.jpg" class="circle_pic"/>
-						<span class="padding_lr_10px">捕猎美景</span>
-					</label>
-					<input name="checkbox" value="Item 2" type="checkbox" >
-				</div>
-              </li>
-              <li class="mui-table-view-cell padding0">
-				<div class="mui-input-row mui-checkbox mui-left">
-					<label>
-						<img src="../img/ql3.jpg" class="circle_pic"/>
-						<span class="padding_lr_10px">闲谈人生</span>
-					</label>
-					<input name="checkbox" value="Item 3" type="checkbox">
+						<img src="{{x.icon}}" class="circle_pic"/>
+						<span class="padding_lr_10px">{{x.group_name}}{{x.group_id}}</span>
+					</label>  
+					<input id="{{x.group_id}}" value="{{x.group_id}}" type="checkbox">
 				</div>
               </li>
          </ul>
 	</div>
 </body>
 <script src="../js/mui.min.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script> 
+<script src="../js/jquery.min.js"></script>
 <script src="../js/open.js"></script>
+<script src="../js/apppublic.js"></script>
+<script src="../js/app/add_group.js"></script>
 <script type="text/javascript" charset="UTF-8">
   	mui.init();
 </script>

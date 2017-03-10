@@ -12,17 +12,15 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cndll.shequ.R;
-import com.cndll.shequ.bean.RequestGroupImage;
-import com.cndll.shequ.net.ComUnityRequest;
+import com.cndll.shequ.RXbus.RxBus;
+import com.cndll.shequ.util.UpdataGroupsInfo;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.model.GroupImageBean;
-import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.widget.EaseTitleBar;
 import com.hyphenate.exceptions.HyphenateException;
 
@@ -33,7 +31,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observer;
-import rx.schedulers.Schedulers;
+import rx.Subscription;
 
 public class GroupListActivity extends AppCompatActivity {
 
@@ -54,6 +52,8 @@ public class GroupListActivity extends AppCompatActivity {
         init();
     }
 
+    private Subscription updataimage;
+
     private void init() {
         titleBar.setTitle("我的群聊");
         titleBar.setLeftImageResource(R.drawable.ease_mm_title_back);
@@ -65,7 +65,28 @@ public class GroupListActivity extends AppCompatActivity {
         });
         adapter = new GroupAdapter();
         /*try {*/
+        if (updataimage == null)
+            updataimage = RxBus.getDefault().toObservable(GroupImageBean.class).subscribe(new Observer<GroupImageBean>() {
+                @Override
+                public void onCompleted() {
 
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(final GroupImageBean dataBean) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.setImagedata(dataBean.getData());
+                        }
+                    });
+                }
+            });
         new Thread() {
             @Override
             public void run() {
@@ -76,7 +97,8 @@ public class GroupListActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             adapter.setGroups(emGroupList);
-                            getImage();
+                            //getImage();
+                            UpdataGroupsInfo.getGroupInfo();
                         }
                     });
                 } catch (HyphenateException e) {
@@ -100,7 +122,7 @@ public class GroupListActivity extends AppCompatActivity {
         });
     }
 
-    private void getImage() {
+    /*private void getImage() {
         RequestGroupImage requestGroupImage = new RequestGroupImage();
         requestGroupImage.setUid(UserLodingInFo.getInstance().getId());
         ComUnityRequest.getAPI().downloadImage(requestGroupImage).subscribeOn(Schedulers.io()).subscribe(new Observer<GroupImageBean>() {
@@ -134,7 +156,7 @@ public class GroupListActivity extends AppCompatActivity {
                 });
             }
         });
-    }
+    }*/
 
     public static class GroupAdapter extends BaseAdapter {
         public List<EMGroup> getGroups() {

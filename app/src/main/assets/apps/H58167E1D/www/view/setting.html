@@ -51,37 +51,57 @@
 	<script src="../js/open.js"></script>
 	<script src="../js/jquery.min.js"></script>
 	<script type="text/javascript">
-		(function($, doc) {
-			$.init();
-		})(mui, document);
-		document.addEventListener('plusready', function() {
-			$('.exit_btn').on('tap', function() {
-				plus.storage.clear();
-				plus.runtime.restart();
-				openNewPage('login.html');
-				authLogout()
-				window.plus.bridge.execSync("community","exit","退出登录");
-			})
-			plus.oauth.getServices(function(service) {
-				auths = service;
-			}, function(e) {
-				toast('获取第三方登录失败!');
-			})
+        (function($, doc) {
+         $.init();
+         })(mui, document);
+         
+         var auths=[];
+         document.addEventListener('plusready', function() {
+                                   
+                                   
+                                   plus.oauth.getServices(function(service) {
+                                                          auths = service;
+                                                          }, function(e) {
+                                                          toast('获取第三方登录失败!');
+                                                          })
+                                   
+                                   $('.exit_btn').on('tap', function() {
+                                                     window.plus.bridge.execSync("community","exit","退出登录");
+                                                     plus.storage.removeItem('uid');
+                                                     authLogout();
+                                                     plus.runtime.restart();
+                                                     
+                                                     })
+                                   
+                                   
+                                   }, false);
+                                   
+                                   function authLogout() {
+                                       for(var i in auths) {
+                                           var s = auths[i];
+                                           if(s.authResult) {
+                                               s.logout(function(e) {
+                                                        //						alert("注销登录认证成功！");
+                                                        }, function(e) {
+                                                        //						alert("注销登录认证失败！");
+                                                        });
+                                           }
+                                       }
+                                   }
+    
+    function nwaiting() {
 
-		}, false);
-
-		function authLogout() {
-			for(var i in auths) {
-				var s = auths[i];
-				if(s.authResult) {
-					s.logout(function(e) {
-						//						alert("注销登录认证成功！");
-					}, function(e) {
-						//						alert("注销登录认证失败！");
-					});
-				}
-			}
-		}
-	</script>
-
+        var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
+        var originWebView = plus.webview.currentWebview();
+        var webviewContent = plus.webview.create('./login.html', 'login.html', {}, {
+                                                 fid: 1
+                                                 }); //后台创建webview并打开show.html
+                                                 webviewContent.addEventListener("loaded", function() { //注册新webview的载入完成事件
+                                                                                 nwaiting.close(); //新webview的载入完毕后关闭等待框
+                                                                                 webviewContent.show("slide-in-right", 0);
+                                                                                 originWebView.close();
+                                                                                 }, false);
+    }
+    
+        </script>
 </html>
