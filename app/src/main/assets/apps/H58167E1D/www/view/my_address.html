@@ -32,7 +32,7 @@
 		<header class="mui-bar mui-bar-nav bg_white">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title colorP">我的地址</h1>
-			<button onclick="openNewPage('create_address.html')" class="mui-btn-link mui-pull-right"><span class="colorP">新建</span></button>
+			<button onclick="openNewPage('create_address.html',{create:'create'})" class="mui-btn-link mui-pull-right"><span class="colorP">新建</span></button>
 		</header>
 		<div class="mui-content" id='content'>
 			<div></div>
@@ -88,7 +88,7 @@
 	</body>
 	<script type="text/html" id='pid'>
 		<% for(var i in data){%>
-		<ul class="mui-table-view margin-bottom10px bg_white<%= data[i].id %>">
+		<ul class="mui-table-view margin-bottom10px bg_white <%= data[i].id %>">
 			<li class="mui-table-view-cell mui-media">
 				<a href="javascript:;">
 					<span class="mui-pull-left iconfont color999 font26 padding_t10px">&#xe61c;</span>
@@ -113,7 +113,7 @@
 					<% }%>
 				</div>
 				<div class="mui-pull-right padding_tb11px">
-					<span onclick="openPage('create_address.html',{aid:<%=data[i].id %>})" class="mui-icon iconfont color999">&#xe62a;  编辑</span>
+					<span onclick="openPage('create_address.html',{aid:<%=data[i].id %>})" id="edit_address" class="mui-icon iconfont color999">&#xe62a;  编辑</span>
 					<span class="mui-icon iconfont color999 padding_l del_btn aaa" onclick="updetaclass('bg_white<%=data[i].id %>','<%=data[i].id %>','<%=data[i].sign %>')">&#xe619;  删除</span>
 				</div>
 			</li>
@@ -173,6 +173,14 @@
 			})
 			
 		}
+		
+//		document.addEventListener('plusready',function(){
+//			$('#edit_address').on('tap',function(){
+//				plus.storage.setItem('')
+//			})
+//		})
+		
+		
 		
 		function defaults(sign,addtype){
 			if(addtype == 'ture'){

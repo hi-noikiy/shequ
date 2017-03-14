@@ -1,0 +1,244 @@
+.mui-bar .mui-segmented-control {
+	width: 56%;
+	border-radius: 20px;
+	border-color: #4c968e;
+	color: #4c968e;
+}
+
+.mui-bar .mui-segmented-control .mui-control-item {
+	color: #4c968e;
+}
+
+.mui-bar .mui-segmented-control .mui-active {
+	background: #4c968e;
+	color: #fff;
+}
+
+.upload_btn {
+	width: 80px;
+	text-align: center;
+	position: relative;
+}
+
+.upload_btn input {
+	width: 80px;
+	height: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.img_show img {
+	width: calc(90%/4);
+	max-height: 70px;
+	margin: calc(10%/8);
+}
+
+.mui-table-view-cell .sp {
+	display: inline-block;
+	padding: 20px 0;
+}
+
+.upfile_box {
+	width: calc(90%/3);
+	margin: 0 calc(10%/6);
+	overflow: hidden;
+	text-align: center;
+}
+
+.upfile_box input {
+	width: 100%;
+	left: 0;
+	top: 0
+}
+
+.upfile_box .show_pic {
+	width: 100%;
+}
+
+.upfile_box .show_pic i {
+	font-size: 36px;
+	position: absolute;
+	left: calc(50% - 18px);
+	top: calc(50% - 18px);
+}
+
+
+.img_show li{position: relative;width: calc(90%/4);margin:0 calc(10%/3) calc(4%/3) 0;height: 70px;}
+.img_show li:nth-child(4n){margin-right: 0;}
+.img_show li img{width: 100%;height: 100%;}
+.img_show li .iconfont{position: absolute;top: -6px;right: -6px;z-index: 12;font-size: 20px;display: block;width: 16px;height: 16px;border-radius: 50%;color: red;background: #fff;text-align: center;line-height: 16px;}
+
+
+.upfile_box .show_pic .del_btn {
+	position: absolute;
+	top: 3px;
+	left: 80%;
+	font-size: 15px;
+	display: none;
+}
+
+.share_list {
+	width: 80%;
+	position: absolute;
+	bottom: 25%;
+	left: calc(50% - 40%);
+	border-radius: 8px;
+	padding-top: 0;
+}
+
+.share_list p {
+	text-indent: 2em;
+}
+
+.mui-bar .mui-title {
+	padding: 8px 0;
+	text-align: center;
+}
+
+
+.mui-bar .mui-title .top_tab .active {
+	background: #4c968e;
+	color: #fff;
+}
+
+.mui-checkbox.mui-left input[type=checkbox],
+.mui-radio.mui-left input[type=radio] {
+	left: 0;
+	top: calc(50% - 13px);
+}
+
+.mui-checkbox input[type=checkbox]:before,
+.mui-radio input[type=radio]:before {
+	font-size: 22px;
+}
+
+.mui-checkbox.mui-left label,
+.mui-radio.mui-left label {
+	padding-left: 30px;
+	padding-right: 0;
+}
+
+.video_box {
+	width: 45%;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+	border: 1px solid #c8c7cc;
+	margin: 0 auto;
+	position: relative;
+}
+
+.progress_bar {
+	background: #999;
+	width: 80%;
+	height: 3px;
+	display: block;
+	margin: 0 10%;
+	visibility: hidden;
+}
+
+.progress_bar p {
+	height: 100%;
+	width: 0;
+	background: #4c968e;
+}
+
+.progress_bar_box div:nth-child(2) {
+	width: 100%;
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+
+.progress_bar_box button {
+	display: block;
+	width: 30%;
+	margin: 0 calc(50% - 15%);
+	border-radius: 30px;
+	background: #4c968e;
+	border: none;
+	color: #fff;
+}
+
+.mui-popover .mui-table-view .mui-table-view-cell:first-child,
+.mui-popover .mui-table-view .mui-table-view-cell:first-child>a:not(.mui-btn) {
+	background: rgba(255, 255, 255, 0.5);
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	color: #4c968e;
+}
+
+.mui-checkbox.mui-left input[type=checkbox],
+.mui-radio.mui-left input[type=radio] {
+	left: 0;
+	top: calc(50% - 13px);
+}
+
+.mui-checkbox input[type=checkbox]:before,
+.mui-radio input[type=radio]:before {
+	font-size: 22px;
+}
+
+.mui-checkbox.mui-left label,
+.mui-radio.mui-left label {
+	padding-left: 30px;
+	padding-right: 0;
+}
+
+.btn_group {
+	width: 100%;
+	overflow: hidden;
+	height: 50px;
+}
+
+.btn_group button {
+	width: calc(50%/2);
+	float: left;
+	padding: 6px;
+	font-size: 14px;
+	margin: 8px calc(50%/3);
+}
+
+.btn_group button:nth-child(1) {
+	margin-right: 0;
+}
+
+.share_list {
+	width: 80%;
+	position: absolute;
+	bottom: 35%;
+	left: calc(50% - 40%);
+	border-radius: 8px;
+	padding-top: 0;
+}
+
+.share_list p {
+	text-indent: 2em;
+}
+
+.padding_r28px {
+	padding-right: 28px;
+}
+
+.line-height37px {
+	line-height: 37px;
+}
+
+.font16 {
+	font-size: 16px;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+	color: #4c968e;
+}
+
+.mui-checkbox input[type=checkbox],
+.mui-radio input[type=radio] {
+	right: 0;
+}
+
+.mui-checkbox label,
+.mui-radio label {
+	padding-left: 0;
+}

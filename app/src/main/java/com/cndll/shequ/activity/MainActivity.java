@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -25,18 +26,17 @@ import com.cndll.shequ.eventtype.LoginIM;
 import com.cndll.shequ.eventtype.PushWebView;
 import com.cndll.shequ.util.ObjectSaveUtils;
 import com.cndll.shequ.util.UpdataGroupsInfo;
+import com.cndll.shequ.view.PopUpWindowMag;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
-import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.model.GroupImageBean;
 import com.hyphenate.easeui.model.UserInfo;
 import com.hyphenate.easeui.model.UserLodingInFo;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
-import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initH5(savedInstanceState);
-        init();
         initJsEvent();
+        init();
     }
 
     @Override
@@ -99,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
         if (intent.getFlags() != 0x10600000) {// 非点击icon调用activity时才调用newintent事件
             mEntryProxy.onNewIntent(this, intent);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @Override
@@ -168,7 +173,12 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onNext(GroupImageBean groupImageBean) {
-                    fragment.refresh();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            fragment.refresh();
+                        }
+                    });
                 }
             });
         }
@@ -281,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
             WebappModeListener wm = new WebappModeListener(this, webview);
             // 初始化5+内核
             mEntryProxy = EntryProxy.init(this, wm);
+
             // 启动5+内核
             mEntryProxy.onCreate(this, savedInstanceState, SDK.IntegratedMode.WEBAPP, null);
             //setContentView(f);
@@ -291,6 +302,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             UserLodingInFo.setInstance((UserLodingInFo) ObjectSaveUtils.getObject(MainActivity.this, "USERINFO"));
             UserLodingInFo.isLoading = true;
+            UserInfo.setUserInfo((UserInfo) ObjectSaveUtils.getObject(MainActivity.this, "USERICON"));
+            //fragment.refresh();
             //toast(UserLodingInFo.getInstance().getId() + UserLodingInFo.getInstance().getIcon());
         } catch (Exception e) {
             e.printStackTrace();
@@ -353,6 +366,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         fragment = new EaseConversationListFragment();
+        fragment.setItemLongClickListener(new EaseConversationListFragment.ItemLongClickListener() {
+            @Override
+            public void onLongClick(AdapterView<?> parent, View view, final int position, final long id) {
+                PopUpWindowMag.popView(MainActivity.this, new PopUpWindowMag.DeleteCallback() {
+                    @Override
+                    public void cancle() {
+
+                    }
+
+                    @Override
+                    public void delete() {
+                        fragment.deleteConversation(position);
+                        fragment.refresh();
+                    }
+                }, view);
+            }
+        });
         fragment.setLeftClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -365,6 +395,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, GroupListActivity.class));
             }
         });
+
         fragment.setConversationListItemClickListener(new EaseConversationListFragment.EaseConversationListItemClickListener() {
             @Override
             public void onListItemClicked(EMConversation conversation) {
@@ -395,6 +426,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         getSupportFragmentManager().beginTransaction().add(R.id.frame, fragment).commit();
+        UpdataGroupsInfo.getGroupInfo();
     }
 
     private void loginIM(final String username) {
@@ -435,8 +467,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         EMClient.getInstance().chatManager().loadAllConversations();
                         EMClient.getInstance().groupManager().loadAllGroups();
-                        UpdataGroupsInfo.getGroupInfo();
-                        if (EMClient.getInstance().groupManager().getAllGroups() != null) {
+                        /*if (EMClient.getInstance().groupManager().getAllGroups() != null) {
                             for (EMGroup group : EMClient.getInstance().groupManager().getAllGroups()) {
                                 try {
                                     EMClient.getInstance().groupManager().destroyGroup(group.getGroupId());
@@ -444,7 +475,7 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
-                        }
+                        }*/
                         fragment.refresh();
                     }
                 });

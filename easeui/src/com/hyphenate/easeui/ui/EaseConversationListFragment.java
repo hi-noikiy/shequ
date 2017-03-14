@@ -61,6 +61,7 @@ public class EaseConversationListFragment extends EaseBaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.ease_fragment_conversation_list, container, false);
     }
 
@@ -91,6 +92,24 @@ public class EaseConversationListFragment extends EaseBaseFragment {
 
     private OnClickListener rightClick;
 
+    public interface ItemLongClickListener {
+        void onLongClick(AdapterView<?> parent, View view, int position, long id);
+    }
+
+    public ItemLongClickListener getItemLongClickListener() {
+        return itemLongClickListener;
+    }
+
+    public void setItemLongClickListener(ItemLongClickListener itemLongClickListener) {
+        this.itemLongClickListener = itemLongClickListener;
+    }
+
+    private ItemLongClickListener itemLongClickListener;
+
+    public void deleteConversation(int position) {
+        EMClient.getInstance().chatManager().deleteConversation(conversationList.get(position).conversationId(), true);
+    }
+
     @Override
     protected void initView() {
         titleBar.setLeftText("建群");
@@ -109,6 +128,15 @@ public class EaseConversationListFragment extends EaseBaseFragment {
         // button to clear content in search bar
         clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
         errorItemContainer = (FrameLayout) getView().findViewById(R.id.fl_error_item);
+        conversationListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (itemLongClickListener != null) {
+                    itemLongClickListener.onLongClick(parent, view, position, id);
+                }
+                return true;
+            }
+        });
     }
 
     @Override

@@ -19,12 +19,14 @@
 			}
 			
 			.goods_list_a .item img {
-				max-height: 130px;
+				/*max-height: 130px;*/
+				height: 130px;
 			}
 			
 			.goods_list_a .item span {
 				font-size: 15px;
 			}
+			.good_intro{width: 100%;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2; }
 		</style>
 	</head>
 
@@ -71,7 +73,7 @@
 				<li class="item  bg_white" ng-click="open(x.id)" ng-repeat="x in goods">
 					<img ng-src="{{x.good_image}}" />
 					<span class="mui-ellipsis">{{x.good_name}}</span>
-					<p class="good_intro" style="height: 60px; overflow: hidden;">{{x.good_intro}}</p>
+					<p class="good_intro" style="height: 40px; overflow: hidden;">{{x.good_intro}}</p>
 					<div class="color333 mui-clearfix">
 						<span class="mui-pull-left">工期：<i>{{x.maf_time}}</i>天</span>
 						<span class="mui-pull-right colorRed">￥<i>{{x.price}}</i></span>

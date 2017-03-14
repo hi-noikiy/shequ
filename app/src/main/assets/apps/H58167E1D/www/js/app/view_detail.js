@@ -1,31 +1,31 @@
 var app = angular.module("detailsApp", []); //goods_detail
 var uid, id;
-app.controller("detailsController", function($scope, $http) {
+app.controller("detailsController", function($scope, $http,$sce) {
 	$scope.huiContent_id = 0;
 	$scope.master = 0;//发布人的iD
-	$scope.initView = function($id, $uid) {
-		console.log($id + '--' + $uid);
+	$scope.initView = function($id) {
+		console.log($id);
 		$http({
 			method: 'post',
 			url: apiRoot,
 			data: {
 				action: 'Community.details',
 				id: $id,
-				uid: $uid,
 			}
 		}).then(function successCallback(response) {
 //			console.log(JSON.stringify(response));
 			console.log(JSON.stringify(response.data.data.note[0]));
 			//      console.log(123); 
-			$scope.master = response.data.data.note[0].uid;
-			$scope.huanxinId = response.data.data.note[0].mobile;
-			$scope.huanxinIcon = response.data.data.note[0].icon;
-			$scope.huanxinNick= response.data.data.note[0].nick;
-			$scope.notes = response.data.data.note; //标题下的数据  
+			$scope.master = response.data.data.note.uid;
+			$scope.huanxinId = response.data.data.note.mobile;
+			$scope.huanxinIcon = response.data.data.note.icon;
+			$scope.huanxinNick= response.data.data.note.nick;
+			$scope.nid = response.data.data.note.id;
+			$scope.note = response.data.data.note; //标题下的数据  
 			$scope.goods = response.data.data.goods;
 			$scope.comments = response.data.data.comment;
 			$scope.user = response.data.data.user;
-			//		console.log(JSON.stringify(response.data.data.note));
+			$scope.videoUrl = $sce.trustAsResourceUrl($scope.note.subject);
 		}, function errorfunction(e) {
 			console.log(JSON.stringify(e));
 		})
@@ -58,7 +58,6 @@ app.controller("detailsController", function($scope, $http) {
 		}).then(function successCallback(response) {
 			console.log(JSON.stringify(response));
 			$scope.user.follow = 1;/*已关注*/
-			//		console.log(JSON.stringify(response.data.data.note));
 		}, function errorfunction(e) {
 			console.log(e);
 		})
@@ -124,13 +123,10 @@ console.log(id+'--'+img+'--'+nick);
 })
 
 document.addEventListener("plusready", function() {
+	uid = plus.storage.getItem('uid');
 	appElement = document.querySelector('[ng-controller=detailsController]');
 	$scope = angular.element(appElement).scope();
-	uid = plus.storage.getItem('uid');
-	id = plus.webview.currentWebview().gid;
-	if (!id){
-		id = plus.storage.getItem('noteId');
-	}
+	ws =plus.webview.currentWebview();
 //	id = plus.storage.getItem('noteId');
 	my = plus.webview.currentWebview().my;
 //	console.log(my);
@@ -138,6 +134,7 @@ document.addEventListener("plusready", function() {
 		$('.borderNone').css('display','none');
 	}
 	plus.nativeUI.closeWaiting();
-	$scope.initView(id, uid);
+	id = ws.noteId;
+	$scope.initView(ws.noteId);
 	$scope.$apply();
 })

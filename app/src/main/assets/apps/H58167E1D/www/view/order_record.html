@@ -11,8 +11,10 @@
     	.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{color: #4c968e;background: transparent;}
     	.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar{width: 20%;background-color: #4c968e;}
     	.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border: none;}
-    	.mui-slider-indicator.mui-segmented-control{position: fixed;top: 44px;z-index: 999;}
-    </style>
+    	.mui-slider-indicator.mui-segmented-control{position: fixed;top: 44px;z-index: 999;padding: 0;border-bottom: 1px solid #efefef;}
+   		.mui-segmented-control.mui-segmented-control-inverted .mui-control-item{padding: 10px 0;}
+   		.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar{position: fixed;top: 84px;z-index: 999;}
+   </style>
 </head>
 <body  ng-app="myorders" ng-controller="myorderscontroller">
 	<header class="mui-bar mui-bar-nav bg_white">
@@ -20,7 +22,7 @@
 	    <h1 class="mui-title colorP">购买记录</h1>
 	</header>
 	<div class="mui-content">
-		<div class="mui-slider">
+		<div class="mui-slider" id="content_box">
 		    <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted bg_white">
 		        <a class="mui-control-item mui-active" href="#item1">全部</a>
 		        <a class="mui-control-item"  href="#item2">待付款</a>
@@ -29,7 +31,7 @@
 		        <a class="mui-control-item" href="#item5">待评价</a>
 		    </div>
 		    <div id="sliderProgressBar" class="mui-slider-progress-bar margin-bottom5px"></div>
-		    <div class="mui-slider-group"style="padding-top: 32px;">
+		    <div class="mui-slider-group"style="padding-top: 44px;">
 		    	<!--全部-->
 		        <div id="item1" class="mui-slider-item mui-control-content mui-active">
 		            <ul class="mui-table-view margin-bottom5px bg_white" ng-repeat="(index,v) in orders">
@@ -51,8 +53,7 @@
 			                </a>
 			            </li>
 			            <li class="mui-table-view-cell mui-media mui-clearfix">
-			            	<span class="mui-pull-left">合计：<i>{{v.ordermoney}}</i></span>
-			            
+			            	<span class="mui-pull-left">合计：<i>{{v.ordermoney}}</i></span>			            
 			            	<button ng-click="ordershen(v.id,'0')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14" ng-if="v.state==0" >申请退款</button>
 			            	<button ng-click="openPage('evaluate_for_goods.html')" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14" ng-if="v.state==1" >查看物流</button>
 			                <button ng-click="ordershen(v.id,1)" type="button" class="mui-btn mui-btn-blue mui-btn-block width20 padding5px font14" ng-if="v.state==1" >确认收货</button>
@@ -217,9 +218,26 @@
 <script src="../js/apppublic.js"></script>
 <script src="../js/app/my_orders.js"></script>
 <script type="text/javascript">
-	$('.cancel_order_btn').click(function(){
-		$(this).parent().prevAll().remove();
-		$(this).parent().remove();
-	})
+	$(function() {
+		$('.cancel_order_btn').click(function(){
+			$(this).parent().prevAll().remove();
+			$(this).parent().remove();
+		})
+		
+		
+			//点击监测每一个板块内容的高度
+			$('.mui-segmented-control .mui-control-item').on('tap', function() {
+				var i = $(this).index();
+				console.log($('.mui-segmented-control .mui-control-content').eq(i).innerHeight());
+				$('#content_box').css({ 'height': ($('.mui-segmented-control .mui-control-content').eq(i).innerHeight() + 42) + 'px' });
+			})
+			//滑动监测"社区（无二、古技、洋艺、觉今）"每一个板块内容的高度
+			document.querySelector('#content_box').addEventListener('slide', function(e) {
+				setTimeout(function() {
+					$('.mui-segmented-control .mui-control-item').eq(e.detail.slideNumber).trigger('tap');
+				}, 100);
+			});
+		})
+	
 </script>
 </html>

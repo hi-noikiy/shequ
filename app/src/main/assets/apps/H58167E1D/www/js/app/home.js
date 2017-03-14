@@ -19,7 +19,7 @@ app.controller("homeController",function($scope,$http){
 			plus.nativeUI.showWaiting('加载中...');
 			console.log(id);
 			plus.storage.setItem('noteId',id+'');
-			plus.webview.create('view_detail.html', 'view_detail.html').show('pop-in');  
+			plus.webview.create('view_detail.html', 'view_detail.html',{},{noteId:id}).show('pop-in');  
 //			plus.webview.create('goods_detail.html', 'goods_detail.html').show('pop-in');  
 
 		}

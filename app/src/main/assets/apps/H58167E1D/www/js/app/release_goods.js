@@ -63,39 +63,39 @@ app.controller("releaseGoodsController", function($scope, $http) {
 			toast('请添加封面图');
 			return;
 		}
-		if($('#a2').attr('src').length==0)
-		{
-			toast('展示图第一个位置请添加图片');
-			return;
-		}
-		if($('#a3').attr('src').length==0)
-		{
-			toast('展示图第一个位置请添加图片');
-			return;
-		}
-		if($('#a4').attr('src').length==0)
-		{
-			toast('展示图第二个位置请添加图片');
-			return;
-		}
-		if($('#a4').attr('src').length==0)
-		{
-			toast('展示图第三个位置请添加图片');
-			return;
-		}
-		if($('#a5').attr('src').length==0)
-		{
-			toast('展示图第四个位置请添加图片');
-			return;
-		}
-		if($('#a6').attr('src').length==0)
-		{
-			toast('展示图第五个位置请添加图片');
-			return;
-		}
+//		if($('#a2').attr('src').length==0)
+//		{
+//			toast('展示图第一个位置请添加图片');
+//			return;
+//		}
+//		if($('#a3').attr('src').length==0)
+//		{
+//			toast('展示图第一个位置请添加图片');
+//			return;
+//		}
+//		if($('#a4').attr('src').length==0)
+//		{
+//			toast('展示图第二个位置请添加图片');
+//			return;
+//		}
+//		if($('#a4').attr('src').length==0)
+//		{
+//			toast('展示图第三个位置请添加图片');
+//			return;
+//		}
+//		if($('#a5').attr('src').length==0)
+//		{
+//			toast('展示图第四个位置请添加图片');
+//			return;
+//		}
+//		if($('#a6').attr('src').length==0)
+//		{
+//			toast('展示图第五个位置请添加图片');
+//			return;
+//		}
 		if($('#a7').attr('src').length==0)
 		{
-			toast('请添加图文详情');
+			toast('请添加图文详情图片');
 			return;
 		}
 		var server = apiRoot;

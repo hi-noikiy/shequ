@@ -3,6 +3,7 @@ package com.cndll.shequ.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.cndll.shequ.R;
 import com.hyphenate.easeui.EaseConstant;
@@ -16,6 +17,13 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         fragment = new EaseChatFragment();
+        fragment.setOnRightTitleBarClick(new EaseChatFragment.RightTitleBarClick() {
+            @Override
+            public void onclik(View v) {
+                startActivity(new Intent(ChatActivity.this, GroupDetailsAcitivity.class).putExtra("GROUPID", getIntent().getStringExtra(EaseConstant.EXTRA_USER_ID)));
+            }
+        });
+
         Intent intent = getIntent();
         Bundle arg    = new Bundle();
         arg.putInt(EaseConstant.EXTRA_CHAT_TYPE, intent.getIntExtra(EaseConstant.EXTRA_CHAT_TYPE, 0));

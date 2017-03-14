@@ -6,6 +6,7 @@
     <title>商品详情</title>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/imagePreviewer.css"/>
     <link rel="stylesheet" type="text/css" href="../css/global.css"/>
     <style type="text/css">
     	video{width: 100%;}
@@ -18,6 +19,8 @@
     	.sold_tag{position: absolute;right: 20px;top: 30px;font-size: 80px;color: #a7536c;}
     	.disabled_btn{background: #999;border: 1px solid #999;}
     	.circle_pic{margin-right: 10px;max-width: 60px !important;height: 60px !important;border: 50%;}
+    	.goods_pic{width: 100%;max-width: 160px;max-height: 74px !important;}
+    	.goods_title img{min-height: 160px;max-height: 220px;}
     </style>
 </head>
 <body ng-app="goodsApp" ng-controller="goodsController">
@@ -25,19 +28,19 @@
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 	    <h1 class="mui-title colorP">商品详情</h1>
 	    <a class="mui-pull-right">
-<!--	    	<span class="mui-icon iconfont">&#xe717;</span>-->
+	    	<!--<span class="mui-icon iconfont">&#xe717;</span>-->
 	    	<span class="mui-icon iconfont" style="margin-left: 0;" id="shareApp_btn">&#xe6c2;</span>	    	
 	    </a>
 	</header>
 	<div class="mui-content" style="padding-bottom: 46px;">
-       <div class="bg_white margin-bottom5px">
-       		<img src="{{goodsData.good_image}}"/>
-       		<div class="paddingl_r_15px_tb11px goods_info">
+       <div class="bg_white margin-bottom5px goods_title">
+       		<img class="" ng-src="{{goodsData.good_image}}" data-preview-src="" data-preview-group="1"/>
+      		<div class="paddingl_r_15px_tb11px goods_info">
        			<div class="mui-ellipsis line-height30px margin-bottom5px">{{goodsData.good_name}}</div>
        			<p class="color0 line-height20px font12">价格：<span class="colorRed">￥{{goodsData.price}}</span></p>
        			<p class="font13 line-height20px font12">工期：{{goodsData.maf_time}}</p>
        			<!--已售标签-->
-       			<span class="mui-icon iconfont sold_tag" ng-if="goodsData.state">&#xe626;</span>
+       			<!--<span class="mui-icon iconfont sold_tag" ng-if="goodsData.state">&#xe626;</span>-->
        		</div>       		
        </div>
         <ul class="mui-table-view margin-bottom5px">
@@ -51,11 +54,11 @@
             </li>
             <li class="mui-table-view-cell mui-media bg_white">
                 <a href="javascript:;">
-                    <img onclick="openNewPage('honer_page.html')" class="mui-media-object mui-pull-left circle_pic"  src="{{goodsData.icon}}">
+                    <img onclick="openNewPage('honer_page.html')" class="mui-media-object mui-pull-left circle_pic"  ng-src="{{goodsData.icon}}">
                     <div class="mui-media-body">
                      	<div class="mui-clearfix margin-bottom10px">
                      		<span class="mui-pull-left">{{goodsData.nick}}</span>
-                     		<span class="mui-pull-right iconfont mui-icon colorP line-height20px attention_btn font12">&#xe669;关注</span>
+                     		<span class="mui-pull-right iconfont mui-icon colorP line-height20px attention_btn font12" >&#xe669;关注</span>
                      	</div>
                      	<p class="font12">{{goodsData.personalized}}</p>
                     </div>
@@ -73,7 +76,7 @@
         <div class="bg_white margin-bottom5px">
     		<div class="text-aligin paddingl_r_15px_tb11px">图文详情</div>
  			<div ng-repeat="(index,i) in goodsData.good_imgs">
- 			<img src="{{i.imgs}}" alt="" />
+ 			<img ng-src="{{i.imgs}}" data-preview-src="" data-preview-group="2" alt="" />
  			</div>
         </div>
         <ul class="mui-table-view margin-bottom5px bg_white">
@@ -82,13 +85,13 @@
             </li>
             <li class="mui-table-view-cell mui-media" ng-repeat="(index,g) in goodsData.goods" ng-click="info(g.id)">
                 <a href="javascript:;">
-                    <img class="mui-media-object mui-pull-left goods_pic "  src="{{g.good_image}}">
+                    <img class="mui-media-object mui-pull-left goods_pic " ng-src="{{g.good_image}}">
                     <div class="mui-media-body">
-                     	<div class="mui-ellipsis">{{g.good_namename}}</div>
+                     	<div class="mui-ellipsis" style="height: 21px;line-height: 21px;">{{g.good_name}}</div>
                      	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>{{g.maf_time}}</i>天</span></div>
                      	<div class="mui-clearfix">
                      		<div class="mui-pull-left user">
-                     			<div class="user_pic"><img src="{{g.icon}}" /></div>
+                     			<div class="user_pic"><img ng-src="{{g.icon}}" /></div>
 								<span class="padding_l line-height30px color999 mui-ellipsis font12">{{g.nick}} </span>
                      		</div>
                      		<span class="mui-pull-right colorRed line-height30px font12">￥{{g.price}}</span>
@@ -129,9 +132,11 @@
 </body>
 <script src="../js/mui.min.js"></script>
 <script src="../js/open.js"></script>
+<script src="../js/mui.zoom.js"></script>
+<script src="../js/mui.previewimage.js"></script>
 <script type="text/javascript" src="../js/angular.min.js"></script> 
 <script src="../js/jquery.min.js"></script>
-<script src="../js/shareApp.js"></script>
+<!--<script src="../js/shareApp.js"></script>-->
 <script src="../js/apppublic.js"></script>
 <script src="../js/app/goods.js"></script>
 <script type="text/javascript" charset="UTF-8">
@@ -152,7 +157,9 @@
 			},300);
 			textVal = "";
 		})
-		
+
+		//图片预览
+		mui.previewImage();
 		
 		//关注的状态
 		var is_attention = true;
@@ -171,7 +178,8 @@
 	
 </script>
 <script>
-	var webPage = 'goods';
+	var webPage = '/app/Trade/good_detail/id/';
+	var shareContent = '分享一件商品给你';
 </script>
 <script src="../js/app/shareApp.js"></script><!--分享-->
 </html>

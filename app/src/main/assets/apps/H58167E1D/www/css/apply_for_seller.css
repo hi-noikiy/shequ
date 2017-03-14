@@ -1,0 +1,17 @@
+.mui-input-row label~input{float: right;padding: 11px 0;}
+.mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{left: 0;top:0;}
+.mui-input-row label{padding: 5px 0;} 
+.mui-checkbox.mui-left label, .mui-radio.mui-left label{padding-left: 26px;padding-right: 0;font-size: 14px;} 
+.mui-radio input[type=radio]:checked:before{content: '\e442';}
+.pay_type{width: 70%;float: right;height: 25px;}
+.pay_type div{width: 40%; display: inline-block;} 
+.upfile_box{margin: 10px;}
+.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{font-size: 22px;} 
+.share_list{width: 80%;position: absolute;bottom: 25%;left: calc(50% - 40%);border-radius: 8px;padding-top: 0;}
+.share_list p{text-indent: 2em;}
+.padding_r28px{padding-right: 28px;}
+.line-height37px{line-height: 37px;}
+.font16{font-size: 16px;}	
+.mui-checkbox.mui-left input[type=checkbox], .mui-radio.mui-left input[type=radio]{top: 0;}
+.mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{width: 22px;height: 22px;margin-top: 2px;}
+.mui-input-row label~input{padding: 0;height: 25px;font-size: 14px;}

@@ -20,7 +20,7 @@
     	.mui-content{padding-bottom: 44px;}
     </style>
 </head>
-<body ng-app="honerApp" ng-controller="honerController">
+<body ng-app="app" ng-controller="myController">
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left tui"></a>
 	    <h1 class="mui-title colorP">个人主页</h1>
@@ -28,13 +28,13 @@
 	<div class="mui-content bg_white">
 		<div class="bg_white">
             <div class="upfile_box">
-		        <img src="../img/user1.jpg"/>
+		        <img ng-src="{{icon}}"/>
 		    </div>
-            <label for="uploadimg8" style="width: 100%;text-align: center;display: table;position: relative;bottom: 0;left: 0;">杨德威</label>
-        	<p class="font13 color333 text-aligin font12"><span>男</span><span class="padding_l">广东深圳</span></p>
+            <label for="uploadimg8" style="width: 100%;text-align: center;display: table;position: relative;bottom: 0;left: 0;">{{nick}}</label>
+        	<p class="font13 color333 text-aligin font12"><span>{{gender}}</span><span class="padding_l">{{location}}</span></p>
         	<p class="font13 colorP text-aligin">
         		<span onclick="openNewPage('user_fans.html')" class="font12">粉丝 <i>10</i></span>
-        		<span onclick="openNewPage('user_attention.html')" class="padding_l font12">关注 <i>10</i></span>
+        		<span onclick="openNewPage('user_attention.html')" class="padding_l font12">关注 <i>{{follow.info}}</i></span>
         	</p>
         	<p class="font13  text-aligin">
         		<span class="wing">Ta的群组</span>
@@ -57,26 +57,26 @@
         		<span class="wing">Ta的动态</span>
         	</p>
         	<ul class="mui-table-view">
-			    <li onclick="openNewPage('video_detail.html')" class="mui-table-view-cell mui-media">
+			    <li ng-click="comein(vo.id,vo.status)" ng-repeat="(key,vo) in dynamic" class="mui-table-view-cell mui-media">
 			        <a href="javascript:;" class="mui-clearfix">
 			            <img class="mui-media-object mui-pull-right" src="../img/zxlr1.jpg">
 			            <ul class="mui-media-body mui-pull-left user_view">
 			               	<li>
-			               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
-			               		<span class="padding_l">杨德威</span>
+			               		<div class="user_pic"><img ng-src="{{icon}}" /></div>
+			               		<span class="padding_l">{{nick}}</span>
 			               	</li> 
 			               	<li>
 			               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-			               		<span class="padding_l">我做的琴能发出你要的声音</span>
+			               		<span class="padding_l">{{vo.comment}}</span>
 			               	</li>
 			               	<li>
 			               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-			               		<span class="padding_l">吉他、手作、大神、定制</span>
+			               		<span class="padding_l"><!--吉他、手作、大神、定制--></span>
 			               	</li>
 			            </ul>
 			        </a>
 			    </li>
-			    <li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media">
+			    <!--<li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media">
 			        <a href="javascript:;" class=" white-space">
 			            <img class="mui-media-object mui-pull-right" src="../img/zxlr2.jpg">
 			            <ul class="mui-media-body mui-pull-left user_view">
@@ -113,31 +113,31 @@
 			               	</li>
 			            </ul>
 			        </a>
-			    </li>
-			    <p onclick="openNewPage('somebody_dynamic_state.html')" class="colorP text-aligin padding_tb_8px font13">查看更多</p>
+			    </li>-->
+			    <p ng-if="dynamicMore" ng-click="dynamicList()" class="colorP text-aligin padding_tb_8px font13">查看更多</p>
 			</ul>
 			<!--Ta的商品-->
 			<p class="font13 text-aligin margin-top10px">
         		<span class="wing">Ta的商品</span>
         	</p>
         	<ul class="mui-table-view margin-bottom5px bg_white">
-            	<li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
+            	<li ng-click="lookGood(vo.id)" ng-repeat="(key,vo) in goods" class="mui-table-view-cell mui-media">
 	                <a href="javascript:;" class=" mui-slider-handle">
-	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/1.jpg">
+	                    <img class="mui-media-object mui-pull-left goods_pic " ng-src="{{vo.good_image}}">
 	                    <div class="mui-media-body">
-	                     	<div class="mui-ellipsis">精美枫木面板，音色纯正，音律协调</div>
-	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>3</i>天</span></div>
+	                     	<div class="mui-ellipsis">{{vo.good_name}}</div>
+	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>{{vo.maf_time}}</i>天</span></div>
 	                     	<div class="mui-clearfix">
 	                     		<div class="mui-pull-left">
-	                     			<div class="user_pic"><img src="../img/user1.jpg" /></div>
-									<span class="padding_l line-height30px color999 font12">杨德威 </span>
+	                     			<div class="user_pic"><img ng-src="{{icon}}" /></div>
+									<span class="padding_l line-height30px color999 font12">{{nick}} </span>
 	                     		</div>
-	                     		<span class="mui-pull-right colorRed line-height30px  font12">￥22000.00</span>
+	                     		<span class="mui-pull-right colorRed line-height30px  font12">￥{{vo.price}}</span>
 	                     	</div>
 	                    </div>
 	                </a>
 	            </li>
-	            <li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
+	            <!--<li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
 	                <a href="javascript:;">
 	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/2.jpg">
 	                    <div class="mui-media-body">
@@ -168,19 +168,14 @@
 	                     	</div>
 	                    </div>
 	                </a>
-	            </li>
-	            <p onclick="openNewPage('somebody_goods.html')" class="colorP text-aligin padding_tb_8px font13">查看更多</p>
+	            </li>-->
+	            <p ng-if="goodsMore" ng-click="GoodsList()" class="colorP text-aligin padding_tb_8px font13">查看更多</p>
 	        </ul>
 	    </div>
 		
 		
 		<div class="btn_group">
-			<button type="button" class="mui-btn colorP width33  attentionBtn"><i class="iconfont mui-icon">&#xe62b;  关注</i></button>
-	        <button type="button" onclick="openNewPage("chat.html")" class="mui-btn colorP width33"><i class="iconfont mui-icon">&#xe608;  聊天</i></button>
-	        <button type="button" class="mui-btn colorP width33"><i class="iconfont mui-icon">&#xe616;  卖家资质</i></button>
-		</div>
-		<div class="btn_group">
-			<button type="button" class="mui-btn colorP width50  attentionBtn"><i class="iconfont mui-icon">&#xe62b;  关注</i></button>
+			<button type="button" class="mui-btn colorP width50  attentionBtn" ng-click="view_follow"><i class="iconfont mui-icon" id="follow2">&#xe669;  关注</i></button>
 	        <button type="button" ng-click="honerChat()" class="mui-btn width50 colorP"><i class="iconfont mui-icon">&#xe608;  聊天</i></button>
 		</div>
 	</div>
@@ -189,6 +184,8 @@
 <script src="../js/open.js"></script>
 <script src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/angular.min.js"></script>
+
+<script src="../js/apppublic.js"></script>
 <script src="../js/app/honer_page.js"></script>
 <script type="text/javascript">
 	    $('.tui').on('tap',function(){

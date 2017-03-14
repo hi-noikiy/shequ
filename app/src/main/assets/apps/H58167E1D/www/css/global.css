@@ -18,14 +18,14 @@ body{font-size: 14px;}
 .mui-btn-blue{background: #4c968e;border: 1px solid #4c968e;}
 .mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{top: calc(50% - 14px);}
 .mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{color: #4c968e;}
-.mui-table-view .mui-media-object{max-width: 105px;height: auto;position: relative;overflow: hidden;border-radius: 6px;}
+.mui-table-view .mui-media-object{max-width: 105px;height: auto;max-height: 74px;position: relative;overflow: hidden;border-radius: 6px;}
 .mui-table-view .mui-media-object img{display: block;}
 .original_tag{background: #007AFF;color: #fff;position: absolute;right: 0;bottom: 0;font-size: 12px;line-height: 20px;padding: 0 6px;}
 .mui-table-view-cell>a:not(.mui-btn){white-space: normal;}
 .mui-table-view-cell:after{left: 0;}
 .mui-input-row label{width: auto;}
 .mui-input-row label~textarea{width: 100%;padding: 11px 15px;}
-.mui-input-row label~input{width: 64%;float: left;}
+.mui-input-row label~input{width: 64%;float: left;font-size: 14px;}
 .mui-segmented-control .mui-control-item{border-left: none;}
 .mui-segmented-control .mui-control-item{background: transparent;}
 .mui-checkbox label, .mui-radio label{padding-right: 25px;}
@@ -40,12 +40,14 @@ p{margin-bottom: 0;}
 .top156px{top: 156px;}
 .left15px{left: 15px;}
 .font13{font-size: 13px;padding: 2px 0;}
-.font14{font-size: 14px;}
+.font14{font-size: 14px !important;}
 .font18{font-size: 18px;}
 .font26{font-size: 26px;}
 .font40{font-size: 40px;}
 .font60{font-size: 60px;}
 .font12{font-size: 12px;}
+.font16{font-size: 16px;}
+
 
 .sp_fonts{font-family: penFonts;}
 .bg_white{background: #fff;}
@@ -81,6 +83,7 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
 .border-radius0{border-radius: 0;}
 .border-bottom{position: relative;}
 .border-bottom:after{display: block;height: 1px;position: absolute;left: 0;bottom: 0;right: 0;content: '';background:#efefef;transform: scaleY(.5);}
+.border_bottom{margin-bottom: 1px;}
 .white-space{white-space: normal;}
 .icon-color{color: #cfcfcf;}
 .colorP{color: #4c968e;}
@@ -185,3 +188,5 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
 .width20{width: 20%;}
 .width50{width: 50%;}
 .borderNone{border: none;}
+
+.mui-content{max-width: 640px;margin: 0 auto;}

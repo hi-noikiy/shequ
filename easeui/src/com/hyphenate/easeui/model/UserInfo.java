@@ -3,6 +3,7 @@ package com.hyphenate.easeui.model;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.exceptions.HyphenateException;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import java.util.Map;
  * Created by kongqing on 17-3-4.
  */
 
-public class UserInfo {
+public class UserInfo implements Serializable {
     public static String getIcon(EMMessage message) {
         try {
             return message.getStringAttribute("userheader");
@@ -54,7 +55,7 @@ public class UserInfo {
 
     }
 
-    private Map<String, User> info;
+    private Map<String, User> info = new HashMap<>();
 
     private UserInfo() {
 
@@ -77,7 +78,7 @@ public class UserInfo {
         private static final UserInfo userInfo = new UserInfo();
     }
 
-    public static class User {
+    public static class User implements Serializable {
         private String uid;
 
         public String getUid() {

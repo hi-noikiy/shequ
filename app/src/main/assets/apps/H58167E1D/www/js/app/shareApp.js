@@ -1,6 +1,14 @@
-document.addEventListener('plusready',function(){
-	$('.alert_window>.share_list>li').unbind('tap');
-	$('.alert_window>.share_list>li').on('tap',function () {
+var shares=null,bhref=false;
+var Intent=null,File=null,Uri=null,main=null;
+
+//if(window.plus){
+//	shareReady();
+//}else{
+//	document.addEventListener("plusready",shareReady,false);
+//}
+document.addEventListener("plusready",function () {
+	$('.alert_window>.share_list>li').unbind('click');
+	$('.alert_window>.share_list>li').on('click',function () {
 		switch($(this).index()){
 			case 0:
 				shareChange(2);/*微信好友*/
@@ -12,18 +20,16 @@ document.addEventListener('plusready',function(){
 				shareChange(0);/*QQ好友*/
 			break;			
 			case 3:
-				shareChange(4);/*QQ空间*/
+				shareChange(0);/*QQ空间*/
 			break;			
 			default:
 				shareChange(3);/*微博*/
 			break;
 		}
+		return false;
 	})
 	
-var shares=null,bhref=false;
-var Intent=null,File=null,Uri=null,main=null;
-// H5 plus事件处理
-function plusReady(){
+
 	updateSerivces();
 	if(plus.os.name=="Android"){
 		Intent = plus.android.importClass("android.content.Intent");
@@ -31,12 +37,7 @@ function plusReady(){
 		Uri = plus.android.importClass("android.net.Uri");
 		main = plus.android.runtimeMainActivity();
 	}
-}
-if(window.plus){
-	plusReady();
-}else{
-	document.addEventListener("plusready",plusReady,false);
-}
+
 /**
  * 更新分享服务
  */
@@ -57,15 +58,14 @@ function updateSerivces(){
 function shareChange(i){
 	setTimeout(function () {
 		$('.alert_window').hide();
-	},50);
-	
-	var ids=[{id:"qq"},{id:"weixin",ex:"WXSceneTimeline"},{id:"weixin",ex:"WXSceneSession"},{id:"sinaweibo"},{id:"qq"}];
+	},300);
+	var ids=[{id:"qq"},{id:"weixin",ex:"WXSceneTimeline"},{id:"weixin",ex:"WXSceneSession"},{id:"sinaweibo"}];
 //	if(plus.os.name=="iOS"){
 //		ids.push({id:"qq"});
 //		bts.push({title:"分享到QQ"});
 //	}    
+console.log(ids[i].id);
  	var s = shares[ids[i].id];
- 	console.log(JSON.stringify(s))
 	if ( s.authenticated ) {
 		shareMessage(shares[ids[i].id],ids[i].ex);
 	} else {
@@ -81,9 +81,8 @@ function shareChange(i){
    * @param {plus.share.ShareService} s
    */
 function shareMessage(s,ex){
-	official = '商品详情';
 	//var aid = $('.shareCommunity').attr('data-aid');
-	var msg={title : official , extra : {scene:ex}  , content:'去卖艺掌上APP',href:apiRoot+'?action=Index.Share&webPage='+webPage+'&id='+id,thumbs:['/app/Public/image/logo.png']};
+	var msg={title : '去卖艺' , extra : {scene:ex}  , content:shareContent,href:(webRoot + webPage + id),thumbs:['http://qmy.51edn.com/static/images/icon.png']};
 	s.send( msg, function(){
 		plus.nativeUI.toast( "分享成功");
 	}, function(e){
@@ -97,4 +96,4 @@ function shareMessage(s,ex){
 		plus.nativeUI.toast( s.description+"分享失败" );
 	});
 }
-},false)
+},false);

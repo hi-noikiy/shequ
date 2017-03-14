@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -80,6 +81,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     protected Bundle              fragmentArgs;
     protected int                 chatType;
     protected String              toChatUsername;
+    protected String              nick;
     protected EaseChatMessageList messageList;
     protected EaseChatInputMenu   inputMenu;
 
@@ -125,27 +127,35 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         // check if single chat or group chat
         chatType = fragmentArgs.getInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         // userId you are chat with or group id
-        if (chatType == EaseConstant.CHATTYPE_SINGLE) {
-            toChatUsername = UserInfo.getInstance().getInfo().get(fragmentArgs.getString(EaseConstant.EXTRA_USER_ID)).getNick();
-        } else if (chatType == EaseConstant.CHATTYPE_GROUP) {
-            toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
-        }
+        toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
         super.onActivityCreated(savedInstanceState);
     }
 
     /**
      * init view
      */
+    public interface RightTitleBarClick {
+        void onclik(View v);
+    }
+
+    RightTitleBarClick rightTitleBarClick;
+
+    public void setOnRightTitleBarClick(RightTitleBarClick rightTitleBarClick) {
+        this.rightTitleBarClick = rightTitleBarClick;
+    }
+
     protected void initView() {
         // hold to record voice
         //noinspection ConstantConditions
         voiceRecorderView = (EaseVoiceRecorderView) getView().findViewById(R.id.voice_recorder);
         if (chatType == EaseConstant.CHATTYPE_GROUP) {
             titleBar.setRightImageResource(R.drawable.ease_group_icon);
-            titleBar.setRightLayoutClickListener(new OnClickListener() {
+            titleBar.setRightImageClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if (rightTitleBarClick != null) {
+                        rightTitleBarClick.onclik(v);
+                    }
                 }
             });
         }
@@ -197,12 +207,23 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         titleBar.setTitle(toChatUsername);
         if (chatType == EaseConstant.CHATTYPE_SINGLE) {
             // set title
-            if (EaseUserUtils.getUserInfo(toChatUsername) != null) {
+            /*if (EaseUserUtils.getUserInfo(toChatUsername) != null) {
                 EaseUser user = EaseUserUtils.getUserInfo(toChatUsername);
                 if (user != null) {
                     titleBar.setTitle(user.getNick());
                 }
+            }*/
+            if (fragmentArgs.getString("NICK") != null) {
+                nick = fragmentArgs.getString("NICK");
             }
+            if (nick == null) {
+                Log.d("ad", "onActivityCreated: " + fragmentArgs.getString(EaseConstant.EXTRA_USER_ID));
+                nick = UserInfo.getInstance().getInfo().get(fragmentArgs.getString(EaseConstant.EXTRA_USER_ID)).getNick();
+            }
+            if (nick == null) {
+                nick = toChatUsername;
+            }
+            titleBar.setTitle(nick);
             titleBar.setRightImageResource(R.drawable.ease_mm_title_remove);
         } else {
             titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);

@@ -40,7 +40,9 @@ app.controller("myreleasecontroller",function($scope,$http){
 	$scope.detailes = function(spage,id)
 	{ 
 		//跳内容详情
-		openPage(spage,{my:'my',gid:id});
+		if (spage == 'view_detail.html'){
+			openPage(spage,{my:'my',noteId:id});
+		}
 	}
 	$scope.noteupdate = function(id)
 	{                      

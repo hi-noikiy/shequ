@@ -12,7 +12,7 @@
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <button class="mui-btn-link mui-pull-left close_btn"><span class="colorP">取消</span></button>
 	    <h1 class="mui-title colorP">签名</h1>
-	    <button class="mui-btn-link mui-pull-right"><span class="colorP_confirm">确定</span></button>
+	    <button class="mui-btn-link mui-pull-right"><span class="colorP _confirm" id="save">确定</span></button>
 	</header>
 	<div class="mui-content">
 		<textarea name="" rows="6" cols=""  placeholder="请输入个性签名" id="personalized">&empty;</textarea>
@@ -30,7 +30,7 @@ document.addEventListener('plusready', function() {
 	$('.close_btn').click(function(){
 		ws.close();		
 	})
-	$(".colorP_confirm").on("tap",function(){
+	$("#save").on("tap",function(){
 		plus.nativeUI.showWaiting('提交中...');  
 		personalized=$('#personalized').val();
 		console.log(personalized);
@@ -65,7 +65,7 @@ document.addEventListener('plusready', function() {
 			error : function(e){
 				console.log(JSON.stringify(e));
 				
-//				errortoast();
+				errortoast();
 			}
 		});
 	})

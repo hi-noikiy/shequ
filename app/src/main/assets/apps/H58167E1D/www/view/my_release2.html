@@ -29,6 +29,7 @@
 				color: #4c968e;
 				font-size: 17px;
 			}
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border: none;}
 			.mui-segmented-control.mui-segmented-control-inverted{padding: 0;}
 			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item{font-size: 16px;line-height: 42px;}
 			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
@@ -62,20 +63,20 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">
 			    <div class="mui-segmented-control">
-				    <a class="mui-control-item sp_fonts" ng-click="neirxiangq(123)" href="#itemA">内容</a>
-				    <a class="mui-control-item sp_fonts mui-active" href="#itemB">商品</a>
+				    <a class="mui-control-item sp_fonts mui-active" ng-click="neirxiangq(123)" href="#itemA">内容</a>
+				    <a class="mui-control-item sp_fonts" href="#itemB">商品</a>
 				</div>
 		    </h1>
 		</header>
 		<div class="mui-content">
 			<!--交易列表-->
-			<div id="itemA" class="mui-slider-item mui-control-content">
+			<div id="itemA" class="mui-slider-item mui-control-content mui-active">
 				<ul class="mui-table-view bg_white">
 					<li class="mui-table-view-cell mui-media" ng-repeat="(index,n) in mynote">
 						<div class="mui-slider-right mui-disabled">  
 							<a class="mui-btn mui-btn-red" ng-click="noteupdate(n.id)">删除</a>
 						</div>
-						<a ng-click="detailes('video_detail.html')" href="javascript:;" class="mui-clearfix  mui-slider-handle">
+						<a ng-click="detailes('view_detail.html',n.id)" href="javascript:;" class="mui-clearfix  mui-slider-handle">
 							<img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n.subject}}">
 							<ul class="mui-media-body mui-pull-left user_view">
 								<li>
@@ -91,13 +92,12 @@
 									<span class="padding_l">{{n.tags}}</span>
 								</li>
 							</ul>
-						</a>
-						
-					</li>
-					<div class="mui-text-center line-height44px color999 font12">没有更多数据了</div> 
+						</a>						
+					</li>					
 				</ul>
+				<div class="mui-text-center line-height44px color999 font12">没有更多数据了</div> 
 			</div>
-			<div id="itemB" class="mui-slider-item mui-control-content mui-active">
+			<div id="itemB" class="mui-slider-item mui-control-content">
 				<div id="content_box" class="mui-slider">
 					<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted bg_white">
 						<a class="mui-control-item mui-active" href="#item1">在售</a>

@@ -89,6 +89,10 @@ public class EaseTitleBar extends RelativeLayout {
         rightImage.setBackgroundResource(resId);
     }
 
+    public void setRightImageClickListener(OnClickListener listener) {
+        rightImage.setOnClickListener(listener);
+    }
+
     public void setLeftLayoutClickListener(OnClickListener listener) {
         leftLayout.setOnClickListener(listener);
     }

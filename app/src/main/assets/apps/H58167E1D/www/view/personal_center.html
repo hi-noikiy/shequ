@@ -7,7 +7,6 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	    <title>我的</title>
 	    <link href="../css/mui.min.css" rel="stylesheet"/>
-	    <script src="../js/apppublic.js"></script>
 	    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
 	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
 	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
@@ -17,20 +16,25 @@
 	    	.filterImg_box{width: 100%;position: absolute;}
 	    	.substrate{position: relative;width: 100%;margin-bottom: 10px;overflow: hidden;background-repeat:no-repeat;background-size: 100% 100%;}
 	    	.apply_for_success{display: none;}
-	    </style>
-	    	
+	    </style>	    	
 	</head>
 	<body>
 		<div class="mui-content">
 			<div class="substrate">
 				<div class="filterImg_box"></div>
 				<div class="user_box mui-text-center margin-bottom10px">
-					<div onclick="openNewPage('personal_data.html')" class="my_title margin-bottom10px">
+					<div class="my_title margin-bottom10px">  
 						<img id='user_icon' src="" >
 					</div>
 					<span class="color_white" id="user_nick">&emsp;</span>
 				</div>
 			</div>
+			<ul class="mui-table-view bg_white">
+		        <li class="mui-table-view-cell" onclick="openNewPage('personal_data.html')">
+		            <i class="iconfont mui-icon colorP font18">&#xe62c;</i>
+		            <span>个人资料</span>
+		        </li>
+		    </ul>
 			<ul id="apply_for_success" class="mui-table-view margin-bottom10px bg_white" >
 		        <!--<li onclick="openNewPage('system_news.html')" class="mui-table-view-cell">
 		            <i class="iconfont mui-icon colorP font18">&#xe612;</i>
@@ -84,15 +88,40 @@
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/open.js"></script>
 	<script src="../js/jquery.min.js"></script>
+	<script src="../js/apppublic.js"></script>	
 	<script type="text/javascript"> 
 		$(function(){
 			//申请卖主成功后显示
-//			var filter_height = parseInt($('.user_box').height()+80);
-//			var img = $('.my_title img').attr('src');
-//			$('.substrate').css({'height':filter_height,'margin-bottom':'10px','background-image':'url('+img+')'});
-//			$('.filterImg_box').css({'background-image':'url('+img+')','background-size':'100% 100%','height':filter_height}).addClass('filterImg');
+			var filter_height = parseInt($('.user_box').height()+80);
+			var img = $('.my_title img').attr('src');
+			$('.substrate').css({'height':filter_height,'margin-bottom':'10px','background-image':'url('+img+')'});
+			$('.filterImg_box').css({'background-image':'url('+img+')','background-size':'100% 100%','height':filter_height}).addClass('filterImg');
 		})
 		
+		
+//		console.log($('#user_nick').html())
+		
+		window.addEventListener('changeVal',function(event){
+		var showWin = event.detail.showWin;
+		if(showWin == 1){
+			//触发弹窗
+			plus.nativeUI.actionSheet({
+				cancel: "取消",
+				buttons: [{
+					title: "发布内容"
+				},{
+					title: "发布商品"
+				}]
+			}, function(e) {
+				var i = e.index;
+				if(i == 1) {
+					openNewPage('release_viewMedia.html')
+				}else if(i==2){
+					openNewPage('release_goods.html')
+				}
+			});
+		}
+	});
 	</script>
 	<script src="../js/app/merchant.js"></script>
 </html> 

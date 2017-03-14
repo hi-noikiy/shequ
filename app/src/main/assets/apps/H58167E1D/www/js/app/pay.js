@@ -21,10 +21,12 @@ app.controller("payController",function($scope,$http){
 		console.log(JSON.stringify(response));         
 		$scope.goods = response.data.data.goods//商品的数据
 		$scope.addr = response.data.data.addr//地址数据
-		shid=response.data.data.goods.uid;
+//		shid=response.data.data.goods.uid;
+		$scope.shid=response.data.data.goods.uid;
 		money=response.data.data.goods.price;
 		$scope.price = money;
-		trade_name=response.data.data.goods.good_name;
+//		trade_name=response.data.data.goods.good_name;
+		$scope.good_name=response.data.data.goods.good_name;
 		plus.nativeUI.closeWaiting();
 	},function errorfunction(e){
 		console.log(e);
@@ -42,9 +44,10 @@ app.controller("payController",function($scope,$http){
 			channel:channel,
 			money:money,
 			num:$('#num').val(),
-			trade_name:trade_name,
+			trade_name:$scope.good_name,
 			goodsid:id,
-			shid:shid,	
+//			shid:shid,
+			shid:$scope.shid,
 		}
 	}).then(function successCallback(response){
 		plus.nativeUI.showWaiting('加载中...');
@@ -52,6 +55,7 @@ app.controller("payController",function($scope,$http){
 		plus.nativeUI.closeWaiting();
 		orderid=response.data.data.ddid;console.log(orderid);
 		money=response.data.data.money;
+		trade_name=response.data.data.trade_name;
 		payment(); 
 	},function errorfunction(e){
 		console.log(e);
@@ -83,7 +87,8 @@ function canpay() {
 		ptype = 'wxpay';
 		console.log('http://qmy.51edn.com/pay/index.php?orderid=' + orderid + '&price=' + money);
 //		url = 'http://qmy.51edn.com/app?action=Money.paymoney&money=0.01&orderid='+ orderid;
-		url = 'http://qmy.51edn.com/pay/index.php?price='+money+'&orderid='+ orderid;
+//		url = 'http://qmy.51edn.com/pay/index.php?price='+money+'&orderid='+ orderid;
+		url = 'http://qmy.51edn.com/pay/index.php?price='+money+'&orderid='+ orderid +'&trade_name='+trade_name;
 	}
 
 	w = plus.nativeUI.showWaiting('支付中...', {
@@ -102,7 +107,8 @@ function canpay() {
 					var order = xhr.responseText;
 //				toast(order);
 					plus.payment.request(pays[ptype],order, function(result) {
-						alert('成功');
+//						alert('成功');
+						toast('支付成功');
 						//setSmallchange();/*保存记录，余额不变*/
 						console.log(result);
 					}, function(e) {

@@ -10,9 +10,10 @@ document.addEventListener("plusready",function(){
 	$scope= angular.element(appElement).scope();
 	plus.nativeUI.closeWaiting();
 	ws=plus.webview.currentWebview();
-	if(ws.add_tag=='add_tag')
+	if(ws.add_tag)
 	{
-		var tag_str=plus.storage.getItem('releaseTags');
+//		var tag_str=plus.storage.getItem('releaseTags');
+		tag_str=ws.add_tag;
 		if(tag_str)
 		{   
 			tag_arr=tag_str.split(","); 
@@ -20,7 +21,7 @@ document.addEventListener("plusready",function(){
 			{
 				$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span>"+tag_arr[i]+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>")
 			}
-			plus.storage.removeItem('releaseTags');
+//			plus.storage.removeItem('releaseTags');
 		}
 	}
 	

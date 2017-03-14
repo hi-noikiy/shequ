@@ -18,10 +18,11 @@ app.controller("registerController",function($scope,$http){
    }
    $scope.registerStart = function()
    {
+// 	var regx = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/;
      var passone=$('#password').val();
      var passtwo=$('#passwordtwo').val();
 	if(!passone.match(passReg)){
-			toast('密码只能为数字和字母');
+			toast('密码只能为6~18位数字和字母组合');
 			return;
 		}
      if(passone!=passtwo)

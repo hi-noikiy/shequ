@@ -6,7 +6,7 @@ var apiRoot = webRoot + '/app';
 //var apiRoot = webRoot + '/index.php/app';
 var p1 = /^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/; //手机号码格式验证
 var passReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/;//验证密码规范 
-var card = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/; //验证身份证号
+var card = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; //验证身份证号
 var regx2 = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; //邮箱验证
 var p3 = /^[0-9]*$/; //判断是否为数字
 var m = /^(([1-9]\d*)|0)(\.\d*)?$/; //判断金钱
@@ -170,6 +170,7 @@ var curCloseAndShowNew = function(url) {
 //弹窗
 var toast = function(info) {
 	plus.nativeUI.toast(info);
+	plus.nativeUI.closeWaiting();
 }
 //网络连接失败提示
 var errortoast = function(e) {

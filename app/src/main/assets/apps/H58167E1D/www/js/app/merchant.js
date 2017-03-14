@@ -9,11 +9,14 @@ document.addEventListener('plusready',function(){
 			}
 			console.log(webRoot+icon);
 			$('#user_nick').text(nick);
-			$('#user_icon').attr('src',getAvatar(icon));
-			var filter_height = parseInt($('.user_box').height()+80);
-			$('.substrate').css({'height':filter_height,'margin-bottom':'10px','background-image':'url('+getAvatar(icon)+')'});
-			$('.filterImg_box').css({'background-image':'url('+getAvatar(icon)+')','background-size':'100% 100%','height':filter_height}).addClass('filterImg');
-		    $('#user_apply').on('tap',function(){
+			var filter_height = parseInt($('.user_box').height()+80)+'px';
+		   setTimeout(function () {
+				$('#user_icon').attr('src',getAvatar(icon));
+				$('.substrate').css({'height':filter_height,'margin-bottom':'10px','background-image':'url('+getAvatar(icon)+')'});
+				$('.filterImg_box').css({'background-image':'url('+getAvatar(icon)+')','background-size':'100% 100%','height':filter_height}).addClass('filterImg');
+		   },1000);
+		   
+		   $('#user_apply').on('tap',function(){
 		    	$.ajax({
 		    		type:"post",
 		    		url:apiRoot,
@@ -43,25 +46,7 @@ document.addEventListener('plusready',function(){
 		    	
 		    }) 
 
-//			var showWin = event.detail.showWin;
-//			if(showWin == 1){
-//				//触发弹窗
-//				plus.nativeUI.actionSheet({
-//					cancel: "取消",
-//					buttons: [{
-//						title: "发布内容"
-//					},{
-//						title: "发布商品"
-//					}]
-//				}, function(e) {
-//					var i = e.index;
-//					if(i == 1) {
-//						openNewPage('release_viewMedia.html')
-//					}else if(i==2){
-//						openNewPage('release_goods.html')
-//					}
-//				});
-//			}
+
 		})
 
 window.addEventListener('changeVal',function(event){
@@ -74,9 +59,11 @@ window.addEventListener('changeVal',function(event){
   console.log(icon2);
   if(icon2){
     icon = icon2;
-    $('#user_icon').attr('src',getAvatar(icon));
     var filter_height = parseInt($('.user_box').height()+80);
-			$('.substrate').css({'height':filter_height,'margin-bottom':'10px','background-image':'url('+getAvatar(icon)+')'});
-			$('.filterImg_box').css({'background-image':'url('+getAvatar(icon)+')','background-size':'100% 100%','height':filter_height}).addClass('filterImg');
+	setTimeout(function(){
+    	$('#user_icon').attr('src',getAvatar(icon));
+		$('.substrate').css({'height':filter_height,'margin-bottom':'10px','background-image':'url('+getAvatar(icon)+')'});
+		$('.filterImg_box').css({'background-image':'url('+getAvatar(icon)+')','background-size':'100% 100%','height':filter_height}).addClass('filterImg');
+	},500)
   }  
 });

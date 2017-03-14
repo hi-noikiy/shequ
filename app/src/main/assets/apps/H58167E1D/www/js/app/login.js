@@ -1,18 +1,19 @@
+var login;
 document.addEventListener('plusready',function(){
-	ws = plus.webview.currentWebview();
+	login = plus.webview.currentWebview();
 	var id = plus.storage.getItem('uid');//用户id
 	var first = plus.storage.getItem('first');
 //	plus.storage.clear();
 	if (!first){
 		setTimeout(function(){
-			ws.close;
+			login.close();
 		}, 1000); 
 		plus.webview.create('../splash.html','splash.html').show('pop-in');
 		return;
 	}
 	if(id){
 		setTimeout(function(){
-			ws.close;
+			login.close();
 		}, 1000);
 		plus.nativeUI.showWaiting('加载中...');
 		plus.webview.create('../index.html','index.html').show('pop-in');
@@ -51,7 +52,7 @@ document.addEventListener('plusready',function(){
 					plus.storage.setItem('address',data.data.location);//地址 
 					console.log(plus.storage.getItem('merchant'));
 					setTimeout(function(){
-						ws.close;
+						login.close();
 					}, 1000);   
 					plus.nativeUI.showWaiting('加载中...');
 					   var arr = [data.data.id,
@@ -64,6 +65,7 @@ document.addEventListener('plusready',function(){
 					plus.nativeUI.toast(data.desc);
 					return; 
 				}  
+				
 			}, 
 			error : function(e){
 				console.log(JSON.stringify(e));

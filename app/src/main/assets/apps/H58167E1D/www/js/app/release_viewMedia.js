@@ -1,6 +1,7 @@
 var newpath,files=[],uid;
 var app = angular.module("releaseViewMediaApp",[]);
-app.controller("releaseViewMediaController",function($scope,$http){
+var tags, groupid, goodsid;
+app.controller("releaseViewMediaController",function($scope,$http,$sce){
 	$http({
 		method: 'post',
 		url: apiRoot,
@@ -12,11 +13,11 @@ app.controller("releaseViewMediaController",function($scope,$http){
 	})
 	$scope.releasesub=function()
 	{
-		var tags = plus.storage.getItem('releaseTags');
+		 tags = plus.storage.getItem('releaseTags');//console.log(decodeURI(tags));return;
+		 groupid = plus.storage.getItem('repleaseGroup');
+		 goodsid = plus.storage.getItem('repleaseGoods');
 		$scope.cate_id = $('.category_list input:checked').attr("cate_id");
-		var tags = plus.storage.getItem('releaseTags');
-		var groupid = plus.storage.getItem('repleaseGroup');
-		var goodsid = plus.storage.getItem('repleaseGoods');
+		console.log(tags+'--'+groupid+'----'+goodsid);
 		if($('#a1').attr('src').length==0)
 		{
 			toast('请添加封面图');
@@ -37,6 +38,7 @@ app.controller("releaseViewMediaController",function($scope,$http){
         	toast('请添加分类');
 			return;
         }
+        
         var server = apiRoot;  
 		var task = plus.uploader.createUpload(server,
 			    {method:"post"},
@@ -80,13 +82,17 @@ app.controller("releaseViewMediaController",function($scope,$http){
 			task.addData('uid',uid);
 			task.addData('title',$("#releaseTitle").val());
 			task.addData('content',$("#releaseContent").val());
-			task.addData('tags',tags);
+			task.addData('tags',decodeURI(tags));
 			task.addData('groupid',groupid); 
 			task.addData('goodsid',goodsid);
 			task.addData('file_type','0');
 			task.start();
 		        
 	}
+	
+	
+	
+	
 	$scope.add_tag = function()
 	{
 		plus.nativeUI.showWaiting('加载中......');
@@ -107,6 +113,21 @@ app.controller("releaseViewMediaController",function($scope,$http){
 		console.log(uid);
 		plus.webview.create('add_correlation_goods.html', 'add_correlation_goods.html',{},{'goods_id':uid}).show('pop-in');
 	}
+
+	$scope.viedo_upload =function()
+     {
+     	plus.nativeUI.actionSheet({cancel:"取消",buttons:[{title:"添加视频"}]},function(e){
+			if(e.index == 1){
+				plus.gallery.pick(function(path){
+					 console.log(JSON.stringify(path))
+					 files.push({'patn':path,'name':'name','type':1}); 
+					$scope.url=path;
+					$scope.viedoUrl= $sce.trustAsResourceUrl($scope.url);
+                 },function(err){},{filter:"video"});//{filter:"video"}
+			}
+		})
+     }
+
 
 })
 
@@ -130,9 +151,9 @@ $('#note_subject').on('tap',function(){
 			}else if(e.index == 2){
 				plus.gallery.pick(function(path){
 					for(var i = 0;i<path.files.length;i++){
-//						appendpic(path.files[i],2)
+						appendpic(path.files[i],2)
 						$('.img_show').append('<img src="'+path.files[i]+'">');  
-						console.log(path.files[i]);
+//						console.log(path.files[i]);
 			    	}
 					 console.log(JSON.stringify(path));    
 					
@@ -142,7 +163,7 @@ $('#note_subject').on('tap',function(){
 					plus.nativeUI.alert('最多只能选择5张图片');
 			    }});// 最多选择3张图片
 			}
-		})
+		})     
 	})
 $('.note_subject').on('tap',function(){ 
 		plus.nativeUI.actionSheet({cancel:"取消",buttons:[{title:"拍照添加"},{title:"相册添加"}]},function(e){
@@ -183,7 +204,7 @@ function appendpic(p,type){
 		function(){//毁掉成功
 			plus.nativeUI.closeWaiting();
 			files.push({'patn':newpath,'name':'name','type':type}); 
-			console.log(newpath)
+			console.log(JSON.stringify(files))
 		},
 		function(error){
 		alert('压缩图片失败');
@@ -193,6 +214,6 @@ function appendpic(p,type){
 document.addEventListener("plusready",function(){
 	appElement=document.querySelector('[ng-controller=releaseViewMediaController]');
 	$scope= angular.element(appElement).scope();
-	uid = plus.storage.getItem('uid');
+    uid = plus.storage.getItem('uid');
 	$scope.$apply();
 })

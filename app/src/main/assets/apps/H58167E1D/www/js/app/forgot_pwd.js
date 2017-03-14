@@ -1,23 +1,35 @@
 var app = angular.module("forgotApp",[]);
-
+var is_getCode = 0;
 app.controller("forgotController",function($scope,$http){
    $scope.forgot = function()
    {
      var passone=$('#password').val();
      var passtwo=$('#passwordtwo').val();
-	if(!passone.match(passReg)){
-			toast('密码只能为数字和字母');
+     var code = $('#code').val();
+     //判断密码格式和值是否为空
+	if(!passone.match(passReg) || passone ==""){
+			toast('密码只能为6~18位数字和字母组合');
 			return;
 		}
-     if(passone!=passtwo)
-     {
+	//判断两次输入的密码是否一致
+     if(passone!=passtwo){
      	toast('两次密码不一致');
 			return;
      }
-     if(!$("#mobile").val().match(p1))
-     {
+     //判断手机号码格式和值是否为空
+     if(!$("#mobile").val().match(p1) || $("#mobile").val() ==""){
      	toast('请填写正确在手机号码');
 			return;
+     }
+     //判断是否获取验证码
+     if(is_getCode == 0){
+     	toast('请获取验证码');
+     		return;
+     }
+     //判断验证码是否为空并且长度不能
+     if($('#code').val().match(p3) =="" || $('#code').val().length != 4){
+     	toast('请填写四位数字的验证码');
+     	return;
      }
      $http({
 		method:'post',
@@ -52,6 +64,7 @@ app.controller("forgotController",function($scope,$http){
     		toast('请输入手机号码');
     		return;
     	}
+    	is_getCode = 1;
     	var curTime = new Date();
 	  	var EndTime = parseInt((curTime.getTime()/1000)+60);//截止时间
 	    var NowTime = parseInt(new Date().getTime()/1000);

@@ -1,638 +1,141 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	    <title>首页</title>
-	    <link href="../css/mui.min.css" rel="stylesheet"/>
-	    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
-	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
-	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
-	    <style type="text/css">
-	    	/*.mui-slider-indicator .mui-icon{width: auto;height: auto;margin: 0;border: none;}
-	    	.mui-segmented-control .mui-control-item{line-height: 26px;}
-	    	.mui-segmented-control{font-size: 17px;}	
-	    	.mui-bar .mui-title{height: 100%;}   
-	    	.mui-title .top_tab{height: 30px;overflow: hidden;border: 1px solid #4c968e;display:block;position:relative;top: 7px; border-radius: 16px;box-sizing: border-box;}
-			.mui-title .top_tab a{display:block;width: 50%;height: 100%; float: left;line-height: 30px;text-align: center;padding: 0 10px;color: #4c968e;}
-			.mui-segmented-control .mui-control-item.mui-active{background: #4c968e;color: #fff;}
-	   		.user span{width: 72%;display: inline-block;}	    	
-	    	.user{width: 62%;}*/
-	    	.mui-slider-indicator .mui-icon{width: auto;height: auto;margin: 0;border: none;}
-	    	.mui-bar .mui-segmented-control{width: 60%;border: 1px solid #4c968e;border-radius: 20px;}
-	    	.mui-segmented-control .mui-control-item{color: #4c968e;font-size: 17px;}
-	    	.mui-bar .mui-title{height: 100%;}
-			.mui-segmented-control .mui-control-item.mui-active{background: #4c968e;color: #fff;}
-	   		.user span{width: 72%;display: inline-block;}	    	
-	    	.user{width: 62%;}
-	    </style>
+		<title>首页</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/global.css" />
+		<style type="text/css">
+			.mui-slider-indicator .mui-icon {
+				width: auto;
+				height: auto;
+				margin: 0;
+				border: none;
+			}
+			
+			.mui-bar .mui-segmented-control {
+				width: 60%;
+				border: 1px solid #4c968e;
+				border-radius: 20px;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				color: #4c968e;
+				font-size: 17px;
+			}
+			
+			.mui-bar .mui-title {
+				height: 100%;
+			}
+			
+			.mui-segmented-control .mui-control-item.mui-active {
+				background: #4c968e;
+				color: #fff;
+			}
+			
+			.mui-table-view-cell:last-child:after {
+				height: 1px;
+			}
+			
+			.user span {
+				width: 72%;
+				display: inline-block;
+			}
+			
+			.user {
+				width: 62%;
+			}
+			
+			.subfield>div {
+				min-height: 46px !important;
+				max-height: 60px;
+				overflow: hidden;
+				border-radius: 6px;
+			}
+			
+			.subfield img {
+				min-height: 46px !important;
+				max-height: 60px;
+			}
+			
+			.mui-media-object {
+				max-height: 74px !important;
+			}
+			
+			.slider_wrap img {
+				min-height: 150px;
+				max-height: 194px;
+			}
+		</style>
 	</head>
+
 	<body ng-app="homeApp" ng-controller="homeController">
 		<header class="mui-bar mui-bar-nav bg_white" style="text-align: center;">
-		    <h1 class="mui-title">
+			<h1 class="mui-title">
 			    <div class="mui-segmented-control">
 			        <a class="mui-control-item mui-active sp_fonts" href="#itemA">社区</a>
 			        <a class="mui-control-item sp_fonts" href="#itemB">交易</a>
 			    </div>
-		    </h1>		    
-		    <!--<a onclick="openNewPage('search_result.html')" class="mui-icon iconfont mui-pull-right">&#xe64f;</a>-->
+		    </h1>
+			<!--<a onclick="openNewPage('search_result.html')" class="mui-icon iconfont mui-pull-right">&#xe64f;</a>-->
 		</header>
 		<div class="mui-content">
 			<!-----------------社区---------------->
 			<div id="itemA" class="mui-slider-item mui-control-content mui-active">
-				<!--<div id="scroll" class="mui-scroll-wrapper">
-					<div class="mui-scroll">-->
-						<div class="mui-slider" id="nav">
-						    <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted bg_white">
-						        <a class="mui-control-item mui-active sp_fonts" href="#item1">无<i class="mui-icon iconfont">&#xe621;</i>二</a>
-						        <a class="mui-control-item sp_fonts" href="#item2">古<i class="mui-icon iconfont">&#xe621;</i>技</a>
-						        <a class="mui-control-item sp_fonts" href="#item3">洋<i class="mui-icon iconfont">&#xe621;</i>艺</a>
-						        <a class="mui-control-item sp_fonts" href="#item4">觉<i class="mui-icon iconfont">&#xe621;</i>今</a>
-						    </div>				    
-						    <div class="mui-slider-group">
-						        <div id="item1" class="mui-slider-item mui-control-content mui-active">
-						            <ul class="mui-table-view">
-										<!--轮播图-->
-										<li class="mui-table-view-cell padding0 margin-bottom5px">
-											<div id="slider1" class="mui-slider" >
-												<div class="mui-slider-group mui-slider-loop">
-													<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-													<div class="mui-slider-item mui-slider-item-duplicate">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 第一张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-													<!-- 第二张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 第三张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-													<!-- 第四张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-													<div class="mui-slider-item mui-slider-item-duplicate">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-												</div>
-												<div class="mui-slider-indicator">
-													<div class="mui-indicator mui-active"></div>
-													<div class="mui-indicator"></div>
-													<div class="mui-indicator"></div>
-													<div class="mui-indicator"></div>
-												</div>
-											</div>
-										</li>
-										<!--分栏-->
-										<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('special_topic.html')" class="zt_item">
-													<img src="../img/zhuanti1.jpg"/>
-													<p><a>十月艺术专题</a></p>
-												</div>		
-											</div>
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
-													<img src="../img/zhuanti2.jpg"/>
-													<p><a>传统工艺焕新生</a></p>
-												</div>
-												
-											</div>
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('originality.html')" class="zt_item">
-													<img src="../img/zhaunti3.jpg"/>
-													<p><a>新生创意</a></p>
-												</div>
-											</div>
-										</li>
-										<!--最新内容-->
-										<li class="mui-table-view-cell bg_white">
-											<span class="mui-pull-left color0">最新内容</span>
-											<span  class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(cates[0].id)">更多</span>
-										</li>
-										<li class="mui-table-view-cell padding0 bg_white">
-											<ul class="mui-table-view" id="notes1" ng-repeat="(index,n1) in notes[1]">
-											    <li class="mui-table-view-cell mui-media" ng-if="n1.hot==0" ng-click="shequ(n1.id)">
-											        <a href="javascript:;" class="mui-clearfix">
-											            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n1.subject}}">
-											            <ul class="mui-media-body mui-pull-left user_view">
-											               	<li>
-											               		<div class="user_pic"><img src="{{n1.icon}}" /></div>
-											               		<span class="padding_l">{{n1.nick}}</span>
-											               		<i class="sign_tag" ng-if="n1.sign">签约</i>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
-											               		<span class="padding_l">{{n1.title}}</span>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-											               		<span class="padding_l">{{n1.tags}}</span>
-											               	</li>
-											            </ul>
-											        </a>
-											    </li>											   
-											</ul>
-										</li>
-										<!--最热门内容-->
-										<li class="mui-table-view-cell bg_white">
-											<span class="mui-pull-left color0">最热门内容</span>
-											<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNews(cates[0].id)">更多</span>
-										</li>
-										<li class="mui-table-view-cell padding0 bg_white">
-											<ul class="mui-table-view" id="news1">
-											    <li  class="mui-table-view-cell mui-media" ng-repeat="(index,n11) in notes[1]" ng-if="n11.hot" ng-click="shequ(n11.id)">
-											        <a href="javascript:;" class="mui-clearfix">
-											            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n11.subject}}">
-											            <ul class="mui-media-body mui-pull-left user_view">
-											               	<li>
-											               		<div class="user_pic"><img src="{{n11.icon}}" /></div>
-											               		<span class="padding_l">{{n11.nick}}</span>
-											               		<i class="sign_tag" ng-if="n11.sign">签约</i>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
-											               		<span class="padding_l">{{n11.title}}</span>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-											               		<span class="padding_l">{{n11.tags}}</span>
-											               	</li>
-											            </ul>
-											        </a>
-											    </li>
-											</ul>
-										</li>
-									</ul>
-						        </div>
-						        <div id="item2" class="mui-slider-item mui-control-content">
-						            <ul class="mui-table-view">
-										<!--轮播图-->
-										<li class="mui-table-view-cell padding0 margin-bottom5px">
-											<div id="slider2"  class="mui-slider" >
-												<div class="mui-slider-group mui-slider-loop">
-													<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-													<div class="mui-slider-item mui-slider-item-duplicate">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 第一张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-													<!-- 第二张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 第三张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-													<!-- 第四张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-													<div class="mui-slider-item mui-slider-item-duplicate">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-												</div>
-												<div class="mui-slider-indicator">
-													<div class="mui-indicator mui-active"></div>
-													<div class="mui-indicator"></div>
-													<div class="mui-indicator"></div>
-													<div class="mui-indicator"></div>
-												</div>
-											</div>
-										</li>
-										<!--分栏-->
-										<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('special_topic.html')" class="zt_item">
-													<img src="../img/zhuanti1.jpg"/>
-													<p><a>十月艺术专题</a></p>
-												</div>		
-											</div>
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
-													<img src="../img/zhuanti2.jpg"/>
-													<p><a>传统工艺焕新生</a></p>
-												</div>
-												
-											</div>
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('originality.html')" class="zt_item">
-													<img src="../img/zhaunti3.jpg"/>
-													<p><a>新生创意</a></p>
-												</div>
-											</div>
-										</li>
-										<!--最新内容-->
-										<li class="mui-table-view-cell bg_white">
-											<h5 class="mui-pull-left color0">最新内容</h5>
-											<span  class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(shequNote[1].id)">更多</span>
-										</li>
-										<li class="mui-table-view-cell padding0 bg_white" id="notes2">
-											<ul class="mui-table-view">
-											    <li  class="mui-table-view-cell mui-media" ng-repeat="(index,n2) in notes[2]" ng-if="!n2.hot" ng-click="shequ(n2.id)">
-												<a href="javascript:;" class="mui-clearfix">
-											            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n2.subject}}">
-											            <ul class="mui-media-body mui-pull-left user_view">
-											               	<li>
-											               		<div class="user_pic"><img src="{{n2.icon}}" /></div>
-											               		<span class="padding_l">{{n2.nick}}</span>
-											               		<i class="sign_tag" ng-if="n2.sign">签约</i>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
-											               		<span class="padding_l">{{n2.title}}</span>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-											               		<span class="padding_l">{{n2.tags}}</span>
-											               	</li>
-											            </ul>
-											        </a>
-											    </li>
-											</ul>
-										</li>
-										<!--最热门内容-->
-										<li class="mui-table-view-cell bg_white">
-											<h5 class="mui-pull-left color0">最热门内容</h5>
-											<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNews(cates[1].id)">更多</span>
-										</li>
-										<li class="mui-table-view-cell padding0 bg_white">
-											<ul class="mui-table-view" id="news2">
-											    <li  class="mui-table-view-cell mui-media" ng-repeat="(index,n22) in notes[2]" ng-if="n22.hot" ng-click="shequ(n22.id)">
-											        <a href="javascript:;" class="mui-clearfix">
-											            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n22.subject}}">
-											            <ul class="mui-media-body mui-pull-left user_view">
-											               	<li>
-											               		<div class="user_pic"><img src="{{n22.icon}}" /></div>
-											               		<span class="padding_l">{{n22.nick}}</span>
-											               		<i class="sign_tag" ng-if="n22.sign">签约</i>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
-											               		<span class="padding_l">{{n22.title}}</span>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-											               		<span class="padding_l">{{n22.tags}}</span>
-											               	</li>
-											            </ul>
-											        </a>
-											    </li>
-											</ul>
-										</li>
-									</ul>
-						        </div>
-						         <div id="item3" class="mui-slider-item mui-control-content">
-						            <ul class="mui-table-view">
-										<!--轮播图-->
-										<li class="mui-table-view-cell padding0 margin-bottom5px">
-											<div id="slider3" class="mui-slider" >
-												<div class="mui-slider-group mui-slider-loop">
-													<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-													<div class="mui-slider-item mui-slider-item-duplicate">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 第一张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-													<!-- 第二张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 第三张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-													<!-- 第四张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-													<div class="mui-slider-item mui-slider-item-duplicate">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-												</div>
-												<div class="mui-slider-indicator">
-													<div class="mui-indicator mui-active"></div>
-													<div class="mui-indicator"></div>
-													<div class="mui-indicator"></div>
-													<div class="mui-indicator"></div>
-												</div>
-											</div>
-										</li>
-										<!--分栏-->
-										<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('special_topic.html')" class="zt_item">
-													<img src="../img/zhuanti1.jpg"/>
-													<p><a>十月艺术专题</a></p>
-												</div>		
-											</div>
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
-													<img src="../img/zhuanti2.jpg"/>
-													<p><a>传统工艺焕新生</a></p>
-												</div>
-												
-											</div>
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('originality.html')" class="zt_item">
-													<img src="../img/zhaunti3.jpg"/>
-													<p><a>新生创意</a></p>
-												</div>
-											</div>
-										</li>
-										<!--最新内容-->
-										<li class="mui-table-view-cell bg_white">
-											<h5 class="mui-pull-left color0">最新内容</h5>
-											<span  class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(cates[2].id)">更多</span>
-										</li>
-										<li class="mui-table-view-cell padding0 bg_white">
-											<ul class="mui-table-view" id="notes3">
-											    <li class="mui-table-view-cell mui-media" ng-repeat="(index,n3) in notes[3]" ng-if="!n3.hot" ng-click="shequ(n3.id)">
-											        <a href="javascript:;" class="mui-clearfix">
-											            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n3.subject}}">
-											            <ul class="mui-media-body mui-pull-left user_view">
-											               	<li>
-											               		<div class="user_pic"><img src="{{n3.icon}}" /></div>
-											               		<span class="padding_l">{{n3.nick}}</span>
-											               		<i class="sign_tag" ng-if="n3.sign">签约</i>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
-											               		<span class="padding_l">{{n3.title}}</span>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-											               		<span class="padding_l">{{n3.tags}}</span>
-											               	</li>
-											            </ul>
-											        </a>
-											    </li>
-											</ul>
-										</li>
-										<!--最热门内容-->
-										<li class="mui-table-view-cell bg_white">
-											<h5 class="mui-pull-left color0">最热门内容</h5>
-											<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNews(cates[2].id)">更多</span>
-										</li>
-										<li class="mui-table-view-cell padding0 bg_white">
-											<ul class="mui-table-view" id="news3">
-											    <li  class="mui-table-view-cell mui-media" ng-repeat="(index,n33) in notes[3]" ng-if="n33.hot" ng-click="shequ(n33.id)">
-											        <a href="javascript:;" class="mui-clearfix">
-											            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n33.subject}}">
-											            <ul class="mui-media-body mui-pull-left user_view">
-											               	<li>
-											               		<div class="user_pic"><img src="{{n33.icon}}" /></div>
-											               		<span class="padding_l">{{n33.nick}}</span>
-											               		<i class="sign_tag" ng-if="n33.sign">签约</i>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
-											               		<span class="padding_l">{{n33.title}}</span>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-											               		<span class="padding_l">{{n33.tags}}</span>
-											               	</li>
-											            </ul>
-											        </a>
-											    </li>
-											</ul>
-										</li>
-									</ul>
-						        </div>
-						         <div id="item4" class="mui-slider-item mui-control-content">
-						            <ul class="mui-table-view">
-										<!--轮播图-->
-										<li class="mui-table-view-cell padding0 margin-bottom5px">
-											<div id="slider4" class="mui-slider" >
-												<div class="mui-slider-group mui-slider-loop">
-													<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-													<div class="mui-slider-item mui-slider-item-duplicate">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 第一张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-													<!-- 第二张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 第三张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-													<!-- 第四张 -->
-													<div class="mui-slider-item">
-														<a href="#">
-															<img src="../img/lunbo2.jpg">
-														</a>
-													</div>
-													<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-													<div class="mui-slider-item mui-slider-item-duplicate">
-														<a href="#">
-															<img src="../img/lunbo1.jpg">
-														</a>
-													</div>
-												</div>
-												<div class="mui-slider-indicator">
-													<div class="mui-indicator mui-active"></div>
-													<div class="mui-indicator"></div>
-													<div class="mui-indicator"></div>
-													<div class="mui-indicator"></div>
-												</div>
-											</div>
-										</li>
-										<!--分栏-->
-										<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('special_topic.html')" class="zt_item">
-													<img src="../img/zhuanti1.jpg"/>
-													<p><a>十月艺术专题</a></p>
-												</div>		
-											</div>
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
-													<img src="../img/zhuanti2.jpg"/>
-													<p><a>传统工艺焕新生</a></p>
-												</div>
-												
-											</div>
-											<div class="mui-pull-left border-radius5px">
-												<div onclick="openNewPage('originality.html')" class="zt_item">
-													<img src="../img/zhaunti3.jpg"/>
-													<p><a>新生创意</a></p>
-												</div>
-											</div>
-										</li>
-										<!--最新内容-->
-										<li class="mui-table-view-cell bg_white">
-											<h5 class="mui-pull-left color0">最新内容</h5>
-											<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(cates[3].id)">更多</span>
-										</li>
-										<li class="mui-table-view-cell padding0 bg_white">
-											<ul class="mui-table-view" id="notes4">
-											    <li class="mui-table-view-cell mui-media" ng-repeat="(index,n4) in notes[4]" ng-if="!n4.hot" ng-click="shequ(n4.id)">
-											        <a href="javascript:;" class="mui-clearfix">
-											            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n4.subject}}">
-											            <ul class="mui-media-body mui-pull-left user_view">
-											               	<li>
-											               		<div class="user_pic"><img src="{{n4.icon}}" /></div>
-											               		<span class="padding_l">{{n4.nick}}</span>
-											               		<i class="sign_tag" ng-if="n4.sign">签约</i>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
-											               		<span class="padding_l">{{n4.title}}</span>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-											               		<span class="padding_l">{{n4.tags}}</span>
-											               	</li>
-											            </ul>
-											        </a>
-											    </li>
-											</ul>
-										</li>
-										<!--最热门内容-->
-										<li class="mui-table-view-cell bg_white">
-											<h5 class="mui-pull-left color0">最热门内容</h5>
-											<span  class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNews(cates[3].id)">更多</span>
-										</li>
-										<li class="mui-table-view-cell padding0 bg_white">
-											<ul class="mui-table-view" id="news4"> 
-											    <li class="mui-table-view-cell mui-media" ng-repeat="(index,n44) in notes[4]" ng-if="n44.hot" ng-click="shequ(n44.id)">
-											        <a href="javascript:;" class="mui-clearfix">
-											            <img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n44.subject}}">
-											            <ul class="mui-media-body mui-pull-left user_view">
-											               	<li>
-											               		<div class="user_pic"><img src="{{n44.icon}}" /></div>
-											               		<span class="padding_l">{{n44.nick}}</span>
-											               		<i class="sign_tag" ng-if="n44.sign">签约</i>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
-											               		<span class="padding_l">{{n44.title}}</span>
-											               	</li>
-											               	<li>
-											               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-											               		<span class="padding_l">{{n44.tags}}</span>
-											               	</li>
-											            </ul> 
-											        </a>
-											    </li> 
-											</ul>
-										</li>
-									</ul>
-						        </div>
-						    </div>
-						</div>	
-					<!--</div>
-				</div>-->
-			</div>	
-			<!---------------------交易---------------------->
-			<div id="itemB" class="mui-control-content mui-slider-item">
-				<!--<div id="scroll" class="mui-scroll-wrapper">
-					<div class="mui-scroll">-->
-						<!--<div class="mui-slider bg_white">-->
+				<div class="mui-slider content_box" id="nav">
+					<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted bg_white">
+						<a class="mui-control-item mui-active sp_fonts" href="#item1">无<i class="mui-icon iconfont">&#xe621;</i>二</a>
+						<a class="mui-control-item sp_fonts" href="#item2">古<i class="mui-icon iconfont">&#xe621;</i>技</a>
+						<a class="mui-control-item sp_fonts" href="#item3">洋<i class="mui-icon iconfont">&#xe621;</i>艺</a>
+						<a class="mui-control-item sp_fonts" href="#item4">觉<i class="mui-icon iconfont">&#xe621;</i>今</a>
+					</div>
+					<div class="mui-slider-group">
+						<div id="item1" class="mui-slider-item mui-control-content mui-active">
 							<ul class="mui-table-view">
 								<!--轮播图-->
-								<li class="mui-table-view-cell padding0">
-									<div id="slider_audio" class="mui-slider" >
+								<li class="mui-table-view-cell padding0 margin-bottom5px">
+									<div id="slider1" class="mui-slider">
 										<div class="mui-slider-group mui-slider-loop">
 											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate">
+											<div class="mui-slider-item mui-slider-item-duplicate slider_wrap">
 												<a href="#">
-													<img src="../img/lunbo2.jpg">									
+													<img ng-src="../img/lunbo2.jpg">
 												</a>
 											</div>
 											<!-- 第一张 -->
-											<div class="mui-slider-item">
+											<div class="mui-slider-item  slider_wrap">
 												<a href="#">
-													<img src="../img/lunbo1.jpg">
+													<img ng-src="../img/lunbo1.jpg">
 												</a>
 											</div>
 											<!-- 第二张 -->
-											<div class="mui-slider-item">
+											<div class="mui-slider-item  slider_wrap">
 												<a href="#">
-													<img src="../img/lunbo2.jpg">
+													<img ng-src="../img/lunbo2.jpg">
 												</a>
 											</div>
 											<!-- 第三张 -->
-											<div class="mui-slider-item">
+											<div class="mui-slider-item  slider_wrap">
 												<a href="#">
-													<img src="../img/lunbo1.jpg">
+													<img ng-src="../img/lunbo1.jpg">
 												</a>
 											</div>
 											<!-- 第四张 -->
-											<div class="mui-slider-item">
+											<div class="mui-slider-item  slider_wrap">
 												<a href="#">
-													<img src="../img/lunbo2.jpg">
+													<img ng-src="../img/lunbo2.jpg">
 												</a>
 											</div>
 											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate">
+											<div class="mui-slider-item mui-slider-item-duplicate  slider_wrap">
 												<a href="#">
-													<img src="../img/lunbo1.jpg">
+													<img ng-src="../img/lunbo1.jpg">
 												</a>
 											</div>
 										</div>
@@ -645,89 +148,652 @@
 									</div>
 								</li>
 								<!--分栏-->
-								<li class="mui-table-view-cell mui-grid-view circle_text sp_fonts">
-									<div onclick="openNewPage('du.html')"><span >独</span></div>
-									<div onclick="openNewPage('gu.html')"><span>古</span></div>
-									<div onclick="openNewPage('jin.html')"><span>今</span></div>
-									<div onclick="openNewPage('zhong.html')"><span>中</span></div>
-									<div onclick="openNewPage('wai.html')"><span>外</span></div>								
+								<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield bg_white">
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('special_topic.html')" class="zt_item">
+											<img ng-src="../img/zhuanti1.jpg" />
+											<p>
+												<a>十月艺术专题</a>
+											</p>
+										</div>
+									</div>
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
+											<img ng-src="../img/zhuanti2.jpg" />
+											<p>
+												<a>传统工艺焕新生</a>
+											</p>
+										</div>
+
+									</div>
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('originality.html')" class="zt_item">
+											<img ng-src="../img/zhaunti3.jpg" />
+											<p>
+												<a>新生创意</a>
+											</p>
+										</div>
+									</div>
 								</li>
-								<!--推荐-->
-								<li class="mui-table-view-cell bg_white">
-									<h5 class="mui-pull-left color0">推荐</h5>	
-									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="tradePush()">更多</span>
-								</li>
-					            <li  class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,r) in recommends" ng-click="obtainId(r.id)">
-					                <a href="javascript:;">
-					                   <div class="mui-media-object mui-pull-left goods_pic ">
-					                    	<img  src="{{r.good_image}}">
-					                    	<span class="original_tag" ng-if="r.origin">原创</span>
-					                    </div>
-					                    <div class="mui-media-body">
-					                     	<div class="mui-ellipsis">{{r.good_name}}</div>
-					                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12 line-height20px">工期：<i>{{r.maf_time}}</i>天</span></div>
-					                     	<div class="mui-clearfix">
-					                     		<div class="mui-pull-left user">
-					                     			<div class="user_pic"><img src="{{r.icon}}" /></div>
-													<span class="padding_l line-height30px color999 mui-ellipsis font12">{{r.nick}} </span>
-					                     		</div>
-					                     		<span class="mui-pull-right colorRed line-height30px font12">￥{{r.price}}</span>
-					                     	</div>
-					                    </div>
-					                </a>
-					            </li>
 								<!--最新内容-->
 								<li class="mui-table-view-cell bg_white">
-									<h5 class="mui-pull-left color0">新品</h5>
-									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="tradeNew()">更多</span>
+									<span class="mui-pull-left color0">最新内容</span>
+									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(cates[0].id)">更多</span>
 								</li>
-								<li class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,news) in news" ng-click="obtainId(news.id)">
-					                <a href="javascript:;">
-					                    <div class="mui-media-object mui-pull-left goods_pic "><img  src="{{news.good_image}}">
-					                    <span class="original_tag" ng-if="news.origin">原创</span>
-					                    </div>
-					                    <div class="mui-media-body">
-					                     	<div class="mui-ellipsis">{{news.good_name}}</div>
-					                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12 line-height20px">工期：<i>{{news.maf_time}}</i>天</span></div>
-					                     	<div class="mui-clearfix">
-					                     		<div class="mui-pull-left user">
-					                     			<div class="user_pic"><img src="{{news.icon}}" /></div>
-													<span class="padding_l line-height30px color999 mui-ellipsis font12">{{news.nick}} </span>
-					                     		</div>
-					                     		<span class="mui-pull-right colorRed line-height30px font12">￥{{news.price}}</span>
-					                     	</div>
-					                    </div>
-					                </a>
-					            </li>
-								<!--最新热门内容-->
+								<li class="mui-table-view-cell padding0 bg_white">
+									<ul class="mui-table-view" id="notes1" ng-repeat="(index,n1) in notes[1]">
+										<li class="mui-table-view-cell mui-media" ng-if="n1.hot==0" ng-click="shequ(n1.id)">
+											<a href="javascript:;" class="mui-clearfix">
+												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n1.subject}}">
+												<ul class="mui-media-body mui-pull-left user_view">
+													<li>
+														<div class="user_pic"><img ng-src="{{n1.icon}}" /></div>
+														<span class="padding_l">{{n1.nick}}</span>
+														<i class="sign_tag" ng-if="n1.sign">签约</i>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<span class="padding_l">{{n1.title}}</span>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+														<span class="padding_l">{{n1.tags}}</span>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<!--最热门内容-->
 								<li class="mui-table-view-cell bg_white">
-									<h5 class="mui-pull-left color0">热门</h5>
-									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="tradeHot()">更多</span>
+									<span class="mui-pull-left color0">最热门内容</span>
+									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNews(cates[0].id)">更多</span>
 								</li>
-								<li  class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,h) in hots" ng-click="obtainId(h.id)">
-					                <a href="javascript:;">
-					                    <div class="mui-media-object mui-pull-left goods_pic "><img  src="{{h.good_image}}">
-					                    <span class="original_tag" ng-if="h.origin">原创</span>
-					                    </div>
-					                    <div class="mui-media-body">
-					                     	<div class="mui-ellipsis">{{h.good_name}}</div>
-					                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12 line-height20px">工期：<i>{{h.maf_time}}</i>天</span></div>
-					                     	<div class="mui-clearfix">
-					                     		<div class="mui-pull-left user">
-					                     			<div class="user_pic"><img src="{{h.icon}}" /></div>
-													<span class="padding_l line-height30px color999 mui-ellipsis font12">{{h.nick}} </span>
-					                     		</div>
-					                     		<span class="mui-pull-right colorRed line-height30px font12">￥{{h.price}}</span>
-					                     	</div>
-					                    </div>
-					                </a>
-					            </li>
+								<li class="mui-table-view-cell padding0 bg_white">
+									<ul class="mui-table-view" id="news1">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n11) in notes[1]" ng-if="n11.hot" ng-click="shequ(n11.id)">
+											<a href="javascript:;" class="mui-clearfix">
+												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n11.subject}}">
+												<ul class="mui-media-body mui-pull-left user_view">
+													<li>
+														<div class="user_pic"><img ng-src="{{n11.icon}}" /></div>
+														<span class="padding_l">{{n11.nick}}</span>
+														<i class="sign_tag" ng-if="n11.sign">签约</i>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<span class="padding_l">{{n11.title}}</span>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+														<span class="padding_l">{{n11.tags}}</span>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+								</li>
 							</ul>
-						<!--</div>	
+						</div>
+						<div id="item2" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<!--轮播图-->
+								<li class="mui-table-view-cell padding0 margin-bottom5px">
+									<div id="slider2" class="mui-slider">
+										<div class="mui-slider-group mui-slider-loop">
+											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+											<div class="mui-slider-item mui-slider-item-duplicate">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 第一张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+											<!-- 第二张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 第三张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+											<!-- 第四张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+											<div class="mui-slider-item mui-slider-item-duplicate">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+										</div>
+										<div class="mui-slider-indicator">
+											<div class="mui-indicator mui-active"></div>
+											<div class="mui-indicator"></div>
+											<div class="mui-indicator"></div>
+											<div class="mui-indicator"></div>
+										</div>
+									</div>
+								</li>
+								<!--分栏-->
+								<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('special_topic.html')" class="zt_item">
+											<img ng-src="../img/zhuanti1.jpg" />
+											<p>
+												<a>十月艺术专题</a>
+											</p>
+										</div>
+									</div>
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
+											<img ng-src="../img/zhuanti2.jpg" />
+											<p>
+												<a>传统工艺焕新生</a>
+											</p>
+										</div>
+
+									</div>
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('originality.html')" class="zt_item">
+											<img ng-src="../img/zhaunti3.jpg" />
+											<p>
+												<a>新生创意</a>
+											</p>
+										</div>
+									</div>
+								</li>
+								<!--最新内容-->
+								<li class="mui-table-view-cell bg_white">
+									<h5 class="mui-pull-left color0">最新内容</h5>
+									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(shequNote[1].id)">更多</span>
+								</li>
+								<li class="mui-table-view-cell padding0 bg_white border-bottom" id="notes2">
+									<ul class="mui-table-view">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n2) in notes[2]" ng-if="!n2.hot" ng-click="shequ(n2.id)">
+											<a href="javascript:;" class="mui-clearfix">
+												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n2.subject}}">
+												<ul class="mui-media-body mui-pull-left user_view">
+													<li>
+														<div class="user_pic"><img ng-src="{{n2.icon}}" /></div>
+														<span class="padding_l">{{n2.nick}}</span>
+														<i class="sign_tag" ng-if="n2.sign">签约</i>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<span class="padding_l">{{n2.title}}</span>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+														<span class="padding_l">{{n2.tags}}</span>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<!--最热门内容-->
+								<li class="mui-table-view-cell bg_white">
+									<h5 class="mui-pull-left color0">最热门内容</h5>
+									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNews(cates[1].id)">更多</span>
+								</li>
+								<li class="mui-table-view-cell padding0 bg_white">
+									<ul class="mui-table-view" id="news2">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n22) in notes[2]" ng-if="n22.hot" ng-click="shequ(n22.id)">
+											<a href="javascript:;" class="mui-clearfix">
+												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n22.subject}}">
+												<ul class="mui-media-body mui-pull-left user_view">
+													<li>
+														<div class="user_pic"><img ng-src="{{n22.icon}}" /></div>
+														<span class="padding_l">{{n22.nick}}</span>
+														<i class="sign_tag" ng-if="n22.sign">签约</i>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<span class="padding_l">{{n22.title}}</span>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+														<span class="padding_l">{{n22.tags}}</span>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div id="item3" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<!--轮播图-->
+								<li class="mui-table-view-cell padding0 margin-bottom5px">
+									<div id="slider3" class="mui-slider">
+										<div class="mui-slider-group mui-slider-loop">
+											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+											<div class="mui-slider-item mui-slider-item-duplicate">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 第一张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+											<!-- 第二张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 第三张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+											<!-- 第四张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+											<div class="mui-slider-item mui-slider-item-duplicate">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+										</div>
+										<div class="mui-slider-indicator">
+											<div class="mui-indicator mui-active"></div>
+											<div class="mui-indicator"></div>
+											<div class="mui-indicator"></div>
+											<div class="mui-indicator"></div>
+										</div>
+									</div>
+								</li>
+								<!--分栏-->
+								<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('special_topic.html')" class="zt_item">
+											<img ng-src="../img/zhuanti1.jpg" />
+											<p>
+												<a>十月艺术专题</a>
+											</p>
+										</div>
+									</div>
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
+											<img ng-src="../img/zhuanti2.jpg" />
+											<p>
+												<a>传统工艺焕新生</a>
+											</p>
+										</div>
+
+									</div>
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('originality.html')" class="zt_item">
+											<img ng-src="../img/zhaunti3.jpg" />
+											<p>
+												<a>新生创意</a>
+											</p>
+										</div>
+									</div>
+								</li>
+								<!--最新内容-->
+								<li class="mui-table-view-cell bg_white">
+									<h5 class="mui-pull-left color0">最新内容</h5>
+									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(cates[2].id)">更多</span>
+								</li>
+								<li class="mui-table-view-cell padding0 bg_white">
+									<ul class="mui-table-view" id="notes3">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n3) in notes[3]" ng-if="!n3.hot" ng-click="shequ(n3.id)">
+											<a href="javascript:;" class="mui-clearfix">
+												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n3.subject}}">
+												<ul class="mui-media-body mui-pull-left user_view">
+													<li>
+														<div class="user_pic"><img ng-src="{{n3.icon}}" /></div>
+														<span class="padding_l">{{n3.nick}}</span>
+														<i class="sign_tag" ng-if="n3.sign">签约</i>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<span class="padding_l">{{n3.title}}</span>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+														<span class="padding_l">{{n3.tags}}</span>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<!--最热门内容-->
+								<li class="mui-table-view-cell bg_white">
+									<h5 class="mui-pull-left color0">最热门内容</h5>
+									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNews(cates[2].id)">更多</span>
+								</li>
+								<li class="mui-table-view-cell padding0 bg_white">
+									<ul class="mui-table-view" id="news3">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n33) in notes[3]" ng-if="n33.hot" ng-click="shequ(n33.id)">
+											<a href="javascript:;" class="mui-clearfix">
+												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n33.subject}}">
+												<ul class="mui-media-body mui-pull-left user_view">
+													<li>
+														<div class="user_pic"><img ng-src="{{n33.icon}}" /></div>
+														<span class="padding_l">{{n33.nick}}</span>
+														<i class="sign_tag" ng-if="n33.sign">签约</i>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<span class="padding_l">{{n33.title}}</span>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+														<span class="padding_l">{{n33.tags}}</span>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div id="item4" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<!--轮播图-->
+								<li class="mui-table-view-cell padding0 margin-bottom5px">
+									<div id="slider4" class="mui-slider">
+										<div class="mui-slider-group mui-slider-loop">
+											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+											<div class="mui-slider-item mui-slider-item-duplicate">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 第一张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+											<!-- 第二张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 第三张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+											<!-- 第四张 -->
+											<div class="mui-slider-item">
+												<a href="#">
+													<img ng-src="../img/lunbo2.jpg">
+												</a>
+											</div>
+											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+											<div class="mui-slider-item mui-slider-item-duplicate">
+												<a href="#">
+													<img ng-src="../img/lunbo1.jpg">
+												</a>
+											</div>
+										</div>
+										<div class="mui-slider-indicator">
+											<div class="mui-indicator mui-active"></div>
+											<div class="mui-indicator"></div>
+											<div class="mui-indicator"></div>
+											<div class="mui-indicator"></div>
+										</div>
+									</div>
+								</li>
+								<!--分栏-->
+								<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('special_topic.html')" class="zt_item">
+											<img ng-src="../img/zhuanti1.jpg" />
+											<p>
+												<a>十月艺术专题</a>
+											</p>
+										</div>
+									</div>
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
+											<img ng-src="../img/zhuanti2.jpg" />
+											<p>
+												<a>传统工艺焕新生</a>
+											</p>
+										</div>
+
+									</div>
+									<div class="mui-pull-left border-radius5px">
+										<div onclick="openNewPage('originality.html')" class="zt_item">
+											<img ng-src="../img/zhaunti3.jpg" />
+											<p>
+												<a>新生创意</a>
+											</p>
+										</div>
+									</div>
+								</li>
+								<!--最新内容-->
+								<li class="mui-table-view-cell bg_white">
+									<h5 class="mui-pull-left color0">最新内容</h5>
+									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(cates[3].id)">更多</span>
+								</li>
+								<li class="mui-table-view-cell padding0 bg_white">
+									<ul class="mui-table-view" id="notes4">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n4) in notes[4]" ng-if="!n4.hot" ng-click="shequ(n4.id)">
+											<a href="javascript:;" class="mui-clearfix">
+												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n4.subject}}">
+												<ul class="mui-media-body mui-pull-left user_view">
+													<li>
+														<div class="user_pic"><img ng-src="{{n4.icon}}" /></div>
+														<span class="padding_l">{{n4.nick}}</span>
+														<i class="sign_tag" ng-if="n4.sign">签约</i>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<span class="padding_l">{{n4.title}}</span>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+														<span class="padding_l">{{n4.tags}}</span>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<!--最热门内容-->
+								<li class="mui-table-view-cell bg_white">
+									<h5 class="mui-pull-left color0">最热门内容</h5>
+									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNews(cates[3].id)">更多</span>
+								</li>
+								<li class="mui-table-view-cell padding0 bg_white">
+									<ul class="mui-table-view" id="news4">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n44) in notes[4]" ng-if="n44.hot" ng-click="shequ(n44.id)">
+											<a href="javascript:;" class="mui-clearfix">
+												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n44.subject}}">
+												<ul class="mui-media-body mui-pull-left user_view">
+													<li>
+														<div class="user_pic"><img ng-src="{{n44.icon}}" /></div>
+														<span class="padding_l">{{n44.nick}}</span>
+														<i class="sign_tag" ng-if="n44.sign">签约</i>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<span class="padding_l">{{n44.title}}</span>
+													</li>
+													<li>
+														<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+														<span class="padding_l">{{n44.tags}}</span>
+													</li>
+												</ul>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!---------------------交易---------------------->
+			<div id="itemB" class="mui-control-content mui-slider-item">
+				<!--<div id="scroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">-->
+				<!--<div class="mui-slider bg_white">-->
+				<ul class="mui-table-view">
+					<!--轮播图-->
+					<li class="mui-table-view-cell padding0">
+						<div id="slider_audio" class="mui-slider">
+							<div class="mui-slider-group mui-slider-loop">
+								<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="#">
+										<img ng-src="../img/lunbo2.jpg">
+									</a>
+								</div>
+								<!-- 第一张 -->
+								<div class="mui-slider-item">
+									<a href="#">
+										<img ng-src="../img/lunbo1.jpg">
+									</a>
+								</div>
+								<!-- 第二张 -->
+								<div class="mui-slider-item">
+									<a href="#">
+										<img ng-src="../img/lunbo2.jpg">
+									</a>
+								</div>
+								<!-- 第三张 -->
+								<div class="mui-slider-item">
+									<a href="#">
+										<img ng-src="../img/lunbo1.jpg">
+									</a>
+								</div>
+								<!-- 第四张 -->
+								<div class="mui-slider-item">
+									<a href="#">
+										<img ng-src="../img/lunbo2.jpg">
+									</a>
+								</div>
+								<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="#">
+										<img ng-src="../img/lunbo1.jpg">
+									</a>
+								</div>
+							</div>
+							<div class="mui-slider-indicator">
+								<div class="mui-indicator mui-active"></div>
+								<div class="mui-indicator"></div>
+								<div class="mui-indicator"></div>
+								<div class="mui-indicator"></div>
+							</div>
+						</div>
+					</li>
+					<!--分栏-->
+					<li class="mui-table-view-cell mui-grid-view circle_text sp_fonts">
+						<div onclick="openPage('cate.html',{type:1,name:'独'})"><span>独</span></div>
+						<div onclick="openPage('cate.html',{type:2,name:'古'})"><span>古</span></div>
+						<div onclick="openPage('cate.html',{type:3,name:'今'})"><span>今</span></div>
+						<div onclick="openPage('cate.html',{type:4,name:'中'})"><span>中</span></div>
+						<div onclick="openPage('cate.html',{type:5,name:'外'})"><span>外</span></div>
+					</li>
+					<!--推荐-->
+					<li class="mui-table-view-cell bg_white">
+						<h5 class="mui-pull-left color0">推荐</h5>
+						<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="tradePush()">更多</span>
+					</li>
+					<li class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,r) in recommends" ng-click="obtainId(r.id)">
+						<a href="javascript:;">
+							<div class="mui-media-object mui-pull-left goods_pic ">
+								<img ng-src="{{r.good_image}}">
+								<span class="original_tag" ng-if="r.origin">原创</span>
+							</div>
+							<div class="mui-media-body">
+								<div class="mui-ellipsis">{{r.good_name}}</div>
+								<div class="mui-clearfix"><span class="mui-pull-right colorP font12 line-height20px">工期：<i>{{r.maf_time}}</i>天</span></div>
+								<div class="mui-clearfix">
+									<div class="mui-pull-left user">
+										<div class="user_pic"><img ng-src="{{r.icon}}" /></div>
+										<span class="padding_l line-height30px color999 mui-ellipsis font12">{{r.nick}} </span>
+									</div>
+									<span class="mui-pull-right colorRed line-height30px font12">￥{{r.price}}</span>
+								</div>
+							</div>
+						</a>
+					</li>
+					<!--最新内容-->
+					<li class="mui-table-view-cell bg_white">
+						<h5 class="mui-pull-left color0">新品</h5>
+						<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="tradeNew()">更多</span>
+					</li>
+					<li class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,news) in news" ng-click="obtainId(news.id)">
+						<a href="javascript:;">
+							<div class="mui-media-object mui-pull-left goods_pic "><img ng-src="{{news.good_image}}">
+								<span class="original_tag" ng-if="news.origin">原创</span>
+							</div>
+							<div class="mui-media-body">
+								<div class="mui-ellipsis">{{news.good_name}}</div>
+								<div class="mui-clearfix"><span class="mui-pull-right colorP font12 line-height20px">工期：<i>{{news.maf_time}}</i>天</span></div>
+								<div class="mui-clearfix">
+									<div class="mui-pull-left user">
+										<div class="user_pic"><img ng-src="{{news.icon}}" /></div>
+										<span class="padding_l line-height30px color999 mui-ellipsis font12">{{news.nick}} </span>
+									</div>
+									<span class="mui-pull-right colorRed line-height30px font12">￥{{news.price}}</span>
+								</div>
+							</div>
+						</a>
+					</li>
+					<!--最新热门内容-->
+					<li class="mui-table-view-cell bg_white">
+						<h5 class="mui-pull-left color0">热门</h5>
+						<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="tradeHot()">更多</span>
+					</li>
+					<li class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,h) in hots" ng-click="obtainId(h.id)">
+						<a href="javascript:;">
+							<div class="mui-media-object mui-pull-left goods_pic "><img ng-src="{{h.good_image}}">
+								<span class="original_tag" ng-if="h.origin">原创</span>
+							</div>
+							<div class="mui-media-body">
+								<div class="mui-ellipsis">{{h.good_name}}</div>
+								<div class="mui-clearfix"><span class="mui-pull-right colorP font12 line-height20px">工期：<i>{{h.maf_time}}</i>天</span></div>
+								<div class="mui-clearfix">
+									<div class="mui-pull-left user">
+										<div class="user_pic"><img ng-src="{{h.icon}}" /></div>
+										<span class="padding_l line-height30px color999 mui-ellipsis font12">{{h.nick}} </span>
+									</div>
+									<span class="mui-pull-right colorRed line-height30px font12">￥{{h.price}}</span>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!--</div>	
 					</div>
 				</div>-->
 			</div>
-		</div> 
+		</div>
 	</body>
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/open.js"></script>
@@ -736,63 +802,53 @@
 	<script src="../js/apppublic.js"></script>
 	<script src="../js/app/home.js"></script>
 	<script type="text/javascript">
-//		mui.init({swipeBack: false});
-//		var slider1 = mui("#slider1");
-//		var slider2 = mui("#slider2");
-//		var slider3 = mui("#slider3");
-//		var slider4 = mui("#slider4");
-//			slider1.slider({interval: 5000});
-//			slider2.slider({interval: 5000});
-//			slider3.slider({interval: 5000});
-//			slider4.slider({interval: 5000});					
-//		window.addEventListener('changeVal',function(event){
-//		var showWin = event.detail.showWin;
-		mui.init({swipeBack: false});				
-		window.addEventListener('changeVal',function(event){
-		var showWin = event.detail.showWin;
-		if(showWin == 1){
-			//触发弹窗
-			plus.nativeUI.actionSheet({
-				cancel: "取消",
-				buttons: [{
-					title: "发布内容"
-				},{
-					title: "发布商品"
-				}]
-			}, function(e) {
-				var i = e.index;
-				if(i == 1) {
-					openNewPage('release_viewMedia.html')
-				}else if(i==2){
-					openNewPage('release_goods.html')
-				}
-			});
-		}
-	});
-//		$(function(){
-//			var height = 0;	
-//			$('.mui-control-content').each(function(){
-//				height =$('.mui-scroll').height()-10;
-//				$('.mui-control-content').eq(0).css('height',height);
-//				height2 =$('.mui-scroll').height()+70;
-//				$('.mui-control-content').eq(1).css('height',height2);								
-//			})
-//		})
+		mui.init({ swipeBack: false });
+		window.addEventListener('changeVal', function(event) {
+			var showWin = event.detail.showWin;
+			if(showWin == 1) {
+				//触发弹窗
+				plus.nativeUI.actionSheet({
+					cancel: "取消",
+					buttons: [{
+						title: "发布内容"
+					}, {
+						title: "发布商品"
+					}]
+				}, function(e) {
+					var i = e.index;
+					if(i == 1) {
+						openNewPage('release_viewMedia.html')
+					} else if(i == 2) {
+						openNewPage('release_goods.html')
+					}
+				});
+			}
+		});
+		//		$(function(){
+		//			var height = 0;	
+		//			$('.mui-control-content').each(function(){
+		//				height =$('.mui-scroll').height()-10;
+		//				$('.mui-control-content').eq(0).css('height',height);
+		//				height2 =$('.mui-scroll').height()+70;
+		//				$('.mui-control-content').eq(1).css('height',height2);								
+		//			})
+		//		})
 	</script>
-	<script> 
-		$(function(){
+	<script>
+		$(function() {
 			//点击监测"社区（无二、古技、洋艺、觉今）"每一个板块内容的高度
-			$('#itemA .mui-control-item').on('tap',function(){
-			  var i = $(this).index();
-			  console.log($('#itemA .mui-control-content').eq(i).innerHeight())
-			  $('#content_box').css({'height':($('#itemA .mui-control-content').eq(i).innerHeight() + 42)+'px'});
+			$('#itemA .mui-control-item').on('tap', function() {
+				var i = $(this).index();
+				console.log($('#itemA .mui-control-content').eq(i).innerHeight());
+				$('#nav').css({ 'height': ($('#itemA .mui-control-content').eq(i).innerHeight() + 42) + 'px' });
 			})
 			//滑动监测"社区（无二、古技、洋艺、觉今）"每一个板块内容的高度
-		 	document.getElementById('nav').addEventListener('slide', function(e) {
-		    setTimeout(function() {
-		      $('#itemA .mui-control-item').eq(e.detail.slideNumber).trigger('tap');
-		        }, 100);
-		      }); 
-		  })
+			document.querySelector('.content_box').addEventListener('slide', function(e) {
+				setTimeout(function() {
+					$('#itemA .mui-control-item').eq(e.detail.slideNumber).trigger('tap');
+				}, 100);
+			});
+		})
 	</script>
+
 </html>

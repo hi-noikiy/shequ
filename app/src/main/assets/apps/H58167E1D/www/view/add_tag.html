@@ -7,10 +7,11 @@
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="../css/global.css"/>
-    <!--<style type="text/css">
+    <style type="text/css">
     	.tag_val{position: relative;}
     	.tag_val i{position: absolute;top: -6px;right: -6px;color: #999;}
-    </style>-->
+    	.hot_tags span{margin: 5px 5px;}
+    </style>
 </head>
 <body ng-app="addtagApp" ng-controller="addtagController">
 	<header class="mui-bar mui-bar-nav bg_white">
@@ -19,20 +20,15 @@
 	    <button class=" mui-btn mui-btn-link mui-btn-nav mui-pull-right" id="tags"><span class="colorP">保存</span></button>
 	</header>
 	<div class="mui-content">
-        <div class="mui-input-row paddingl_r_15px_tb11px margin-bottom5px" style="background: #fff;">
-            <input type="text" class="tagName" placeholder="输入标签" style="width: 72%;">
-            <button type="button" class="mui-btn mui-btn-blue mui-btn-block margin0" style="width: 23%;"  id="add_tag_btn">添加</button>
+        <div class="mui-input-row paddingl_r_6px_tb8px margin-bottom5px" style="background: #fff;">
+            <input type="text" class="tagName" placeholder="输入标签" style="width: 80%;height:30px">
+            <button type="button" class="mui-btn mui-btn-blue mui-btn-block margin0 font14" style="width: 16%;padding: 6px;text-align: center;"  id="add_tag_btn">添加</button>
         </div>
-        <div class="bg_white paddingl_r_15px_tb15px newTag_list" >
-        	<!--<span class="mui-badge mui-btn-blue color_white tag_val"><span>旅行日记</span><i class="iconfont mui-icon ">&#xe603;</i></span>
-        	<span class="mui-badge mui-btn-blue color_white tag_val"><span>快乐旅行</span><i class="iconfont mui-icon ">&#xe603;</i></span>-->
-        </div>
-        <!--<div class="paddingl_r_15px_tb11px">
+        <div class="bg_white paddingl_r_15px_tb15px newTag_list" ></div>
+        <div class="paddingl_r_15px_tb11px hot_tags">
         	<h5 class="margin-bottom10px">热门标签</h5>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记<i class="iconfont mui-icon">&#xe603;</i></span>
-        </div>-->
-        
-        
+        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记</span><span class="mui-badge bg_white color999 margin-bottom5px">快乐旅行</span>
+        </div>
 	</div>
 </body>
 <script src="../js/mui.min.js"></script>
@@ -43,12 +39,10 @@
 <script type="text/javascript" charset="UTF-8">
   	$('#add_tag_btn').click(function(){
   		var textVal = $('.tagName').val();
-  		console.log(textVal);
-  		
-  		$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span>"+textVal+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>")
-  		   
+  		$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span>"+textVal+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>") 
+  		$('.tagName').val('');
   	})
-  	$('body').on('click','.newTag_list span i',function(){
+  	$('body').on('tap','.newTag_list span i',function(){
   		$(this).parent().remove();
   		plus.webview.close();
   	})
@@ -60,10 +54,13 @@
       		tags_arr.push($(this).text());
       	})
       	tag=tags_arr.join(',');
-   	   plus.storage.setItem('releaseTags',tag);
-   	   console.log(tags_arr);
-   	   console.log(plus.storage.getItem('releaseTags'));
-        plus.webview.currentWebview().close()
+		var parentid = plus.webview.getWebviewById('release_viewMedia.html');
+        mui.fire(parentid,'changeVal',{tags_value:tag});
+// 	   plus.storage.setItem('releaseTags',tag);
+// 	   console.log(tags_arr);
+// 	   console.log(plus.storage.getItem('releaseTags'));
+        plus.webview.currentWebview().close();
+//      $('.newTag_list>span').remove();
       })
       	
     },false);

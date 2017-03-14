@@ -3,10 +3,19 @@ var app = angular.module("amemdpwdApp",[]);
 app.controller("amemdpwdController",function($scope,$http){
    $scope.updatePassword = function()
    {
+   	var phone_number = $('#mobile').val();
      var passone=$('#password').val();
      var passtwo=$('#passwordtwo').val();
-	if(!passone.match(passReg)){
-			toast('密码只能为数字和字母');
+     if(!phone_number.match(p1) || phone_number == ""){
+     	toast('手机号码格式不正确');
+			return;
+     }
+	if(!passone.match(passReg) || passone ==""){
+			toast('与原密码不匹配');
+			return;
+	}
+	if(!passtwo.match(passReg) || passtwo =="" ){
+		toast('新密码只能为6~18位数字和字母组合');
 			return;
 	}
      $http({

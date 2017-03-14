@@ -35,19 +35,22 @@
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/open.js"></script>
 	<script>
+//		function dialTest() {
+//		    	plus.nativeUI.confirm("您确定要拨打电话吗？",
+//		        function(event){
+//		            if(event.index ==1){
+//		                plus.device.dial( "400-12345678", false );
+//		            }else{
+//		                return false;
+//		            }
+//		        }
+//		        ,'客服消息',['取消','确定']
+//		    )		     
+//		}
 		
+
 		function dialTest() {
-    	plus.nativeUI.confirm("您确定要拨打电话吗？",
-        function(event){
-            if(event.index ==1){
-                plus.device.dial( "400-12345678", false );
-            }else{
-                return false;
-            }
-        }
-        ,'客服消息',['取消','确定']
-    )
-     
-}
+		    	plus.device.dial( "400-12345678", true );
+		}
 	</script>
 </html>

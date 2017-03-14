@@ -52,9 +52,9 @@ function shareMessage(s,ex){
 //	console.log(goodsid + "," + title);
 $('.mui-backdrop').remove();
 	var sid = plus.storage.getItem('sid'); 
-	
+	alert(webRoot+webPage+id);console.log(webRoot+webPage+id);
 //	alert(uid);
-	var msg={title : '去卖艺' ,extra : {scene:ex},content:"亲，您的好友向你推荐一个超赞的App！",href:webRoot+'/download/qumaiyi.apk',thumbs:['../img/log.png']};
+	var msg={title : '去卖艺' ,extra : {scene:ex},content:shareContent,href:webRoot+webPage+id,thumbs:['http://qmy.51edn.com/static/images/icon.png']};
 	s.send( msg, function(){
 		plus.nativeUI.toast( "分享成功");
 		$('#Popover_0').hide();

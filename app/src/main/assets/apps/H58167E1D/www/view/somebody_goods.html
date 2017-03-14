@@ -14,7 +14,7 @@
 	    	.user span{width: 68%;display: inline-block;}
 	    </style>
 	</head>
-	<body>
+	<body ng-app="app" ng-controller="myController">
 	    <header class="mui-bar mui-bar-nav bg_white">
 	        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 	        <h1 class="mui-title colorP">Ta的商品</h1>
@@ -22,23 +22,23 @@
 		<div class="mui-content">
 			<div></div>
 			<ul class="mui-table-view margin-bottom5px bg_white">
-	            <li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
+	            <li ng-click="comein(vo.id)" ng-repeat="(key,vo) in info" class="mui-table-view-cell mui-media">
 	                <a href="javascript:;">
-	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/1.jpg">
+	                    <img class="mui-media-object mui-pull-left goods_pic" ng-src="{{vo.good_image}}">
 	                    <div class="mui-media-body">
-	                     	<div class="mui-ellipsis">赖巍《金发女孩》30版</div>
-	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP">工期：<i>3</i>天</span></div>
+	                     	<div class="mui-ellipsis">{{vo.good_name}}</div>
+	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP">工期：<i>{{vo.maf_time}}</i>天</span></div>
 	                     	<div class="mui-clearfix">
 	                     		<div class="mui-pull-left user">
-	                     			<div class="user_pic"><img src="../img/user1.jpg" /></div>
-									<span class="padding_l line-height30px color999 mui-ellipsis">杨德威 </span>
+	                     			<div class="user_pic"><img ng-src="{{icon}}" /></div>
+									<span class="padding_l line-height30px color999 mui-ellipsis">{{nick}}</span>
 	                     		</div>
-	                     		<span class="mui-pull-right colorRed line-height30px">￥22000.00</span>
+	                     		<span class="mui-pull-right colorRed line-height30px">￥{{vo.price}}</span>
 	                     	</div>
 	                    </div>
 	                </a>
 	            </li>
-	            <li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
+	            <!--<li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
 	                <a href="javascript:;">
 	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/2.jpg">
 	                    <div class="mui-media-body">
@@ -85,7 +85,7 @@
 	                     	</div>
 	                    </div>
 	                </a>
-	            </li>	           
+	            </li>	           -->
 	        </ul>
 		</div>
 	</body>
@@ -97,4 +97,8 @@
 			$(this).addClass('colorP').siblings().removeClass('colorP');
 		})
 	</script>
+
+	<script type="text/javascript" src="../js/angular.min.js"></script>
+	<script src="../js/apppublic.js"></script>
+	<script src="../js/app/somebody_goods.js"></script>		
 </html>

@@ -1,3 +1,4 @@
+var id;
 var app = angular.module("goodsApp",[]);
 app.controller("goodsController",function($scope,$http){
 	$scope.initView = function($id,$uid){
@@ -13,12 +14,25 @@ app.controller("goodsController",function($scope,$http){
 			uid:$uid,
 		}
 	}).then(function successCallback(response){
-		console.log(JSON.stringify(response));         
+		console.log(JSON.stringify(response));  
+		console.log(response.data.data);
 		$scope.goodsData = response.data.data//标题下的数据
+		
 	},function errorfunction(e){ 
 		console.log(JSON.stringify(e));
 	})	 
 }  
+	
+//	$scope.is_attention=function(state){
+//		if(state){
+//			$('.attention_btn').html('&#xe669;关注');
+//			state = 0;
+//		} else {
+//			state = 1;
+//			$('.attention_btn').html('&#xe6aa;已关注');
+//		}
+//	}
+	
 	
 	$scope.shopping=function(goodid)//confirm_order.html
 	{

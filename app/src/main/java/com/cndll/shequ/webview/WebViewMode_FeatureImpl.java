@@ -29,17 +29,32 @@ public class WebViewMode_FeatureImpl implements IFeature {
         switch (pActionName) {
             case "sendMessage":
                 Intent intent = new Intent(pWebViewImpl.getActivity(), ChatActivity.class);
-                intent.putExtra(EaseConstant.EXTRA_USER_ID, pJsArgs[0]).putExtra(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
-                if (UserInfo.getInstance().getInfo().get(pJsArgs[0]) == null) {
+                intent.putExtra(EaseConstant.EXTRA_USER_ID, pJsArgs[0]).putExtra(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE).putExtra("NICK", pJsArgs[2]);
+                if (UserInfo.getInstance().getInfo() == null || UserInfo.getInstance().getInfo().get(pJsArgs[0]) == null) {
                     UserInfo.getInstance().addInfo(new UserInfo.User().setUid(pJsArgs[0]).setNick(pJsArgs[2]).setIcon(pJsArgs[1]));
-                } else{
+                } else {
                     UserInfo.getInstance().getInfo().get(pJsArgs[0]).setUid(pJsArgs[0]).setNick(pJsArgs[2]).setIcon(pJsArgs[1]);
                 }
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        ObjectSaveUtils.saveObject(pWebViewImpl.getActivity(), "USERICON", UserInfo.getInstance());
+                    }
+                }.start();
                 pWebViewImpl.getActivity().startActivity(intent);
+
                 break;
             case "exit":
                 if (EMClient.getInstance().isLoggedInBefore())
                     EMClient.getInstance().logout(true);
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        ObjectSaveUtils.saveObject(pWebViewImpl.getContext(), "USERICON", UserInfo.getInstance());
+                    }
+                }.start();
                 break;
             case "login":
                 UserLodingInFo.getInstance().setIcon(pJsArgs[3]).setId(pJsArgs[0]).setNick(pJsArgs[2]).setMobile(pJsArgs[1]);
