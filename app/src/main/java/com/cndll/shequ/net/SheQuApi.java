@@ -5,6 +5,8 @@ import com.cndll.shequ.bean.GroupMember;
 import com.cndll.shequ.bean.GroupMemberRequest;
 import com.cndll.shequ.bean.LoadUpResponse;
 import com.cndll.shequ.bean.RequestGroupImage;
+import com.cndll.shequ.bean.SearchUser;
+import com.cndll.shequ.bean.SearchUserResponse;
 import com.hyphenate.easeui.model.GroupImageBean;
 
 import java.util.Map;
@@ -22,6 +24,9 @@ import rx.Observable;
 public interface SheQuApi {
     @POST("index.php/app/")
     Observable<GroupImageBean> downloadImage(@Body RequestGroupImage image);
+
+    @POST("index.php/app/")
+    Observable<SearchUserResponse> searchUser(@Body SearchUser user);
 
     @POST("index.php/app/")
     Observable<GroupMember> getGroupMember(@Body GroupMemberRequest request);

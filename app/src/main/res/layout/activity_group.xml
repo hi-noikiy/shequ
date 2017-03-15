@@ -7,17 +7,35 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context="com.cndll.shequ.activity.GroupAddMemberActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <ImageButton
             android:id="@+id/back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"/>
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/arrowleft"/>
+
+        <EditText
+            android:id="@+id/search_user"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="8"
+            android:background="@drawable/searchviewstroke"/>
     </LinearLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/userlist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9.5"/>
 </LinearLayout>

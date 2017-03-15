@@ -45,9 +45,9 @@ public class SelectView extends ImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (isSelect) {
-            setBackgroundResource(R.drawable.ease_chat_image_pressed);
+            setBackgroundResource(R.drawable.select);
         } else {
-            setBackgroundResource(R.drawable.ease_type_select_btn_nor);
+            setBackgroundResource(R.drawable.unselect);
         }
     }
 
@@ -57,10 +57,8 @@ public class SelectView extends ImageView {
             case MotionEvent.ACTION_DOWN:
                 if (isSelect) {
                     setSelect(false);
-                    isSelect = true;
                 } else {
                     setSelect(true);
-                    isSelect = false;
                 }
                 return true;
         }

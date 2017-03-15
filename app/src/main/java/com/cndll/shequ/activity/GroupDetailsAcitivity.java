@@ -1,5 +1,6 @@
 package com.cndll.shequ.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -54,6 +55,17 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
         ButterKnife.bind(this);
         groupid = getIntent().getStringExtra("GROUPID");
         adapter = new RecyclerViewAdapter();
+        adapter.setGroupListener(new RecyclerViewAdapter.GroupListener() {
+            @Override
+            public void add() {
+                startActivity(new Intent(GroupDetailsAcitivity.this, GroupAddMemberActivity.class));
+            }
+
+            @Override
+            public void delete() {
+
+            }
+        });
         GridLayoutManager manager = new GridLayoutManager(GroupDetailsAcitivity
                 .this, 4);
         groupMub.setLayoutManager(manager);
@@ -140,9 +152,10 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(Holer holder, int position) {
             if (groupMemList == null) {
-                /*switch (position) {
+                switch (position) {
                     case 0:
                         holder.nick.setVisibility(View.GONE);
+
                         holder.avatar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -163,7 +176,7 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
                             }
                         });
                         break;
-                }*/
+                }
             } else {
                 if (position == groupMemList.size()) {
                     holder.nick.setVisibility(View.GONE);
@@ -201,12 +214,12 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
         @Override
         public int getItemCount() {
             if (groupMemList != null) {
-                return groupMemList.size() + 0;
+                return groupMemList.size() + 2;
             }
-            return 0;
+            return 2;
         }
 
-        public static class Holer extends AdminActivity.RecyclerViewAdapter.HolderView {
+        public static class Holer extends RecyclerView.ViewHolder {
             SimpleDraweeView avatar;
             TextView         nick;
 

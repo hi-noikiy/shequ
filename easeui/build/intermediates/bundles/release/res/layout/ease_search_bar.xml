@@ -2,10 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="7dp"
-                android:paddingLeft="@dimen/padding_search_bar"
-                android:paddingRight="@dimen/padding_search_bar"
-                android:paddingTop="7dp">
+    >
 
     <EditText
         android:id="@+id/query"
