@@ -467,6 +467,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         EMClient.getInstance().chatManager().loadAllConversations();
                         EMClient.getInstance().groupManager().loadAllGroups();
+                        fragment.refresh();
                         /*if (EMClient.getInstance().groupManager().getAllGroups() != null) {
                             for (EMGroup group : EMClient.getInstance().groupManager().getAllGroups()) {
                                 try {

@@ -2,9 +2,7 @@ var id;
 var app = angular.module("goodsApp",[]);
 app.controller("goodsController",function($scope,$http){
 	$scope.initView = function($id,$uid){
-		console.log($id);
-		console.log($uid);
-		plus.nativeUI.closeWaiting();
+//		plus.nativeUI.closeWaiting();
 	$http({
 		method:'post',
 		url:apiRoot,
@@ -14,7 +12,7 @@ app.controller("goodsController",function($scope,$http){
 			uid:$uid,
 		}
 	}).then(function successCallback(response){
-		console.log(JSON.stringify(response));  
+		plus.nativeUI.closeWaiting();
 		console.log(response.data.data);
 		$scope.goodsData = response.data.data//标题下的数据
 		
@@ -51,6 +49,7 @@ app.controller("goodsController",function($scope,$http){
 
 
 document.addEventListener("plusready",function(){
+	plus.nativeUI.showWaiting();
 	appElement=document.querySelector('[ng-controller=goodsController]');
 	$scope= angular.element(appElement).scope();
 	id = plus.webview.currentWebview().gid;

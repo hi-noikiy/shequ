@@ -41,6 +41,7 @@ document.addEventListener('plusready',function(){
 				plus.nativeUI.closeWaiting();
 				if(data.error == 0){  
 					plus.nativeUI.toast('登录成功'); 
+					plus.storage.setItem('sign',data.data.sign+'');//是否是卖家
 					plus.storage.setItem('uid',data.data.id+'');//用户id
 					plus.storage.setItem('mobile',data.data.mobile+'');//登录手机号
 					plus.storage.setItem('nick',data.data.nick+'');//昵称
@@ -75,6 +76,6 @@ document.addEventListener('plusready',function(){
 	})
    $('#register').on('tap',function(){
    	 	 plus.nativeUI.showWaiting('加载中...');
-		 plus.webview.create('register.html','register.html').show('pop-in');
+		 plus.webview.create('register.html','register.html',{popGesture:'hide'}).show('pop-in');
    })
 })

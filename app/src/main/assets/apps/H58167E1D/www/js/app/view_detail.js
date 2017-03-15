@@ -13,9 +13,7 @@ app.controller("detailsController", function($scope, $http,$sce) {
 				id: $id,
 			}
 		}).then(function successCallback(response) {
-//			console.log(JSON.stringify(response));
 			console.log(JSON.stringify(response.data.data.note[0]));
-			//      console.log(123); 
 			$scope.master = response.data.data.note.uid;
 			$scope.huanxinId = response.data.data.note.mobile;
 			$scope.huanxinIcon = response.data.data.note.icon;
@@ -26,7 +24,13 @@ app.controller("detailsController", function($scope, $http,$sce) {
 			$scope.comments = response.data.data.comment;
 			$scope.user = response.data.data.user;
 			$scope.videoUrl = $sce.trustAsResourceUrl($scope.note.subject);
+			setTimeout(function(){
+				plus.nativeUI.closeWaiting();
+			},300);
 		}, function errorfunction(e) {
+			setTimeout(function(){
+				plus.nativeUI.closeWaiting();
+			},300);
 			console.log(JSON.stringify(e));
 		})
 	}
@@ -45,7 +49,6 @@ app.controller("detailsController", function($scope, $http,$sce) {
 	}
 	$scope.view_follow = function() {
 		console.log(uid);
-		//$('#follow').html('&#xe6aa;已关注').css({ 'color': '#999', 'border': '1px solid #999' });
 		$http({
 			method: 'post',
 			url: apiRoot,
@@ -57,9 +60,10 @@ app.controller("detailsController", function($scope, $http,$sce) {
 			}
 		}).then(function successCallback(response) {
 			console.log(JSON.stringify(response));
-			$scope.user.follow = 1;/*已关注*/
+			$scope.user.follow = 0;/*已关注*/
 		}, function errorfunction(e) {
 			console.log(e);
+			$scope.user.follow = 1;/*已关注*/
 		})
 
 	}
@@ -117,23 +121,21 @@ app.controller("detailsController", function($scope, $http,$sce) {
 	$scope.icon_sub =function(id,img,nick)
 	{
 //		plus.nativeUI.showWaiting('加载中......');
-console.log(id+'--'+img+'--'+nick);
+		console.log(id+'--'+img+'--'+nick);
 		plus.webview.create('honer_page.html', 'honer_page.html',{},{icon_id:id,icon_img:img,icon_name:nick}).show('pop-in');
 	}
 })
 
 document.addEventListener("plusready", function() {
+	plus.nativeUI.showWaiting();
 	uid = plus.storage.getItem('uid');
 	appElement = document.querySelector('[ng-controller=detailsController]');
 	$scope = angular.element(appElement).scope();
 	ws =plus.webview.currentWebview();
-//	id = plus.storage.getItem('noteId');
 	my = plus.webview.currentWebview().my;
-//	console.log(my);
 	if(my == 'my'){
 		$('.borderNone').css('display','none');
 	}
-	plus.nativeUI.closeWaiting();
 	id = ws.noteId;
 	$scope.initView(ws.noteId);
 	$scope.$apply();

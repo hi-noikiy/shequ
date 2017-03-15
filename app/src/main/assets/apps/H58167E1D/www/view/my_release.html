@@ -1,163 +1,311 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>我的发布(商品)</title>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" type="text/css" href="../css/app.css"/>
-    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
-    <style type="text/css">
-    	.btn_list{width: 100%;overflow: hidden;background: #fff;}
-    	.btn_list a{width: calc(100%/4);float: left;text-align: center;padding: 8px;color: #000;}
-    	.btn_list .active{border-bottom: 2px solid #4c968e;background: transparent;color: #4c968e;}
-    	.mui-bar .mui-title{height: 100%;box-shadow: none;}   
-    	.mui-title .top_tab{height: 30px;overflow: hidden;border: 1px solid #4c968e;display:block;position:relative;left: calc(50% - 23%);top: 7px; border-radius: 16px;box-sizing: border-box;}
-		.mui-title .top_tab a{display:block;width: 50%;height: 100%; float: left;line-height: 30px;text-align: center;padding: 0 10px;color: #4c968e;}
-		.mui-title .top_tab .active{background: #4c968e;color: #fff;margin: 0;}
-    </style>
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav bg_white">
-	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>		
-	    <h1 class="mui-title colorP">
-	    	<div class="top_tab width46">
-		    	<a onclick="openNewPage('my_release.html')" class="active">内容</a>
-		    	<a onclick="openNewPage('my_release_for_goods.html')">商品</a>
-		    </div>
-	    </h1>
-	</header>
-	<div class="mui-content">
-		<div></div>
-            <ul id="OA_task_1" class="mui-table-view bg_white">
-			    <li class="mui-table-view-cell mui-media">
-			    	<div class="mui-slider-right mui-disabled">
-						<a href="#sheet" class="mui-btn mui-btn-red">删除</a>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>首页</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/global.css" />
+		<style type="text/css">
+			.mui-slider-indicator .mui-icon {
+				width: auto;
+				height: auto;
+				margin: 0;
+				border: none;
+			}
+			
+			.mui-bar .mui-segmented-control {
+				width: 60%;
+				border: 1px solid #4c968e;
+				border-radius: 20px;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				color: #4c968e;
+				font-size: 17px;
+			}
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{border: none;}
+			.mui-segmented-control.mui-segmented-control-inverted{padding: 0;}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item{font-size: 16px;line-height: 42px;}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				background: transparent;
+				color: #4c968e;
+				border-radius: 0;
+				border-bottom: 2px solid #4c968e !important;			
+			}
+			
+			.mui-bar .mui-title {
+				height: 100%;
+			}
+			
+			.mui-segmented-control .mui-control-item.mui-active {
+				background: #4c968e;
+				color: #fff;
+			}
+			
+			.user span {
+				width: 72%;
+				display: inline-block;
+			}
+			
+			.user {
+				width: 62%;
+			}
+		</style>
+	</head> 
+	<body ng-app="myrelease" ng-controller="myreleasecontroller">
+		<header class="mui-bar mui-bar-nav bg_white" style="text-align: center;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">
+			    <div class="mui-segmented-control">
+				    <a class="mui-control-item sp_fonts mui-active" ng-click="neirxiangq(123)" href="#itemA">内容</a>
+				    <a class="mui-control-item sp_fonts" href="#itemB">商品</a>
+				</div>
+		    </h1>
+		</header>
+		<div class="mui-content">
+			<!--交易列表-->
+			<div id="itemA" class="mui-slider-item mui-control-content mui-active">
+				<ul class="mui-table-view bg_white">
+					<li class="mui-table-view-cell mui-media" ng-repeat="(index,n) in mynote">
+						<div class="mui-slider-right mui-disabled">  
+							<a class="mui-btn mui-btn-red" ng-click="noteupdate(n.id)">删除</a>
+						</div>
+						<a ng-click="detailes('view_detail.html',n.id)" href="javascript:;" class="mui-clearfix  mui-slider-handle">
+							<img class="mui-media-object mui-pull-right margin_tb_8px" src="{{n.subject}}">
+							<ul class="mui-media-body mui-pull-left user_view">
+								<li>
+									<div class="user_pic"><img src="{{n.icon}}" /></div>
+									<span class="padding_l">{{n.nick}}</span>
+								</li>
+								<li>
+									<i class="iconfont mui-icon icon-color">&#xe615;</i>
+									<span class="padding_l">{{n.content}}</span>
+								</li>
+								<li>
+									<i class="iconfont mui-icon icon-color">&#xe60a;</i>
+									<span class="padding_l">{{n.tags}}</span>
+								</li>
+							</ul>
+						</a>						
+					</li>					
+				</ul>
+				<div class="mui-text-center line-height44px color999 font12">没有更多数据了</div> 
+			</div>
+			<div id="itemB" class="mui-slider-item mui-control-content">
+				<div id="content_box" class="mui-slider">
+					<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted bg_white">
+						<a class="mui-control-item mui-active" href="#item1">在售</a>
+						<a class="mui-control-item" href="#item2">已售</a>
+						<a class="mui-control-item" href="#item3">下架</a>
 					</div>
-			        <a onclick="openNewPage('video_detail.html')" href="javascript:;" class="mui-clearfix  mui-slider-handle">
-			            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr1.jpg">
-			            <ul class="mui-media-body mui-pull-left user_view">
-			               	<li>
-			               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
-			               		<span class="padding_l">杨德威</span>			               		
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-			               		<span class="padding_l">我做的琴能发出你要的声音&djkasdnakjdaab djasbdjkbdjkbdkjsabdjakdbakjsdbajdb</span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-			               		<span class="padding_l">吉他、手作、大神、定制</span>
-			               	</li>
-			            </ul>
-			        </a>
-			    </li>
-			    <li class="mui-table-view-cell mui-media">
-			    	<div class="mui-slider-right mui-disabled">
-						<a href="#sheet" class="mui-btn mui-btn-red">删除</a>
+					<div class="mui-slider-group">
+						<div id="item1" class="mui-slider-item mui-control-content mui-active">
+							<ul class="mui-table-view margin-bottom5px bg_white">
+								<li class="mui-table-view-cell mui-media" ng-repeat="(index,x) in goods" ng-if="x.status == 1">
+									<div class="mui-slider-right mui-disabled">
+										<a class="mui-btn mui-btn-green" ng-click="goodsupdate('2',x.id)">已售</a>
+										<a class="mui-btn mui-btn-red" ng-click="goodsupdate('3',x.id)">下架</a>
+									</div>
+									<a ng-click="detailes('goods_detail.html',x.id)" href="javascript:;" class="mui-clearfix  mui-slider-handle">
+										<div class="mui-media-object mui-pull-left goods_pic ">
+											<img src="{{x.good_image}}">
+											<span class="original_tag" ng-if="x.origin == 1">原创</span>
+										</div>
+										<div class="mui-media-body">
+											<div class="mui-ellipsis">{{x.good_name}}</div>
+											<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>{{x.maf_time}}</i>天</span></div>
+											<div class="mui-clearfix">
+												<div class="mui-pull-left">
+													<div class="user_pic"><img src="{{x.icon}}" /></div>
+													<span class="padding_l line-height30px color999 font12">{{x.nick}} </span>
+												</div>
+												<span class="mui-pull-right colorRed line-height30px font12">￥{{x.price}}</span>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+							<div class="mui-text-center line-height44px color999 font12">没有更多数据了</div> 
+						</div>
+						<div id="item2" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view margin-bottom5px bg_white">
+								<li class="mui-table-view-cell mui-media" ng-repeat="(index,x) in goods" ng-if="x.status == 2">
+									<div class="mui-slider-right mui-disabled">
+										<a class="mui-btn mui-btn-red" ng-click="goodsupdate('0',x.id)">删除</a>
+									</div>
+									<a ng-click="detailes('goods_detail.html',x.id)" href="javascript:;" class="mui-clearfix  mui-slider-handle">
+										<div class="mui-media-object mui-pull-left goods_pic ">
+											<img src="{{x.good_image}}">
+											<span class="original_tag" ng-if="x.origin == 1">原创</span>
+										</div>
+										<div class="mui-media-body">
+											<div class="mui-ellipsis">{{x.good_name}}</div>
+											<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>{{x.maf_time}}</i>天</span></div>
+											<div class="mui-clearfix">
+												<div class="mui-pull-left">
+													<div class="user_pic"><img src="{{x.icon}}" /></div>
+													<span class="padding_l line-height30px color999 font12">{{x.nick}} </span>
+												</div>
+												<span class="mui-pull-right colorRed line-height30px font12">￥{{x.price}}</span>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+							<div class="mui-text-center line-height44px color999 font12">没有更多数据了</div> 
+						</div>
+						<div id="item3" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view margin-bottom5px bg_white">
+								<li class="mui-table-view-cell mui-media" ng-repeat="(index,x) in goods" ng-if="x.status == 3">
+									<div class="mui-slider-right mui-disabled">
+										<a class="mui-btn mui-btn-red" ng-click="goodsupdate('0',x.id)">删除</a>
+									</div>
+									<a ng-click="detailes('goods_detail.html',x.id)" href="javascript:;" class="mui-clearfix  mui-slider-handle">
+										<div class="mui-media-object mui-pull-left goods_pic ">
+											<img src="{{x.good_image}}">
+											<span class="original_tag" ng-if="x.origin == 1">原创</span>
+										</div>
+										<div class="mui-media-body">
+											<div class="mui-ellipsis">{{x.good_name}}</div>
+											<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>{{x.maf_time}}</i>天</span></div>
+											<div class="mui-clearfix">
+												<div class="mui-pull-left">
+													<div class="user_pic"><img src="{{x.icon}}" /></div>
+													<span class="padding_l line-height30px color999 font12">{{x.nick}} </span>
+												</div>
+												<span class="mui-pull-right colorRed line-height30px font12">￥{{x.price}}</span>
+											</div>
+										</div> 
+									</a>
+								</li>
+
+							</ul>
+							<div class="mui-text-center line-height44px color999 font12">没有更多数据了</div> 
+						</div>
 					</div>
-			        <a onclick="openNewPage('view_detail.html')" href="javascript:;" class="mui-clearfix  mui-slider-handle">
-			            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr2.jpg">
-			            <ul class="mui-media-body mui-pull-left user_view">
-			               	<li>
-			               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
-			               		<span class="padding_l">杨德威</span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-			               		<span class="padding_l">【雅昌专访】刘少白：莫以  小聪明来比大智慧  </span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-			               		<span class="padding_l">书画、专访</span>
-			               	</li>
-			            </ul>
-			        </a>
-			    </li>
-			     <li class="mui-table-view-cell mui-media">
-			     	<div class="mui-slider-right mui-disabled">
-						<a href="#sheet" class="mui-btn mui-btn-red">删除</a>
-					</div>
-			        <a onclick="openNewPage('video_detail.html')" href="javascript:;" class="mui-clearfix  mui-slider-handle">
-			            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr3.jpg">
-			            <ul class="mui-media-body mui-pull-left user_view">
-			               	<li>
-			               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
-			               		<span class="padding_l">杨德威</span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-			               		<span class="padding_l">陶瓷制作工艺流程  </span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-			               		<span class="padding_l">陶瓷、工艺、手工、艺术</span>
-			               	</li>
-			            </ul>
-			        </a>
-			    </li>
-			  			   
-			   <li class="mui-table-view-cell mui-media">
-			   		<div class="mui-slider-right mui-disabled">
-						<a href="#sheet" class="mui-btn mui-btn-red">删除</a>
-					</div>
-			        <a onclick="openNewPage('view_detail.html')" href="javascript:;" class="mui-clearfix  mui-slider-handle">
-			            <img class="mui-media-object mui-pull-right margin_tb_8px" src="../img/zxlr4.jpg">
-			            <ul class="mui-media-body mui-pull-left user_view">
-			               	<li>
-			               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
-			               		<span class="padding_l">杨德威</span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-			               		<span class="padding_l">什么是动态风筝 </span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-			               		<span class="padding_l">手工、工艺</span>
-			               	</li>
-			            </ul>
-			        </a>
-			    </li>
-			</ul>
-			<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action" style="display: none;">
+				</div>
+			</div>
+
+			<!--点击下架按钮弹出菜单-->
+			<div id="sheet" class="mui-popover mui-popover-bottom mui-popover-action ">
 				<!-- 可选择菜单 -->
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell">
-						<a href="#sheet1">确定删除吗？</a>
+						<a href="#" style="font-size: 13px;">下架后用户将无法查看商品，确定下架？</a>
 					</li>
-					<li class="mui-table-view-cell sure">
-						<a href="#sheet1">确定</a>
+					<li class="mui-table-view-cell">
+						<a href="#" style="font-size: 13px;">确定</a>
 					</li>
 				</ul>
 				<!-- 取消菜单 -->
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell">
-						<a href="#sheet1"><b>取消</b></a>
+						<a href="#sheet" style="font-size: 13px;color: #999;"><b>取消</b></a>
 					</li>
 				</ul>
 			</div>
-	</div>
-</body>
-<script src="../js/mui.min.js"></script>
-<script src="../js/open.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script>
-	mui.init({
-		swipeBack:true //启用右滑关闭功能
-	});
-	var _this, pcont;
-	$('.mui-disabled').on('tap', function(){
-		mui('#sheet1').popover('toggle');
-		_this = $(this);
-		pcont = _this.parent();
-	})
-	//点击确定
-	$('.sure').on('tap', function(){
-		pcont.remove();
-	})
-</script>
+			
+			
+			<!--点击已售按钮弹出菜单-->
+			<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+				<!-- 可选择菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#" style="font-size: 13px;">已售商品用户可查看但不可购买，确定已售？</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a href="#" style="font-size: 13px;">确定</a>
+					</li>
+				</ul>
+				<!-- 取消菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#sheet1" style="font-size: 13px; color: #999;"><b>取消</b></a>
+					</li>
+				</ul>
+			</div>
+			
+			
+			<!--点击删除按钮弹出菜单-->
+			<div id="sheet3" class="mui-popover mui-popover-bottom mui-popover-action" style="display: none;">
+			<!-- 可选择菜单 -->
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#sheet3" style="font-size: 13px;">确定删除吗？</a>
+				</li>
+				<li class="mui-table-view-cell sure">
+					<a href="#sheet3" style="font-size: 13px;">确定</a>
+				</li>
+			</ul>
+			<!-- 取消菜单 -->
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#sheet3" style="font-size: 13px; color: #999;"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+	</body> 
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script type="text/javascript" src="../js/angular.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/apppublic.js"></script>
+	<script src="../js/app/my_release.js"></script>
+	<script type="text/javascript"> 
+		mui.init({ 
+			swipeBack: true //启用右滑关闭功能
+		});
+		mui('body').on('tap', '.mui-popover-action li>a', function() {
+			var a = this,
+				parent;
+			//根据点击按钮，反推当前是哪个actionsheet
+			for(parent = a.parentNode; parent != document.body; parent = parent.parentNode) {
+				if(parent.classList.contains('mui-popover-action')) {
+					break;
+				}
+			}
+			//关闭actionsheet
+			mui('#' + parent.id).popover('toggle');
+		})
+		
+		
+		
+		$(function() {			
+			//防止'#itemB'的'.mui-control-item'菜单相对应内容的高度以最高的内容为基准
+			$('#itemB .mui-control-item').on('tap', function() {
+				var i = $(this).index();
+//				alert(i);
+//				console.log($('#itemB .mui-control-content').eq(i).innerHeight())
+				$('#content_box').css({ 'height': ($('#itemB .mui-control-content').eq(i).innerHeight() + 42) + 'px' });
+			})
+			document.getElementById('content_box').addEventListener('slide', function(e) {
+				setTimeout(function() {
+					$('#itemB .mui-control-item').eq(e.detail.slideNumber).trigger('tap');
+				}, 100);
+			});
+		})
+	</script>
+	
+	<!--已售-->
+	<script type="text/javascript">
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		var _this, pcont;
+		$('.mui-disabled').on('tap', function(){
+			mui('#sheet1').popover('toggle');
+			_this = $(this);
+			pcont = _this.parent();
+		})
+		//点击确定
+		$('.sure').on('tap', function(){
+			pcont.remove();
+		})
+	</script>
 </html>

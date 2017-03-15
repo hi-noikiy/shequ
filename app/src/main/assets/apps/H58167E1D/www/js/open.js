@@ -9,6 +9,9 @@ function openNewPage(id) {
 	mui.openWindow({
 		id: id,
 		url: id,
+		styles:{
+			popGesture:'hide'
+		},
 		show: {
 			//			aniShow: 'fade-in-left',
 			duration: '300'
@@ -21,7 +24,7 @@ function openNewPage(id) {
 
 function openPage(html, id) {
 	plus.nativeUI.showWaiting();
-	var new_view = plus.webview.create('./' + html, html, {}, id);
+	var new_view = plus.webview.create('./' + html, html, {popGesture:'hide'}, id);
 	new_view.addEventListener('loaded', function() {
 		setTimeout(function() {
 			plus.nativeUI.closeWaiting();
@@ -29,6 +32,20 @@ function openPage(html, id) {
 		new_view.show('pop-in', 300);
 	})
 
+}
+
+function openPublish(id){
+    mui.openWindow({
+       id: id,
+       url: id,
+       show: {
+       //      aniShow: 'fade-in-left',
+       duration: '300'
+       },
+       waiting: {
+       autoShow: false
+       }
+    });
 }
 //使用方法直接在所需要跳转的地方加上 onclick="openNewPage('ticket.html')"
 

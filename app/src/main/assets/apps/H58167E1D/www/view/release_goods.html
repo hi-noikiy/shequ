@@ -133,7 +133,7 @@
 				<li class="mui-table-view-cell padding0">
 					<div class="mui-input-row">
 						<label style="padding-bottom: 0;">简介（50字内）</label>
-						<textarea name="" id="good_intro" rows="5" cols=""></textarea>
+						<textarea name="" id="good_intro" rows="5" cols="" maxlength="50"></textarea>
 					</div>
 				</li>
 				<li class="mui-table-view-cell padding0">
@@ -337,7 +337,107 @@
 		});
 
 
+
+		
+
+
 		$(function() {
+			//判断简介输入的字数
+			$('#good_intro').blur(function(){
+				if(!$('#good_intro').val()){
+					mui.toast('请添加简介');
+					return;
+				}else{
+					if($('#good_intro').val().length >= $('#good_intro').attr('maxlength')){
+						mui.toast("你输入的字数达到上限");
+					} else{
+						mui.toast("你已输入"+$('#good_intro').val().length+"字");
+					}
+				}
+			})
+			
+			
+//			
+		
+		$("#good_name").blur(function(){
+			if(!$("#good_name").val()){
+				mui.toast('请添加商品名称');
+				return;
+			}
+		})
+		
+		if(!$("#good_intro").val())
+		{
+			mui.toast('请添加简介');
+			return;
+		}
+		
+		
+		$("#good_price").blur(function(){
+			if(!$("#good_price").val()){
+				mui.toast('请添加商品金额');
+				return;
+			}
+		})
+		
+		$("#good_ship").blur(function(){
+			if(!$("#good_ship").val()){
+				mui.toast('请添加运费');
+				return;
+			}
+		})
+		
+		$("#maf_time").blur(function(){
+			if(!$("#maf_time").val()){
+				mui.toast('请添加工期时间');
+				return;
+			}
+		})
+		
+		$("#description").blur(function(){
+			if(!$("#description").val()){
+				mui.toast('请添加商品参数描述');
+				return;
+			}
+		})
+		
+		
+//		if($('#a2').attr('src').length==0)
+//		{
+//			mui.toast('展示图第一个位置请添加图片');
+//			return;
+//		}
+//		if($('#a3').attr('src').length==0)
+//		{
+//			mui.toast('展示图第一个位置请添加图片');
+//			return;
+//		}
+//		if($('#a4').attr('src').length==0)
+//		{
+//			mui.toast('展示图第二个位置请添加图片');
+//			return;
+//		}
+//		if($('#a4').attr('src').length==0)
+//		{
+//			mui.toast('展示图第三个位置请添加图片');
+//			return;
+//		}
+//		if($('#a5').attr('src').length==0)
+//		{
+//			mui.toast('展示图第四个位置请添加图片');
+//			return;
+//		}
+//		if($('#a6').attr('src').length==0)
+//		{
+//			mui.toast('展示图第五个位置请添加图片');
+//			return;
+//		}
+		if($('#a7').attr('src').length==0)
+		{
+			mui.toast('请添加图文详情图片');
+			return;
+		}
+			
 			
 			//阅读知识产权承诺
 			$(".is_allow_release").click(function() {

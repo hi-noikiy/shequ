@@ -11,11 +11,30 @@
 		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="../css/global.css" />
 		<style type="text/css">
-			#refresh{font-size: 22px;color: #4c968e;position: absolute;right: 15px;top: -22px;z-index: 10;display: block;width: 22px;height: 22px;background: #fff;}
-			.run{-webkit-animation: turn_round 0.4s infinite linear;}
-			@-webkit-keyframes turn_round{
-				from{-webkit-transform: rotateZ(0deg);}
-				to{-webkit-transform: rotateZ(360deg);}
+			#refresh {
+				font-size: 22px;
+				color: #4c968e;
+				position: absolute;
+				right: 15px;
+				top: -22px;
+				z-index: 10;
+				display: block;
+				width: 22px;
+				height: 22px;
+				background: #fff;
+			}
+			
+			.run {
+				-webkit-animation: turn_round 0.4s infinite linear;
+			}
+			
+			@-webkit-keyframes turn_round {
+				from {
+					-webkit-transform: rotateZ(0deg);
+				}
+				to {
+					-webkit-transform: rotateZ(360deg);
+				}
 			}
 		</style>
 	</head>
@@ -60,75 +79,74 @@
 	<script src="../js/open.js"></script>
 	<script src="../js/jquery.min.js"></script>
 	<script type="text/javascript">
-        (function($, doc) {
-         $.init();
-         })(mui, document);
-         
-         //清除缓存
-         document.addEventListener('plusready',function(){
-         	$('#clear_cache').on('tap',function(){
-//       		plus.storage.clear();
-				$('#refresh').animate({'top':'11px'},'300');
-				setTimeout(function(){
+		(function($, doc) {
+			$.init();
+		})(mui, document);
+
+		//清除缓存
+		document.addEventListener('plusready', function() {
+			$('#clear_cache').on('tap', function() {
+				//       		plus.storage.clear();
+				$('#refresh').animate({ 'top': '11px' }, '300');
+				setTimeout(function() {
 					$('#refresh').addClass('run');
 				})
-	         	setTimeout(function(){
-	         		$('#refresh').removeClass('run');
-	         		$('#refresh').animate({'top':'-22px'},300);
-	         		$('#clear_cache p').html('0');
-	         		mui.toast('已清除');
-	         	},3000)
-	         })
-         })
-         
-         
-         
-         
-         var auths=[];
-         document.addEventListener('plusready', function() {              
-		       plus.oauth.getServices(function(service) {
-		                              auths = service;
-		                              }, function(e) {
-		                              toast('获取第三方登录失败!');
-		                              })
-		       
-		       $('.exit_btn').on('tap', function() {
-		                         window.plus.bridge.execSync("community","exit","退出登录");
-		                         plus.storage.removeItem('uid');
-		                         authLogout();
-		                         plus.runtime.restart();
-		                         
-		                         })
-		       
-		       
-		       }, false);
-		       
-		       function authLogout() {
-		           for(var i in auths) {
-		               var s = auths[i];
-		               if(s.authResult) {
-		                   s.logout(function(e) {
-		                            //						alert("注销登录认证成功！");
-		                            }, function(e) {
-		                            //						alert("注销登录认证失败！");
-		                            });
-		               }
-		           }
-       }
-    
-    function nwaiting() {
+				setTimeout(function() {
+					$('#refresh').removeClass('run');
+					$('#refresh').animate({ 'top': '-22px' }, 300);
+					$('#clear_cache p').html('0');
+					mui.toast('已清除');
+				}, 3000)
+			})
+		})
 
-        var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
-        var originWebView = plus.webview.currentWebview();
-        var webviewContent = plus.webview.create('./login.html', 'login.html', {}, {
-                                                 fid: 1
-                                                 }); //后台创建webview并打开show.html
-                                                 webviewContent.addEventListener("loaded", function() { //注册新webview的载入完成事件
-                                                                                 nwaiting.close(); //新webview的载入完毕后关闭等待框
-                                                                                 webviewContent.show("slide-in-right", 0);
-                                                                                 originWebView.close();
-                                                                                 }, false);
-    }
-    
-        </script>
+		var auths = [];
+		document.addEventListener('plusready', function() {
+			plus.oauth.getServices(function(service) {
+				auths = service;
+			}, function(e) {
+				toast('获取第三方登录失败!');
+			})
+
+			$('.exit_btn').on('tap', function() {
+				plus.nativeUI.confirm("您确认注销登陆吗？", function(e) {
+					if(e.index == 0) {
+						window.plus.bridge.execSync("community", "exit", "退出登录");
+						plus.storage.removeItem('uid');
+						authLogout();
+						plus.runtime.restart();
+					}
+				}, '' , ['确定', '取消']);
+			})
+
+		}, false);
+
+		function authLogout() {
+			for(var i in auths) {
+				var s = auths[i];
+				if(s.authResult) {
+					s.logout(function(e) {
+						//						alert("注销登录认证成功！");
+					}, function(e) {
+						//						alert("注销登录认证失败！");
+					});
+				}
+			}
+		}
+
+		function nwaiting() {
+
+			var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
+			var originWebView = plus.webview.currentWebview();
+			var webviewContent = plus.webview.create('./login.html', 'login.html', {}, {
+				fid: 1
+			}); //后台创建webview并打开show.html
+			webviewContent.addEventListener("loaded", function() { //注册新webview的载入完成事件
+				nwaiting.close(); //新webview的载入完毕后关闭等待框
+				webviewContent.show("slide-in-right", 0);
+				originWebView.close();
+			}, false);
+		}
+	</script>
+
 </html>

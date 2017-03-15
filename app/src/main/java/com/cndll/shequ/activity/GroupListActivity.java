@@ -62,7 +62,7 @@ public class GroupListActivity extends AppCompatActivity {
 
     private void init() {
         titleBar.setTitle("我的群聊");
-        titleBar.setLeftImageResource(R.drawable.ease_mm_title_back);
+        titleBar.setLeftImageResource(R.drawable.arrowleft);
         titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

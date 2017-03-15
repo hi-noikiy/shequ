@@ -34,7 +34,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         ButterKnife.bind(this);
         titleBar.setTitle("系统消息");
-        titleBar.setLeftImageResource(R.drawable.ease_mm_title_back);
+        titleBar.setLeftImageResource(R.drawable.arrowleft);
         titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

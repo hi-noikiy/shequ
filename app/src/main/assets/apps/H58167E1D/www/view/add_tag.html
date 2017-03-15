@@ -39,6 +39,10 @@
 <script type="text/javascript" charset="UTF-8">
   	$('#add_tag_btn').click(function(){
   		var textVal = $('.tagName').val();
+  		if(textVal ==""){
+  			mui.toast('标签不能为空');
+  			return;
+  		}
   		$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span>"+textVal+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>") 
   		$('.tagName').val('');
   	})
@@ -56,11 +60,12 @@
       	tag=tags_arr.join(',');
 		var parentid = plus.webview.getWebviewById('release_viewMedia.html');
         mui.fire(parentid,'changeVal',{tags_value:tag});
-// 	   plus.storage.setItem('releaseTags',tag);
-// 	   console.log(tags_arr);
-// 	   console.log(plus.storage.getItem('releaseTags'));
+        
+        if($('.tagName').val() == ""){
+        	mui.toast('你尚未添加标签');
+        	return;
+        }
         plus.webview.currentWebview().close();
-//      $('.newTag_list>span').remove();
       })
       	
     },false);

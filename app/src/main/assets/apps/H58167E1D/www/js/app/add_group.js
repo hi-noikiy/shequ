@@ -20,7 +20,7 @@ app.controller("addgroupController",function($scope,$http){
 		      	group_idArray=group_idStr.split(",");
 		      	for(var i=0;i<group_idArray.length;i++)
 		      	{
-		      		$('#groups #'+group_idArray[i]).attr('checked',true);
+		      		$('#groups #'+group_idArray[i]).attr('checked',false);
 		      		plus.storage.removeItem('repleaseGroup');
 		      	}
 		      }

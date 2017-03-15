@@ -72,7 +72,7 @@ public class CreateGroupActivity extends AppCompatActivity {
         dialog = new ProgressDialog(CreateGroupActivity.this);
         titleBar.setTitle("建群");
         titleBar.setRightText("建立");
-        titleBar.setLeftImageResource(R.drawable.ease_mm_title_back);
+        titleBar.setLeftImageResource(R.drawable.arrowleft);
         titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

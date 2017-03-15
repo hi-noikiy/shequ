@@ -72,11 +72,16 @@ app.controller('myController',function ($scope,$http) {
 		goNewPage('somebody_dynamic_state.html',{uid:uid});/*更多动态*/
 	}	
 	
-	$scope.GoodsList = function () {
+	$scope.GoodsList = function ( ) {
 		plus.webview.create('somebody_goods.html','somebody_goods.html',{},{uid:uid}).show('pop-in');/*更多商品*/
 //		goNewPage('somebody_goods.html',{uid:uid});
 	}	
 	
+	//获取用户id
+//	$scope.icon_sub=function($uid,$ioc,$nick){
+//		plus.webview.create('honer_page.html','honer_page.html',{},{uid:$uid,ico:$ioc,nick:$nick}).show('pop-in');/*更多商品*/
+//	}
+//	
 	
 	$scope.view_follow = function() {
 		console.log(uid);
@@ -141,12 +146,12 @@ function ready_honer(){
 	myuid = plus.storage.getItem('uid');
 	uid = ws.icon_id;/*用户id*/
 	type_id = ws.type_id;
-	uid = 16;
+	console.log(uid);
+//	uid = 3;
 	var allocation = document.querySelector('[ng-controller=myController]');
 	$scope = angular.element(allocation).scope();
 	$scope.initView();
-	$scope.$apply();
-	
+	$scope.$apply();	
 }
 
 if(window.plus){

@@ -20,13 +20,12 @@ import com.hyphenate.chat.EMConversation.EMConversationType;
 import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.R;
-import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.model.GroupsInfo;
 import com.hyphenate.easeui.model.UserInfo;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.utils.EaseSmileUtils;
-import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.utils.StringHelper;
 import com.hyphenate.easeui.widget.EaseConversationList.EaseConversationListHelper;
 import com.hyphenate.util.DateUtils;
 
@@ -279,9 +278,10 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
 
                     EMGroup group = EMClient.getInstance().groupManager().getGroup(username);
                     if (group != null) {
-                        username = group.getGroupName();
+                        username = StringHelper.getPingYin(group.getGroupName());
                     } else {
-                        EaseUser user = EaseUserUtils.getUserInfo(username);
+                        username = StringHelper.getPingYin(UserInfo.getInstance().getInfo().get(username).getNick());
+                        //EaseUser user = EaseUserUtils.getUserInfo(username);
                         // TODO: not support Nick anymore
 //                        if(user != null && user.getNick() != null)
 //                            username = user.getNick();

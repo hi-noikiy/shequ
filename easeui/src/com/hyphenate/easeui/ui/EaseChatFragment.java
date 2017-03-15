@@ -149,7 +149,15 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         //noinspection ConstantConditions
         voiceRecorderView = (EaseVoiceRecorderView) getView().findViewById(R.id.voice_recorder);
         if (chatType == EaseConstant.CHATTYPE_GROUP) {
-            titleBar.setRightImageResource(R.drawable.ease_group_icon);
+            titleBar.setRightImageResource(R.drawable.qunzu);
+            titleBar.setRightLayoutClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (rightTitleBarClick != null) {
+                        rightTitleBarClick.onclik(v);
+                    }
+                }
+            });
             titleBar.setRightImageClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -226,7 +234,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
             titleBar.setTitle(nick);
             titleBar.setRightImageResource(R.drawable.ease_mm_title_remove);
         } else {
-            titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
+            titleBar.setRightImageResource(R.drawable.qunzu);
             if (chatType == EaseConstant.CHATTYPE_GROUP) {
                 //group chat
                 EMGroup group = EMClient.getInstance().groupManager().getGroup(toChatUsername);

@@ -23,76 +23,24 @@ app.controller("releaseGoodsController", function($scope, $http) {
 		var uid = plus.storage.getItem('uid');
 //		console.log($('#info').text());
 		console.log($scope.cate_id);
-		if(!$scope.cate_id)
-		{
-			toast('请添加分类');
-			return;
-		}
-		if(!$("#good_name").val())
-		{
-			toast('请添加商品名称');
-			return;
-		}
-		if(!$("#good_intro").val())
-		{
-			toast('请添加简介');
-			return;
-		}
-		if(!$("#good_price").val())
-		{
-			toast('请添加商品金额');
-			return;
-		}
-		if(!$("#good_ship").val())
-		{
-			toast('请添加运费');
-			return;
-		}
-		if(!$("#maf_time").val())
-		{
-			toast('请添加工期时间');
-			return;
-		}
-		if(!$("#description").val())
-		{
-			toast('请添加商品参数描述');
-			return;
-		}
+		
 		if($('#a1').attr('src').length==0)
 		{
-			toast('请添加封面图');
+			mui.toast('请添加封面图');
 			return;
 		}
-//		if($('#a2').attr('src').length==0)
-//		{
-//			toast('展示图第一个位置请添加图片');
-//			return;
-//		}
-//		if($('#a3').attr('src').length==0)
-//		{
-//			toast('展示图第一个位置请添加图片');
-//			return;
-//		}
-//		if($('#a4').attr('src').length==0)
-//		{
-//			toast('展示图第二个位置请添加图片');
-//			return;
-//		}
-//		if($('#a4').attr('src').length==0)
-//		{
-//			toast('展示图第三个位置请添加图片');
-//			return;
-//		}
-//		if($('#a5').attr('src').length==0)
-//		{
-//			toast('展示图第四个位置请添加图片');
-//			return;
-//		}
-//		if($('#a6').attr('src').length==0)
-//		{
-//			toast('展示图第五个位置请添加图片');
-//			return;
-//		}
+		
+		if(!$scope.cate_id)
+		{
+			mui.toast('请添加分类');
+			return;
+		}
+		
+		if($('#a2').attr('src').length !=0 || $('#a3').attr('src').length !=0 || $('#a4').attr('src').length !=0 || $('#a5').attr('src').length !=0 ||$('#a6').attr('src').length !=0){
+			toast('请至少添加一张图片');
+			return;
+		}
+
 		if($('#a7').attr('src').length==0)
 		{
 			toast('请添加图文详情图片');

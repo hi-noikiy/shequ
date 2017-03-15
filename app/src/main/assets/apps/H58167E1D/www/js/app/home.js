@@ -5,6 +5,9 @@ var app = angular.module("homeApp",[]);
 app.controller("homeController",function($scope,$http){
 		initTrade($scope,$http);
 		initNote($scope,$http);
+		$scope.start = function(){
+			plus.nativeUI.showWaiting();
+		}
 		$scope.obtainId=function(id)
 		{
 			plus.nativeUI.showWaiting('加载中...');
@@ -21,7 +24,7 @@ app.controller("homeController",function($scope,$http){
 			plus.storage.setItem('noteId',id+'');
 			plus.webview.create('view_detail.html', 'view_detail.html',{},{noteId:id}).show('pop-in');  
 //			plus.webview.create('goods_detail.html', 'goods_detail.html').show('pop-in');  
-
+			plus.nativeUI.closeWaiting();
 		}
 		$scope.shequNote =function(cid)
 		{
@@ -31,6 +34,7 @@ app.controller("homeController",function($scope,$http){
 			plus.webview.create('new_content.html', 'new_content.html').show('pop-in');  
 			plus.nativeUI.closeWaiting();
 		}
+		
 	    $scope.shequNews = function(new_cid)
 	    {
 	    	plus.nativeUI.showWaiting('加载中.....');
@@ -110,10 +114,14 @@ function initNote($scope,$http){
 		url:apiRoot,
 		data:{action:'Community.index'} 
 	}).then(function successCallback(response){
+		
 		console.log(JSON.stringify(response.data.data));       
 		$scope.notes = response.data.data.notes;//标题下的数据
 		$scope.photos = response.data.data.photo;//轮播图
 		$scope.cates = response.data.data.cates;
+		setTimeout(function(){
+			plus.nativeUI.closeWaiting();		
+		},300);
 //		$scope.cates = response.data.data.cates;
 //		$scope.recommends = response.data.data.recommend;
 	},function errorfunction(e){
@@ -124,7 +132,7 @@ function initNote($scope,$http){
 document.addEventListener("plusready", function() {
 	appElement = document.querySelector('[ng-controller=homeController]');
 	$scope = angular.element(appElement).scope();  
-	plus.nativeUI.closeWaiting();
+	$scope.start();
 	$scope.$apply();
 })
        

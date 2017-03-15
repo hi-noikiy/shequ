@@ -64,7 +64,7 @@
 		            <i class="iconfont mui-icon colorP font18">&#xe61b;</i>
 		            <span>我的订单</span>
 		        </li> 
-		        <li onclick="openNewPage('my_release2.html')" class="mui-table-view-cell">
+		        <li onclick="openNewPage('my_release.html')" class="mui-table-view-cell">
 		            <i class="iconfont mui-icon colorP font18">&#xe718;</i>
 		            <span>我的发布</span>
 		        </li>
@@ -101,27 +101,34 @@
 		
 //		console.log($('#user_nick').html())
 		
-		window.addEventListener('changeVal',function(event){
-		var showWin = event.detail.showWin;
-		if(showWin == 1){
-			//触发弹窗
-			plus.nativeUI.actionSheet({
-				cancel: "取消",
-				buttons: [{
-					title: "发布内容"
-				},{
-					title: "发布商品"
-				}]
-			}, function(e) {
-				var i = e.index;
-				if(i == 1) {
-					openNewPage('release_viewMedia.html')
-				}else if(i==2){
-					openNewPage('release_goods.html')
-				}
-			});
-		}
-	});
+		mui.init({ swipeBack: false });
+		window.addEventListener('changeVal', function(event) {
+			var showWin = event.detail.showWin;
+			if(showWin == 1) {
+				//触发弹窗
+				plus.nativeUI.actionSheet({
+					cancel: "取消",
+					buttons: [{
+						title: "发布内容"
+					}, {
+						title: "发布商品"
+					}]
+				}, function(e) {
+					var i = e.index;
+			　　　　　window.plus.bridge.execSync("community", "pushWebView", "");
+					if(i == 1) {
+						openPublish('release_viewMedia.html')
+					} else if(i == 2) {
+						if(plus.storage.getItem('sign') == '1') {
+							openNewPage('release_goods.html');
+						} else {
+							mui.toast("您还未注册卖家，请完整注册申请，才可以发布商品噢。");
+							openNewPage('apply_for_seller.html');
+						}
+					}
+				});
+			}
+		});
 	</script>
 	<script src="../js/app/merchant.js"></script>
 </html> 

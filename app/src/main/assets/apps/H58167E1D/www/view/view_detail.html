@@ -76,13 +76,13 @@
 					</div>
 					<li class="paddingl_r_15px_tb11px border-bottom  mui-media">
 						<a href="javascript:;">
-							<img ng-click="icon_sub(notes[0].uid,notes[0].icon,notes[0].nick)" class="mui-media-object mui-pull-left circle_pic" src="{{notes[0].icon}}">
+							<img ng-click="icon_sub(note.uid,note.icon,note.nick)" class="mui-media-object mui-pull-left circle_pic" src="{{note.icon}}">
 							<div class="mui-media-body">
 								<div class="mui-clearfix margin-bottom5px">
 									<span class="mui-pull-left color333">{{note.nick}}</span>
 									<!--<span id="follow"></span>-->
 
-									<span class="mui-pull-right iconfont mui-icon line-height20px color999 attention_btn font12" style="border: 1px solid #999;" ng-if="user.follow==1">&#xe669;已关注</span>
+									<span class="mui-pull-right iconfont mui-icon line-height20px color999 attention_btn font12" style="border: 1px solid #999;" ng-if="user.follow==1" ng-click="view_follow()">&#xe6aa;已关注</span>
 									<span class="mui-pull-right iconfont mui-icon line-height20px colorP attention_btn font12" id="follow" ng-if="user.follow==0" ng-click="view_follow()">&#xe669;关注</span>
 
 								</div>
@@ -201,22 +201,25 @@
 					left: '0px'
 				}, 300);
 			})
-
-			//
-			//		$('.input_box input').focus(function(){
-			//			$('.input_box').css({'margin-top':($(window).innerHeight()-$('.input_box').innerHeight())+'px'});
-			//		})
-
+			
+			if($('.dialogue_box li').length <= 0){
+				$('.dialogue_box').addClass('mui-hidden');
+			}
+			
 			$('.input_box button').click(function() {
 				var textVal = $('.input_box input').val();
-				plus.storage.setItem('conmentval', textVal);
-				$('.dialogue_box' + bj).append("<li><span class='colorP'>就是要帅：</span><span>" + textVal + "</span></li>");
+//				plus.storage.setItem('conmentval', textVal);
+//				$('.dialogue_box' + bj).append("<li><span class='colorP'>就是要帅：</span><span>" + textVal + "</span></li>");
 				$('.input_box').animate({
 					left: '-100%'
 				}, 300);
 				$('.input_box input').val("");
 			})
-
+			
+			
+			//图片预览
+			mui.previewImage();
+			
 			//视频播放
 			var is_play = true;
 			$('.video_box').click(function() {

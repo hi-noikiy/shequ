@@ -89,7 +89,6 @@ app.controller("releaseController", function($scope, $http, $sce) {
 		task.addData('groupid', groupid);
 		task.addData('goodsid', goodsid);
 		task.start();
-
 	}
 	$scope.add_tag = function() {
 		plus.nativeUI.showWaiting('加载中......');
