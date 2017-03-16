@@ -1,14 +1,18 @@
 package com.cndll.shequ.util;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.cndll.shequ.R;
 import com.cndll.shequ.bean.UpdateRequest;
 import com.cndll.shequ.bean.UpdateResponse;
 import com.cndll.shequ.net.ComUnityRequest;
@@ -34,26 +38,51 @@ public class UpdateApp {
         return context;
     }
 
+    private static final int NTIFYID = 0X01;
+
     public void setContext(Context context) {
         this.context = context;
     }
 
     private Context context;
     private String apkname = "QUMAIYI";
+    private NotificationCompat.Builder builder;
 
     private void update(String url) {
+        if (builder == null) {
+            builder = new NotificationCompat.Builder(context);
+        }
+        Notification notification;
+        builder.setSmallIcon(R.mipmap.icon);
+        builder.setContentTitle("下载");
+        builder.setContentText("正在下载");
+
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        //manager.notify(NTIFYID, builder.build());
+        //builder.setProgress(100, 0, false);
         try {
-            URL               url1   = new URL(url);
-            HttpURLConnection conn   = (HttpURLConnection) url1.openConnection();
-            InputStream       in     = conn.getInputStream();
-            File              file   = new File(Environment.getExternalStorageDirectory(), apkname);
-            FileOutputStream  out    = new FileOutputStream(file);
+            URL               url1     = new URL(url);
+            HttpURLConnection conn     = (HttpURLConnection) url1.openConnection();
+            InputStream       in       = conn.getInputStream();
+            File              file     = new File(Environment.getExternalStorageDirectory(), apkname);
+            FileOutputStream  out      = new FileOutputStream(file);
             int               i;
-            byte[]            buffer = new byte[1024];
+            int               progCont = conn.getContentLength();
+            byte[]            buffer   = new byte[1024];
+            int               now      = 0;
+            int               loopcont = progCont / 100;
+            int               a        = 0;
             while ((i = in.read(buffer)) != -1) {
+                now = now + 1024;
                 out.write(buffer, 0, i);
                 out.flush();
+                if (now / loopcont > a) {
+                    a++;
+                    builder.setProgress(progCont, now, false);
+                    manager.notify(NTIFYID, builder.build());
+                }
             }
+            manager.cancel(NTIFYID);
             in.close();
             out.close();
             Intent intent = new Intent(Intent.ACTION_VIEW).setDataAndType(Uri.fromFile(new File(Environment.getExternalStorageDirectory(), apkname)), "application/vnd.android.package-archive");
@@ -61,8 +90,10 @@ public class UpdateApp {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
+            manager.cancel(NTIFYID);
         } catch (IOException e) {
             e.printStackTrace();
+            manager.cancel(NTIFYID);
         }
     }
 

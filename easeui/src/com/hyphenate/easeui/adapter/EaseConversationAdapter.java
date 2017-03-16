@@ -288,7 +288,7 @@ public class EaseConversationAdapter extends ArrayAdapter<EMConversation> {
                     }
 
                     // First match against the whole ,non-splitted value
-                    if (username.startsWith(prefixString)) {
+                    if (username.startsWith(StringHelper.getPingYin(prefixString))) {
                         newValues.add(value);
                     } else {
                         final String[] words     = username.split(" ");
