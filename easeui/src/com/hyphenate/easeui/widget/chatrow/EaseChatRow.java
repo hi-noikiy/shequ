@@ -184,6 +184,14 @@ public abstract class EaseChatRow extends LinearLayout {
     /**
      * set callback for sending message
      */
+    public void setUserAvatarViewGone() {
+        userAvatarView.setVisibility(View.INVISIBLE);
+    }
+
+    public void setUserAvatarViewVisib() {
+        userAvatarView.setVisibility(View.VISIBLE);
+    }
+
     protected void setMessageSendCallback() {
         if (messageSendCallback == null) {
             messageSendCallback = new EMCallBack() {
