@@ -317,7 +317,8 @@
         <activity
             android:name=".activity.GroupAddMemberActivity"
             android:label="@string/title_activity_group"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden">
         </activity>
         <activity
             android:name=".activity.GroupListActivity"
@@ -707,6 +708,8 @@
         <activity android:name=".activity.PersonDetailsActivity">
         </activity>
         <activity android:name=".activity.GroupDetailsAcitivity">
+        </activity>
+        <activity android:name=".activity.GroupDeleteMember">
         </activity>
     </application>
 

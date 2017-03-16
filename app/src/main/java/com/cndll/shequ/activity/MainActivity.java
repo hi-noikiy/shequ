@@ -25,6 +25,7 @@ import com.cndll.shequ.eventtype.JSEvent;
 import com.cndll.shequ.eventtype.LoginIM;
 import com.cndll.shequ.eventtype.PushWebView;
 import com.cndll.shequ.util.ObjectSaveUtils;
+import com.cndll.shequ.util.UpdateApp;
 import com.cndll.shequ.util.UpdataGroupsInfo;
 import com.cndll.shequ.view.PopUpWindowMag;
 import com.hyphenate.EMCallBack;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         initH5(savedInstanceState);
         initJsEvent();
         init();
+        update();
     }
 
     @Override
@@ -104,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    private void update() {
+        UpdateApp updaApp = new UpdateApp();
+        updaApp.setContext(MainActivity.this);
+        updaApp.checkoutVertion();
     }
 
     @Override

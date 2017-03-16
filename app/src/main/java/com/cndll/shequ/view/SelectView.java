@@ -60,7 +60,7 @@ public class SelectView extends ImageView {
                 } else {
                     setSelect(true);
                 }
-                return true;
+                return super.onTouchEvent(event);
         }
         return super.onTouchEvent(event);
 

@@ -7,6 +7,8 @@ import com.cndll.shequ.bean.LoadUpResponse;
 import com.cndll.shequ.bean.RequestGroupImage;
 import com.cndll.shequ.bean.SearchUser;
 import com.cndll.shequ.bean.SearchUserResponse;
+import com.cndll.shequ.bean.UpdateRequest;
+import com.cndll.shequ.bean.UpdateResponse;
 import com.hyphenate.easeui.model.GroupImageBean;
 
 import java.util.Map;
@@ -30,6 +32,9 @@ public interface SheQuApi {
 
     @POST("index.php/app/")
     Observable<GroupMember> getGroupMember(@Body GroupMemberRequest request);
+
+    @POST("index.php/app/")
+    Observable<UpdateResponse> update(@Body UpdateRequest request);
 
     @Multipart
     @POST("index.php/app/")

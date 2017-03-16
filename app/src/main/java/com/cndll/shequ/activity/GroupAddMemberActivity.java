@@ -8,16 +8,19 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cndll.shequ.R;
-import com.cndll.shequ.bean.GroupMember;
 import com.cndll.shequ.bean.SearchUser;
 import com.cndll.shequ.bean.SearchUserResponse;
 import com.cndll.shequ.net.ComUnityRequest;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.List;
 
@@ -32,49 +35,83 @@ public class GroupAddMemberActivity extends AppCompatActivity {
     ImageButton  back;
     @BindView(R.id.userlist)
     RecyclerView userlist;
-    @BindView(R.id.search_user)
-    EditText     searchUser;
+    @BindView(R.id.query)
+    EditText     query;
+    @BindView(R.id.search_clear)
+    ImageButton  searchClear;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         ButterKnife.bind(this);
-
+        init();
     }
 
+    private RecyclerViewAdapter adapter;
+    private String              groupid;
+
     private void init() {
-        AdminActivity.RecyclerViewAdapter adapter = new AdminActivity.RecyclerViewAdapter();
-        LinearLayoutManager               manager = new LinearLayoutManager(this);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        groupid = getIntent().getStringExtra("GROUPID");
+        adapter = new RecyclerViewAdapter();
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         userlist.setLayoutManager(manager);
         userlist.setAdapter(adapter);
-        searchUser.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        adapter.addMemberListener(new RecyclerViewAdapter.GroupListener() {
+            @Override
+            public void addMember(String id) {
+                try {
+                    EMClient.getInstance().groupManager().addUsersToGroup(groupid, new String[]{id});
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(GroupAddMemberActivity.this, "添加失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+        query.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
+                searchUser(query.getText().toString());
                 return false;
             }
         });
     }
 
     private void searchUser(String user) {
-        ComUnityRequest.getAPI().searchUser(new SearchUser().setContent(user)).observeOn(Schedulers.io()).subscribe(new Observer<SearchUserResponse>() {
+        ComUnityRequest.getAPI().searchUser(new SearchUser().setContent(user)).subscribeOn(Schedulers.io()).subscribe(new Observer<SearchUserResponse>() {
             @Override
             public void onCompleted() {
 
             }
 
             @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(SearchUserResponse searchUserResponse) {
+            public void onError(final Throwable e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        Toast.makeText(GroupAddMemberActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
 
+            @Override
+            public void onNext(final SearchUserResponse searchUserResponse) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateListView(searchUserResponse);
                     }
                 });
             }
@@ -82,119 +119,78 @@ public class GroupAddMemberActivity extends AppCompatActivity {
     }
 
     private void updateListView(SearchUserResponse r) {
-
+        adapter.addMember(r.getData());
     }
 
     public static class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Holer> {
         public interface GroupListener {
-            void add();
-
-            void delete();
+            void addMember(String id);
         }
 
         public GroupListener getG() {
             return g;
         }
 
-        public void setGroupListener(GroupListener g) {
+        public void addMemberListener(GroupListener g) {
             this.g = g;
         }
 
         private GroupListener g;
 
-        public List<GroupMember.DataBean.ListBean> getGroupMemList() {
-            return groupMemList;
+        public List<SearchUserResponse.DataBean> getMember() {
+            return member;
         }
 
-        public void setGroupMemList(List<GroupMember.DataBean.ListBean> groupMemList) {
-            this.groupMemList = groupMemList;
+        public void addMember(List<SearchUserResponse.DataBean> member) {
+
+            this.member = member;
+            notifyDataSetChanged();
         }
 
-        List<GroupMember.DataBean.ListBean> groupMemList;
+        List<SearchUserResponse.DataBean> member;
 
         @Override
         public Holer onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_mub_item, null);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_user_iteam, parent, false);
             return new Holer(view);
         }
 
         @Override
-        public void onBindViewHolder(Holer holder, int position) {
-            if (groupMemList == null) {
-                switch (position) {
-                    case 0:
-                        holder.nick.setVisibility(View.GONE);
-                        holder.avatar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (g != null) {
-                                    g.add();
-                                }
-                            }
-                        });
-                        break;
-                    case 1:
-                        holder.nick.setVisibility(View.GONE);
-                        holder.avatar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (g != null) {
-                                    g.delete();
-                                }
-                            }
-                        });
-                        break;
+        public void onBindViewHolder(Holer holder, final int position) {
+            holder.avatar.setImageURI(member.get(position).getIcon());
+            holder.nick.setText(member.get(position).getNick());
+            holder.addMember.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (g != null) {
+                        g.addMember(member.get(position).getMobile());
+                    }
                 }
-            } else {
-                if (position == groupMemList.size()) {
-                    holder.nick.setVisibility(View.GONE);
-                    holder.avatar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (g != null) {
-                                g.add();
-                            }
-                        }
-                    });
-                } else if (position == groupMemList.size() + 1) {
-                    holder.nick.setVisibility(View.GONE);
-                    holder.avatar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (g != null) {
-                                g.delete();
-                            }
-                        }
-                    });
-                }
-                if (position < groupMemList.size()) {
-                    holder.nick.setText(groupMemList.get(position).getNick());
-                    holder.avatar.setImageURI(groupMemList.get(position).getIcon());
-                }
-            }
-
+            });
         }
 
-        private void doMember(SimpleDraweeView s, GroupDetailsAcitivity.RecyclerViewAdapter.GroupListener g, int type) {
+        private void doMember(SimpleDraweeView s, GroupListener g) {
 
         }
 
         @Override
         public int getItemCount() {
-            if (groupMemList != null) {
-                return groupMemList.size() + 2;
+            if (member != null) {
+                return member.size();
             }
-            return 2;
+            return 0;
         }
 
         public static class Holer extends RecyclerView.ViewHolder {
             SimpleDraweeView avatar;
             TextView         nick;
+            Button           addMember;
 
             public Holer(View itemView) {
                 super(itemView);
                 avatar = (SimpleDraweeView) itemView.findViewById(R.id.avatar);
                 nick = (TextView) itemView.findViewById(R.id.nick);
+                addMember = (Button) itemView.findViewById(R.id.add_member);
             }
         }
     }

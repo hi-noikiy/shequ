@@ -1,6 +1,7 @@
 package com.cndll.shequ.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -58,12 +59,22 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
         adapter.setGroupListener(new RecyclerViewAdapter.GroupListener() {
             @Override
             public void add() {
-                startActivity(new Intent(GroupDetailsAcitivity.this, GroupAddMemberActivity.class));
+                EMGroup group = EMClient.getInstance().groupManager().getGroup(groupid);
+                if (group.getOwner().equals(UserLodingInFo.getInstance().getMobile())) {
+                    startActivity(new Intent(GroupDetailsAcitivity.this, GroupAddMemberActivity.class).putExtra("GROUPID", groupid));
+                } else {
+                    Toast.makeText(GroupDetailsAcitivity.this, "无此权限", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void delete() {
-
+                EMGroup group = EMClient.getInstance().groupManager().getGroup(groupid);
+                if (group.getOwner().equals(UserLodingInFo.getInstance().getMobile())) {
+                    startActivity(new Intent(GroupDetailsAcitivity.this, GroupDeleteMember.class).putExtra("GROUPID", groupid));
+                } else {
+                    Toast.makeText(GroupDetailsAcitivity.this, "无此权限", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         GridLayoutManager manager = new GridLayoutManager(GroupDetailsAcitivity
@@ -155,7 +166,9 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         holder.nick.setVisibility(View.GONE);
-
+                        holder.avatar.setImageURI(Uri.parse("res://" +
+                                holder.avatar.getContext().getPackageName()
+                                + "/" + R.drawable.add));
                         holder.avatar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -167,6 +180,9 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
                         break;
                     case 1:
                         holder.nick.setVisibility(View.GONE);
+                        holder.avatar.setImageURI(Uri.parse("res://" +
+                                holder.avatar.getContext().getPackageName()
+                                + "/" + R.drawable.delete));
                         holder.avatar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -180,6 +196,9 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
             } else {
                 if (position == groupMemList.size()) {
                     holder.nick.setVisibility(View.GONE);
+                    holder.avatar.setImageURI(Uri.parse("res://" +
+                            holder.avatar.getContext().getPackageName()
+                            + "/" + R.drawable.add));
                     holder.avatar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -190,6 +209,9 @@ public class GroupDetailsAcitivity extends AppCompatActivity {
                     });
                 } else if (position == groupMemList.size() + 1) {
                     holder.nick.setVisibility(View.GONE);
+                    holder.avatar.setImageURI(Uri.parse("res://" +
+                            holder.avatar.getContext().getPackageName()
+                            + "/" + R.drawable.delete));
                     holder.avatar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

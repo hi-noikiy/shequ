@@ -13,7 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_marginTop="4dp"
+        android:layout_weight="0.8"
         android:orientation="horizontal"
         android:weightSum="10">
 
@@ -24,18 +25,21 @@
             android:layout_weight="0.7"
             android:background="@drawable/arrowleft"/>
 
-        <EditText
-            android:id="@+id/search_user"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="12dp"
             android:layout_weight="8"
-            android:background="@drawable/searchviewstroke"/>
+            >
+
+            <include layout="@layout/ease_search_bar"/>
+        </LinearLayout>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/userlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9.5"/>
+        android:layout_marginTop="12dp"
+        android:layout_weight="9.2"/>
 </LinearLayout>
