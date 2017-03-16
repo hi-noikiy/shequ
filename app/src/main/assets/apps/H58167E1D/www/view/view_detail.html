@@ -58,7 +58,7 @@
 			<div style="width: 100%;">{{note.videoUrl}}</div>
 			<div class="bg_white margin-bottom5px">
 
-				<div class="bg_white margin-bottom5px goods_title">
+				<div class="bg_white margin-bottom5px goods_title video_box">
 					<!--视频-->
 					<video ng-if="note.file_type" ng-src="{{videoUrl}}" poster="{{videoUrl}}" style="background: #000;"></video>
 					<!--图片-->
@@ -80,10 +80,8 @@
 							<div class="mui-media-body">
 								<div class="mui-clearfix margin-bottom5px">
 									<span class="mui-pull-left color333">{{note.nick}}</span>
-									<!--<span id="follow"></span>-->
-
-									<span class="mui-pull-right iconfont mui-icon line-height20px color999 attention_btn font12" style="border: 1px solid #999;" ng-if="user.follow==1" ng-click="view_follow()">&#xe6aa;已关注</span>
-									<span class="mui-pull-right iconfont mui-icon line-height20px colorP attention_btn font12" id="follow" ng-if="user.follow==0" ng-click="view_follow()">&#xe669;关注</span>
+									<span class="mui-pull-right iconfont mui-icon color999 line-height20px attention_btn font12" style="border: 1px solid #999;" ng-click="isattention(2)" ng-if="attention == 115" >&#xe6aa;取消关注</span>
+                     				<span class="mui-pull-right iconfont mui-icon colorP line-height20px attention_btn font12" ng-if="attention == 121" ng-click="isattention(1)">&#xe669;关注</span>
 
 								</div>
 								<p class="font12">{{note.personalized}}</p>
@@ -144,8 +142,8 @@
 				<p class="margin0">没有评论了呢~</p>
 			</div>
 			<div class="mui-segmented-control borderNone bg_white" style="position: fixed;bottom: 0;left: 0;">
-				<a ng-if="!user.collection" ng-click="viewCollection()" id="viewcollection"><i class="iconfont mui-icon color333">&#xe70a;</i> <i class="font12">收藏</i></a>
-				<a ng-if="user.collection"><i class="iconfont mui-icon color">&#xe622;</i> <i class="font12">已收藏</i></a>
+				<a ng-click="iscollection(2)" id="viewcollection"><span ng-if="collection==121"><i class="iconfont mui-icon color333">&#xe70a;</i> <i class="font12">收藏</i></span></a>
+				<a ng-click="iscollection(1)"><span ng-if="collection==115"><i class="iconfont mui-icon color">&#xe622;</i> <i class="font12">已收藏</i></span></a>
 				<a ng-click="groupList()"><i class="iconfont mui-icon color333">&#xe61a;</i> <i class="font12">加入群聊</i></a>
 				<a ng-click="openChat()"><i class="iconfont mui-icon color333">&#xe60d;</i> <i class="font12">私聊群主</i></a>
 				<a id="evaluate_btn" ng-click="huiContent(0)"><i class="iconfont mui-icon color333">&#xe660;</i> <i class="font12">评论</i></a>
@@ -208,8 +206,8 @@
 			
 			$('.input_box button').click(function() {
 				var textVal = $('.input_box input').val();
-//				plus.storage.setItem('conmentval', textVal);
-//				$('.dialogue_box' + bj).append("<li><span class='colorP'>就是要帅：</span><span>" + textVal + "</span></li>");
+				plus.storage.setItem('conmentval', textVal);
+				$('.dialogue_box' + bj).append("<li><span class='colorP'>就是要帅：</span><span>" + textVal + "</span></li>");
 				$('.input_box').animate({
 					left: '-100%'
 				}, 300);

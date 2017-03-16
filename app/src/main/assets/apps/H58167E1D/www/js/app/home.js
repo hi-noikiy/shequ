@@ -1,4 +1,5 @@
 var defaultIndex = 1;
+var uid;/*用户id*/
 var iteam = '#itemA';
 var notes = [], carousel=[];
 var app = angular.module("homeApp",[]);
@@ -8,22 +9,23 @@ app.controller("homeController",function($scope,$http){
 		$scope.start = function(){
 			plus.nativeUI.showWaiting();
 		}
-		$scope.obtainId=function(id)
+		$scope.obtainId=function(id,type)
 		{
 			plus.nativeUI.showWaiting('加载中...');
 			console.log(id);
-			plus.storage.setItem('goodsId',id+'');
-			plus.webview.create('goods_detail.html', 'goods_detail.html').show('pop-in');
+			console.log(type);
+//			plus.storage.setItem('goodsId',id+'');
+			plus.webview.create('goods_detail.html', 'goods_detail.html',{},{gid:id,type:type}).show('pop-in');
 			plus.nativeUI.closeWaiting();
           
 		}
-		$scope.shequ=function(id)
+		$scope.shequ=function(id,type)
 		{
 			plus.nativeUI.showWaiting('加载中...');
+//			plus.storage.setItem('noteId',id+'');
 			console.log(id);
-			plus.storage.setItem('noteId',id+'');
-			plus.webview.create('view_detail.html', 'view_detail.html',{},{noteId:id}).show('pop-in');  
-//			plus.webview.create('goods_detail.html', 'goods_detail.html').show('pop-in');  
+			console.log(type);
+			plus.webview.create('view_detail.html', 'view_detail.html',{},{noteId:id,type:type}).show('pop-in');   
 			plus.nativeUI.closeWaiting();
 		}
 		$scope.shequNote =function(cid)
@@ -96,11 +98,12 @@ function initTrade($scope,$http){
 		url:apiRoot,
 		data:{action:'Trade.getGoods'}
 	}).then(function successCallback(response){
-		console.log(JSON.stringify(response.data.data));    
+//		console.log(JSON.stringify(response.data.data));    
 		$scope.carousels = response.data.data.carousel;  
 		$scope.hots = response.data.data.hot;
 		$scope.news = response.data.data.new;
 		$scope.recommends = response.data.data.recommend;
+		console.log(JSON.stringify(response.data.data.recommend));
 	},function errorfunction(e){
 		console.log(e);
 	})
@@ -130,6 +133,7 @@ function initNote($scope,$http){
 }
 
 document.addEventListener("plusready", function() {
+	uid = plus.storage.getItem('uid');
 	appElement = document.querySelector('[ng-controller=homeController]');
 	$scope = angular.element(appElement).scope();  
 	$scope.start();

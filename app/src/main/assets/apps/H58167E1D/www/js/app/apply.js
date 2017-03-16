@@ -76,68 +76,6 @@ function appendpic(p, id) {
 }
 
 
-
-
-function check_name(){
-	alert(1);
-	if(!name) {
-		toast('请输入姓名');
-		return;
-	}
-}
-
-function check_phoneNumber(){
-	if(!mobile.match(p1) || !mobile) {
-		toast('请输入正确手机号码且不能为空');
-		return;
-	}
-}
-	
-function check_IDcard(){
-	if(!card_number.match(card) || !card_number) {
-		toast('请输入正确身份证号且不能为空');
-		return;
-	}
-}
-	
-	
-function check_receipt(){
-	if(!channel) {
-		toast('请选择收款方式');
-		return;
-	}
-}
-
-function check_receipt_num(){
-	if(!number) {
-		toast('请输入收款账号');
-		return;
-	}
-}
-
-	
-	
-function check_aptitude(){
-	if(!summary) {
-		toast('请输入资质说明');
-		return;
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function upload() {
 	//		if(files.length <= 0){
 	//			toast("请上传头像！");
@@ -186,10 +124,10 @@ function upload() {
 		toast('请添加本人身份证反面照片');
 		return;
 	}
-	if(img4 == 0) {
-		toast('请添加上传照片');
-		return;
-	}
+//	if(img4 == 0) {
+//		toast('请添加上传照片');
+//		return;
+//	}
 	if(!summary) {
 		toast('请输入资质说明');
 		return;

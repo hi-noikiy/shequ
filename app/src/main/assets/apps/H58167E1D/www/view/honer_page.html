@@ -33,30 +33,26 @@
             <label for="uploadimg8" style="width: 100%;text-align: center;display: table;position: relative;bottom: 0;left: 0;">{{nick}}</label>
         	<p class="font13 color333 text-aligin font12"><span>{{gender}}</span><span class="padding_l">{{location}}</span></p>
         	<p class="font13 colorP text-aligin">
-        		<span onclick="openNewPage('user_fans.html')" class="font12">粉丝 <i>10</i></span>
-        		<span onclick="openNewPage('user_attention.html')" class="padding_l font12">关注 <i>{{follow.info}}</i></span>
+        		<span onclick="openNewPage('user_fans.html')" class="font12">粉丝 <i>{{fans_num}}</i></span>
+        		<span onclick="openNewPage('user_attention.html')" class="padding_l font12">关注 <i>{{follow}}</i></span>
         	</p>
-        	<p class="font13  text-aligin">
-        		<span class="wing">Ta的群组</span>
-        	</p>
-        	<div class="text-aligin">
-        		<div style="display: inline-block;">
-			        <img class="circle_pic" src="../img/ql1.jpg"/>
-			        <p class="font13 color333">旅行部落</p>
-			    </div>
-			    <div class="padding_l" style="display: inline-block;">
-			        <img class="circle_pic" src="../img/ql2.jpg"/>
-			        <p class="font13 color333">捕猎美景</p>
-			    </div>
-			    <div class="padding_l" style="display: inline-block;">
-			        <img class="circle_pic" src="../img/ql3.jpg"/>
-			        <p class="font13 color333">闲谈人生</p>
-			    </div>
+        	
+        	<div class="text-aligin margin-bottom10px">
+        		<p class="font13  text-aligin">
+	        		<span class="wing">Ta的群组</span>
+	        	</p>
+        		<div class="padding_l border-bottom" style="display: inline-block;" ng-repeat="(key,group) in group">
+			        <img class="circle_pic" ng-src="{{group.icon}}"/>
+			        <p class="font13 color333">{{group.group_name}}</p>
+			    </div>			    
+			    <p class="mui-text-center font12 line-height30px" ng-if="groupPrompt">没有数据~</p>
+			    <p ng-if="groupMore" ng-click="groupList()" class="colorP text-aligin padding_tb_8px font13">查看更多</p>
         	</div>
-        	<p class="font13 text-aligin margin-top20px">
-        		<span class="wing">Ta的动态</span>
-        	</p>
-        	<ul class="mui-table-view">
+        	
+        	<ul class="mui-table-view margin-bottom10px">
+        		<p class="font13 text-aligin">
+	        		<span class="wing">Ta的动态</span>
+	        	</p>
 			    <li ng-click="comein(vo.id,vo.status)" ng-repeat="(key,vo) in dynamic" class="mui-table-view-cell mui-media">
 			        <a href="javascript:;" class="mui-clearfix">
 			            <img class="mui-media-object mui-pull-right" src="../img/zxlr1.jpg">
@@ -76,51 +72,14 @@
 			            </ul>
 			        </a>
 			    </li>
-			    <!--<li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media">
-			        <a href="javascript:;" class=" white-space">
-			            <img class="mui-media-object mui-pull-right" src="../img/zxlr2.jpg">
-			            <ul class="mui-media-body mui-pull-left user_view">
-			               	<li>
-			               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
-			               		<span class="padding_l">杨德威</span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-			               		<span class="padding_l">【雅昌专访】刘少白：莫以  小聪明来比大智慧  </span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-			               		<span class="padding_l">书画、专访</span>
-			               	</li>
-			            </ul>
-			        </a>
-			    </li>
-			     <li onclick="openNewPage('view_detail.html')" class="mui-table-view-cell mui-media">
-			        <a href="javascript:;" class=" white-space">
-			            <img class="mui-media-object mui-pull-right" src="../img/zxlr3.jpg">
-			            <ul class="mui-media-body mui-pull-left user_view">
-			               	<li>
-			               		<div class="user_pic"><img src="../img/user1.jpg" /></div>
-			               		<span class="padding_l">杨德威</span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe615;</i>
-			               		<span class="padding_l">陶瓷制作工艺流程  </span>
-			               	</li>
-			               	<li>
-			               		<i class="iconfont mui-icon icon-color">&#xe60a;</i>
-			               		<span class="padding_l">陶瓷、工艺、手工、艺术</span>
-			               	</li>
-			            </ul>
-			        </a>
-			    </li>-->
+			    <p class="mui-text-center font12 line-height30px" ng-if="dynamicPrompt">没有数据~</p>
 			    <p ng-if="dynamicMore" ng-click="dynamicList()" class="colorP text-aligin padding_tb_8px font13">查看更多</p>
 			</ul>
 			<!--Ta的商品-->
-			<p class="font13 text-aligin margin-top10px">
-        		<span class="wing">Ta的商品</span>
-        	</p>
         	<ul class="mui-table-view margin-bottom5px bg_white">
+        		<p class="font13 text-aligin">
+	        		<span class="wing">Ta的商品</span>
+	        	</p>
             	<li ng-click="lookGood(vo.id)" ng-repeat="(key,vo) in goods" class="mui-table-view-cell mui-media">
 	                <a href="javascript:;" class=" mui-slider-handle">
 	                    <img class="mui-media-object mui-pull-left goods_pic " ng-src="{{vo.good_image}}">
@@ -137,45 +96,12 @@
 	                    </div>
 	                </a>
 	            </li>
-	            <!--<li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
-	                <a href="javascript:;">
-	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/2.jpg">
-	                    <div class="mui-media-body">
-	                     	<div class="mui-ellipsis">精美枫木面板，音色纯正，音律协调</div>
-	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>3</i>天</span></div>
-	                     	<div class="mui-clearfix">
-	                     		<div class="mui-pull-left">
-	                     			<div class="user_pic"><img src="../img/user1.jpg" /></div>
-									<span class="padding_l line-height30px color999 font12">杨德威 </span>
-	                     		</div>
-	                     		<span class="mui-pull-right colorRed line-height30px  font12">￥22000.00</span>
-	                     	</div>
-	                    </div>
-	                </a>
-	            </li>
-		        <li onclick="openNewPage('goods_detail.html')" class="mui-table-view-cell mui-media">
-	                <a href="javascript:;">
-	                    <img class="mui-media-object mui-pull-left goods_pic "  src="../img/3.jpg">
-	                    <div class="mui-media-body">
-	                     	<div class="mui-ellipsis">云杉面板，高贵、大气</div>
-	                     	<div class="mui-clearfix"><span class="mui-pull-right colorP font12">工期：<i>3</i>天</span></div>
-	                     	<div class="mui-clearfix">
-	                     		<div class="mui-pull-left">
-	                     			<div class="user_pic"><img src="../img/user1.jpg" /></div>
-									<span class="padding_l line-height30px color999 font12">杨德威 </span>
-	                     		</div>
-	                     		<span class="mui-pull-right colorRed line-height30px  font12">￥22000.00</span>
-	                     	</div>
-	                    </div>
-	                </a>
-	            </li>-->
+	            <p class="mui-text-center font12 line-height30px" ng-if="goodsPrompt">没有数据~</p>
 	            <p ng-if="goodsMore" ng-click="GoodsList()" class="colorP text-aligin padding_tb_8px font13">查看更多</p>
 	        </ul>
 	    </div>
-		
-		
 		<div class="btn_group">
-			<button type="button" class="mui-btn colorP width50  attentionBtn" ng-click="view_follow"><i class="iconfont mui-icon" id="follow2">&#xe669;  关注</i></button>
+			<button type="button" class="mui-btn colorP width50  attentionBtn" ng-click="view_follow"><i class="iconfont mui-icon" id="follow2">&#xe669;  关注</i><i class="iconfont mui-icon" ng-if="attention==115" id="follow2">&#xe669; 取消关注</i></button>
 	        <button type="button" ng-click="honerChat()" class="mui-btn width50 colorP"><i class="iconfont mui-icon">&#xe608;  聊天</i></button>
 		</div>
 	</div>
@@ -184,7 +110,6 @@
 <script src="../js/open.js"></script>
 <script src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/angular.min.js"></script>
-
 <script src="../js/apppublic.js"></script>
 <script src="../js/app/honer_page.js"></script>
 <script type="text/javascript">

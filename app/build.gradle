@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 apply plugin: 'com.jakewharton.butterknife'
 android {
+    signingConfigs {
+        shequ {
+            keyAlias 'line'
+            keyPassword 'df45g754348642r'
+            storeFile file('/home/kongqing/文档/未命名文件夹/line.keystore')
+            storePassword 'df45g754348642r'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -17,6 +25,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.shequ
+        }
+        debug {
+            signingConfig signingConfigs.shequ
         }
     }
 }

@@ -304,9 +304,9 @@
 			swipeBack: true //启用右滑关闭功能
 		});
 		mui.back = function() {
-				window.plus.bridge.execSync("community", "backNews", "");
-				mui.currentWebview.close();
-			}
+        window.plus.bridge.execSync("community", "backNews", "");
+        mui.currentWebview.close();
+      }
 		var info = document.getElementById("info");
 		var text = document.querySelector('.text');
 		mui('body').on('tap', '.mui-popover-action li>a', function() {

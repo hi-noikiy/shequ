@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +16,6 @@
 				text-align: right;
 				float: right;
 				padding: 11px 0;
-				font-size: 16px;
 			}
 			
 			.mui-input-row label {
@@ -27,8 +27,8 @@
 	<body>
 		<header class="mui-bar mui-bar-nav bg_white">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title colorPs">新建地址</h1>
-			<button class="mui-btn-link mui-pull-right"><span class="colorP">保存</span><!--<span class="colorP1">保存</span>--></button>
+			<h1 class="mui-title colorP">新建地址</h1>
+			<button class="mui-btn-link mui-pull-right"><span class="colorP">保存</span></button>
 		</header>
 		<div class="mui-content">
 			<div></div>
@@ -42,7 +42,7 @@
 				<li class="mui-table-view-cell">
 					<div class="mui-input-row">
 						<label class=" color999">手机号码</label>
-						<input class="phoen" type="number" placeholder="请输入收货人电话" value="">
+						<input class="phoen" type="text" placeholder="请输入收货人" value="">
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
@@ -55,8 +55,9 @@
 
 					</div>
 				</li>
-				<textarea name="" class="plac font16" rows="5" cols="" placeholder="请输入详细地址"></textarea>
-				
+				<li class="mui-table-view-cell padding0">
+					<textarea name="" class="plac" rows="5" cols="" placeholder="请输入详细地址"></textarea>
+				</li>
 			</ul>
 		</div>
 	</body>
@@ -91,124 +92,75 @@
 		})(mui, document);
 		var userid,id,ws;
 		document.addEventListener('plusready', function() {
-			userid = plus.storage.getItem('uid');
-			ws = plus.webview.currentWebview();
-			 id = ws.aid; 
-			console.log(id);
+			 ws = plus.webview.currentWebview();
+			 id = ws.aid;
+			console.log(id)
 			if(id > 0) {
-//				$('.colorP').css('display','none');
-//				$('.mui-title').html('编辑地址');
 				$.ajax({
 					type: 'post',
 					url: apiRoot,
-					data: { action: "Address.allAddressone", aid: id },
-					dataTpye: 'json',   
-					success: function(dat) { 
+					data: { action: "Address.allAddressone",aid: id },
+					dataTpye: 'json',
+					success: function(dat) {
 						console.log(JSON.stringify(dat))
-						if(dat.error == 0) {  
+						if(dat.error == 0) {
 							var obj = dat.data;
- 							sign = obj[0].sign;
+
 							$('.name').val(obj[0].name);
 							$('.phoen').val(obj[0].mobile);
 							var address = obj[0].address.split(' ');
-							$('.plac').val(address[3]);
-							$('#cityResult3').text(address[0]+' '+address[1]+' '+address[2])
+							$('.plac').val(address[1]);
+							$('#cityResult3').val(address[0])
 						}
- 
+
 					},
 					error: function(e) {
 
 					}
 				})
-			}else{ 
-				console.log(2);
-				$('.colorP1').css('display','none');
 			}
+			userid = plus.storage.getItem('uid');
 
 		}, false)
 		$('.colorP').click(function() {
 			var name = $('.name').val();
 			var phoen = $('.phoen').val();
 			var plac = $('.plac').val();
-			var cityResult3 = $('#cityResult3').text() + ' ' + plac;
+			var cityResult3 = $('#cityResult3').val() + ' ' + plac;
 			if(!phoen.match(p1) || !name.trim() || !plac.trim()) {
 				plus.nativeUI.toast('请查看数据是否有误');
 				return;
 			}
-			console.log(1);
-			var loca,uid;
+			var loca;
 			if(id>0){
-				loca='Address.update'
-				uid=id;
+				loca='edit';
+				
 			}else{
-				loca="Address.update";
-				uid=userid;
+				loca="add";
+				
 			}
-//			console.log(uid+'--'+name+'--'+phoen+'--'+cityResult3);
+//			console.log(loca);
+//			return;
 			$.ajax({
 				type: 'post',
 				url: apiRoot,
-				data: { action:loca, uid: uid, name: name, mobile: phoen, address: cityResult3 },
+				data: { action:'Address.action', type: loca,uid: userid,id:id ,name: name, mobile: phoen, address: cityResult3 },
 				dataTpye: 'json',
-				success: function(data) {
-					console.log(JSON.stringify(data));
+				success: function(data){
 					  if(data.error==0){
-					  	toast('保存成功')
-					  	plus.webview.getWebviewById('my_address.html').reload();
+					  	toast('保存成功');
 					  	setTimeout(function(){
-					  		ws.close();
-					  	})
+						  plus.webview.getWebviewById(ws.w).reload();
+				     	}, 1500);
 					  }else{
 					  	toast('保存失败')
 					  }
 				},
-				error: function(e) {
-                    console.log(JSON.stringify(e))
-				}
-			})
-		})
-		//修改
-		$('.colorP1').click(function() {
-			var name = $('.name').val();
-			var phoen = $('.phoen').val();
-			var plac = $('.plac').val();
-			var cityResult3 = $('#cityResult3').text() + ' ' + plac;
-			if(!phoen.match(p1) || !name.trim() || !plac.trim()) {
-				plus.nativeUI.toast('请查看数据是否有误');
-				return;
-			}
-			var loca,uid;
-			console.log(2);
-			if(id>0){
-				loca='Address.update'
-				uid=userid;
-			}else{
-				loca="Address.update";
-				uid=userid;
-			}
-			console.log(sign+'--'+cityResult3);
-			$.ajax({ 
-				type: 'post',
-				url: apiRoot,
-				data: { action:loca, uid: uid, name: name, mobile: phoen, address: cityResult3 ,sign:sign},
-				dataTpye: 'json',
-				success: function(data) {
-					console.log(JSON.stringify(data));
-					  if(data.error==0){
-					  	toast('修改成功')
-					  	plus.webview.getWebviewById('my_address.html').reload();
-					  	setTimeout(function(){
-					  		ws.close();
-					  	}) 
-					  }else{
-					  	toast('修改失败')
-					  }
-				},
-				error: function(e) {
+				error: function(e){
+//					alert(JSON.stringify(e))
                     console.log(JSON.stringify(e))
 				}
 			})
 		})
 	</script>
-
 </html>

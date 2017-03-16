@@ -42,7 +42,7 @@
        			<p class="color0 line-height20px font12">价格：<span class="colorRed">￥{{goodsData.price}}</span></p>
        			<p class="font13 line-height20px font12">工期：{{goodsData.maf_time}}</p>
        			<!--已售标签-->
-       			<span class="mui-icon iconfont sold_tag" ng-if="goodsData.state != 0">&#xe626;</span>
+       			<span class="mui-icon iconfont sold_tag" ng-if="goodsData.state == 1">&#xe626;</span>
        		</div>       		
        </div>
         <ul class="mui-table-view margin-bottom5px">
@@ -54,13 +54,14 @@
         	<li onclick="openNewPage('saler_info.html')" class="paddingl_r_15px_tb11px border-bottom bg_white">
                <span class="sp_title">&nbsp;&nbsp;卖家信息</span>
             </li>
-            <li class="mui-table-view-cell mui-media bg_white">
+            <li class="paddingl_r_15px_tb11px mui-media bg_white">
                 <a href="javascript:;">
-                    <img onclick="openNewPage('honer_page.html')" class="mui-media-object mui-pull-left circle_pic"  ng-src="{{goodsData.icon}}">
+                    <img ng-click="icon_sub(goodsData.uid,goodsData.icon,goodsData.nick)" class="mui-media-object mui-pull-left circle_pic"  ng-src="{{goodsData.icon}}">
                     <div class="mui-media-body">
                      	<div class="mui-clearfix margin-bottom10px">
                      		<span class="mui-pull-left">{{goodsData.nick}}</span>
-                     		<span class="mui-pull-right iconfont mui-icon colorP line-height20px attention_btn font12" >&#xe669;关注</span>
+                     		<span class="mui-pull-right iconfont mui-icon color999 line-height20px attention_btn font12" style="border: 1px solid #999;" ng-click="isattention(2)" ng-if="attention == 115" >&#xe6aa;取消关注</span>
+                     		<span class="mui-pull-right iconfont mui-icon colorP line-height20px attention_btn font12" ng-if="attention == 121" ng-click="isattention(1)">&#xe669;关注</span>
                      	</div>
                      	<p class="font12">{{goodsData.personalized}}</p>
                     </div>
@@ -165,16 +166,16 @@
 		mui.previewImage();
 		
 		//关注的状态
-		var is_attention = true;
-		$('.attention_btn').click(function(){
-			if(is_attention){
-				$(this).html('&#xe6aa;已关注').css({'color':'#999','border':'1px solid #999'});
-				is_attention = false;
-			} else {
-				$(this).html('&#xe669;关注').css({'color':'#4c968e','border':'1px solid #4c968e'});
-				is_attention = true;
-			}
-		})
+//		var is_attention = true;
+//		$('.attention_btn').click(function(){
+//			if(is_attention){
+//				$(this).html('&#xe6aa;已关注').css({'color':'#999','border':'1px solid #999'});
+//				is_attention = false;
+//			} else {
+//				$(this).html('&#xe669;关注').css({'color':'#4c968e','border':'1px solid #4c968e'});
+//				is_attention = true;
+//			}
+//		})
 
 		share($('.alert_window'),$('.share_list'),$('#shareApp_btn'),$('.cancel_btn'))
 	})

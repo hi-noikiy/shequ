@@ -17,7 +17,7 @@ app.controller("payController",function($scope,$http){
 			uid:$uid		
 		}
 	}).then(function successCallback(response){
-		plus.nativeUI.showWaiting('加载中...');
+		
 		console.log(JSON.stringify(response));         
 		$scope.goods = response.data.data.goods//商品的数据
 		$scope.addr = response.data.data.addr//地址数据
@@ -147,12 +147,12 @@ function payment () {
 
 }
 document.addEventListener("plusready",function(){  
+	plus.nativeUI.showWaiting();
 	appElement=document.querySelector('[ng-controller=payController]');
 	$scope= angular.element(appElement).scope();
-	id = plus.storage.getItem('goodsId');
+	id = plus.webview.currentWebview().goodId;
 	uid = plus.storage.getItem('uid');
 	$scope.initView(id,uid);
-			plus.nativeUI.closeWaiting();
 	$scope.$apply();
 	
 // 获取支付通道

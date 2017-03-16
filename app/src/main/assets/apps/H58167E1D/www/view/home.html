@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -64,7 +63,7 @@
 				min-height: 46px !important;
 				max-height: 60px;
 			}
-			
+			.mui-table-view .mui-media-object img{background: #000;}
 			.mui-media-object {
 				max-height: 74px !important;
 			}
@@ -182,18 +181,24 @@
 									<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="shequNote(cates[0].id)">更多</span>
 								</li>
 								<li class="mui-table-view-cell padding0 bg_white">
-									<ul class="mui-table-view" id="notes1" ng-repeat="(index,n1) in notes[1]">
-										<li class="mui-table-view-cell mui-media" ng-if="n1.hot==0" ng-click="shequ(n1.id)">
+									<ul class="mui-table-view" id="notes1">
+										<li class="mui-table-view-cell mui-media" ng-if="n1.hot==0" ng-repeat="(index,n1) in notes[1]" ng-click="shequ(n1.id,n1.file_type)">
 											<a href="javascript:;" class="mui-clearfix">
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n1.subject}}">
+												<div ng-if="n1.file_type==0" class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-src="{{n1.subject}}">
+												</div>
+												<div class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-if="n1.file_type==1" ng-src="../img/video.png"/>
+												</div>
 												<ul class="mui-media-body mui-pull-left user_view">
 													<li>
 														<div class="user_pic"><img ng-src="{{n1.icon}}" /></div>
 														<span class="padding_l">{{n1.nick}}</span>
-														<i class="sign_tag" ng-if="n1.sign">签约</i>
+														<i class="sign_tag" ng-if="n1.isSign">签约</i>
 													</li>
 													<li>
-														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n1.file_type == 0">&#xe615;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n1.file_type == 1">&#xe8b3;</i>
 														<span class="padding_l">{{n1.title}}</span>
 													</li>
 													<li>
@@ -212,18 +217,23 @@
 								</li>
 								<li class="mui-table-view-cell padding0 bg_white">
 									<ul class="mui-table-view" id="news1">
-										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n11) in notes[1]" ng-if="n11.hot" ng-click="shequ(n11.id)">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n11) in notes[1]" ng-if="n11.hot" ng-click="shequ(n11.id,n11.type)">
 											<a href="javascript:;" class="mui-clearfix">
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-if="n11.file_type==0" ng-src="{{n11.subject}}"/>
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-if="n11.file_type==1" ng-src="../img/video.png"/>
+												<div ng-if="n11.file_type==0" class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-src="{{n11.subject}}">
+												</div>
+												<div class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-if="n11.file_type==1" ng-src="../img/video.png"/>
+												</div>
 												<ul class="mui-media-body mui-pull-left user_view">
 													<li>
 														<div class="user_pic"><img ng-src="{{n11.icon}}" /></div>
 														<span class="padding_l">{{n11.nick}}</span>
-														<i class="sign_tag" ng-if="n11.sign">签约</i>
+														<i class="sign_tag" ng-if="n11isSign">签约</i>
 													</li>
 													<li>
-														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n11.file_type == 0">&#xe615;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n11.file_type == 1">&#xe8b3;</i>
 														<span class="padding_l">{{n11.title}}</span>
 													</li>
 													<li>
@@ -323,17 +333,23 @@
 								</li>
 								<li class="mui-table-view-cell padding0 bg_white border-bottom" id="notes2">
 									<ul class="mui-table-view">
-										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n2) in notes[2]" ng-if="!n2.hot" ng-click="shequ(n2.id)">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n2) in notes[2]" ng-if="!n2.hot" ng-click="shequ(n2.id,n2.file_type)">
 											<a href="javascript:;" class="mui-clearfix">
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n2.subject}}">
+												<div ng-if="n2.file_type==0" class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-src="{{n2.subject}}">
+												</div>
+												<div class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-if="n2.file_type==1" ng-src="../img/video.png"/>
+												</div>
 												<ul class="mui-media-body mui-pull-left user_view">
 													<li>
 														<div class="user_pic"><img ng-src="{{n2.icon}}" /></div>
 														<span class="padding_l">{{n2.nick}}</span>
-														<i class="sign_tag" ng-if="n2.sign">签约</i>
+														<i class="sign_tag" ng-if="n2isSign">签约</i>
 													</li>
 													<li>
-														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n2.file_type == 0">&#xe615;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n2.file_type == 1">&#xe8b3;</i>
 														<span class="padding_l">{{n2.title}}</span>
 													</li>
 													<li>
@@ -352,17 +368,23 @@
 								</li>
 								<li class="mui-table-view-cell padding0 bg_white">
 									<ul class="mui-table-view" id="news2">
-										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n22) in notes[2]" ng-if="n22.hot" ng-click="shequ(n22.id)">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n22) in notes[2]" ng-if="n22.hot" ng-click="shequ(n22.id,n22.file_type)">
 											<a href="javascript:;" class="mui-clearfix">
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n22.subject}}">
+												<div ng-if="n22.file_type==0" class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-src="{{n22.subject}}">
+												</div>
+												<div class="mui-media-object mui-pull-right margin_tb_8px video_box">
+													<img ng-if="n22.file_type==1" ng-src="../img/video.png"/>
+												</div>
 												<ul class="mui-media-body mui-pull-left user_view">
 													<li>
 														<div class="user_pic"><img ng-src="{{n22.icon}}" /></div>
 														<span class="padding_l">{{n22.nick}}</span>
-														<i class="sign_tag" ng-if="n22.sign">签约</i>
+														<i class="sign_tag" ng-if="n22isSign">签约</i>
 													</li>
 													<li>
-														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n22.file_type == 0">&#xe615;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n22.file_type == 1">&#xe8b3;</i>
 														<span class="padding_l">{{n22.title}}</span>
 													</li>
 													<li>
@@ -462,17 +484,23 @@
 								</li>
 								<li class="mui-table-view-cell padding0 bg_white">
 									<ul class="mui-table-view" id="notes3">
-										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n3) in notes[3]" ng-if="!n3.hot" ng-click="shequ(n3.id)">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n3) in notes[3]" ng-if="!n3.hot" ng-click="shequ(n3.id,n3.file_type)">
 											<a href="javascript:;" class="mui-clearfix">
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n3.subject}}">
+												<div ng-if="n3.file_type==0" class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-src="{{n3.subject}}">
+												</div>
+												<div class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-if="n3.file_type==1" ng-src="../img/video.png"/>
+												</div>
 												<ul class="mui-media-body mui-pull-left user_view">
 													<li>
 														<div class="user_pic"><img ng-src="{{n3.icon}}" /></div>
 														<span class="padding_l">{{n3.nick}}</span>
-														<i class="sign_tag" ng-if="n3.sign">签约</i>
+														<i class="sign_tag" ng-if="n3isSign">签约</i>
 													</li>
 													<li>
-														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n3.file_type == 0">&#xe615;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n3.file_type == 1">&#xe8b3;</i>
 														<span class="padding_l">{{n3.title}}</span>
 													</li>
 													<li>
@@ -491,17 +519,23 @@
 								</li>
 								<li class="mui-table-view-cell padding0 bg_white">
 									<ul class="mui-table-view" id="news3">
-										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n33) in notes[3]" ng-if="n33.hot" ng-click="shequ(n33.id)">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n33) in notes[3]" ng-if="n33.hot" ng-click="shequ(n33.id,n33.file_type)">
 											<a href="javascript:;" class="mui-clearfix">
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n33.subject}}">
+												<div ng-if="n33.file_type==0" class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-src="{{n33.subject}}">
+												</div>
+												<div class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-if="n33.file_type==1" ng-src="../img/video.png"/>
+												</div>
 												<ul class="mui-media-body mui-pull-left user_view">
 													<li>
 														<div class="user_pic"><img ng-src="{{n33.icon}}" /></div>
 														<span class="padding_l">{{n33.nick}}</span>
-														<i class="sign_tag" ng-if="n33.sign">签约</i>
+														<i class="sign_tag" ng-if="n33isSign">签约</i>
 													</li>
 													<li>
-														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n33.file_type == 0">&#xe615;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n33.file_type == 1">&#xe8b3;</i>
 														<span class="padding_l">{{n33.title}}</span>
 													</li>
 													<li>
@@ -601,17 +635,23 @@
 								</li>
 								<li class="mui-table-view-cell padding0 bg_white">
 									<ul class="mui-table-view" id="notes4">
-										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n4) in notes[4]" ng-if="!n4.hot" ng-click="shequ(n4.id)">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n4) in notes[4]" ng-if="!n4.hot" ng-click="shequ(n4.id,n4.file_type)">
 											<a href="javascript:;" class="mui-clearfix">
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n4.subject}}">
+												<div ng-if="n4.file_type==0" class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-src="{{n4.subject}}">
+												</div>
+												<div class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-if="n4.file_type==1" ng-src="../img/video.png"/>
+												</div>
 												<ul class="mui-media-body mui-pull-left user_view">
 													<li>
 														<div class="user_pic"><img ng-src="{{n4.icon}}" /></div>
 														<span class="padding_l">{{n4.nick}}</span>
-														<i class="sign_tag" ng-if="n4.sign">签约</i>
+														<i class="sign_tag" ng-if="n4isSign">签约</i>
 													</li>
 													<li>
-														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n4.file_type == 0">&#xe615;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n4.file_type == 1">&#xe8b3;</i>
 														<span class="padding_l">{{n4.title}}</span>
 													</li>
 													<li>
@@ -630,17 +670,23 @@
 								</li>
 								<li class="mui-table-view-cell padding0 bg_white">
 									<ul class="mui-table-view" id="news4">
-										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n44) in notes[4]" ng-if="n44.hot" ng-click="shequ(n44.id)">
+										<li class="mui-table-view-cell mui-media" ng-repeat="(index,n44) in notes[4]" ng-if="n44.hot" ng-click="shequ(n44.id,n44.file_type)">
 											<a href="javascript:;" class="mui-clearfix">
-												<img class="mui-media-object mui-pull-right margin_tb_8px" ng-src="{{n44.subject}}">
+												<div ng-if="n44.file_type==0" class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-src="{{n44.subject}}">
+												</div>
+												<div class="mui-media-object mui-pull-right margin_tb_8px">
+													<img ng-if="n44.file_type==1" ng-src="../img/video.png"/>
+												</div>
 												<ul class="mui-media-body mui-pull-left user_view">
 													<li>
 														<div class="user_pic"><img ng-src="{{n44.icon}}" /></div>
 														<span class="padding_l">{{n44.nick}}</span>
-														<i class="sign_tag" ng-if="n44.sign">签约</i>
+														<i class="sign_tag" ng-if="n44isSign">签约</i>
 													</li>
 													<li>
-														<i class="iconfont mui-icon icon-color">&#xe8b3;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n44.file_type == 0">&#xe615;</i>
+														<i class="iconfont mui-icon icon-color" ng-if="n44.file_type == 1">&#xe8b3;</i>
 														<span class="padding_l">{{n44.title}}</span>
 													</li>
 													<li>
@@ -725,7 +771,7 @@
 						<h5 class="mui-pull-left color0">推荐</h5>
 						<span class="mui-btn mui-btn-link mui-btn-nav padding0 color0" ng-click="tradePush()">更多</span>
 					</li>
-					<li class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,r) in recommends" ng-click="obtainId(r.id)">
+					<li class="mui-table-view-cell mui-media bg_white" ng-repeat="(index,r) in recommends" ng-click="obtainId(r.id,r.type)">
 						<a href="javascript:;">
 							<div class="mui-media-object mui-pull-left goods_pic ">
 								<img ng-src="{{r.good_image}}">
@@ -810,6 +856,7 @@
 			var showWin = event.detail.showWin;
 			if(showWin == 1) {
 				//触发弹窗
+				
 				plus.nativeUI.actionSheet({
 					cancel: "取消",
 					buttons: [{
@@ -819,7 +866,7 @@
 					}]
 				}, function(e) {
 					var i = e.index;
-			　　　　　window.plus.bridge.execSync("community", "pushWebView", "");
+					window.plus.bridge.execSync("community", "pushWebView", "");
 					if(i == 1) {
 						openPublish('release_viewMedia.html')
 					} else if(i == 2) {
@@ -848,6 +895,8 @@
 					$('#itemA .mui-control-item').eq(e.detail.slideNumber).trigger('tap');
 				}, 100);
 			});
+			
+		
 		})
 	</script>
 </html>

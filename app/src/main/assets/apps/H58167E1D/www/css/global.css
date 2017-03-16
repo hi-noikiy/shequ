@@ -117,7 +117,7 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
 .user_view li:nth-child(3) span{font-size: 12px;line-height: 20px;}
 .user_view li i{float: left;margin-right: 5px;}
 .user_view li .iconfont{margin-top: 2px;}
-.user_view li span{float: left;width: 80%;}
+.user_view li span{float: left;/*width: 60%;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;*/}
 .circle_pic{width: 60px;height: 60px;border-radius: 100% !important; vertical-align: middle;overflow: hidden;background: #bbb;line-height: 60px;}
 .btn_half{width: 50%;border-radius: 20px;margin-left:calc(50% - 25%) ;}
 .thirdparty_login{width: 100%;padding-top: 30%;}
@@ -140,7 +140,7 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
 .attention_btn{border: 1px solid #4c968e;padding:2px 5px;}
 
 /*签约标签*/
-.sign_tag{background: #007AFF; color: #fff;border-radius: 3px;font-size: 12px;line-height: 14px;padding: 0 3px;margin: 6px 2px 0 !important;}
+.sign_tag{background: #007AFF; color: #fff;border-radius: 3px;font-size: 12px;line-height: 14px;padding: 0 3px;margin: 6px 2px 0 !important;display: inline-block;}
 
 .sp_title{position: relative;}
 .sp_title:before{width: 1.5px;height: 16px;display:block;background: #4c968e;content: "";position: absolute;top: 0;left: 0;right: 5px;margin-right: 3px;}
@@ -154,7 +154,8 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
 .phone_btn{position: absolute;top: 0px;right: 20px;font-size: 1.3em;}
 .contact_us{width: 100%;position: relative;}
 .text-indent2em{text-indent: 2em;}
-.logo{width: 100%;max-width: 120px;height: 120px;line-height: 120px;background: #4c968e;overflow: hidden;border-radius: 8px;margin: 40px 0;position: relative;left: calc(50% - 60px);}
+.logo{width: 100%;max-width: 120px;height: 120px;line-height: 120px;background: #4c968e;overflow: hidden;border-radius: 8px;margin: 40px 0;position: relative;left: calc(50% - 60px);border: 1px solid #4c968e;}
+.logo img{width: 120px;height: 120px;}
 .alert_window{display: block;position: fixed;top: 0;right: 0;left: 0;bottom: 0;background: rgba(0,0,0,0.3);display: none;z-index: 100;}
 /*分享APP*/
 .share_list{width: 100%;overflow: hidden;position: absolute;bottom: 0;left: 0;background: #fff;padding: 30px 0 0;}

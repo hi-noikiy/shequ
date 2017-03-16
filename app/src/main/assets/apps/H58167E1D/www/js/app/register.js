@@ -25,6 +25,10 @@ app.controller("registerController",function($scope,$http){
 			toast('密码只能为6~18位数字和字母组合');
 			return;
 		}
+	if(passone.length >=passone.attr('maxlength')){
+		tost('你输入已超过极限值');
+		return;
+	}
      if(passone!=passtwo)
      {
      	toast('两次密码不一致');

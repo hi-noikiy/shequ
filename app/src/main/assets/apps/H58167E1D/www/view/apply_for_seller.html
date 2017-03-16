@@ -28,7 +28,7 @@
 		<ul class="mui-table-view bg_white margin-bottom10px">
 		        <li class="mui-table-view-cell">
 		            <div class="mui-input-row">
-		                <label >真实姓名</label>
+		                <label>真实姓名</label>
 		                <input type="text" placeholder="请输入收货人" id="merchant_name" name="name" ng-blur="check_name()" value="">
 		            </div>
 		        </li>
@@ -62,7 +62,7 @@
 		        <li class="mui-input-row border-bottom">
 		            <input type="number" name="number" class="mui-input-clear" style="padding: 12px;height: 50px;font-size: 16px;width: 95%;" id="merchant_number"  placeholder="请输入收款账号"   ng-blur="check_receipt_num()">
 		        </li>
-		        <li class="mui-table-view-cell">
+		        <li class="paddingl_r_15px_tb11px">
 		            <div class="mui-input-row">
 		                <label style="display: block;width: 100%;">照片上传</label>
 		                <div class="upfile_box" id="pic1" data-ind="1">
@@ -90,17 +90,16 @@
 		        <li class="border-bottom">
 		        	<textarea name="" rows="6" cols="" id="merchant_summary" class="font14" placeholder="自我描述，增加客户对你的信任" ng-blur="check_aptitude()"></textarea>		        	
 		        </li>
-				<li class="mui-table-view-cell">
+				<!--<li class="paddingl_r_15px_tb11px">
 		            <div class="mui-input-row">
 		                <label style="display: block;width: 100%;">照片上传</label>
 	                	<div class="upfile_box" id='pic4' data-ind="4">
-					        <!--<input type="file" id="uploadimg13" name="nick" class="upload_file"/>-->
 					        <div id="show_pic13" class="a4"> 
 					        	<i class="iconfont mui-icon " id="icon">&#xe6de;</i>
 					        </div>
 					    </div>
 		            </div>
-		       </li>  
+		       </li>  -->
 		        
 		</ul>
 	    <div class="paddingl_r_15px_tb15px">
@@ -179,16 +178,71 @@ f)如您涉嫌违反有关法律或者本协议之规定，使去卖艺网遭受
 <script src="../js/app/apply.js"></script>
 <script type="text/javascript">
 	$(".is_allow_release").click(function(){
-		 	if($(this).is(':checked')){
-		 		$('#submit_btn').attr('disabled',false);
-		 		$('#law').fadeOut(300);
-		 		event.stopPropagation();
-		 	}else{
-		 		$('#submit_btn').attr('disabled',true);
-		 	}
-		 }) 
+	 	if($(this).is(':checked')){
+	 		$('#submit_btn').attr('disabled',false);
+	 		$('#law').fadeOut(300);
+	 		event.stopPropagation();
+	 	}else{
+	 		$('#submit_btn').attr('disabled',true);
+	 	}
+	 }) 
 		 
-		 //阅读知识产权承诺
-		share($('#law'),$('#law_text'),$('.law'),$('.cancel_btn'))
+	 //阅读知识产权承诺
+	share($('#law'),$('#law_text'),$('.law'),$('.cancel_btn'));
+	$('#merchant_name').blur(function(){
+		if($('#merchant_name').val() == "") {
+			toast('请输入姓名');
+			return;
+		}
+	})
+	
+	
+	$('#merchant_mobile').blur(function(){
+		if($('#merchant_mobile').val() == "") {
+			toast('请输入手机号');
+			return;
+		} else {
+			if(!$('#merchant_mobile').val().match(p1)) {
+				toast('请输入正确手机号码');
+				return;
+			}
+		}
+	})
+
+	$('#merchant_card').blur(function(){
+		if($('#merchant_card').val() == "") {
+			toast('请输入身份证号');
+			return;
+		} else {
+			if(!$('#merchant_card').val().match(card)) {
+				toast('请输入正确身份证号');
+				return;
+			}
+		}
+	})
+	
+	$('#merchant_summary').blur(function(){
+		if($('#merchant_summary').val() == "") {
+			toast('请输入资质说明');
+			return;
+		}
+	})
+	
+	
+	$('#merchant_number').blur(function(){
+		if($('#merchant_number').val()=="") {
+			toast('请输入收款账号');
+			return;
+		}
+	})
+
+	
+
+
+	
+	
+	
+
+
 </script>
 </html>

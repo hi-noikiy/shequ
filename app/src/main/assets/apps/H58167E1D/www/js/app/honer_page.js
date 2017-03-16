@@ -1,6 +1,7 @@
-var ws,uid,icon,nick, type_id, myuid;
+var ws,uid,icon,nick, type_id, myuid,group_name;
 var app = angular.module('app',[]);
 app.controller('myController',function ($scope,$http) {
+
 	$scope.honerChat = function(){
 		console.log(uid+'--'+icon+'--'+nick);
 		window.plus.bridge.exec("community", "sendMessage", [uid,icon,nick]);
@@ -16,32 +17,73 @@ app.controller('myController',function ($scope,$http) {
 		}).then(function (result) {
 			if(result.data.error == 0){
 				var info = result.data.data;
-//				console.log(JSON.stringify(info));
+				console.log(JSON.stringify(info));
 				
 				var user = info['user'];/*个人信息*/
 				var gen = ['男','女'];
 				$scope.nick = user.nick;
 				$scope.gender = gen[user.gender];
 				$scope.location = (user.location !=0 ? user.location : ' ');
-				$scope.icon = getAvatar(user.icon);
-
-				$scope.dynamic = info['dynamic'];/*动态*/
-				if(info['dynamic'].length>=3){
-					$scope.dynamicMore = 1;
+				$scope.icon = getAvatar(user.icon);-				
+				
+				$.each(info['group'], function(key,gro) {
+					info['group'][key]['icon'] = getPic(gro['icon']);
+				});
+				$scope.group = info['group'];   //群组
+				var group = info['group'];
+				$scope.group_name = group.group_name;
+				$scope.group_icon = group.icon;
+				if(info['group'].length>0){
+					$scope.groupPrompt = 0;  //该用户没有建群的时候显示“没有数据”
+					if(info['group'].length>=3){
+						$scope.groupMore = 1;//该用户群的数据大于三条的时候显示“查看更多”
+					} else{
+						$scope.dynamicMore = 0;//该用户群的数据小于三条的时候不显示“查看更多”
+					}
 				}else{
-					$scope.dynamicMore = 0;
+					$scope.groupPrompt = 1;  //该用户有群则不显示“没有数据”
+					$scope.dynamicMore = 0;//该用户群的数据小于三条的时候不显示“查看更多”
+				}
+				
+				
+				$scope.dynamic = info['dynamic'];/*动态*/
+				
+				
+				if(info['dynamic'].length>0){
+					$scope.dynamicPrompt = 0;//该用户有动态的时候不显示“没有数据”
+					if(info['dynamic'].length>=3){
+						$scope.dynamicMore = 1;//该用户动态的数据大于三条的时候显示“查看更多”
+					} else{
+						$scope.dynamicMore = 0;//该用户动态的数据小于三条的时候不显示“查看更多”
+					}
+				}else{
+					$scope.dynamicPrompt = 1;//该用户没有动态的时候显示“没有数据”
+					$scope.dynamicMore = 0;//该用户动态的数据小于三条的时候不显示“查看更多”
 				}
 				//console.log(JSON.stringify(info['dynamic'])); 
 				
 				$.each(info['goods'], function(key,vo) {
 					info['goods'][key]['good_image'] = getPic(vo['good_image']);
 				});
+				
+				
 				$scope.goods = info['goods'];/*商品*/
-				if(info['goods'].length>=3){
-					$scope.goodsMore = 1;
-				}else{
-					$scope.goodsMore = 0;
-				}				
+				if(info['goods'].length > 0){
+					$scope.goodsPrompt = 0; //不显示提示“没有数据”
+					if(info['goods'].length>=3){
+						$scope.goodsMore = 1; //当数据大于3时，显示“查看更多”
+					} else{
+						$scope.goodsMore = 0;//当数据小于3时，不显示“查看更多”
+					}
+				} else {
+					$scope.goodsPrompt = 1;//显示提示“没有数据”
+					$scope.goodsMore = 0;//当数据小于3时，不显示“查看更多”
+				}
+//				if(info['goods'].length>=3){
+//					$scope.goodsMore = 1;
+//				}else{
+//					$scope.goodsMore = 0;
+//				}				
 //				console.log(JSON.stringify(info['goods'])); 		
 
 //				$scope.follow = info['follow'];/*关注*/
@@ -57,7 +99,12 @@ app.controller('myController',function ($scope,$http) {
 		},function () {
 			errortoast();
 		})
+		
+
 	};	
+	
+	
+	
 	
 	$scope.comein = function (id,status) {
 		plus.webview.create('view_detail.html','view_detail.html',{},{noteId:id,status:status,my:'my'}).show('pop-in');
@@ -66,6 +113,11 @@ app.controller('myController',function ($scope,$http) {
 	
 	$scope.lookGood = function (id) {
 		goNewPage('goods_detail.html',{gid:id});/*查看商品*/
+	}
+	
+	
+	$scope.groupList = function () {
+		goNewPage('my_talk.html',{uid:uid});/*查看群群 列表*/		
 	}
 	
 	$scope.dynamicList = function () {
@@ -95,10 +147,7 @@ app.controller('myController',function ($scope,$http) {
 				type: 2
 			}
 		}).then(function(response) {
-//			console.log(JSON.stringify(response));
-//			$('#follow1,#follow2').html('&#xe62b;  已关注');
-//			$('#follow1,#follow2').parent().css('border','1px solid #999');
-			//$scope.user.follow = 1;/*已关注*/
+			console.log(JSON.stringify(response));
 		}, function(e) {
 			console.log(e);
 		})

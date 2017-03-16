@@ -1,109 +1,95 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>我的</title>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
-    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
-    <style type="text/css">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <title>我的</title>
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
+	    <link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/global.css"/>
+	    <style type="text/css">
 	    	.user_box{width: 100%;background-size: cover;background-repeat: no-repeat;padding: 60px 40px 20px;position: absolute;}
 	    	.filterImg{-webkit-filter: blur(6px);}	    	
 	    	.filterImg_box{width: 100%;position: absolute;}
 	    	.substrate{position: relative;width: 100%;margin-bottom: 10px;overflow: hidden;background-repeat:no-repeat;background-size: 100% 100%;}
 	    	.apply_for_success{display: none;}
-
-
-
-
-
-
-
-
-
-
-    </style>
-</head>
-<body>
-<div class="mui-content">
-    <div class="substrate">
-        <div class="filterImg_box"></div>
-        <div class="user_box mui-text-center margin-bottom10px">
-            <div class="my_title margin-bottom10px">
-                <img id='user_icon' src="">
-            </div>
-            <span class="color_white" id="user_nick">&emsp;</span>
-        </div>
-    </div>
-    <ul class="mui-table-view bg_white">
-        <li class="mui-table-view-cell" onclick="openNewPage('personal_data.html')">
-            <i class="iconfont mui-icon colorP font18">&#xe62c;</i>
-            <span>个人资料</span>
-        </li>
-    </ul>
-    <ul id="apply_for_success" class="mui-table-view margin-bottom10px bg_white">
-        <!--<li onclick="openNewPage('system_news.html')" class="mui-table-view-cell">
-            <i class="iconfont mui-icon colorP font18">&#xe612;</i>
-            <span>系统消息</span>
-        </li>-->
-        <li onclick="openNewPage('apply_for_seller.html')" class="mui-table-view-cell person">
-            <i class="iconfont mui-icon colorP font18">&#xe687;</i>
-            <span>申请卖主</span>
-        </li>
-
-        <!--申请卖主成功后所要显示的菜单-->
-        <li onclick="openNewPage('saler_info.html')"
-            class="mui-table-view-cell seller apply_for_success">  <!--apply_for_success-->
-            <i class="iconfont mui-icon colorP font18">&#xe687;</i>
-            <span>卖主资料</span>
-        </li>
-        <li onclick="openNewPage('deliver_goods_control.html')"
-            class="mui-table-view-cell  seller apply_for_success"> <!--apply_for_success-->
-            <i class="iconfont mui-icon colorP font18">&#xe65f;</i>
-            <span>发货管理</span>
-        </li>
-    </ul>
-    <ul class="mui-table-view margin-bottom10px bg_white">
-        <li onclick="openPage('order_record.html',{state:2})"
-            class="mui-table-view-cell  seller apply_for_success">  <!--apply_for_success-->
-            <i class="iconfont mui-icon colorP font18">&#xe61b;</i>
-            <span>购买记录</span>
-        </li>
-        <li onclick="openPage('order_record.html',{state:1})" class="mui-table-view-cell person">
-            <i class="iconfont mui-icon colorP font18">&#xe61b;</i>
-            <span>我的订单</span>
-        </li>
-        <li onclick="openNewPage('my_release.html')" class="mui-table-view-cell">
-            <i class="iconfont mui-icon colorP font18">&#xe718;</i>
-            <span>我的发布</span>
-        </li>
-        <li onclick="openNewPage('my_collect.html')" class="mui-table-view-cell">
-            <i class="iconfont mui-icon colorP font18">&#xe70a;</i>
-            <span>我的收藏</span>
-        </li>
-        <li onclick="openNewPage('my_address.html')" class="mui-table-view-cell">
-            <i class="iconfont mui-icon colorP font18">&#xe60f;</i>
-            <span>我的地址</span>
-        </li>
-    </ul>
-    <ul class="mui-table-view margin-bottom10px bg_white">
-        <li onclick="openNewPage('setting.html')" class="mui-table-view-cell">
-            <i class="iconfont mui-icon colorP font18">&#xe601;</i>
-            <span>设置</span>
-        </li>
-    </ul>
-</div>
-</body>
-<script src="../js/mui.min.js"></script>
-<script src="../js/open.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/apppublic.js"></script>
-<script type="text/javascript">
+	    </style>	    	
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="substrate">
+				<div class="filterImg_box"></div>
+				<div class="user_box mui-text-center margin-bottom10px">
+					<div class="my_title margin-bottom10px">  
+						<img id='user_icon' src="" >
+					</div>
+					<span class="color_white" id="user_nick">&emsp;</span>
+				</div>
+			</div>
+			<ul class="mui-table-view bg_white">
+		        <li class="mui-table-view-cell" onclick="openNewPage('personal_data.html')">
+		            <i class="iconfont mui-icon colorP font18">&#xe62c;</i>
+		            <span>个人资料</span>
+		        </li>
+		    </ul>
+			<ul id="apply_for_success" class="mui-table-view margin-bottom10px bg_white" >
+		        <!--<li onclick="openNewPage('system_news.html')" class="mui-table-view-cell">
+		            <i class="iconfont mui-icon colorP font18">&#xe612;</i>
+		            <span>系统消息</span>
+		        </li>-->
+		        <li  onclick="openNewPage('apply_for_seller.html')" class="mui-table-view-cell person">
+		            <i class="iconfont mui-icon colorP font18">&#xe687;</i>
+		            <span>申请卖主</span>
+		        </li>
+		        
+		        <!--申请卖主成功后所要显示的菜单-->
+		        <li onclick="openNewPage('saler_info.html')" class="mui-table-view-cell seller apply_for_success">  <!--apply_for_success-->
+		            <i class="iconfont mui-icon colorP font18">&#xe687;</i>
+		            <span>卖主资料</span>
+		        </li>
+		        <li onclick="openNewPage('deliver_goods_control.html')" class="mui-table-view-cell  seller apply_for_success"> <!--apply_for_success-->
+		            <i class="iconfont mui-icon colorP font18">&#xe65f;</i>
+		            <span>发货管理</span>
+		        </li>
+		    </ul>
+		    <ul class="mui-table-view margin-bottom10px bg_white">
+		    	<li onclick="openPage('order_record.html',{state:2})" class="mui-table-view-cell  seller apply_for_success">  <!--apply_for_success-->
+		            <i class="iconfont mui-icon colorP font18">&#xe61b;</i>
+		            <span>购买记录</span>
+		        </li>
+		        <li onclick="openPage('order_record.html',{state:1})" class="mui-table-view-cell person">
+		            <i class="iconfont mui-icon colorP font18">&#xe61b;</i>
+		            <span>我的订单</span>
+		        </li> 
+		        <li onclick="openNewPage('my_release.html')" class="mui-table-view-cell">
+		            <i class="iconfont mui-icon colorP font18">&#xe718;</i>
+		            <span>我的发布</span>
+		        </li>
+		        <li onclick="openNewPage('my_collect.html')" class="mui-table-view-cell">
+		            <i class="iconfont mui-icon colorP font18">&#xe70a;</i>
+		            <span>我的收藏</span>
+		        </li>
+		        <li onclick="openNewPage('my_address.html')" class="mui-table-view-cell">
+		            <i class="iconfont mui-icon colorP font18">&#xe60f;</i>
+		            <span>我的地址</span>
+		        </li>
+		    </ul>
+		    <ul class="mui-table-view margin-bottom10px bg_white">
+		        <li onclick="openNewPage('setting.html')" class="mui-table-view-cell">
+		            <i class="iconfont mui-icon colorP font18">&#xe601;</i>
+		            <span>设置</span>
+		        </li>
+		    </ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/open.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/apppublic.js"></script>	
+	<script type="text/javascript"> 
 		$(function(){
 			//申请卖主成功后显示
 			var filter_height = parseInt($('.user_box').height()+80);
@@ -129,7 +115,6 @@
 					}]
 				}, function(e) {
 					var i = e.index;
-			　　　　　window.plus.bridge.execSync("community", "pushWebView", "");
 					if(i == 1) {
 						openPublish('release_viewMedia.html')
 					} else if(i == 2) {
@@ -143,16 +128,6 @@
 				});
 			}
 		});
-
-
-
-
-
-
-
-
-
-
-</script>
-<script src="../js/app/merchant.js"></script>
+	</script>
+	<script src="../js/app/merchant.js"></script>
 </html> 

@@ -6,20 +6,26 @@ app.controller('myController',function ($scope,$http) {
 			method: 'post',
 			url: apiRoot,
 			data: {
-				action: 'Dynamic.getAllDynamic',
+				action: 'Group.getMoreGroup',
 				uid:uid,
 				page:page
 			}
 		}).then(function (result) {
-				console.log(JSON.stringify(result));  
+				  
 			if(result.data.error == 0){
 				var info = result.data.data;
-				var user = info['user'];/*个人信息*/
-				$scope.nick = user.nick;
-				$scope.icon = getAvatar(user.icon);
-
-				$scope.info = info['dynamic'];/*动态*/
-				//console.log(JSON.stringify(info['dynamic'])); 
+				console.log(JSON.stringify(info));
+				var group = info['group'];/*个人信息*/
+				if(group.length <= 0){
+					$scope.data_num = 1;
+				} else{
+					$scope.data_num = 0;
+				}
+				console.log(JSON.stringify(group));
+				$.each(group, function(key,vo) {
+					group['icon'] = getAvatar(vo.icon);
+				});
+				$scope.info = group;		
 				page ++;
 			}else{
 				toast(data.desc || '沒有数据');
@@ -43,9 +49,18 @@ function readys(){
 	var allocation = document.querySelector('[ng-controller=myController]');
 	$scope = angular.element(allocation).scope();
 	$scope.initView();
-	$scope.$apply();
-	
+	$scope.$apply();	
 }
+
+//function getValue () {
+//	$scope.initView();
+//}
+//
+//
+//function loadNews () {
+//	page = 1;
+//	$scope.initView();
+//}
 
 if(window.plus){
 	readys();
