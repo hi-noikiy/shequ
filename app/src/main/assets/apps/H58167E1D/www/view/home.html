@@ -42,36 +42,30 @@
 			.mui-table-view-cell:last-child:after {
 				height: 1px;
 			}
-			
 			.user span {
 				width: 72%;
 				display: inline-block;
 			}
-			
 			.user {
 				width: 62%;
 			}
-			
 			.subfield>div {
 				min-height: 46px !important;
 				max-height: 60px;
 				overflow: hidden;
 				border-radius: 6px;
 			}
-			
 			.subfield img {
 				min-height: 46px !important;
 				max-height: 60px;
 			}
-			.mui-table-view .mui-media-object img{background: #000;}
-			.mui-media-object {
-				max-height: 74px !important;
-			}
-			
+			.mui-table-view .mui-media-object img{background: #000;width: 100% !important;height: 100% !important;}
+			.mui-media-object {max-height: 74px !important;}
 			.slider_wrap img {
 				min-height: 150px;
 				max-height: 194px;
 			}
+			#refresh{display: block;position: fixed;bottom: 30px;right: 20px;z-index: 999;font-size: 30px;background: #fff;box-shadow: 0 0 10px #ddd;border-radius: 50%;width: 42px;height: 42px;text-align: center;line-height: 42px;}
 		</style>
 	</head>
 
@@ -83,7 +77,7 @@
 			        <a class="mui-control-item sp_fonts" href="#itemB">交易</a>
 			    </div>
 		    </h1>
-			<!--<a onclick="openNewPage('search_result.html')" class="mui-icon iconfont mui-pull-right">&#xe64f;</a>-->
+			<a onclick="openNewPage('search_result.html')" class="mui-icon iconfont mui-pull-right">&#xe64f;</a>
 		</header>
 		<div class="mui-content">
 			<!-----------------社区---------------->
@@ -103,62 +97,39 @@
 									<div id="slider1" class="mui-slider">
 										<div class="mui-slider-group mui-slider-loop">
 											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate slider_wrap">
+											<div class="mui-slider-item mui-slider-item-duplicate slider_wrap" ng-if='index==photos[1].length-1' ng-repeat="(index,pic) in photos[1]">
 												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
+													<img ng-src="{{pic.img_add}}">
 												</a>
 											</div>
-											<!-- 第一张 -->
-											<div class="mui-slider-item  slider_wrap">
+											<!-- 轮播图片循环体 -->
+											<div class="mui-slider-item  slider_wrap" ng-repeat="(index,pic) in photos[1]">
 												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
+													<img ng-src="{{pic.img_add}}">
 												</a>
-											</div>
-											<!-- 第二张 -->
-											<div class="mui-slider-item  slider_wrap">
-												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
-												</a>
-											</div>
-											<!-- 第三张 -->
-											<div class="mui-slider-item  slider_wrap">
-												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
-												</a>
-											</div>
-											<!-- 第四张 -->
-											<div class="mui-slider-item  slider_wrap">
-												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
-												</a>
-											</div>
+											</div>								
 											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate  slider_wrap">
+											<div class="mui-slider-item mui-slider-item-duplicate  slider_wrap" ng-if='index==0' ng-repeat="(index,pic) in photos[1]">
 												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
+													<img ng-src="{{pic.img_add}}">
 												</a>
 											</div>
 										</div>
 										<div class="mui-slider-indicator">
-											<div class="mui-indicator mui-active"></div>
-											<div class="mui-indicator"></div>
-											<div class="mui-indicator"></div>
-											<div class="mui-indicator"></div>
+											<div class="mui-indicator mui-active" ng-if='index==0' ng-repeat="(index,pic) in photos[1]"></div><div class="mui-indicator" ng-if='index!=0'  ng-repeat="(index,pic) in photos[1]"></div>
 										</div>
 									</div>
 								</li>
 								<!--分栏-->
 								<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield bg_white">
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('special_topic.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:1})" class="zt_item">
 											<img ng-src="../img/zhuanti1.jpg" />
-											<p>
-												<a>十月艺术专题</a>
-											</p>
+											<p><a>十月艺术专题</a></p>
 										</div>
 									</div>
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:2})" class="zt_item">
 											<img ng-src="../img/zhuanti2.jpg" />
 											<p>
 												<a>传统工艺焕新生</a>
@@ -167,7 +138,7 @@
 
 									</div>
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('originality.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:3})" class="zt_item">
 											<img ng-src="../img/zhaunti3.jpg" />
 											<p>
 												<a>新生创意</a>
@@ -254,54 +225,33 @@
 									<div id="slider2" class="mui-slider">
 										<div class="mui-slider-group mui-slider-loop">
 											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate">
+											<div class="mui-slider-item mui-slider-item-duplicate slider_wrap" ng-if='index==photos[2].length-1' ng-repeat="(index,pic2) in photos[2]">
 												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
+													<img ng-src="{{pic2.img_add}}">
 												</a>
 											</div>
-											<!-- 第一张 -->
-											<div class="mui-slider-item">
+											<!-- 轮播图片循环体 -->
+											<div class="mui-slider-item  slider_wrap" ng-repeat="(index,pic2) in photos[2]">
 												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
+													<img ng-src="{{pic2.img_add}}">
 												</a>
-											</div>
-											<!-- 第二张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
-												</a>
-											</div>
-											<!-- 第三张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
-												</a>
-											</div>
-											<!-- 第四张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
-												</a>
-											</div>
+											</div>								
 											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate">
+											<div class="mui-slider-item mui-slider-item-duplicate  slider_wrap" ng-if='index==0' ng-repeat="(index,pic2) in photos[2]">
 												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
+													<img ng-src="{{pic2.img_add}}">
 												</a>
 											</div>
 										</div>
 										<div class="mui-slider-indicator">
-											<div class="mui-indicator mui-active"></div>
-											<div class="mui-indicator"></div>
-											<div class="mui-indicator"></div>
-											<div class="mui-indicator"></div>
+											<div class="mui-indicator mui-active" ng-if='index==0' ng-repeat="(index,pic2) in photos[2]"></div><div class="mui-indicator" ng-if='index!=0'  ng-repeat="(index,pic2) in photos[2]"></div>
 										</div>
 									</div>
 								</li>
 								<!--分栏-->
 								<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('special_topic.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:1})" class="zt_item">
 											<img ng-src="../img/zhuanti1.jpg" />
 											<p>
 												<a>十月艺术专题</a>
@@ -309,7 +259,7 @@
 										</div>
 									</div>
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:2})" class="zt_item">
 											<img ng-src="../img/zhuanti2.jpg" />
 											<p>
 												<a>传统工艺焕新生</a>
@@ -318,7 +268,7 @@
 
 									</div>
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('originality.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:3})" class="zt_item">
 											<img ng-src="../img/zhaunti3.jpg" />
 											<p>
 												<a>新生创意</a>
@@ -405,54 +355,33 @@
 									<div id="slider3" class="mui-slider">
 										<div class="mui-slider-group mui-slider-loop">
 											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate">
+											<div class="mui-slider-item mui-slider-item-duplicate slider_wrap" ng-if='index==photos[3].length-1' ng-repeat="(index,pic3) in photos[3]">
 												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
+													<img ng-src="{{pic3.img_add}}">
 												</a>
 											</div>
-											<!-- 第一张 -->
-											<div class="mui-slider-item">
+											<!-- 轮播图片循环体 -->
+											<div class="mui-slider-item  slider_wrap" ng-repeat="(index,pic3) in photos[3]">
 												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
+													<img ng-src="{{pic3.img_add}}">
 												</a>
-											</div>
-											<!-- 第二张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
-												</a>
-											</div>
-											<!-- 第三张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
-												</a>
-											</div>
-											<!-- 第四张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
-												</a>
-											</div>
+											</div>								
 											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate">
+											<div class="mui-slider-item mui-slider-item-duplicate  slider_wrap" ng-if='index==0' ng-repeat="(index,pic3) in photos[3]">
 												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
+													<img ng-src="{{pic3.img_add}}">
 												</a>
 											</div>
 										</div>
 										<div class="mui-slider-indicator">
-											<div class="mui-indicator mui-active"></div>
-											<div class="mui-indicator"></div>
-											<div class="mui-indicator"></div>
-											<div class="mui-indicator"></div>
+											<div class="mui-indicator mui-active" ng-if='index==0' ng-repeat="(index,pic3) in photos[3]"></div><div class="mui-indicator" ng-if='index!=0'  ng-repeat="(index,pic3) in photos[3]"></div>
 										</div>
 									</div>
 								</li>
 								<!--分栏-->
 								<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('special_topic.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:1})" class="zt_item">
 											<img ng-src="../img/zhuanti1.jpg" />
 											<p>
 												<a>十月艺术专题</a>
@@ -460,7 +389,7 @@
 										</div>
 									</div>
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:2})" class="zt_item">
 											<img ng-src="../img/zhuanti2.jpg" />
 											<p>
 												<a>传统工艺焕新生</a>
@@ -469,7 +398,7 @@
 
 									</div>
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('originality.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:3})" class="zt_item">
 											<img ng-src="../img/zhaunti3.jpg" />
 											<p>
 												<a>新生创意</a>
@@ -556,54 +485,33 @@
 									<div id="slider4" class="mui-slider">
 										<div class="mui-slider-group mui-slider-loop">
 											<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate">
+											<div class="mui-slider-item mui-slider-item-duplicate slider_wrap" ng-if='index==photos[4].length-1' ng-repeat="(index,pic4) in photos[4]">
 												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
+													<img ng-src="{{pic4.img_add}}">
 												</a>
 											</div>
-											<!-- 第一张 -->
-											<div class="mui-slider-item">
+											<!-- 轮播图片循环体 -->
+											<div class="mui-slider-item  slider_wrap" ng-repeat="(index,pic4) in photos[4]">
 												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
+													<img ng-src="{{pic4.img_add}}">
 												</a>
-											</div>
-											<!-- 第二张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
-												</a>
-											</div>
-											<!-- 第三张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
-												</a>
-											</div>
-											<!-- 第四张 -->
-											<div class="mui-slider-item">
-												<a href="#">
-													<img ng-src="../img/lunbo2.jpg">
-												</a>
-											</div>
+											</div>								
 											<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-											<div class="mui-slider-item mui-slider-item-duplicate">
+											<div class="mui-slider-item mui-slider-item-duplicate  slider_wrap" ng-if='index==0' ng-repeat="(index,pic4) in photos[4]">
 												<a href="#">
-													<img ng-src="../img/lunbo1.jpg">
+													<img ng-src="{{pic4.img_add}}">
 												</a>
 											</div>
 										</div>
 										<div class="mui-slider-indicator">
-											<div class="mui-indicator mui-active"></div>
-											<div class="mui-indicator"></div>
-											<div class="mui-indicator"></div>
-											<div class="mui-indicator"></div>
+											<div class="mui-indicator mui-active" ng-if='index==0' ng-repeat="(index,pic4) in photos[4]"></div><div class="mui-indicator" ng-if='index!=0'  ng-repeat="(index,pic4) in photos[4]"></div>
 										</div>
 									</div>
 								</li>
 								<!--分栏-->
 								<li class="mui-table-view-cell mui-grid-view  margin-bottom5px subfield">
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('special_topic.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:1})" class="zt_item">
 											<img ng-src="../img/zhuanti1.jpg" />
 											<p>
 												<a>十月艺术专题</a>
@@ -611,7 +519,7 @@
 										</div>
 									</div>
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('traditionally_craft.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:2})" class="zt_item">
 											<img ng-src="../img/zhuanti2.jpg" />
 											<p>
 												<a>传统工艺焕新生</a>
@@ -620,7 +528,7 @@
 
 									</div>
 									<div class="mui-pull-left border-radius5px">
-										<div onclick="openNewPage('originality.html')" class="zt_item">
+										<div onclick="openPage('special_topic.html',{type_id:3})" class="zt_item">
 											<img ng-src="../img/zhaunti3.jpg" />
 											<p>
 												<a>新生创意</a>
@@ -705,9 +613,6 @@
 			</div>
 			<!---------------------交易---------------------->
 			<div id="itemB" class="mui-control-content mui-slider-item">
-				<!--<div id="scroll" class="mui-scroll-wrapper">
-					<div class="mui-scroll">-->
-				<!--<div class="mui-slider bg_white">-->
 				<ul class="mui-table-view">
 					<!--轮播图-->
 					<li class="mui-table-view-cell padding0">
@@ -837,10 +742,8 @@
 						</a>
 					</li>
 				</ul>
-				<!--</div>	
-					</div>
-				</div>-->
 			</div>
+			<a href="#" class="iconfont mui-icon" id="refresh" ng-click="refresh()">&#xe62e;</a>
 		</div>
 	</body>
 	<script src="../js/mui.min.js"></script>
@@ -850,43 +753,12 @@
 	<script src="../js/apppublic.js"></script>
 	<script type="text/javascript" src="../js/loading-bar.js" ></script>
 	<script src="../js/app/home.js"></script>
-	<script type="text/javascript">
-		mui.init({ swipeBack: false });
-		window.addEventListener('changeVal', function(event) {
-			var showWin = event.detail.showWin;
-			if(showWin == 1) {
-				//触发弹窗
-				
-				plus.nativeUI.actionSheet({
-					cancel: "取消",
-					buttons: [{
-						title: "发布内容"
-					}, {
-						title: "发布商品"
-					}]
-				}, function(e) {
-					var i = e.index;
-					window.plus.bridge.execSync("community", "pushWebView", "");
-					if(i == 1) {
-						openPublish('release_viewMedia.html')
-					} else if(i == 2) {
-						if(plus.storage.getItem('sign') == '1') {
-							openNewPage('release_goods.html');
-						} else {
-							mui.toast("您还未注册卖家，请完整注册申请，才可以发布商品噢。");
-							openNewPage('apply_for_seller.html');
-						}
-					}
-				});
-			}
-		});
-	</script>
+	<script src="../js/release_type.js"></script>
 	<script>
 		$(function() {
 			//点击监测"社区（无二、古技、洋艺、觉今）"每一个板块内容的高度
 			$('#itemA .mui-control-item').on('tap', function() {
 				var i = $(this).index();
-				console.log($('#itemA .mui-control-content').eq(i).innerHeight());
 				$('#nav').css({ 'height': ($('#itemA .mui-control-content').eq(i).innerHeight() + 42) + 'px' });
 			})
 			//滑动监测"社区（无二、古技、洋艺、觉今）"每一个板块内容的高度
@@ -894,9 +766,7 @@
 				setTimeout(function() {
 					$('#itemA .mui-control-item').eq(e.detail.slideNumber).trigger('tap');
 				}, 100);
-			});
-			
-		
+			});		
 		})
 	</script>
 </html>

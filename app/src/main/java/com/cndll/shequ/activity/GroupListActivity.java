@@ -207,10 +207,14 @@ public class GroupListActivity extends AppCompatActivity {
         }
 
         private void setImageBean() {
-            if (imagedata != null) {
+            if (imagedata != null && imagedata.size() != 0) {
                 imagebean = new HashMap<>();
                 for (GroupImageBean.DataBean bean : imagedata) {
-                    imagebean.put(String.valueOf(bean.getGroup_id()), bean);
+                    try {
+                        imagebean.put(String.valueOf(bean.getGroup_id()), bean);
+                    } catch (Exception e) {
+                        continue;
+                    }
                 }
             }
         }

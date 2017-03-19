@@ -78,36 +78,5 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/apppublic.js"></script>
 <script src="../js/app/dynamic_state.js"></script>
-<script type="text/javascript" charset="UTF-8">
-		mui.init({ swipeBack: false });
-		window.addEventListener('changeVal', function(event) {
-			var showWin = event.detail.showWin;
-			if(showWin == 1) {
-				//触发弹窗
-				plus.nativeUI.actionSheet({
-					cancel: "取消",
-					buttons: [{
-						title: "发布内容"
-					}, {
-						title: "发布商品"
-					}]
-				}, function(e) {
-					var i = e.index;
-					window.plus.bridge.execSync("community", "pushWebView", "");
-					if(i == 1) {
-						openPublish('release_viewMedia.html')
-					} else if(i == 2) {
-						if(plus.storage.getItem('sign') == '1') {
-							openNewPage('release_goods.html');
-						} else {
-							mui.toast("您还未注册卖家，请完整注册申请，才可以发布商品噢。");
-							openNewPage('apply_for_seller.html');
-						}
-					}
-				});
-			}
-		});
-
-
-</script>
+<script src="../js/release_type.js"></script>
 </html>

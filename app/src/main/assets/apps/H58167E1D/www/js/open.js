@@ -4,6 +4,30 @@
  * 全局js
  */
 
+function logoff(){
+window.plus.bridge.execSync("community", "exit", "退出登录");
+plus.storage.removeItem('uid');
+plus.runtime.restart();
+logoutAuth();
+
+//nwaiting();
+//plus.storage.removeItem('uid');
+//mui.currentWebview.close();
+//plus.runtime.restart();
+//alert(plus.storage.getItem('uid'));
+}
+function logoutAuth(){
+for(var i in auths) {
+	var s = auths[i];
+	if(s.authResult) {
+	s.logout(function(e) {
+						//						alert("注销登录认证成功！");
+						}, function(e) {
+						//						alert("注销登录认证失败！");
+					　　　});
+	}
+}}
+
 //页面跳转
 function openNewPage(id) {
 	mui.openWindow({

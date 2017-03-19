@@ -54,8 +54,9 @@ document.addEventListener('plusready', function(){
 					plus.storage.setItem('nick',data.data.nick + '');
 					nick=data.data.nick;
 					var parentid = plus.webview.getWebviewById('personal_data.html');console.log(parentid);
-					mui.fire(parentid,'changeVal',{nick:nick});
-					
+					mui.fire(parentid,'changeVal',{nick:nick});		
+					var arr = [nick];
+                    window.plus.bridge.execSync("community","updateNick",arr);
 					parentpid = plus.webview.getWebviewById('view/personal_center.html');
 						mui.fire(parentpid,'changeVal',{nick:nick});
 					setTimeout(function () {
@@ -67,8 +68,6 @@ document.addEventListener('plusready', function(){
 			}, 
 			error : function(e){
 				console.log(JSON.stringify(e));
-				
-//				errortoast();
 			}
 		});
 	})

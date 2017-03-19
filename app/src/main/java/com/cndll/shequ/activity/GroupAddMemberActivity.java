@@ -71,6 +71,7 @@ public class GroupAddMemberActivity extends AppCompatActivity {
                     EMClient.getInstance().groupManager().addUsersToGroup(groupid, new String[]{id});
                 } catch (HyphenateException e) {
                     e.printStackTrace();
+                    e.getMessage();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

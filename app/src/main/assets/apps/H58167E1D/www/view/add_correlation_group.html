@@ -12,12 +12,12 @@
 <body ng-app="addgroupApp" ng-controller="addgroupController">
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-	    <h1 class="mui-title colorP">我的群聊</h1>
+	    <h1 class="mui-title colorP"><a href="javascript:;" class="mui-pull-left line-height44px font16" ng-click="choose_allGroup()">全选</a>我的群聊</h1>
 	    <button class="mui-btn-link mui-pull-right" ng-click="group_array()"><span class="colorP">关联</span></button>
 	</header>
 	<div class="mui-content">
 		<div></div>
-      <ul class="mui-table-view bg_white" id="groups">
+      	<ul class="mui-table-view bg_white" id="groups">
               <li class="mui-table-view-cell padding0" ng-repeat="x in group" >
 				<div class="mui-input-row mui-checkbox mui-left">
 					<label>

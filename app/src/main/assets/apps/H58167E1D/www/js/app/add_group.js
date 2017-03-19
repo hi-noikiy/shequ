@@ -36,10 +36,14 @@ app.controller("addgroupController",function($scope,$http){
     		groups_arr.push($(this).val()+'');
     	})
     	$group_str=groups_arr.join(',');
+    	var parentid = plus.webview.getWebviewById('release_viewMedia.html');
     	console.log($group_str);
     	plus.storage.setItem('repleaseGroup',$group_str);
     	console.log(plus.storage.getItem('repleaseGroup'));
     	plus.webview.currentWebview().close();
+    }
+    $scope.choose_allGroup = function(){
+    	$('input[type=checkbox]').attr('checked',true);
     }
 })
 

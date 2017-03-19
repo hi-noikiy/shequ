@@ -135,6 +135,16 @@
 					}
 				}
 			};
+			
+			function showHoner(){
+				var honerP = plus.webview.create('view/honer_page.html','view/honer_page.html',subpage_style2);
+				honerP.show();
+			}
+			function relogin(){
+				window.plus.bridge.execSync('Community','exit','退出登录');
+				plus.storage.removeItem('uid');
+				plus.runtime.restart();
+			}
 		</script>
 	</body>
 </html>

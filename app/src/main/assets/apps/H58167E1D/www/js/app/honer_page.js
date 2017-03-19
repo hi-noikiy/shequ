@@ -1,11 +1,15 @@
-var ws,uid,icon,nick, type_id, myuid,group_name;
+var ws,uid,icon,nick, type_id, myuid,group_name,isSame;
 var app = angular.module('app',[]);
 app.controller('myController',function ($scope,$http) {
-
 	$scope.honerChat = function(){
-		console.log(uid+'--'+icon+'--'+nick);
-		window.plus.bridge.exec("community", "sendMessage", [uid,icon,nick]);
-	} 
+    console.log(uid+'--'+icon+'--'+nick);
+       if(isSame == '1'){       
+            mui.back();
+            window.plus.bridge.execSync("community","backNews","");
+       }else{
+            window.plus.bridge.exec("community", "sendMessage", [uid,icon,nick]);
+       }
+  	}
 	$scope.initView = function () {
 		$http({
 			method: 'post',
@@ -45,10 +49,7 @@ app.controller('myController',function ($scope,$http) {
 					$scope.dynamicMore = 0;//该用户群的数据小于三条的时候不显示“查看更多”
 				}
 				
-				
 				$scope.dynamic = info['dynamic'];/*动态*/
-				
-				
 				if(info['dynamic'].length>0){
 					$scope.dynamicPrompt = 0;//该用户有动态的时候不显示“没有数据”
 					if(info['dynamic'].length>=3){
@@ -60,12 +61,10 @@ app.controller('myController',function ($scope,$http) {
 					$scope.dynamicPrompt = 1;//该用户没有动态的时候显示“没有数据”
 					$scope.dynamicMore = 0;//该用户动态的数据小于三条的时候不显示“查看更多”
 				}
-				//console.log(JSON.stringify(info['dynamic'])); 
 				
 				$.each(info['goods'], function(key,vo) {
 					info['goods'][key]['good_image'] = getPic(vo['good_image']);
 				});
-				
 				
 				$scope.goods = info['goods'];/*商品*/
 				if(info['goods'].length > 0){
@@ -79,28 +78,12 @@ app.controller('myController',function ($scope,$http) {
 					$scope.goodsPrompt = 1;//显示提示“没有数据”
 					$scope.goodsMore = 0;//当数据小于3时，不显示“查看更多”
 				}
-//				if(info['goods'].length>=3){
-//					$scope.goodsMore = 1;
-//				}else{
-//					$scope.goodsMore = 0;
-//				}				
-//				console.log(JSON.stringify(info['goods'])); 		
-
-//				$scope.follow = info['follow'];/*关注*/
-//				console.log(JSON.stringify(info['follow']));
-//				if(info['follow']['str'] && info['follow']['str'].indexOf(','+myuid+',') >-1){
-//					$('#follow1,#follow2').html('&#xe62b;  已关注');
-//					$('#follow1,#follow2').parent().css('border','1px solid #999');
-//				}
-
 			}else{
 				toast(data.desc || '沒有数据');
 			}
 		},function () {
 			errortoast();
 		})
-		
-
 	};	
 	
 	
@@ -188,13 +171,19 @@ app.controller('myController',function ($scope,$http) {
 //	};
 //})
 
-
+//预加载个人页面
+function showHoner(userid,img,nick){    
+    var hornerP = plus.webview.create('view/honer_page.html', 'view/honer_page.html',{},{icon_id:userid,icon_img:img,icon_name:nick,isSame:'1'});
+    hornerP.show();
+}
+ 
 //var ws, userid;
 function ready_honer(){
 	ws = plus.webview.currentWebview();
 	myuid = plus.storage.getItem('uid');
 	uid = ws.icon_id;/*用户id*/
 	type_id = ws.type_id;
+	isSame = ws.isSame;
 	console.log(uid);
 //	uid = 3;
 	var allocation = document.querySelector('[ng-controller=myController]');

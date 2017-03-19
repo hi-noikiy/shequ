@@ -63,7 +63,6 @@
 					<span class="mui-pull-left">图文内容</span>
 					<div class="upload_btn mui-pull-right">
 						<span class="mui-pull-right colorP " id="note_subject">载入图片</span>
-						<!--<input type="file" id="upload_pic"/>-->
 					</div>
 				</li>
 				<li class="padding0 bg_white">
@@ -84,6 +83,7 @@
 		<li ng-click="add_goods()" class="mui-table-view-cell bg_white">
 			<a class="mui-navigate-right">
 				<span class="color333">选择关联的商品…</span>
+				<span class="mui-pull-right padding_r28px" id="goods_name"></span>
 			</a>
 		</li>
 		<div class="paddingl_r_15px_tb11px">
@@ -192,7 +192,6 @@
 		document.addEventListener('plusready', function() {
 			$("#submit_btn").on('tap', function() {
 				var _val = plus.storage.getItem('releaseTags');
-				console.log(_val)
 			});
 		})
 
@@ -226,6 +225,7 @@
 					$('#submit_btn').attr('disabled', true);
 				}
 			})
+			
 			//发布商品所属分类弹窗
 			share($('#category'), $('#sub_item'), $('.category'), $('.cancel_btn'));
 

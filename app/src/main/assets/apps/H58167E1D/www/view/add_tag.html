@@ -13,7 +13,7 @@
     	.hot_tags span{margin: 5px 5px;}
     </style>
 </head>
-<body ng-app="addtagApp" ng-controller="addtagController">
+<body ng-app="addtagApp" ng-controller="addtag">
 	<header class="mui-bar mui-bar-nav bg_white">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 	    <h1 class="mui-title colorP">添加标签</h1>
@@ -21,19 +21,22 @@
 	</header>
 	<div class="mui-content">
         <div class="mui-input-row paddingl_r_6px_tb8px margin-bottom5px" style="background: #fff;">
-            <input type="text" class="tagName" placeholder="输入标签" style="width: 80%;height:30px">
+            <input type="text" class="tagName" maxlength="9" placeholder="输入标签" style="width: 80%;height:30px">
             <button type="button" class="mui-btn mui-btn-blue mui-btn-block margin0 font14" style="width: 16%;padding: 6px;text-align: center;"  id="add_tag_btn">添加</button>
         </div>
         <div class="bg_white paddingl_r_15px_tb15px newTag_list" ></div>
-        <div class="paddingl_r_15px_tb11px hot_tags">
+        <div class="paddingl_r_15px_tb11px">
         	<h5 class="margin-bottom10px">热门标签</h5>
-        	<span class="mui-badge bg_white color999 margin-bottom5px">旅行日记</span><span class="mui-badge bg_white color999 margin-bottom5px">快乐旅行</span>
+        	<a ng-repeat="(index,vo) in tags" class="hot_tags">
+        		<span class="mui-badge bg_white color999 margin-bottom5px" isclick>{{vo.name}}</span>
+        	</a>
+
         </div>
 	</div>
 </body>
 <script src="../js/mui.min.js"></script>
-<script type="text/javascript" src="../js/angular.min.js"></script> 
 <script src="../js/jquery.min.js"></script>
+<script src="../js/angular.min.js"></script>
 <script src="../js/apppublic.js"></script>
 <script src="../js/app/add_tag.js"></script>
 <script type="text/javascript" charset="UTF-8">
@@ -42,35 +45,53 @@
   		if(textVal ==""){
   			mui.toast('标签不能为空');
   			return;
+  		} else {
+  			if(textVal.length >= $('.tagName').attr('maxlength')){
+  				mui.toast('标签名最大为八个字');
+  				return;
+  			}
   		}
-  		$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span>"+textVal+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>") 
+  		$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span class='tag_name'>"+textVal+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>") 
   		$('.tagName').val('');
   	})
+  	
+  	
+	//删除标签
   	$('body').on('tap','.newTag_list span i',function(){
   		$(this).parent().remove();
-  		plus.webview.close();
   	})
+  	
+  	//判断热门标签是否已选
+  	$('body').on('tap','.hot_tags span',function(){
+		if($(this).attr('isclick') == ''){
+			var hot_textval = $(this).html();
+  			$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span class='tag_name'>"+hot_textval+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>");
+			$(this).attr('isclick','1');
+		}
+		else{
+			mui.toast('此标签已选');
+			return;
+		}  		
+  	})
+  	
+  	
   	
   	document.addEventListener('plusready',function () {
       $('#tags').on('tap',function () {
       	var tags_arr = [];
-      	$('.tag_val span').each(function(){
+      	tags_arr.length=0;
+      	$('.newTag_list .tag_name').each(function(){
       		tags_arr.push($(this).text());
       	})
       	tag=tags_arr.join(',');
 		var parentid = plus.webview.getWebviewById('release_viewMedia.html');
         mui.fire(parentid,'changeVal',{tags_value:tag});
-        
-        if($('.tagName').val() == ""){
-        	mui.toast('你尚未添加标签');
-        	return;
-        }
-        plus.webview.currentWebview().close();
+        mui.toast('已保存');
+        setTimeout(function(){
+        	plus.webview.currentWebview().close();
+        },1000);
       })
-      	
     },false);
-  	
-  	
 </script>
 
 </html>

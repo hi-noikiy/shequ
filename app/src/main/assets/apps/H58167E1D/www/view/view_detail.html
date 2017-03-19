@@ -98,7 +98,7 @@
 
 			</div>
 
-			<ul class="mui-table-view margin-bottom5px bg_white">
+			<ul class="mui-table-view margin-bottom5px bg_white" ng-if='topic!="topic"'>
 				<div class="paddingl_r_15px_tb11px bg_white border-bottom">
 					<span class="sp_title">&nbsp;&nbsp;相关商品</span>
 				</div>
@@ -142,8 +142,8 @@
 				<p class="margin0">没有评论了呢~</p>
 			</div>
 			<div class="mui-segmented-control borderNone bg_white" style="position: fixed;bottom: 0;left: 0;">
-				<a ng-click="iscollection(2)" id="viewcollection"><span ng-if="collection==121"><i class="iconfont mui-icon color333">&#xe70a;</i> <i class="font12">收藏</i></span></a>
-				<a ng-click="iscollection(1)"><span ng-if="collection==115"><i class="iconfont mui-icon color">&#xe622;</i> <i class="font12">已收藏</i></span></a>
+				<a ng-click="iscollection(2)" id="viewcollection"style="width: 25%;"><span ng-if="collection==121"><i class="iconfont mui-icon color333">&#xe70a;</i> <i class="font12">收藏</i></span></a>
+				<a ng-click="iscollection(1)"style="width: 25%;"><span ng-if="collection==115"><i class="iconfont mui-icon color">&#xe622;</i> <i class="font12">已收藏</i></span></a>
 				<a ng-click="groupList()"><i class="iconfont mui-icon color333">&#xe61a;</i> <i class="font12">加入群聊</i></a>
 				<a ng-click="openChat()"><i class="iconfont mui-icon color333">&#xe60d;</i> <i class="font12">私聊群主</i></a>
 				<a id="evaluate_btn" ng-click="huiContent(0)"><i class="iconfont mui-icon color333">&#xe660;</i> <i class="font12">评论</i></a>
@@ -187,7 +187,6 @@
 	<script src="../js/mui.previewimage.js"></script>
 	<script type="text/javascript" src="../js/angular.min.js"></script>
 	<script src="../js/jquery.min.js"></script>
-	<!--<script src="../js/shareApp.js"></script>-->
 	<script src="../js/apppublic.js"></script>
 	<script src="../js/app/view_detail.js"></script>
 	<script type="text/javascript" charset="UTF-8">
@@ -207,7 +206,6 @@
 			$('.input_box button').click(function() {
 				var textVal = $('.input_box input').val();
 				plus.storage.setItem('conmentval', textVal);
-				$('.dialogue_box' + bj).append("<li><span class='colorP'>就是要帅：</span><span>" + textVal + "</span></li>");
 				$('.input_box').animate({
 					left: '-100%'
 				}, 300);
@@ -221,7 +219,7 @@
 			//视频播放
 			var is_play = true;
 			$('.video_box').click(function() {
-				var video = document.getElementById('video');
+				var video = document.querySelector('video');
 				if(is_play) {
 					$('.player_btn').css('display', 'none');
 					video.play();
@@ -236,7 +234,6 @@
 					$('.player_btn').css('display', 'block');
 					is_play = true;
 				}
-
 			})
 			share($('.alert_window'), $('.share_list'), $('#shareApp_btn'), $('.cancel_btn'));
 		})

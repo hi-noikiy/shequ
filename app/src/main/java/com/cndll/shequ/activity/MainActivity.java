@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -25,10 +26,12 @@ import com.cndll.shequ.eventtype.JSEvent;
 import com.cndll.shequ.eventtype.LoginIM;
 import com.cndll.shequ.eventtype.PushWebView;
 import com.cndll.shequ.util.ObjectSaveUtils;
-import com.cndll.shequ.util.UpdateApp;
 import com.cndll.shequ.util.UpdataGroupsInfo;
+import com.cndll.shequ.util.UpdateApp;
 import com.cndll.shequ.view.PopUpWindowMag;
 import com.hyphenate.EMCallBack;
+import com.hyphenate.EMConnectionListener;
+import com.hyphenate.EMError;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
@@ -75,6 +78,34 @@ public class MainActivity extends AppCompatActivity {
         initJsEvent();
         init();
         update();
+        EMClient.getInstance().addConnectionListener(new EMConnectionListener() {
+            @Override
+            public void onConnected() {
+
+            }
+
+            @Override
+            public void onDisconnected(int i) {
+                switch (i) {
+                    case EMError.USER_LOGIN_ANOTHER_DEVICE:
+                        try {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.d("tag", "onDisconnected: " + SDK.obatinFirstPage(SDK.obtainCurrentApp()));
+                                    if (SDK.obatinFirstPage(SDK.obtainCurrentApp()) != null) {
+                                        SDK.obatinFirstPage(SDK.obtainCurrentApp()).evalJS("logoff();");
+
+                                    }
+                                }
+                            });
+                        } catch (Exception e) {
+                            Toast.makeText(MainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -123,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
         loginIM.unsubscribe();
         pushWebView.unsubscribe();
         updataGroupImage.unsubscribe();
-
-
     }
 
     @Override

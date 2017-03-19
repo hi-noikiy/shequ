@@ -82,10 +82,8 @@ app.controller("detailsController", function($scope, $http,$sce) {
 	}
 	
 	
-	
-	
-		/*关注/取消关注*/
-		var is_clickAttention = true;
+	/*关注/取消关注*/
+	var is_clickAttention = true;
 	$scope.isattention = function(way)
 	{	
 		if(is_clickAttention){
@@ -122,8 +120,6 @@ app.controller("detailsController", function($scope, $http,$sce) {
 		},2000)
 		}		
 	}
-	
-	
 	
 	/*收藏/取消收藏*/
 	var is_clickCollection = true;
@@ -179,51 +175,9 @@ app.controller("detailsController", function($scope, $http,$sce) {
 		plus.storage.setItem('goodsId', id + '');
 		plus.webview.create('goods_detail.html', 'goods_detail.html').show('pop-in');
 	}
-//	$scope.view_follow = function() {
-//		console.log(uid);
-//		$http({
-//			method: 'post',
-//			url: apiRoot,
-//			data: {
-//				action: 'Community.follow',
-//				type_id: id,
-//				uid: uid,
-//				type: 0,
-//			}
-//		}).then(function successCallback(response) {
-//			console.log(JSON.stringify(response));
-//			$scope.user.follow = 0;/*已关注*/
-//		}, function errorfunction(e) {
-//			console.log(e);
-//			$scope.user.follow = 1;/*已关注*/
-//		})
-//
-//	}
-
-
-//	$scope.viewCollection = function() {
-//		console.log(id + '--' + uid);
-//		$('#viewcollection').html('<i class="iconfont mui-icon colorP">&#xe622;</i>  <i class="font12">已收藏</i>');
-//		$http({
-//			method: 'post',
-//			url: apiRoot,
-//			data: {
-//				action: 'Community.collection',
-//				type_id: id,
-//				uid: uid,
-//				type: 0,
-//			}
-//		}).then(function successCallback(response) {
-//			console.log(JSON.stringify(response));
-//			toast('收藏成功');
-//			//		console.log(JSON.stringify(response.data.data.note));
-//		}, function errorfunction(e) {
-//			console.log(JSON.stringify(e));
-//		})
-//	}
+	
 	$scope.viewContent = function() {
 		//parent 
-		console.log(1);
 		viewval = $('.conmentval').val();
 		if(viewval == ""){
 			mui.toast('您发布的内容不能为空');
@@ -243,7 +197,7 @@ app.controller("detailsController", function($scope, $http,$sce) {
 			console.log(JSON.stringify(response));
 			$scope.initView(id,uid);
 			toast('发表评论成功');
-			window.location.reload();
+//			$scope.show_dialog=1; //显示对话框
 		}, function errorfunction(e) {
 			console.log(JSON.stringify(e));
 		})
@@ -278,6 +232,7 @@ document.addEventListener("plusready", function() {
 	uid = plus.storage.getItem('uid');
 	type_id = ws.noteId;
 	type = ws.type;/*类型*/
+	$scope.topic=ws.topic;
 //	console.log(type_id +'++++'+type)
 	$scope.initView(type_id,type);
 	$scope.$apply();

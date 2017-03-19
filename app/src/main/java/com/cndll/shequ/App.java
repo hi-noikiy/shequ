@@ -5,6 +5,7 @@ import android.support.multidex.MultiDex;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.controller.EaseUI;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import io.dcloud.application.DCloudApplication;
 
@@ -20,6 +21,6 @@ public class App extends DCloudApplication {
         Fresco.initialize(this);
         EaseUI.getInstance().init(this, null);
         EMClient.getInstance().setDebugMode(true);
-
+        CrashReport.initCrashReport(getApplicationContext(), "23c6e1948f", false);
     }
 }

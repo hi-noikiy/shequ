@@ -1,29 +1,28 @@
 var app = angular.module("addtagApp",[]);
 
-app.controller("addtagController",function($scope,$http){
-       
+app.controller("addtag",function($scope,$http){
+      $scope.intview = function(){
+      	$http({
+      		method:"post",
+      		url: apiRoot,
+      		data:{
+      			action:"Community.tags"      			
+      		}      		
+      	}).then(function(result){      		
+      		if(result.data.error == 0){
+      			$scope.tags = result.data.data;
+      		}
+      	},function errorfunction(){
+      		console.log(JSON.stringify(e))
+      	})
+      }
 })
 
 
 document.addEventListener("plusready",function(){
-	appElement=document.querySelector('[ng-controller=addtagController]');
-	$scope= angular.element(appElement).scope();
-	plus.nativeUI.closeWaiting();
-	ws=plus.webview.currentWebview();
-	if(ws.add_tag)
-	{
-//		var tag_str=plus.storage.getItem('releaseTags');
-		tag_str=ws.add_tag;
-		if(tag_str)
-		{   
-			tag_arr=tag_str.split(","); 
-			for(var i=0;i<tag_arr.length;i++)
-			{
-				$('.newTag_list').append("<span class='mui-badge mui-btn-blue color_white tag_val'><span>"+tag_arr[i]+"</span><i class='iconfont mui-icon'>&#xe603;</i></span>")
-			}
-//			plus.storage.removeItem('releaseTags');
-		}
-	}
-	
-	$scope.$apply();
+	uid = plus.storage.getItem('uid');
+	appElement = document.querySelector('[ng-controller=addtag]');
+	$scope = angular.element(appElement).scope();  
+	$scope.intview();
+	$scope.$apply();	
 })

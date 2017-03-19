@@ -92,6 +92,8 @@ function upload(){
 						$('#show_pic8').attr('src',getAvatar(icon));
 						parentid = plus.webview.getWebviewById('view/personal_center.html');
 						mui.fire(parentid,'changeVal',{icon:icon});/*更新用户头像*/
+						var arr = [icon];
+                        window.plus.bridge.execSync("community","updateHeader",arr);
 						plus.nativeUI.closeWaiting();
 						
 					}

@@ -73,6 +73,14 @@ public class WebViewMode_FeatureImpl implements IFeature {
             case "backNews":
                 RxBus.getDefault().post(new PushWebView().setTYPE(PushWebView.BACK));
                 break;
+            case "updateHeader":
+                UserLodingInFo.getInstance().setIcon(pJsArgs[0]);
+                ObjectSaveUtils.saveObject(pWebViewImpl.getContext(), "USERINFO", UserLodingInFo.getInstance());
+                break;
+            case "updateNick":
+                UserLodingInFo.getInstance().setNick(pJsArgs[0]);
+                ObjectSaveUtils.saveObject(pWebViewImpl.getContext(), "USERINFO", UserLodingInFo.getInstance());
+                break;
         }
 
         return null;

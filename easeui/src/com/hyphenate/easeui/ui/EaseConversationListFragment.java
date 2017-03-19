@@ -155,7 +155,7 @@ public class EaseConversationListFragment extends EaseBaseFragment {
             });
         }
 
-        EMClient.getInstance().addConnectionListener(connectionListener);
+        //EMClient.getInstance().addConnectionListener(connectionListener);
 
         query.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {

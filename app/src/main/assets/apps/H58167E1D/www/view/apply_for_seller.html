@@ -15,6 +15,7 @@
 		.upfile_box img{
 			margin-top: -2px;
 		}
+		.upfile_box{float: none;margin: 20px auto 0;}
 	</style>
 </head>
 <body ng-app="applyApp" ng-controller="applyController">
@@ -65,12 +66,14 @@
 		        <li class="paddingl_r_15px_tb11px">
 		            <div class="mui-input-row">
 		                <label style="display: block;width: 100%;">照片上传</label>
-		                <div class="upfile_box" id="pic1" data-ind="1">
+		                
+		                <div class="upfile_box" id="pic1" data-ind="1" style="margin-top: 40px;">
 					        <!--<input type="file" id="uploadimg10" name="photo[]"class="upload_file"/>-->
 					        <div id="show_pic10"  class="a1">
 					        	<i class="iconfont mui-icon mobilepic">&#xe6de;</i>
 					        </div>
 					    </div>
+					    <p class="mui-text-center font12">请上传本人照片</p>
 					    
 					    <div class="upfile_box " id="pic2" data-ind="2">
 					        <!--<input type="file" id="uploadimg11" name="photo[]" class="upload_file"/>-->
@@ -78,12 +81,14 @@
 					        	<i class="iconfont mui-icon mobilepic">&#xe6de;</i>
 					        </div>
 					    </div>
+					    <p class="mui-text-center font12">请上传本人身份证正面</p>
 					    
 					    <div class="upfile_box " id="pic3" data-ind="3">
 					        <div id="show_pic12" class="a3">
 					        	<i class="iconfont mui-icon mobilepic">&#xe6de;</i>
 					        </div>
 					    </div>
+					    <p class="mui-text-center font12">请上传本人身份证反面</p>
 		            </div>
 		        </li>
 		        <li class="mui-table-view-cell">资质说明</li>

@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="../fonts/iconfont/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="../css/global.css" />
 		<style type="text/css">
+			.mui-bar-nav~.mui-content{padding-top: 0;}
 			.mui-input-row label~input {
 				text-align: right;
 				float: right;
@@ -31,18 +32,17 @@
 			<button class="mui-btn-link mui-pull-right"><span class="colorP">保存</span></button>
 		</header>
 		<div class="mui-content">
-			<div></div>
 			<ul class="mui-table-view bg_white margin-bottom10px">
 				<li class="mui-table-view-cell">
 					<div class="mui-input-row">
 						<label class=" color999">收货人</label>
-						<input class="name" type="text" placeholder="请输入收货人" value="">
+						<input class="name" type="text" id="user" placeholder="请输入收货人" value="">
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
 					<div class="mui-input-row">
 						<label class=" color999">手机号码</label>
-						<input class="phoen" type="text" placeholder="请输入收货人" value="">
+						<input class="phoen" type="text" id="phone_number" placeholder="请输入收货人" value="">
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
@@ -56,7 +56,7 @@
 					</div>
 				</li>
 				<li class="mui-table-view-cell padding0">
-					<textarea name="" class="plac" rows="5" cols="" placeholder="请输入详细地址"></textarea>
+					<textarea name="" class="plac" rows="5" id="detail_address" cols="" placeholder="请输入详细地址"></textarea>
 				</li>
 			</ul>
 		</div>
@@ -66,6 +66,7 @@
 	<script src="../js/apppublic.js"></script>
 	<script src="../js/mui.picker.js"></script>
 	<script src="../js/mui.poppicker.js"></script>
+	<script src="../js/apppublic.js"></script>
 	<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
 	<script>
@@ -90,6 +91,35 @@
 				}, false);
 			});
 		})(mui, document);
+		
+		//收货人姓名不为空
+		$('#user').blur(function(){
+			if($(this).val() == ""){
+				mui.toast("请输入收货人姓名");
+				return;
+			}
+		})
+		//收货人电话验证
+		$('#phone_number').blur(function(){
+			if($(this).val() != ""){
+				if(!$(this).val().match(p1)){
+					mui.toast("手机号码不正确，请重新输入");
+					return;
+				}
+			} else{
+				mui.toast("请输入手机号码");
+				return;
+			}
+		})
+		//收货人详细地址不为空
+		$('#detail_address').blur(function(){
+			if($(this).val() == ""){
+				mui.toast("请输入详细地址");
+				return;
+			}
+		})
+		
+		
 		var userid,id,ws;
 		document.addEventListener('plusready', function() {
 			 ws = plus.webview.currentWebview();
@@ -120,7 +150,6 @@
 				})
 			}
 			userid = plus.storage.getItem('uid');
-
 		}, false)
 		$('.colorP').click(function() {
 			var name = $('.name').val();

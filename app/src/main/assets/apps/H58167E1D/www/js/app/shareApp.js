@@ -82,7 +82,7 @@ console.log(ids[i].id);
    */
 function shareMessage(s,ex){
 	//var aid = $('.shareCommunity').attr('data-aid');
-	var msg={title : '去卖艺' , extra : {scene:ex}  , content:shareContent,href:(webRoot + webPage + id),thumbs:['http://qmy.51edn.com/static/images/icon.png']};
+	var msg={title : '去卖艺' , extra : {scene:ex}  , content:shareContent,href:(webRoot + webPage + type_id),thumbs:['http://qmy.51edn.com/static/images/icon.png']};
 	s.send( msg, function(){
 		plus.nativeUI.toast( "分享成功");
 	}, function(e){

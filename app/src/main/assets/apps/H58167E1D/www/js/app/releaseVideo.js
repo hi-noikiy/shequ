@@ -1,5 +1,4 @@
-var newpath, files = [],
-	uid, groupid, goodsid,tag_value;
+var newpath, files = [],uid, groupid, goodsid,tag_value;
 var app = angular.module("App", []);
 app.controller("releaseController", function($scope, $http, $sce) {
 	$scope.type = 0; //类型默认值为图文
@@ -20,7 +19,6 @@ app.controller("releaseController", function($scope, $http, $sce) {
 	$scope.releasesub = function() {
 		plus.nativeUI.showWaiting("上传中...");
 		console.log(tag_value);
-//		var tags = plus.storage.getItem('releaseTags');
 		$scope.cate_id = $('.category_list input:checked').attr("cate_id");
 		var groupid = plus.storage.getItem('repleaseGroup');
 		var goodsid = plus.storage.getItem('repleaseGoods');
@@ -44,10 +42,8 @@ app.controller("releaseController", function($scope, $http, $sce) {
 		var task = plus.uploader.createUpload(server, { method: "post", blocksize: 102400, timeout: 0 },
 			function(t, status) { //上传完成
 				plus.nativeUI.closeWaiting();
-				console.log(JSON.stringify(t));
 				if(status == 200) {
 					var infopics = $.parseJSON(t.responseText);
-					console.log(JSON.stringify(infopics));
 					if(t.responseText.data != '') {
 						plus.nativeUI.toast('发布成功');
 						plus.webview.currentWebview().close();
@@ -69,7 +65,6 @@ app.controller("releaseController", function($scope, $http, $sce) {
 		);
 		for(var i = 0; i < files.length; i++) {
 			var f = files[i];
-			console.log("myfile:" + f.patn);
 			switch(f.type) {
 				case 1: //封面
 					task.addFile(f.patn, { key: "cover" });
@@ -94,19 +89,16 @@ app.controller("releaseController", function($scope, $http, $sce) {
 		plus.nativeUI.showWaiting('加载中......');
 //		plus.webview.create('add_tag.html', 'add_tag.html', {}, { 'add_tag': 'add_tag' }).show('pop-in');
 		plus.webview.create('add_tag.html', 'add_tag.html', {}, { 'add_tag': tag_value, }).show('pop-in');
+		plus.nativeUI.closeWaiting();
 	}
 	$scope.add_group = function() {
 		uid = plus.storage.getItem('uid');
 		plus.nativeUI.showWaiting('加载中......');
-		console.log(uid);
-//		plus.webview.create('add_correlation_group.html', 'add_correlation_group.html', {}, { 'group_id': uid }).show('pop-in');
 		plus.webview.create('add_correlation_group.html', 'add_correlation_group.html', {}, { 'group_id': uid }).show('pop-in');	
 	}
 	$scope.add_goods = function() {
 		uid = plus.storage.getItem('uid');
 		plus.nativeUI.showWaiting('加载中......');
-		console.log(uid);
-//		plus.webview.create('add_correlation_goods.html', 'add_correlation_goods.html', {}, { 'goods_id': uid }).show('pop-in');
 		plus.webview.create('add_correlation_goods.html', 'add_correlation_goods.html', {}, { 'goods_id': uid }).show('pop-in');
 	}
 
@@ -114,14 +106,12 @@ app.controller("releaseController", function($scope, $http, $sce) {
 		plus.nativeUI.actionSheet({ cancel: "取消", buttons: [{ title: "添加视频" }] }, function(e) {
 			if(e.index == 1) {
 				plus.gallery.pick(function(path) {
-					console.log(JSON.stringify(path))
 					for(x in files) {
 						if(files[x].type == 1) {
 							files.splice(x, 1);
 						}
 					}
 					files.push({ 'patn': path, 'name': 'name', 'type': 1 });
-					//					$scope.url = path;
 					path = "file://" + plus.io.convertLocalFileSystemURL(path);
 					$scope.viedoUrl = $sce.trustAsResourceUrl(path);
 					$scope.$apply();
@@ -141,7 +131,6 @@ $('#note_subject').on('tap', function() {
 			var car = plus.camera.getCamera();
 			car.captureImage(function(path) {
 				//展示图片 
-				console.log(JSON.stringify(path))
 				path = "file://" + plus.io.convertLocalFileSystemURL(path);
 				$('.img_show').append('<img src="' + path + '">');
 				appendpic(path, 2);
@@ -153,8 +142,6 @@ $('#note_subject').on('tap', function() {
 					$('.img_show').append('<li class="mui-pull-left"><img src="' + path.files[i] + '"><i class="iconfont mui-icon del_btn">&#xe603;</i></li>');
 					appendpic(path.files[i], 2);
 				}
-
-				//				console.log(JSON.stringify(path));
 			}, function(e) {
 				console.log("取消选择图片");
 			}, {
@@ -175,7 +162,6 @@ $('.note_subject').on('tap', function() {
 			var car = plus.camera.getCamera();
 			car.captureImage(function(path) {
 				//展示图片 
-				console.log(JSON.stringify(path))
 				path = "file://" + plus.io.convertLocalFileSystemURL(path);
 				$scope.subject_img = path;
 				$scope.$apply();
@@ -204,7 +190,6 @@ function appendpic(p, type) {
 		}
 	}
 
-	console.log("xxxxx:" + JSON.stringify(files));
 	plus.nativeUI.showWaiting('图片处理中...');
 	var newpath = p.replace(/\./g, new Date().getTime() + '.');
 	plus.zip.compressImage({
@@ -215,7 +200,6 @@ function appendpic(p, type) {
 		function() { //毁掉成功
 			plus.nativeUI.closeWaiting();
 			files.push({ 'patn': newpath, 'name': 'name', 'type': type });
-			console.log("xxxx:111:" + files);
 		},
 		function(error) {
 			alert('压缩图片失败');
@@ -232,7 +216,6 @@ document.addEventListener("plusready", function() {
 		$(".up_file").removeClass("mui-hidden")
 		$(".up_video").addClass("mui-hidden");
 		$scope.$apply();
-		console.log(JSON.stringify(files));
 	})
 	$(".video_btn").on('tap', function() {
 		$scope.clearFiles();
@@ -240,14 +223,13 @@ document.addEventListener("plusready", function() {
 		$(".up_file").addClass("mui-hidden")
 		$(".up_video").removeClass("mui-hidden");
 		$scope.$apply();
-		console.log(JSON.stringify(files));
 	})
 
 	uid = plus.storage.getItem('uid');
 	$scope.$apply();
 })
+
+
 window.addEventListener('changeVal',function(event){
    tag_value = event.detail.tags_value;
-   console.log(tag_value);
-  
 });
